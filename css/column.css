@@ -1,0 +1,215 @@
+/* ==========================================================================
+   《队长小翼》汉化版知识库 · 特别专栏页样式
+   复用官方站点设计语言：电光蓝 #1400ff、黑白区块、无衬线黑体
+   ========================================================================== */
+
+/* 页面头部：标题缩小字号并保持单行 */
+.page-hero--column {
+  padding-bottom: 30px; /* 原 60px，减半以缩小简介区与列表间距 */
+}
+.page-hero--column h1 {
+  font-size: clamp(26px, 4.5vw, 44px);
+  white-space: nowrap;
+}
+/* 简介区下方至第一个专栏卡片：间距减半（原 .section 顶部 72px → 36px） */
+#columns.section {
+  padding-top: 36px;
+}
+
+.column-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* 单篇专栏卡片 */
+.column-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 40px 44px;
+  transition: box-shadow .3s, transform .3s;
+}
+.column-item:hover {
+  box-shadow: 0 12px 40px rgba(20, 0, 255, .08);
+  transform: translateY(-2px);
+}
+
+/* 日期 + 序号 */
+.column-item .col-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.column-item .col-date {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--brand);
+}
+.column-item .col-index {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 12px;
+  color: #fff;
+  background: var(--brand);
+  padding: 2px 10px;
+  letter-spacing: 1px;
+}
+
+/* 标题 */
+.column-item .col-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(22px, 4vw, 32px);
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.column-item .col-title-ja {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 22px;
+  letter-spacing: 1px;
+}
+
+/* 正文 */
+.column-item .col-body {
+  font-size: 15px;
+  line-height: 2;
+  color: #222;
+}
+.column-item .col-body p {
+  margin-bottom: 18px;
+}
+.column-item .col-body p:last-child { margin-bottom: 0; }
+
+/* 署名 */
+.column-item .col-sign {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  text-align: right;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 专栏配图 */
+.column-item .col-imgs {
+  margin: 24px 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.column-item .col-imgs figure { margin: 0; }
+.column-item .col-imgs img {
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+.column-item .col-imgs figcaption {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* 原文出处链接 */
+.column-item .col-source {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #999;
+}
+.column-item .col-source a { color: var(--brand); text-decoration: underline; }
+
+/* 跳转按钮（新闻类条目） */
+.column-item .col-action {
+  margin-top: 22px;
+}
+.column-item .col-action .btn {
+  font-size: 14px;
+}
+
+/* ============================ 卡片折叠（展开/收起） ============================ */
+.column-item .col-fold {
+  position: relative;
+  max-height: 280px;
+  overflow: hidden;
+  transition: max-height .5s ease;
+}
+/* 短内容：不折叠、无遮罩 */
+.column-item .col-fold.no-fold {
+  max-height: none;
+  overflow: visible;
+}
+/* 底部渐变遮罩（提示还有更多内容） */
+.column-item .col-fold.folded::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 64px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.92) 72%, #fff);
+  pointer-events: none;
+  transition: opacity .3s;
+}
+/* 展开态 */
+.column-item .col-fold.open {
+  max-height: none;
+  overflow: visible;
+}
+.column-item .col-fold.open::after {
+  opacity: 0;
+}
+
+/* 展开/收起按钮 */
+.column-item .col-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 22px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--brand);
+  background: #fff;
+  border: 1px solid var(--brand);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.column-item .col-toggle:hover {
+  background: var(--brand);
+  color: #fff;
+}
+.column-item .col-toggle-arrow {
+  display: inline-block;
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid currentColor;
+  transition: transform .3s;
+}
+.column-item .col-toggle[aria-expanded="true"] .col-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+/* ============================ 响应式 ============================ */
+@media (max-width: 720px) {
+  .column-list { gap: 28px; }
+  .column-item { padding: 28px 24px; }
+  .column-item .col-body { font-size: 14.5px; line-height: 1.9; }
+}
+
+@media (max-width: 480px) {
+  .page-hero--column h1 { font-size: 24px; }
+  #columns.section { padding-top: 24px; } /* 原 48px 的一半 */
+  .column-item { padding: 24px 18px; }
+  .column-item .col-title { font-size: 20px; }
+  .column-item .col-body { font-size: 14px; }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>角色 · 队长小翼 WORLD</title>
+<meta name="description" content="《队长小翼》登场角色一览，按作品系列分类，含大空翼、日向小次郎、若林源三等角色资料。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/character.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html" class="active">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <a href="games.html">游戏作品</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+
+<main>
+  <!-- 页面头 -->
+  <section class="page-hero">
+    <span class="kicker">CHARACTER</span>
+    <h1>登场角色<span class="en">CHARACTERS</span></h1>
+    <p class="lead">
+      以主人公大空翼为首，南葛队的伙伴、贯穿系列的宿命对手，以及走向世界舞台后遭遇的各国劲敌。
+      点击角色卡片可查看详情。
+    </p>
+  </section>
+
+  <!-- 系列切换 -->
+  <section class="series-tabs" data-reveal>
+    <div class="container">
+      <div class="tabs" id="seriesTabs"></div>
+    </div>
+  </section>
+
+  <!-- 角色网格 -->
+  <section class="section chara-section" data-reveal>
+    <div class="container">
+      <div class="series-head" id="seriesHead">
+        <h2 class="series-head-title"></h2>
+        <p class="series-head-desc"></p>
+      </div>
+      <div class="stage-tabs" id="stageTabs"></div>
+      <div class="chara-grid" id="charaGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- 角色详情弹窗 -->
+<div class="modal" id="charaModal">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-body">
+    <button class="modal-close" data-close aria-label="关闭">×</button>
+    <div class="modal-inner" id="modalInner"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      队长小翼 WORLD
+      <div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div>
+    </div>
+    <div>
+      <h4>内容分类</h4>
+      <ul>
+        <li><a href="character.html">登场角色</a></li>
+        <li><a href="comics.html">漫画作品</a></li>
+        <li><a href="anime.html">动画作品</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>关于</h4>
+      <ul>
+        <li><a href="index.html#about">作品简介</a></li>
+        <li><a href="index.html#news">最新动态</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，非官方站点，仅供学习与资料整理使用。<br>
+    © 高桥阳一 / 集英社 · キャプテン翼 製作委員会　原作《キャプテン翼》高桥阳一（集英社）
+  </div>
+</footer>
+
+<script src="js/character-data.js"></script>
+<script src="js/character.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

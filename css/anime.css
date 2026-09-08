@@ -1,0 +1,199 @@
+/* 动画作品页样式 */
+
+/* 统计概览 */
+.anime-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 36px 0;
+}
+
+.stat {
+  text-align: center;
+  padding: 8px 12px;
+  border-left: 1px solid var(--line);
+}
+.stat:first-child { border-left: none; }
+
+.stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--brand);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+/* ============================ 时间线 ============================ */
+.section--timeline { padding-top: 48px; }
+
+/* 三通道布局：年份 | 轴通道 | 内容卡，互不重叠 */
+.timeline {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* 竖线：位于轴通道正中（132 + 26 = 158px） */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 24px; bottom: 24px;
+  left: 158px;
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(180deg, var(--brand), transparent);
+}
+
+.anime {
+  position: relative;
+  display: grid;
+  grid-template-columns: 132px 52px 1fr;
+  align-items: start;
+  padding-bottom: 36px;
+}
+
+.anime:last-child { padding-bottom: 0; }
+
+/* 时间轴节点圆点：轴通道中心（148 + 10 = 158px） */
+.anime::before {
+  content: "";
+  position: absolute;
+  left: 148px;
+  top: 10px;
+  width: 20px; height: 20px;
+  box-sizing: border-box;
+  background: var(--brand);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--brand);
+  z-index: 1;
+}
+
+.anime--latest::before {
+  background: #ff6900;
+  box-shadow: 0 0 0 2px #ff6900, 0 0 0 8px rgba(255,105,0,.15);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 2px #ff6900, 0 0 0 8px rgba(255,105,0,.15); }
+  50% { box-shadow: 0 0 0 2px #ff6900, 0 0 0 14px rgba(255,105,0,.05); }
+}
+
+.anime-date {
+  text-align: right;
+  position: relative;
+}
+
+.anime-date .year {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+
+.anime-date .type {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  background: var(--ink);
+  color: #fff;
+  padding: 3px 10px;
+}
+
+.anime--latest .anime-date .type { background: #ff6900; }
+
+/* 卡片固定在第三列（第二列为轴通道） */
+.anime-body { grid-column: 3; }
+
+.anime-body {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 28px 32px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.anime:hover .anime-body {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(20,0,255,.08);
+}
+
+.anime--latest .anime-body {
+  border: 2px solid #ff6900;
+  background: #fff7f2;
+}
+
+.anime-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.anime-en {
+  color: #ff6900;
+  font-size: 13px;
+  letter-spacing: .5px;
+  margin-bottom: 14px;
+}
+
+.anime-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.anime-meta li span {
+  font-weight: 700;
+  color: var(--ink);
+  margin-right: 6px;
+}
+
+.anime-desc {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.8;
+}
+
+/* 响应式：平板（轴贴左侧，年份置于卡片上方） */
+@media (max-width: 720px) {
+  .timeline::before { left: 11px; margin-left: 0; }
+  .anime { grid-template-columns: 1fr; gap: 10px; padding-left: 44px; }
+  .anime::before { left: 1px; top: 4px; }
+  .anime-date { text-align: left; }
+  .anime-date .year { font-size: 26px; display: inline-block; vertical-align: middle; }
+  .anime-date .type { margin-left: 12px; }
+  .anime-body { padding: 20px 22px; }
+  .stat { border-left: none; border-top: 1px solid var(--line); padding-top: 20px; }
+  .stat:first-child { border-top: none; padding-top: 8px; }
+}
+
+/* 响应式：手机 */
+@media (max-width: 480px) {
+  .anime-stats { grid-template-columns: repeat(2, 1fr); padding: 24px 0; gap: 8px; }
+  .stat-num { font-size: 32px; margin-bottom: 4px; }
+  .anime-meta { gap: 10px; font-size: 12px; }
+  .anime-title { font-size: 20px; }
+  .anime-desc { font-size: 13px; }
+}

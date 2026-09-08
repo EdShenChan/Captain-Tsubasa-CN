@@ -1,0 +1,377 @@
+/* ==========================================================================
+   《队长小翼》汉化版知识库 · 共享样式
+   复刻官方站点 captain-tsubasa.world 的设计语言
+   --------------------------------------------------------------------------
+   设计特征（源自官方站点分析）：
+   · 品牌主色：电光蓝 #1400ff
+   · 背景：纯白 #ffffff 与纯黑 #000000 区块交替
+   · 标题字体：无衬线黑体（neue-haas-grotesk-display 风格）
+   · 导航/标题以大写英文为主，中文说明为辅
+   ========================================================================== */
+
+:root {
+  --brand: #1400ff;          /* 品牌电光蓝 */
+  --brand-dark: #0d00b3;
+  --ink: #000000;
+  --paper: #ffffff;
+  --muted: #666666;
+  --line: #e5e5e5;
+  --font-display: "neue-haas-grotesk-display", "Helvetica Neue", "Arial Black", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: "Hiragino Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --header-h: 72px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* 全局：防止 grid/flex 子项撑破容器（极窄屏溢出修复） */
+.container > * { min-width: 0; }
+.grid > * { min-width: 0; }
+.series-grid > * { min-width: 0; }
+.anime-stats { min-width: 0; }
+
+/* ============================ 顶部导航 ============================ */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: var(--paper);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.header .logo a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* 导航栏头像 logo（大空翼脸部正方形） */
+.header .logo .mark {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-sizing: border-box;
+}
+
+/* 导航文字块 */
+.header .logo .logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.15;
+}
+.header .logo .logo-text .sub {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 3px;
+  display: block;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.header .nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.header .nav a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 10px 14px;
+  position: relative;
+  transition: color .2s;
+}
+
+.header .nav a:hover { color: var(--brand); }
+
+.header .nav a.active { color: var(--brand); }
+.header .nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 14px; right: 14px; bottom: 4px;
+  height: 3px;
+  background: var(--brand);
+}
+
+/* 汉堡菜单（移动端） */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+  cursor: pointer;
+  padding: 6px;
+}
+.burger span {
+  width: 24px; height: 2px;
+  background: var(--ink);
+  transition: .3s;
+}
+
+@media (max-width: 860px) {
+  .burger { display: flex; }
+  .header .nav {
+    position: fixed;
+    top: var(--header-h); left: 0; right: 0;
+    background: var(--ink);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px 0;
+    transform: translateY(-120%);
+    transition: transform .3s ease;
+  }
+  .header .nav.open { transform: translateY(0); }
+  .header .nav a { color: #fff; padding: 14px 28px; }
+  .header .nav a:hover { color: #fff; background: var(--brand); }
+  .header .nav a.active::after { display: none; }
+  .header .nav a.active { background: var(--brand); }
+}
+
+/* 小屏（手机端）：紧凑顶部栏，隐藏副标题 */
+@media (max-width: 480px) {
+  .header { padding: 0 16px; height: 60px; --header-h: 60px; }
+  .header .logo a { gap: 8px; font-size: 16px; }
+  .header .logo .mark { width: 32px; height: 32px; }
+  .header .logo .sub { display: none; }
+  .section { padding: 48px 20px; }
+  .page-hero { padding-top: calc(var(--header-h) + 48px); padding-left: 20px; padding-right: 20px; }
+  .footer { padding: 48px 20px 24px; }
+  .footer .copyright { font-size: 11px; }
+}
+
+/* ============================ 通用页面头 ============================ */
+.page-hero {
+  padding: calc(var(--header-h) + 80px) 28px 60px;
+  text-align: center;
+}
+
+.page-hero .kicker {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 8px;
+  font-size: 12px;
+  color: #fff;
+  background: var(--brand);
+  padding: 6px 16px 6px 20px;
+  margin-bottom: 22px;
+}
+
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(36px, 8vw, 96px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.page-hero h1 .en {
+  display: block;
+  color: var(--brand);
+  font-size: 0.35em;
+  letter-spacing: 6px;
+  margin-top: 12px;
+}
+
+.page-hero .lead {
+  max-width: 680px;
+  margin: 24px auto 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ============================ 区块通用 ============================ */
+.section { padding: 72px 28px; }
+.section--dark { background: var(--ink); color: #fff; }
+
+.section-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-head .kicker {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 6px;
+  font-size: 13px;
+  color: var(--brand);
+  margin-bottom: 10px;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(30px, 5vw, 54px);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.section--dark .section-head .kicker { color: #7b7bff; }
+
+.section-head .desc {
+  max-width: 640px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.section--dark .section-head .desc { color: #bbb; }
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* ============================ 卡片网格 ============================ */
+.grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ============================ 按钮 ============================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  background: var(--brand);
+  color: #fff;
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: var(--brand-dark); transform: translateY(-1px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+.btn--ghost:hover { background: var(--brand); color: #fff; }
+
+/* ============================ 页脚 ============================ */
+.footer {
+  background: var(--ink);
+  color: #fff;
+  padding: 64px 28px 32px;
+}
+
+.footer .inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer .brand {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: -0.5px;
+}
+
+.footer .brand .sub {
+  font-size: 11px;
+  color: #7b7bff;
+  letter-spacing: 3px;
+  margin-top: 6px;
+}
+
+.footer h4 {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+.footer ul li { margin-bottom: 10px; }
+.footer ul li a { color: #ccc; font-size: 14px; }
+.footer ul li a:hover { color: #fff; }
+
+.footer .copyright {
+  max-width: 1200px;
+  margin: 48px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid #222;
+  font-size: 12px;
+  color: #777;
+  line-height: 1.8;
+}
+
+@media (max-width: 720px) {
+  .footer .inner { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ============================ 动画 ============================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal { animation: fadeUp .7s ease both; }
+
+/* ============================ 悬浮返回顶部按钮 ============================ */
+.to-top-btn {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 900;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(20, 0, 255, .28);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s;
+}
+.to-top-btn:hover { background: #0d00b3; }
+.to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+@media (max-width: 480px) {
+  .to-top-btn { right: 16px; bottom: 16px; width: 44px; height: 44px; font-size: 20px; }
+}

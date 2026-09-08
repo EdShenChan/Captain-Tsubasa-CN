@@ -1,0 +1,80 @@
+/* ==========================================================================
+   采访单页 · 共享补充样式（背景介绍 / 配图 / 署名）
+   问答卡片、提问标题、回答头像等基础样式见 ddnavi-interview.css
+   ========================================================================== */
+
+/* 头部背景介绍（导语段落，参照 MANGA MILLION 访谈页 iv-head-lead） */
+.iv-head-lead {
+  max-width: 640px;
+  margin: 26px auto 0;
+  font-size: 15px;
+  line-height: 2;
+  color: #555;
+  text-align: left;
+}
+
+/* 正文配图（采访照片 / 分镜稿） */
+.iv-figure {
+  margin: 0 0 32px;
+}
+
+.iv-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+/* 配图缩小：横图 / 竖图分别限宽并居中 */
+.iv-figure--photo img {
+  max-width: min(560px, 100%);
+  margin: 0 auto;
+}
+
+.iv-figure--narrow img {
+  max-width: min(420px, 100%);
+  margin: 0 auto;
+}
+
+.iv-figure--photo figcaption,
+.iv-figure--narrow figcaption {
+  text-align: center;
+}
+
+.iv-figure figcaption {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.8;
+  padding-top: 10px;
+}
+
+/* 竖版封面图：限制宽度并居中 */
+.iv-figure--cover img {
+  width: auto;
+  max-width: min(400px, 100%);
+  margin: 0 auto;
+}
+
+.iv-figure--cover figcaption {
+  text-align: center;
+}
+
+/* 回答中插入的采访者反应 */
+.iv-laugh {
+  font-size: 13px;
+  color: #999;
+}
+
+/* 采访者署名 */
+.iv-interviewer {
+  font-size: 13px;
+  color: #666;
+  text-align: right;
+  margin-top: 28px;
+}
+
+/* 响应式 */
+@media (max-width: 480px) {
+  .iv-head-lead { font-size: 14px; line-height: 1.9; }
+}

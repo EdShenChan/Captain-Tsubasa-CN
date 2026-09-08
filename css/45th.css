@@ -1,0 +1,196 @@
+:root {
+  --gold: #d4a900;
+  --gold-light: #f8e8a0;
+  --anniv-bg: #0a0a0a;
+}
+
+/* HERO */
+.hero-45th {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--anniv-bg);
+}
+.hero-45th-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: .55;
+}
+.hero-45th-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,.3) 0%, rgba(10,10,10,.75) 80%, #0a0a0a 100%);
+}
+.hero-45th-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 120px 24px 80px;
+  max-width: 960px;
+}
+.hero-45th .kicker {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.hero-45th-logo {
+  display: block;
+  margin: 0 auto 24px;
+  max-width: 560px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,.45));
+}
+.hero-45th-title {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 20px rgba(0,0,0,.5);
+}
+.hero-45th-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,.75);
+  letter-spacing: 2px;
+}
+.hero-45th-scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 38px;
+  border: 2px solid rgba(255,255,255,.5);
+  border-radius: 12px;
+}
+.hero-45th-scroll span {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: scrollBall 1.6s ease infinite;
+}
+@keyframes scrollBall {
+  0% { top: 7px; opacity: 1; }
+  100% { top: 20px; opacity: 0; }
+}
+
+/* INTRODUCTION */
+.intro-45th {
+  background: #fff;
+}
+.intro-45th-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.intro-45th-text p {
+  font-size: 18px;
+  line-height: 2;
+  color: #333;
+  margin-bottom: 8px;
+}
+.intro-45th-lead {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-top: 16px;
+}
+.intro-45th-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.intro-45th-visual img {
+  width: 160px;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.1));
+}
+.intro-45th-arrow {
+  font-size: 32px;
+  color: var(--brand);
+  font-weight: 900;
+}
+
+/* PROJECT */
+.project-45th {
+  background: var(--anniv-bg);
+  color: #fff;
+}
+.project-45th .section-head h2,
+.project-45th .section-head .kicker,
+.project-45th .section-head .desc { color: #fff; }
+.project-45th .kicker { color: var(--gold); }
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.featured-card {
+  position: relative;
+  background: #151515;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.featured-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 32px rgba(212,169,0,.12);
+}
+.featured-card__thumb {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  background: #222;
+}
+.featured-card__body {
+  padding: 22px;
+}
+.featured-card__title {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.featured-card__desc {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.7;
+}
+
+
+/* 响应式 */
+@media (max-width: 860px) {
+  .hero-45th-title { font-size: 42px; }
+  .hero-45th-logo { max-width: 420px; }
+  .intro-45th-grid { grid-template-columns: 1fr; }
+  .intro-45th-visual { order: -1; }
+  .featured-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .hero-45th-title { font-size: 32px; }
+  .hero-45th-logo { max-width: 280px; }
+  .hero-45th-inner { padding: 100px 20px 60px; }
+  .intro-45th-visual img { width: 110px; }
+}

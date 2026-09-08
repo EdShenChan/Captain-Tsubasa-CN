@@ -1,0 +1,184 @@
+/* ==========================================================================
+   达芬奇WEB采访页样式
+   ========================================================================== */
+
+.iv-head {
+  padding-top: calc(var(--header-h) + 64px);
+  padding-bottom: 48px;
+  text-align: center;
+  background: #fff;
+}
+
+.iv-head .container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.iv-head-category {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 3px;
+  font-size: 12px;
+  color: #fff;
+  background: var(--brand);
+  padding: 6px 16px;
+  margin-bottom: 18px;
+}
+
+.iv-head-date {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 2px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.iv-head-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(32px, 6vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+}
+
+.iv-head-title .en {
+  display: block;
+  color: var(--brand);
+  font-size: 0.34em;
+  letter-spacing: 4px;
+  margin-top: 14px;
+}
+
+.iv-head-source {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 20px;
+  line-height: 1.8;
+}
+
+.iv-head-source a {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.iv-head-note {
+  font-size: 12px;
+  color: #888;
+  margin-top: 14px;
+}
+
+.iv-head-actions {
+  margin-top: 28px;
+}
+
+/* 正文 */
+.iv-body {
+  background: #f8f8f8;
+  padding: 56px 28px 80px;
+}
+
+.iv-body .container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.iv-section {
+  margin-bottom: 44px;
+}
+
+.iv-section h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--brand);
+}
+
+.iv-section-note {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.8;
+  margin: -8px 0 20px;
+}
+
+.iv-qa {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.iv-q {
+  font-weight: 700;
+  color: var(--brand);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  border-left: 3px solid var(--brand);
+}
+
+/* 高桥阳一回答：头像 + 正文（参照 MANGA MILLION 访谈） */
+.iv-a {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.iv-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--brand);
+}
+.iv-a-text {
+  flex: 1;
+  padding-top: 2px;
+  min-width: 0;
+}
+
+.iv-a p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+  margin-bottom: 14px;
+}
+
+.iv-a p:last-child { margin-bottom: 0; }
+
+.iv-section--end {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.iv-end-actions { margin-bottom: 24px; }
+
+.iv-origin {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  font-size: 12px;
+  line-height: 2;
+  color: #999;
+  text-align: left;
+}
+.iv-origin .iv-origin-label { margin-bottom: 2px; }
+.iv-origin .iv-origin-item { margin: 0; word-break: break-all; }
+.iv-origin a { color: #999; text-decoration: underline; word-break: break-all; }
+.iv-origin a:hover { color: #777; }
+
+/* 响应式 */
+@media (max-width: 480px) {
+  .iv-head { padding-top: calc(var(--header-h) + 40px); }
+  .iv-head .container { padding: 0 20px; }
+  .iv-body { padding: 40px 20px 64px; }
+  .iv-qa { padding: 22px; }
+  .iv-section h2 { font-size: 20px; }
+  .iv-a { gap: 10px; }
+  .iv-avatar { width: 38px; height: 38px; }
+}
