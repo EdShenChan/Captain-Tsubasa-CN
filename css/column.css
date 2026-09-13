@@ -11,6 +11,16 @@
   font-size: clamp(26px, 4.5vw, 44px);
   white-space: nowrap;
 }
+/* 专栏页头部配图（官网高桥专栏共用：高桥阳一自画像） */
+.page-hero--column .col-hero-img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto 28px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
 /* 简介区下方至第一个专栏卡片：间距减半（原 .section 顶部 72px → 36px） */
 #columns.section {
   padding-top: 36px;
@@ -208,6 +218,7 @@
 
 @media (max-width: 480px) {
   .page-hero--column h1 { font-size: 24px; }
+  .page-hero--column .col-hero-img { max-width: 320px; margin-bottom: 20px; }
   #columns.section { padding-top: 24px; } /* 原 48px 的一半 */
   .column-item { padding: 24px 18px; }
   .column-item .col-title { font-size: 20px; }

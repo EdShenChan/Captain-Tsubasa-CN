@@ -167,16 +167,6 @@
   line-height: 1.8;
 }
 
-.comic-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.comic-actions .btn {
-  font-size: 13px;
-  padding: 9px 18px;
-}
-
 .comic-thumb {
   background: transparent;
   border-radius: 4px;

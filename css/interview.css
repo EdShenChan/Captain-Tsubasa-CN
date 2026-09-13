@@ -224,31 +224,6 @@
   margin-right: auto;
 }
 
-/* 采访出处：灰色小字，无背景框 */
-.iv-origin {
-  max-width: 860px;
-  margin: 56px auto 0;
-  font-size: 12px;
-  line-height: 2;
-  color: #999;
-  text-align: left;
-}
-.iv-origin .iv-origin-label {
-  margin-bottom: 2px;
-}
-.iv-origin .iv-origin-item {
-  margin: 0;
-  word-break: break-all;
-}
-.iv-origin a {
-  color: #999;
-  text-decoration: underline;
-  word-break: break-all;
-}
-.iv-origin a:hover {
-  color: #777;
-}
-
 /* 返回区块 */
 .back-section {
   text-align: center;
