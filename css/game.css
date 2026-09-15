@@ -1,21 +1,61 @@
 /* ==========================================================================
    游戏作品页样式
-   仿漫画页结构，按年份排序，无封面图，以年代标签 + 信息卡片呈现
+   仿漫画页结构，按年份排序，三列网格（年份 / 信息 / 封面），
+   封面采用 object-fit: contain 完整显示，配 drop-shadow 投影增强层次。
    ========================================================================== */
+
+/* 投影参数：朝右下方。drop-shadow 沿图片实际渲染轮廓生成，
+   不受 object-fit: contain 留白影响；box-shadow 会沿元素盒子边缘生成，
+   与留白处的图片之间裂开假白边，故不使用。 */
+:root{
+  --sh-x:     clamp(3px, 0.7vw, 7px);
+  --sh-y:     clamp(5px, 1.1vw, 12px);
+  --sh-blur:  clamp(3px, 0.7vw, 7px);
+  --sh-color: rgba(8, 6, 22, .52);
+
+  /* 标题字号 —— 年份元素与标题元素共用，使两者高度始终精确相等。
+     下限取 20px：窄屏下让标题尽量保持单行，避免出现两行标题破坏等高。 */
+  --title-fs: clamp(20px, 4vw, 34px);
+  --title-h:  calc(var(--title-fs) * 1.2);   /* 标题 line-height = 1.2 */
+}
+
+/* ============================ 头部快捷跳转按钮 ============================ */
+/* 与漫画页 .comics-toc 完全一致：居中横排、等间距、可换行 */
+.games-toc {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+/* 当前所在分类：与 hover 同为实心反色，状态一目了然 */
+.games-toc .btn.is-current {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* 锚点跳转偏移：避开固定头部，避免分类标题被遮挡 */
+#cat-mobile,
+#cat-console,
+#cat-home,
+#cat-handheld {
+  scroll-margin-top: calc(var(--header-h) + 20px);
+}
 
 .games-list {
   display: flex;
   flex-direction: column;
   gap: 28px;
-  max-width: 1000px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
 .game {
   position: relative;
   display: grid;
-  grid-template-columns: 88px 1fr;
+  grid-template-columns: 72px 1fr 200px;
   gap: 28px;
+  /* 顶部对齐：年份元素与标题元素在同一水平线上；封面列单独居中 */
   align-items: start;
   padding: 32px;
   background: #f4f4f4;
@@ -30,11 +70,11 @@
 
 .game--latest { background: #f6f6ff; }
 
-/* 右侧装饰色块 */
+/* 右侧装饰色块（宽度与漫画页 .comic-bg 一致：18%） */
 .game .game-bg {
   position: absolute;
   top: 0; right: 0;
-  width: 14%;
+  width: 18%;
   height: 100%;
   z-index: 0;
   pointer-events: none;
@@ -45,28 +85,58 @@
 .game-2 .game-bg { background: #ff6900; }
 .game-3 .game-bg { background: #19c11d; }
 .game-4 .game-bg { background: #ff3333; }
+.game-5 .game-bg { background: #7b5cff; }
+.game-6 .game-bg { background: #f5b301; }
 
+/* NEXT DREAM 主视觉为透明背景（无白底）。为达成"各封面宽度一致"，
+   其封面列与其他作品统一为 200px，不单独放大。 */
+
+/* 封面列：整体左移 56px（两个网格间距），贴近文字区、脱离右侧色块边缘。
+   用 translateX 而非 margin —— 只改变渲染位置，不压缩图片尺寸。
+   图片以列宽为基准等比缩放（width:100% + height:auto）：
+   各作品封面渲染宽度完全一致，高度随原图比例自然变化，不做裁切。 */
+.game-thumb{
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  align-self: center;   /* 卡片顶部对齐时，封面仍保持垂直居中 */
+  transform: translateX(-56px);
+}
+.game-thumb img{
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(var(--sh-x) var(--sh-y) var(--sh-blur) var(--sh-color));
+}
+
+/* 年份元素：高度锁定为标题元素高度（--title-h），内部垂直居中 */
 .game-year {
+  height: var(--title-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 18px;
+  font-size: clamp(15px, 2.4vw, 18px);
   letter-spacing: -1px;
   line-height: 1;
   color: var(--brand);
-  padding-top: 8px;
 }
 .game-year::before {
   content: "";
   display: block;
   width: 40px; height: 4px;
   background: var(--brand);
-  margin-bottom: 10px;
+  margin-bottom: clamp(6px, .8vw, 10px);
 }
 
 .game-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(24px, 4vw, 34px);
+  font-size: var(--title-fs);
   letter-spacing: -1px;
   line-height: 1.2;
   margin-bottom: 6px;
@@ -77,6 +147,34 @@
   color: var(--muted);
   letter-spacing: .5px;
   margin-bottom: 18px;
+}
+
+/* 文字区限宽：容器加宽后不随之无限拉伸，保持舒适阅读行宽 */
+.game-body { max-width: 600px; }
+
+/* 属性标签（如「正史剧情」） */
+.game-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: -6px 0 16px;
+  padding: 0;
+  list-style: none;
+}
+.game-tag {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 1;
+  padding: 6px 10px;
+  color: var(--brand);
+  background: #fff;
+  border: 1px solid var(--brand);
+}
+.game-tag--canon {
+  color: #fff;
+  background: var(--brand);
 }
 
 .game-meta {
@@ -121,7 +219,7 @@
 
 /* 备注区 */
 .games-more {
-  max-width: 1000px;
+  max-width: 1120px;
   margin: 48px auto 0;
   padding: 24px 28px;
   background: #fafafa;
@@ -136,7 +234,7 @@
 .game-cat:last-child { margin-bottom: 0; }
 
 .game-cat-head {
-  max-width: 1000px;
+  max-width: 1120px;
   margin: 0 auto 28px;
   padding-bottom: 18px;
   border-bottom: 2px solid var(--brand);
@@ -163,7 +261,7 @@
 
 .game-subcat { margin-top: 40px; }
 .game-subcat-title {
-  max-width: 1000px;
+  max-width: 1120px;
   margin: 0 auto 20px;
   font-family: var(--font-display);
   font-weight: 900;
@@ -174,22 +272,121 @@
   border-left: 4px solid var(--brand);
 }
 .game-subcat-note {
-  max-width: 1000px;
+  max-width: 1120px;
   margin: -8px auto 22px;
   font-size: 13px;
   color: var(--muted);
   line-height: 1.8;
 }
 
-.game--retro { background: #f4f4f4; }
+/* ============================ 可折叠扩展栏 ============================ */
+/* 掌机区块默认收缩；使用原生 details/summary，无 JS 亦可展开。 */
+.game-fold { display: block; }
+
+.game-fold-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 16px 14px;
+  cursor: pointer;
+  list-style: none;          /* 去掉原生三角 */
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand);
+  background: #fafafa;
+  user-select: none;
+  transition: background .18s, border-color .18s;
+}
+.game-fold-summary::-webkit-details-marker { display: none; }
+.game-fold-summary:hover { background: #f2f2f7; border-color: var(--brand); }
+.game-fold-summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+.game-fold-heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: -.5px;
+  color: #222;
+}
+.game-fold-count {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--muted);
+}
+
+/* 右侧 + / − 指示符：展开时竖杠隐藏，+ 变 − */
+.game-fold-icon {
+  margin-left: auto;
+  position: relative;
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+.game-fold-icon::before,
+.game-fold-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  background: var(--brand);
+  transform: translate(-50%, -50%);
+  transition: opacity .18s, transform .18s;
+}
+.game-fold-icon::before { width: 18px; height: 3px; }
+.game-fold-icon::after  { width: 3px;  height: 18px; }
+.game-fold[open] .game-fold-icon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.game-fold-body { padding-top: 22px; }
+.game-fold[open] .game-fold-body { animation: foldIn .22s ease; }
+@keyframes foldIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-fold[open] .game-fold-body { animation: none; }
+}
+
+/* 复古掌机条目暂无封面，沿用两列布局，避免右侧空出封面列 */
+.game--retro { background: #f4f4f4; grid-template-columns: 72px 1fr; }
 .game--retro .game-bg { background: #9aa0a6; }
 .game--retro .game-year { color: #5a5f66; }
 .game--retro .game-year::before { background: #5a5f66; }
 
 /* ============================ 响应式 ============================ */
+/* 中等宽度：保留三列，封面列收窄、位移减半 */
+@media (max-width: 980px) {
+  .game { grid-template-columns: 72px 1fr 160px; }
+  .game-thumb { transform: translateX(-28px); }
+}
+
+/* 窄屏：改为两列，封面换行到文字下方，取消左移以免溢出 */
+@media (max-width: 820px) {
+  /* 色块由右侧竖条改为卡片正下方横条（与漫画页 .comic-bg 同一处理、同一数值） */
+  .game .game-bg { width: 100%; height: 18%; top: auto; bottom: 0; }
+  .game { grid-template-columns: 72px 1fr; align-items: start; }
+  .game-body { grid-column: 2; max-width: none; }
+  .game-thumb {
+    grid-column: 2;
+    grid-row: 2;
+    justify-content: flex-start;
+    max-width: 200px;
+    transform: none;
+  }
+}
+
 @media (max-width: 720px) {
+  .games-toc { gap: 8px; }
+  .games-toc .btn { font-size: 12px; padding: 8px 14px; }
   .game { grid-template-columns: 1fr; gap: 18px; }
-  .game-year { padding-top: 0; font-size: 24px; }
-  .game-year::before { width: 56px; margin-bottom: 8px; }
+  /* 年份字号沿用 clamp，不在此处覆盖，以免破坏与标题的等高关系 */
+  .game-year::before { width: 56px; }
   .game-meta { grid-template-columns: 1fr; }
+  .game-body,
+  .game-thumb { grid-column: 1; grid-row: auto; }
+  .game-thumb { max-width: 200px; }
 }
