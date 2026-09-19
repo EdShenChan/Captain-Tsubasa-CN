@@ -4,6 +4,22 @@
    严格参照官网配色：每个作品右侧带不同色块（comics_1~11 颜色一一对应）
    ========================================================================== */
 
+/* ============================ 封面投影参数 ============================ */
+/* 与游戏页（game.css）保持一致的投影参数：朝右下方。
+   采用 drop-shadow 而非 box-shadow —— drop-shadow 沿图片实际渲染轮廓生成，
+   配合 object-fit: contain 时不会在留白处露出方块假边。 */
+:root{
+  --sh-x:     clamp(3px, 0.7vw, 7px);
+  --sh-y:     clamp(5px, 1.1vw, 12px);
+  --sh-blur:  clamp(3px, 0.7vw, 7px);
+  --sh-color: rgba(8, 6, 22, .52);
+
+  /* 标题字号 —— 年份标志与标题共用，使两者高度保持一致（与游戏页同思路）。
+     年份元素高度锁定为 --title-h，从而与标题顶端对齐。 */
+  --title-fs: 26px;
+  --title-h:  calc(var(--title-fs) * 1.2);   /* 标题 line-height = 1.2 */
+}
+
 /* ============================ 头部跳转按钮 ============================ */
 .comics-toc {
   display: flex;
@@ -51,6 +67,10 @@
 /* 短篇集整体使用电光蓝，但每个作品色块沿用官网对应色（comics_8~11） */
 .section--short .cat-kicker { color: var(--brand); }
 
+/* ============================ 重启漫画区配色变体 ============================ */
+.section--reboot .cat-kicker { color: #e4392b; }
+.section--reboot .cat-head h2 { color: #e4392b; }
+
 /* ============================ 列表通用 ============================ */
 .comics-list {
   display: flex;
@@ -67,7 +87,7 @@
   display: grid;
   grid-template-columns: 72px 1fr 200px;
   gap: 28px;
-  align-items: center;
+  align-items: start;   /* 与游戏页一致：顶部对齐，年份标志得以与标题顶端齐平 */
   padding: 32px;
   background: #f4f4f4; /* 官网作品卡背景色 */
   border: 1px solid var(--line);
@@ -108,32 +128,48 @@
 .comic.comics_8 .comic-bg  { background-color: #19c11d; } /* 绿 */
 
 /* 短篇集四种对应色（沿用官网 comics_8~11 色，分配给短篇 1~4） */
-.comic.short-1 .comic-bg { background-color: #19c11d; } /* MEMORIES — 绿 */
-.comic.short-2 .comic-bg { background-color: #f41b33; } /* 岬太郎 — 红 */
-.comic.short-3 .comic-bg { background-color: #fed268; } /* 世青特别篇 — 浅黄 */
-.comic.short-4 .comic-bg { background-color: #6ae431; } /* DREAM FIELD — 亮绿 */
+.comic.short-1 .comic-bg { background-color: #f41b33; } /* 岬太郎 — 红 */
+.comic.short-2 .comic-bg { background-color: #fed268; } /* 世青特别篇 — 浅黄 */
+.comic.short-3 .comic-bg { background-color: #6ae431; } /* DREAM FIELD — 亮绿 */
+.comic.short-4 .comic-bg { background-color: #19c11d; } /* MEMORIES — 绿 */
 
+/* 重启漫画两种对应色 */
+.comic.reboot-1 .comic-bg { background-color: #0a63c9; } /* KIDS DREAM — 蓝 */
+.comic.reboot-2 .comic-bg { background-color: #e4392b; } /* BOYS DREAM — 红 */
+
+/* 重启漫画封面：与其他缩略图同宽（200px）、同位置对齐，
+   仅额外按游戏页方式加投影（drop-shadow 沿图片轮廓，避免留白露假边）。 */
+.comics-list--reboot .comic-thumb img {
+  filter: drop-shadow(var(--sh-x) var(--sh-y) var(--sh-blur) var(--sh-color));
+}
+
+/* 年份标志 —— 样式与游戏页 .game-year 保持一致：
+   横向排列、上方一条 40×4 色条、高度锁定为标题高度，从而与标题顶端对齐。 */
 .comic-num {
+  height: var(--title-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 15px;
-  letter-spacing: 1px;
+  font-size: clamp(15px, 2.4vw, 18px);
+  letter-spacing: -1px;
+  line-height: 1;
   color: var(--brand);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  justify-self: center;
-  border-left: 3px solid var(--brand);
-  padding-left: 10px;
-  height: 100%;
-  display: flex;
-  align-items: center;
   z-index: 2;
+}
+.comic-num::before {
+  content: "";
+  display: block;
+  width: 40px; height: 4px;
+  background: var(--brand);
+  margin-bottom: clamp(6px, .8vw, 10px);
 }
 
 .comic-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 26px;
+  font-size: var(--title-fs);   /* 与年份标志共用变量，保证两者高度一致 */
   letter-spacing: -0.5px;
   margin-bottom: 4px;
   color: #000;
@@ -148,13 +184,18 @@
 
 .comic-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 6px;
   margin-bottom: 14px;
   font-size: 13px;
   color: var(--muted);
 }
+.comic-meta li {
+  line-height: 1.6;
+}
 .comic-meta li span {
+  display: inline-block;
+  min-width: 3.2em;
   font-weight: 700;
   color: var(--ink);
   margin-right: 6px;
@@ -177,6 +218,7 @@
   justify-content: center;
   position: relative;
   z-index: 2;
+  align-self: center;   /* 卡片改为顶部对齐后，封面仍保持垂直居中（同游戏页） */
 }
 .comic-thumb img {
   width: 100%;
@@ -189,19 +231,14 @@
 @media (max-width: 820px) {
   .comic { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
   .comic .comic-bg { width: 100%; height: 18%; top: auto; bottom: 0; }
-  .comic-num {
-    writing-mode: horizontal-tb;
-    border-left: none;
-    border-bottom: 3px solid var(--brand);
-    padding: 0 0 8px;
-    justify-self: start;
-  }
   .comic-thumb { max-width: 200px; }
 }
 
 @media (max-width: 480px) {
   .comic { padding: 20px 16px; }
-  .comic-title { font-size: 20px; }
+  /* 标题字号缩小 → 年份标志高度同步缩小，保持两者一致 */
+  :root { --title-fs: 20px; }
+  .comic-title { font-size: var(--title-fs); }
   .comic-desc { font-size: 13.5px; }
   .comics-toc { gap: 8px; }
   .comics-toc .btn { font-size: 12px; padding: 8px 14px; }

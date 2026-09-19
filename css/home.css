@@ -247,6 +247,7 @@
   margin-bottom: 18px;
 }
 .series-tag--anime { background: #ff6900; }
+.series-tag--game  { background: #19c11d; }
 
 .series-title {
   font-family: var(--font-display);
