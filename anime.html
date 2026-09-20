@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/common/apple-touch-icon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/game.css">
 <link rel="stylesheet" href="css/anime.css">
 </head>
 <body>
@@ -45,10 +46,15 @@
       自 1983 年首部电视动画播出以来，《队长小翼》先后推出了 5 部 TV 动画、1 部 OVA 与 5 部剧场版。
       从昭和时代到平成、令和时代，这部作品以不同的画风与叙事，陪伴了一代又一代的足球少年成长。
     </p>
+
+    <div class="anime-toc">
+      <a href="#anime-works" class="btn btn--ghost">↓ 动画作品</a>
+      <a href="#bonus-video" class="btn btn--ghost">↓ 映像特典</a>
+    </div>
   </section>
 
   <!-- 统计概览 -->
-  <section class="section" data-reveal>
+  <section class="section section--stats" data-reveal>
     <div class="container">
       <div class="anime-stats">
         <div class="stat">
@@ -75,234 +81,188 @@
     </div>
   </section>
 
-  <!-- 动画时间线（按播出时间排序）-->
-  <section class="section section--timeline" data-reveal>
+  <!-- 动画作品（按播出时间排序）-->
+  <section class="section section--anime" id="anime-works" data-reveal>
     <div class="container">
-      <div class="section-head">
-        <h2>作品播出顺序</h2>
+      <div class="section-head anime-head">
+        <span class="kicker">ANIMATION</span>
+        <h2>动画作品</h2>
         <p class="desc">从 1983 年到 2023 年，按作品播出（上映）顺序排列。</p>
       </div>
 
-      <div class="timeline">
+      <div class="anime-list">
 
-        <!-- 1983 · TV 第 1 作 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1983</span>
-            <span class="type">TV</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将》（昭和版）</h2>
-            <p class="anime-en">キャプテン翼 / Captain Tsubasa</p>
-            <ul class="anime-meta">
-              <li><span>集数</span>全 128 话</li>
-              <li><span>播出</span>1983.10.13 – 1986.03.27</li>
-              <li><span>电视台</span>东京电视台等</li>
+        <article class="game anime-card anime-c1">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1983</span><span class="year-type">TV</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将》（昭和版）</h2>
+            <p class="game-sub">キャプテン翼 / Captain Tsubasa</p>
+                        <ul class="game-meta">
+                <li><span>集数</span>全 128 话</li>
+                <li><span>播出</span>1983.10.13 – 1986.03.27</li>
+                <li><span>电视台</span>东京电视台等</li>
             </ul>
-            <p class="anime-desc">
-              第一部电视动画，改编自漫画的小学篇至初中篇。大空翼从南葛市的小学出发，
-              与若林源三、日向小次郎等对手交锋，一路走向全国大赛。这一版成为无数 80、90 后的童年记忆，
-              主题曲《燃烧的英雄》（燃えてヒーロー）至今传唱不衰。
-            </p>
+            <p class="game-desc">第一部电视动画，改编自漫画的小学篇至初中篇。大空翼从南葛市的小学出发， 与若林源三、日向小次郎等对手交锋，一路走向全国大赛。这一版成为无数 80、90 后的童年记忆， 主题曲《燃烧的英雄》（燃えてヒーロー）至今传唱不衰。</p>
+          </div>
+          <div class="game-thumb">
+            <img src="assets/img/anime/captain_tsubasa_1983_kv.jpg" alt="《足球小将》（昭和版）封面" width="423" height="600" loading="lazy">
           </div>
         </article>
 
-        <!-- 1985.07 · 剧场版 1 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1985</span>
-            <span class="type">剧场版</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将：欧洲大决战》</h2>
-            <p class="anime-en">キャプテン翼 ヨーロッパ大決戦 / Captain Tsubasa: Europe Daikessen</p>
-            <ul class="anime-meta">
-              <li><span>上映</span>1985.07.13</li>
+        <article class="game anime-card game--nothumb anime-c2">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1985</span><span class="year-type">剧场版</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将：欧洲大决战》</h2>
+            <p class="game-sub">キャプテン翼 ヨーロッパ大決戦 / Captain Tsubasa: Europe Daikessen</p>
+                        <ul class="game-meta">
+                <li><span>上映</span>1985.07.13</li>
             </ul>
-            <p class="anime-desc">
-              日本少年队出征欧洲，在巴黎与以足球皇帝卡尔·海因茨·施奈德为首的欧洲少年队展开对决。
-            </p>
+            <p class="game-desc">日本少年队出征欧洲，在巴黎与以足球皇帝卡尔·海因茨·施奈德为首的欧洲少年队展开对决。</p>
           </div>
         </article>
 
-        <!-- 1985.12 · 剧场版 2 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1985</span>
-            <span class="type">剧场版</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将：危险！全日本少年队》</h2>
-            <p class="anime-en">キャプテン翼 危うし！全日本ジュニア / Captain Tsubasa: Ayaushi! Zen Nippon Jr.</p>
-            <ul class="anime-meta">
-              <li><span>上映</span>1985.12.21</li>
+        <article class="game anime-card game--nothumb anime-c3">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1985</span><span class="year-type">剧场版</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将：危险！全日本少年队》</h2>
+            <p class="game-sub">キャプテン翼 危うし！全日本ジュニア / Captain Tsubasa: Ayaushi! Zen Nippon Jr.</p>
+                        <ul class="game-meta">
+                <li><span>上映</span>1985.12.21</li>
             </ul>
-            <p class="anime-desc">
-              承接第一部剧场版，讲述施奈德率领的欧洲少年队来日本比赛的故事，含大量原创必杀技。
-            </p>
+            <p class="game-desc">承接第一部剧场版，讲述施奈德率领的欧洲少年队来日本比赛的故事，含大量原创必杀技。</p>
           </div>
         </article>
 
-        <!-- 1986.03 · 剧场版 3 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1986</span>
-            <span class="type">剧场版</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将：奔向明日！》</h2>
-            <p class="anime-en">キャプテン翼 明日に向かって走れ！ / Captain Tsubasa: Asu ni Mukatte Hashire!</p>
-            <ul class="anime-meta">
-              <li><span>上映</span>1986.03.15</li>
+        <article class="game anime-card game--nothumb anime-c4">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1986</span><span class="year-type">剧场版</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将：奔向明日！》</h2>
+            <p class="game-sub">キャプテン翼 明日に向かって走れ！ / Captain Tsubasa: Asu ni Mukatte Hashire!</p>
+                        <ul class="game-meta">
+                <li><span>上映</span>1986.03.15</li>
             </ul>
-            <p class="anime-desc">
-              初中决赛、南葛三连霸之后，日本选拔队远征欧洲。影片在红黄对抗赛中，通过小翼对若林的回忆，
-              串联起两人的相识过程。
-            </p>
+            <p class="game-desc">初中决赛、南葛三连霸之后，日本选拔队远征欧洲。影片在红黄对抗赛中，通过小翼对若林的回忆， 串联起两人的相识过程。</p>
           </div>
         </article>
 
-        <!-- 1986.07 · 剧场版 4 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1986</span>
-            <span class="type">剧场版</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将：世界大决战！少年世界杯》</h2>
-            <p class="anime-en">キャプテン翼 世界大決戦！Jr. ワールドカップ / Captain Tsubasa: Sekai Daikessen! Jr. World Cup</p>
-            <ul class="anime-meta">
-              <li><span>上映</span>1986.07.12</li>
+        <article class="game anime-card game--nothumb anime-c5">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1986</span><span class="year-type">剧场版</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将：世界大决战！少年世界杯》</h2>
+            <p class="game-sub">キャプテン翼 世界大決戦！Jr. ワールドカップ / Captain Tsubasa: Sekai Daikessen! Jr. World Cup</p>
+                        <ul class="game-meta">
+                <li><span>上映</span>1986.07.12</li>
             </ul>
-            <p class="anime-desc">
-              接续第三部，日本初中队出征美国，改编为美国、日本、欧洲、南美四国争霸。
-              面对恩师罗伯特带领的南美队，小翼用实力给出回答。
-            </p>
+            <p class="game-desc">接续第三部，日本初中队出征美国，改编为美国、日本、欧洲、南美四国争霸。 面对恩师罗伯特带领的南美队，小翼用实力给出回答。</p>
           </div>
         </article>
 
-        <!-- 1989 · OVA -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1989</span>
-            <span class="type">OVA</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《新足球小将》</h2>
-            <p class="anime-en">新キャプテン翼 / Shin Captain Tsubasa</p>
-            <ul class="anime-meta">
-              <li><span>集数</span>全 13 话</li>
-              <li><span>发售</span>1989 – 1990</li>
+        <article class="game anime-card anime-c6">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1989</span><span class="year-type">OVA</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《新足球小将》</h2>
+            <p class="game-sub">新キャプテン翼 / Shin Captain Tsubasa</p>
+                        <ul class="game-meta">
+                <li><span>集数</span>全 13 话</li>
+                <li><span>发售</span>1989 – 1990</li>
             </ul>
-            <p class="anime-desc">
-              改编自漫画版全日本青年队参加世少赛的篇章。讲述全日本少年队远征欧洲、
-              征战国际少年足球大赛并最终夺冠的故事，是连接小学篇与世青篇的重要动画作品。
-            </p>
+            <p class="game-desc">改编自漫画版全日本青年队参加世少赛的篇章。讲述全日本少年队远征欧洲、 征战国际少年足球大赛并最终夺冠的故事，是连接小学篇与世青篇的重要动画作品。</p>
+          </div>
+          <div class="game-thumb">
+            <img src="assets/img/anime/shin_captain_tsubasa_ova_dvdbox.jpg" alt="《新足球小将》OVA DVD BOX 封面" width="683" height="965" loading="lazy">
           </div>
         </article>
 
-        <!-- 1994.10 · TV 第 2 作 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1994</span>
-            <span class="type">TV</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将 J》</h2>
-            <p class="anime-en">キャプテン翼J / Captain Tsubasa J</p>
-            <ul class="anime-meta">
-              <li><span>集数</span>全 47 话</li>
-              <li><span>播出</span>1994.10.21 – 1995.12.22</li>
-              <li><span>电视台</span>富士电视台等</li>
+        <article class="game anime-card anime-c7">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1994</span><span class="year-type">TV</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将 J》</h2>
+            <p class="game-sub">キャプテン翼J / Captain Tsubasa J</p>
+                        <ul class="game-meta">
+                <li><span>集数</span>全 47 话</li>
+                <li><span>播出</span>1994.10.21 – 1995.12.22</li>
+                <li><span>电视台</span>富士电视台等</li>
             </ul>
-            <p class="anime-desc">
-              1994 年的重新制作版本。剧情从小学生篇开始，结束后直接跳转到世青篇开头，
-              由葵新伍的登场展开新章。可惜故事再次在抵达终点前完结。
-            </p>
+            <p class="game-desc">1994 年的重新制作版本。剧情从小学生篇开始，结束后直接跳转到世青篇开头， 由葵新伍的登场展开新章。可惜故事再次在抵达终点前完结。</p>
+          </div>
+          <div class="game-thumb">
+            <img src="assets/img/anime/captain_tsubasa_j_dvdbox.jpg" alt="《足球小将 J》DVD-BOX 封面" width="658" height="930" loading="lazy">
           </div>
         </article>
 
-        <!-- 1994.11 · 剧场版 5 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">1994</span>
-            <span class="type">剧场版</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将：最强的敌人！荷兰青年队》</h2>
-            <p class="anime-en">キャプテン翼 最強の敵！オランダユース / Captain Tsubasa: Saikyo no Teki! Holland Youth</p>
-            <ul class="anime-meta">
-              <li><span>上映</span>1994.11</li>
+        <article class="game anime-card game--nothumb anime-c8">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">1994</span><span class="year-type">剧场版</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将：最强的敌人！荷兰青年队》</h2>
+            <p class="game-sub">キャプテン翼 最強の敵！オランダユース / Captain Tsubasa: Saikyo no Teki! Holland Youth</p>
+                        <ul class="game-meta">
+                <li><span>上映</span>1994.11</li>
             </ul>
-            <p class="anime-desc">
-              为备战世青赛，日本队与荷兰青年军展开热身赛。在缺少翼的情况下前两场告负，
-              最终翼回国后，重振旗鼓的日本青年军还以颜色，大胜对手。
-            </p>
+            <p class="game-desc">为备战世青赛，日本队与荷兰青年军展开热身赛。在缺少翼的情况下前两场告负， 最终翼回国后，重振旗鼓的日本青年军还以颜色，大胜对手。</p>
           </div>
         </article>
 
-        <!-- 2001 · TV 第 3 作 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">2001</span>
-            <span class="type">TV</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《足球小将 GOAL!》</h2>
-            <p class="anime-en">キャプテン翼 ROAD TO 2002 / Captain Tsubasa: Road to 2002</p>
-            <ul class="anime-meta">
-              <li><span>集数</span>全 52 话</li>
-              <li><span>播出</span>2001.10.07 – 2002.10.06</li>
-              <li><span>电视台</span>东京电视台等</li>
+        <article class="game anime-card anime-c9">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">2001</span><span class="year-type">TV</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《足球小将 GOAL!》</h2>
+            <p class="game-sub">キャプテン翼 ROAD TO 2002 / Captain Tsubasa: Road to 2002</p>
+                        <ul class="game-meta">
+                <li><span>集数</span>全 52 话</li>
+                <li><span>播出</span>2001.10.07 – 2002.10.06</li>
+                <li><span>电视台</span>东京电视台等</li>
             </ul>
-            <p class="anime-desc">
-              从最初的小学篇开始，一直到《ROAD TO 2002》的开篇，几乎涵盖了当时所有的漫画内容。
-              内容精炼，并加入了不同于漫画版的原创 2002 相关剧情。
-            </p>
+            <p class="game-desc">从最初的小学篇开始，一直到《ROAD TO 2002》的开篇，几乎涵盖了当时所有的漫画内容。 内容精炼，并加入了不同于漫画版的原创 2002 相关剧情。</p>
+          </div>
+          <div class="game-thumb">
+            <img src="assets/img/anime/captain_tsubasa_road_to_2002_dvd.jpg" alt="《足球小将 GOAL!》DVD 封面" width="500" height="707" loading="lazy">
           </div>
         </article>
 
-        <!-- 2018 · TV 第 4 作 -->
-        <article class="anime">
-          <div class="anime-date">
-            <span class="year">2018</span>
-            <span class="type">TV</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《队长小翼》（重制版）</h2>
-            <p class="anime-en">キャプテン翼 / Captain Tsubasa (2018)</p>
-            <ul class="anime-meta">
-              <li><span>集数</span>第 1 季全 52 话</li>
-              <li><span>播出</span>2018.04.02 – 2019.04.01</li>
-              <li><span>电视台</span>东京电视台等（中国由芒果 TV 独家播出）</li>
-              <li><span>导演</span>加藤敏幸</li>
-              <li><span>编剧</span>富冈淳广 / 高桥阳一</li>
+        <article class="game anime-card anime-c10">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">2018</span><span class="year-type">TV</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《队长小翼》（重制版）</h2>
+            <p class="game-sub">キャプテン翼 / Captain Tsubasa (2018)</p>
+                        <ul class="game-meta">
+                <li><span>集数</span>第 1 季全 52 话</li>
+                <li><span>播出</span>2018.04.02 – 2019.04.01</li>
+                <li><span>电视台</span>东京电视台等（中国由芒果 TV 独家播出）</li>
+                <li><span>导演</span>加藤敏幸</li>
+                <li><span>编剧</span>富冈淳广 / 高桥阳一</li>
             </ul>
-            <p class="anime-desc">
-              官方中文译名《队长小翼》由此而来。以高品质动画视觉重新描绘大空翼的故事，
-              将剧情重新调回小学时代。续作《队长小翼 第二季 青少年篇》于 2023 年播出。
-            </p>
+            <p class="game-desc">官方中文译名《队长小翼》由此而来。以高品质动画视觉重新描绘大空翼的故事， 将剧情重新调回小学时代。续作《队长小翼 第二季 青少年篇》于 2023 年播出。</p>
+          </div>
+          <div class="game-thumb">
+            <img src="assets/img/anime/captain_tsubasa_2018_kv.jpg" alt="《队长小翼》（2018 年版）主视觉" width="707" height="1000" loading="lazy">
           </div>
         </article>
 
-        <!-- 2023 · TV 第 5 作（最新）-->
-        <article class="anime anime--latest">
-          <div class="anime-date">
-            <span class="year">2023</span>
-            <span class="type">TV</span>
-          </div>
-          <div class="anime-body">
-            <h2 class="anime-title">《队长小翼 第二季 青少年篇》</h2>
-            <p class="anime-en">キャプテン翼 シーズン2 ジュニアユース編 / Captain Tsubasa Season 2: Junior Youth</p>
-            <ul class="anime-meta">
-              <li><span>集数</span>全 39 话</li>
-              <li><span>播出</span>2023.10.01 – 2024.06.30</li>
-              <li><span>电视台</span>东京电视台等（中国由芒果 TV 独家播出）</li>
+        <article class="game anime-card anime-c11 game--latest">
+          <div class="game-bg"></div>
+          <div class="game-year"><span class="year-num">2023</span><span class="year-type">TV</span></div>
+          <div class="game-body">
+            <h2 class="game-title">《队长小翼 第二季 青少年篇》</h2>
+            <p class="game-sub">キャプテン翼 シーズン2 ジュニアユース編 / Captain Tsubasa Season 2: Junior Youth</p>
+                        <ul class="game-meta">
+                <li><span>集数</span>全 39 话</li>
+                <li><span>播出</span>2023.10.01 – 2024.06.30</li>
+                <li><span>电视台</span>东京电视台等（中国由芒果 TV 独家播出）</li>
             </ul>
-            <p class="anime-desc">
-              系列最新的 TV 动画，承接 2018 年版第 1 季。大空翼率领全日本青少年队征战国际青少年大赛，
-              先后与世界各地的强敌交锋，向世界展示日本足球少年的成长与蜕变。
-            </p>
+            <p class="game-desc">系列最新的 TV 动画，承接 2018 年版第 1 季。大空翼率领全日本青少年队征战国际青少年大赛， 先后与世界各地的强敌交锋，向世界展示日本足球少年的成长与蜕变。</p>
+          </div>
+          <div class="game-thumb">
+            <img src="assets/img/anime/captain_tsubasa_season2_kv.jpg" alt="《队长小翼 第二季 青少年篇》主视觉" width="840" height="1200" loading="lazy">
           </div>
         </article>
 
@@ -311,11 +271,11 @@
   </section>
 
   <!-- 播客特辑 -->
-  <section class="section section--podcast" data-reveal>
+  <section class="section section--podcast" id="bonus-video" data-reveal>
     <div class="container">
       <div class="section-head">
         <span class="kicker">SPECIAL</span>
-        <h2>播客特辑</h2>
+        <h2>映像特典</h2>
         <p class="desc">
           动画正篇之外的声音档案——两部由声优本人参与的特典节目，一个是影像，一个是广播。
         </p>
@@ -407,9 +367,9 @@
         <li><a href="character.html">登场角色</a></li>
         <li><a href="comics.html">漫画作品</a></li>
         <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
         <li><a href="news.html">新闻动态</a></li>
         <li><a href="special-column.html">特别专栏</a></li>
-        <li><a href="games.html">游戏作品</a></li>
       </ul>
     </div>
     <div>
@@ -422,11 +382,58 @@
     </div>
   </div>
   <div class="copyright">
-    本页面为粉丝自制的汉化版知识库，非官方站点，仅供学习与资料整理使用。<br>
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
     © 高桥阳一 / 集英社 · キャプテン翼 製作委員会　原作《キャプテン翼》高桥阳一（集英社）
   </div>
 </footer>
 
+
+<script>
+/* 年份元素高度 = 中文名称元素实际高度（与游戏页同一处理，保证两者顶端对齐） */
+(function () {
+  function syncYearHeight() {
+    document.querySelectorAll('.anime-card').forEach(function (card) {
+      var year = card.querySelector('.game-year');
+      var title = card.querySelector('.game-title');
+      if (!year || !title) return;
+      var h = title.getBoundingClientRect().height;
+      if (h) year.style.minHeight = h + 'px';   // 用 min-height，避免内容被压缩
+    });
+  }
+  syncYearHeight();
+  window.addEventListener('load', syncYearHeight);
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(syncYearHeight); }
+  var timer;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(syncYearHeight, 120);
+  });
+
+  /* 顶部快捷按钮：当前所在区块高亮 */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.anime-toc a'));
+  if ('IntersectionObserver' in window) {
+    var visible = Object.create(null);
+    var PRIORITY = ['bonus-video', 'anime-works'];
+    function paint() {
+      var active = null;
+      for (var i = 0; i < PRIORITY.length; i++) {
+        if (visible[PRIORITY[i]]) { active = PRIORITY[i]; break; }
+      }
+      links.forEach(function (a) {
+        a.classList.toggle('is-current', (a.getAttribute('href') || '').slice(1) === active);
+      });
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      paint();
+    }, { rootMargin: '-88px 0px -72% 0px', threshold: 0 });
+    links.forEach(function (a) {
+      var el = document.getElementById((a.getAttribute('href') || '').slice(1));
+      if (el) io.observe(el);
+    });
+  }
+})();
+</script>
 <script src="js/main.js"></script>
 </body>
 </html>

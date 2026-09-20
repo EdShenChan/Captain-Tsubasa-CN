@@ -47,13 +47,19 @@
     <p class="lead">
       收录《队长小翼》原作者<b>高桥阳一</b>老师在官方网站连载的全部特别专栏。
       从创作幕后、取材见闻，到世界杯观赛感想与生活随笔，均由日语原文完整翻译为中文。
+      上方标签中，<b>ALL</b> 为全部内容；<b>COLUMN</b> 为高桥阳一老师的专栏文章，<b>INTERVIEW</b> 为访谈长文。列表<b>每 10 条为一页</b>，底部可翻页。
     </p>
   </section>
 
   <!-- 专栏列表 -->
   <section class="section" id="columns">
     <div class="container">
+      <!-- 分类筛选标签：ALL（全部）+ COLUMN（专栏）/ INTERVIEW（访谈） -->
+      <nav class="news-filter" id="columnFilter" aria-label="专栏分类筛选"></nav>
       <div class="column-list" id="columnList"><!-- 由 column.js 动态渲染 --></div>
+      <p class="news-empty" id="columnEmpty">该分类暂无内容。</p>
+      <!-- 分页导航：每 10 条为一页，由 JS 生成页码 -->
+      <nav class="news-pager" id="columnPager" aria-label="专栏分页"></nav>
     </div>
   </section>
 </main>
@@ -71,9 +77,9 @@
         <li><a href="character.html">登场角色</a></li>
         <li><a href="comics.html">漫画作品</a></li>
         <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
         <li><a href="news.html">新闻动态</a></li>
         <li><a href="special-column.html">特别专栏</a></li>
-        <li><a href="games.html">游戏作品</a></li>
       </ul>
     </div>
     <div>
@@ -86,7 +92,7 @@
     </div>
   </div>
   <div class="copyright">
-    本页面为粉丝自制的汉化版知识库，非官方站点，仅供学习与资料整理使用。<br>
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
     专栏原文与图片版权归 © 高桥阳一 / 集英社 所有，原文来源：captain-tsubasa.world
   </div>
 </footer>

@@ -38,6 +38,7 @@
     const article = document.createElement('article');
     article.className = 'column-item';
     article.setAttribute('data-reveal', '');
+    article.setAttribute('data-cat', isFull ? 'INTERVIEW' : 'COLUMN');   // 供分类筛选使用
 
     // 识别署名段（以「高桥」开头的段落视为署名）
     const isSign = function (p) {
@@ -75,8 +76,8 @@
       signHtml = '<div class="col-sign">— ' + signText + '</div>';
     }
 
-    // 索引标签：full 条目显示 INTERVIEW，带 link 的显示 NEWS，其余显示 COLUMN
-    const tagLabel = isFull ? 'INTERVIEW' : (col.link ? 'NEWS' : 'COLUMN ' + idx);
+    // 索引标签：full 条目显示 INTERVIEW，其余显示 COLUMN（不再带数字序号）
+    const tagLabel = isFull ? 'INTERVIEW' : 'COLUMN';
 
     // 日文小字（full 条目不显示）
     const jaHtml = (!isFull && col.titleJa) ? '<p class="col-title-ja">' + col.titleJa + '</p>' : '';
@@ -162,4 +163,95 @@
       });
     }
   });
+
+  /* ===== 分类筛选（ALL / COLUMN / INTERVIEW）+ 分页（每页 10 条） ===== */
+  const CAT_ORDER = ['ALL', 'COLUMN', 'INTERVIEW'];
+  const PER_PAGE  = 10;
+  const counts = {};
+  COLUMN_DATA.forEach(function (c) {
+    const k = c.full ? 'INTERVIEW' : 'COLUMN';
+    counts[k] = (counts[k] || 0) + 1;
+  });
+
+  const filterBar = document.getElementById('columnFilter');
+  const pager     = document.getElementById('columnPager');
+  const emptyTip  = document.getElementById('columnEmpty');
+  const cards     = Array.prototype.slice.call(list.querySelectorAll('.column-item'));
+  let curCat = 'ALL';
+  let curPage = 1;
+
+  function cur() {
+    return cards.filter(function (a) {
+      return curCat === 'ALL' || a.getAttribute('data-cat') === curCat;
+    });
+  }
+
+  function renderPager(total, pages) {
+    if (!pager) return;
+    pager.innerHTML = '';
+    if (!total) { if (emptyTip) emptyTip.style.display = 'block'; return; }
+    if (emptyTip) emptyTip.style.display = 'none';
+    const info = document.createElement('div');
+    info.className = 'pg-info';
+    info.textContent = '共 ' + total + ' 条　第 ' + curPage + ' / ' + pages + ' 页';
+    pager.appendChild(info);
+
+    function add(label, page, cls, active, disabled) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pg-btn' + (cls ? ' ' + cls : '') + (active ? ' is-active' : '');
+      b.innerHTML = label;
+      if (disabled) b.disabled = true;
+      else b.addEventListener('click', function () { go(page); });
+      pager.appendChild(b);
+    }
+    add('&#8249;', curPage - 1, 'pg-nav', false, curPage === 1);
+    for (let i = 1; i <= pages; i++) add(String(i), i, '', i === curPage, false);
+    add('&#8250;', curPage + 1, 'pg-nav', false, curPage === pages);
+  }
+
+  function applyView(scrollTop) {
+    const vis = cur();
+    const pages = Math.max(1, Math.ceil(vis.length / PER_PAGE));
+    if (curPage > pages) curPage = pages;
+    if (curPage < 1) curPage = 1;
+    const start = (curPage - 1) * PER_PAGE;
+    cards.forEach(function (a) { a.style.display = 'none'; });
+    vis.slice(start, start + PER_PAGE).forEach(function (a) { a.style.display = ''; });
+    renderPager(vis.length, pages);
+    if (scrollTop && vis.length) {
+      const top = list.getBoundingClientRect().top + window.pageYOffset - 88;
+      window.scrollTo({ top: top > 0 ? top : 0, behavior: 'smooth' });
+    }
+  }
+
+  function go(p) { curPage = p; applyView(true); }
+
+  function applyFilter(cat) {
+    curCat = cat;
+    curPage = 1;
+    applyView(false);
+    if (!filterBar) return;
+    Array.prototype.forEach.call(filterBar.children, function (b) {
+      const on = b.getAttribute('data-cat') === cat;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  if (filterBar) {
+    CAT_ORDER.forEach(function (cat) {
+      const n = (cat === 'ALL') ? cards.length : (counts[cat] || 0);
+      if (cat !== 'ALL' && !n) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'nf-btn' + (cat === 'ALL' ? ' is-active' : '');
+      btn.setAttribute('data-cat', cat);
+      btn.setAttribute('aria-pressed', cat === 'ALL' ? 'true' : 'false');
+      btn.innerHTML = cat + '<span class="nf-num">' + n + '</span>';
+      btn.addEventListener('click', function () { applyFilter(cat); });
+      filterBar.appendChild(btn);
+    });
+  }
+  applyFilter('ALL');
 })();

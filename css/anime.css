@@ -333,3 +333,76 @@
   .podcast-title { font-size: 19px; }
   .podcast-media { height: 132px; }
 }
+
+/* ============================ 动画作品卡片 ============================ */
+/* 卡片壳体沿用游戏页 .game（已引入 game.css）；本页作品暂无官方竖版封面，
+   故改用两列布局（年份 / 信息），右侧装饰色块按作品给出不同配色。 */
+.anime-head { text-align: center; }
+
+.anime-toc {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.anime-toc .btn.is-current { background: var(--brand); color: #fff; }
+
+#anime-works,
+#bonus-video { scroll-margin-top: calc(var(--header-h) + 20px); }
+
+.anime-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* 无封面：两列（年份 / 信息），与 game.css 的 .game--retro 同规格 */
+.game--nothumb { grid-template-columns: 72px 1fr; }
+
+.anime-c1  .game-bg { background: #3dc6fa; }
+.anime-c2  .game-bg { background: #ff6900; }
+.anime-c3  .game-bg { background: #f5b301; }
+.anime-c4  .game-bg { background: #19c11d; }
+.anime-c5  .game-bg { background: #7b5cff; }
+.anime-c6  .game-bg { background: #ff3333; }
+.anime-c7  .game-bg { background: #00b8a9; }
+.anime-c8  .game-bg { background: #ff7ab8; }
+.anime-c9  .game-bg { background: #5a67d8; }
+.anime-c10 .game-bg { background: #ff9500; }
+.anime-c11 .game-bg { background: #20c997; }
+
+@media (max-width: 720px) {
+  .anime-toc { gap: 8px; }
+  .anime-toc .btn { font-size: 12px; padding: 8px 14px; }
+}
+
+/* 类型标签（TV / 剧场版 / OVA）：置于年份下方 */
+/* 年份列是弹性盒：内部项目默认 flex-shrink:1，当内容高于盒子时，
+   4px 的蓝色横杠会被压缩到 0 而消失 —— 故年份列不再锁定 height，
+   改由 JS 写 min-height，并对横杠 / 年份 / 类型显式 flex:none。 */
+.anime-card .game-year {
+  height: auto;
+  min-height: var(--title-h);
+}
+.anime-card .game-year::before { flex: none; }
+.anime-card .year-num {
+  flex: none;
+  line-height: 1;
+}
+.anime-card .year-type {
+  display: block;
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ============================ 页面头部紧凑化（对齐角色页间距） ============================ */
+.section--stats { padding-top: 36px; padding-bottom: 36px; }
+.section--anime { padding-top: 48px; }

@@ -29,6 +29,41 @@
   margin-top: 28px;
 }
 
+/* ============================ 统计概览 ============================ */
+/* 与动画页 .anime-stats 同一规格，便于跨页视觉一致 */
+.comics-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 36px 0;
+}
+.comics-stats .stat {
+  text-align: center;
+  padding: 8px 12px;
+  border-left: 1px solid var(--line);
+}
+.comics-stats .stat:first-child { border-left: none; }
+.comics-stats .stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--brand);
+  margin-bottom: 8px;
+}
+.comics-stats .stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+@media (max-width: 640px) {
+  .comics-stats { padding: 26px 0; }
+  .comics-stats .stat-num { font-size: 32px; }
+}
+
 /* ============================ 类目标题 ============================ */
 .cat-head {
   text-align: center;
@@ -243,3 +278,7 @@
   .comics-toc { gap: 8px; }
   .comics-toc .btn { font-size: 12px; padding: 8px 14px; }
 }
+
+/* ============================ 页面头部紧凑化（对齐角色页间距） ============================ */
+.section--stats { padding-top: 36px; padding-bottom: 36px; }
+#section-original { padding-top: 48px; }

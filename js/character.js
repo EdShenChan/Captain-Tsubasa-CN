@@ -142,6 +142,8 @@
         '<h2 class="modal-name">' + c.name + '</h2>' +
         rows +
         '<p class="modal-desc">' + c.desc + '</p>' +
+        (c.profile ? '<div class="modal-profile"><span class="modal-profile-k">官网介绍</span>' +
+                     '<p class="modal-profile-t">' + c.profile + '</p></div>' : '') +
       '</div>';
 
     modal.classList.add('open');

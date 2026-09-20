@@ -390,3 +390,6 @@
   .game-thumb { grid-column: 1; grid-row: auto; }
   .game-thumb { max-width: 200px; }
 }
+
+/* ============================ 页面头部紧凑化（对齐角色页间距） ============================ */
+.section--games { padding-top: 48px; }
