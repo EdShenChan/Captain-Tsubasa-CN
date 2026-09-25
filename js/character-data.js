@@ -1,5 +1,5 @@
 /* 《队长小翼》角色数据 · 汉化整理
- * 角色图片已预置到本地 assets/img/character/chara/
+ * 角色图片按所属漫画作品分目录存放于 assets/img/manga/<作品slug>/
  * code 对应本地图片 chara_{code}.webp
  */
 window.CHARA_DATA = {
@@ -8,16 +8,16 @@ window.CHARA_DATA = {
   // name: 页签短名；full: 页面内展示的正式中文标题；logo: 官网对应页签 LOGO；desc: 官网简介中译
   series: [
     { id: 1, name: '队长小翼', full: '《队长小翼》',
-      logo: 'assets/img/character/logo/series_logo_1.png',
+      logo: 'assets/img/manga/captain-tsubasa/series_logo_1.png',
       en: 'Captain Tsubasa',
       stages: ['小学生篇', '中学生篇', '青少年篇'],
       desc: '从少年大空翼搬到静冈县南葛市之后的小学、中学，直到 Jr. 国际青少年大赛的成长记。与无数宿敌的激战与感人剧情……是日后飞向世界的大空翼的「原点」，也是描绘他在日本奋战的传说系列！！' },
-    { id: 2, name: '世青篇', full: '《队长小翼 世青篇》', logo: 'assets/img/character/logo/series_logo_2.png', en: 'World Youth', desc: '中学毕业、奔赴梦想之地的巴西的翼，又作为青年日本代表出战世青赛。新世界的对手们接连登场，翼一行在激烈交锋中一路制胜。与恩师罗伯特所率最强巴西队的决战，结局究竟如何！？' },
-    { id: 3, name: 'ROAD TO 2002', full: '《队长小翼 ROAD TO 2002》', logo: 'assets/img/character/logo/series_logo_3.png', en: 'Road to 2002', desc: '翼转会西班牙名门俱乐部巴塞罗那。在世界强者云集之处，历经激烈的正选之争，作为大人、作为职业选手急速成长。与新对手拿度尼的一战，成为日后被传颂的名胜负！' },
-    { id: 4, name: 'GOLDEN-23', full: '《队长小翼 GOLDEN-23》', logo: 'assets/img/character/logo/series_logo_4.png', en: 'Golden-23', desc: '以「黄金世代」组成奥运代表队。由日向小次郎的恩师吉良教练执教的队伍，在缺少翼等海外成员的纯国内阵容下参加亚洲预选赛。在新战力崛起的同时，选手们历经亚洲激战获得了巨大成长！' },
-    { id: 5, name: '海外激斗篇 IN CALCIO', full: '《队长小翼 海外激斗篇 IN CALCIO 日出处之国的乔卡多雷》', logo: 'assets/img/character/logo/series_logo_5.png', en: 'In Calcio', desc: '追踪「猛虎」日向小次郎与「中场发电机」葵新伍在意大利成长的番外篇。两人都为从三级联赛俱乐部升上更高级别联赛而奋斗！而迎来的最终战正是两人的对决。海外组的苦闷尽在其中！' },
-    { id: 6, name: '海外激斗篇 EN LA LIGA', full: '《队长小翼 海外激斗篇 EN LA LIGA》', logo: 'assets/img/character/logo/series_logo_6.png', en: 'En La Liga', desc: '巴塞罗那的翼与皇家马德里的拿度尼。这两位在《ROAD TO 2002》中已交过手的英雄，为争夺西班牙联赛冠军而激烈碰撞！从巴西远渡欧洲、大幅成长的大空翼，转会第一年也迈向高潮——！' },
-    { id: 7, name: 'RISING SUN', full: '《队长小翼 RISING SUN》', logo: 'assets/img/character/logo/series_logo_7.png', en: 'Rising Sun', desc: '突破亚洲预选的奥运代表队，加上翼等海外成员，以最佳阵容出征马德里奥运！迪亚斯、施奈德之外，新对手米迦勒也集结于此。在新必杀技接连不断使出的激战中，目标直指日本夙愿的金牌！' }
+    { id: 2, name: '世青篇', full: '《队长小翼 世青篇》', logo: 'assets/img/manga/world-youth/series_logo_2.png', en: 'World Youth', desc: '中学毕业、奔赴梦想之地的巴西的翼，又作为青年日本代表出战世青赛。新世界的对手们接连登场，翼一行在激烈交锋中一路制胜。与恩师罗伯特所率最强巴西队的决战，结局究竟如何！？' },
+    { id: 3, name: 'ROAD TO 2002', full: '《队长小翼 ROAD TO 2002》', logo: 'assets/img/manga/road-to-2002/series_logo_3.png', en: 'Road to 2002', desc: '翼转会西班牙名门俱乐部巴塞罗那。在世界强者云集之处，历经激烈的正选之争，作为大人、作为职业选手急速成长。与新对手拿度尼的一战，成为日后被传颂的名胜负！' },
+    { id: 4, name: 'GOLDEN-23', full: '《队长小翼 GOLDEN-23》', logo: 'assets/img/manga/golden-23/series_logo_4.png', en: 'Golden-23', desc: '以「黄金世代」组成奥运代表队。由日向小次郎的恩师吉良教练执教的队伍，在缺少翼等海外成员的纯国内阵容下参加亚洲预选赛。在新战力崛起的同时，选手们历经亚洲激战获得了巨大成长！' },
+    { id: 5, name: '海外激斗篇 IN CALCIO', full: '《队长小翼 海外激斗篇 IN CALCIO 日出处之国的乔卡多雷》', logo: 'assets/img/manga/in-calcio/series_logo_5.png', en: 'In Calcio', desc: '追踪「猛虎」日向小次郎与「中场发电机」葵新伍在意大利成长的番外篇。两人都为从三级联赛俱乐部升上更高级别联赛而奋斗！而迎来的最终战正是两人的对决。海外组的苦闷尽在其中！' },
+    { id: 6, name: '海外激斗篇 EN LA LIGA', full: '《队长小翼 海外激斗篇 EN LA LIGA》', logo: 'assets/img/manga/en-la-liga/series_logo_6.png', en: 'En La Liga', desc: '巴塞罗那的翼与皇家马德里的拿度尼。这两位在《ROAD TO 2002》中已交过手的英雄，为争夺西班牙联赛冠军而激烈碰撞！从巴西远渡欧洲、大幅成长的大空翼，转会第一年也迈向高潮——！' },
+    { id: 7, name: 'RISING SUN', full: '《队长小翼 RISING SUN》', logo: 'assets/img/manga/rising-sun/series_logo_7.png', en: 'Rising Sun', desc: '突破亚洲预选的奥运代表队，加上翼等海外成员，以最佳阵容出征马德里奥运！迪亚斯、施奈德之外，新对手米迦勒也集结于此。在新必杀技接连不断使出的激战中，目标直指日本夙愿的金牌！' }
 
   ],
 

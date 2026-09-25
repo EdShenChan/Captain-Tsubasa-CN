@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>意大利青少年篇 · 《队长小翼：新秀崛起》前日谭WEB小说</title>
+<meta name="description" content="《队长小翼：新秀崛起》前日谭WEB小说《意大利青少年篇》汉化译文，含官方角色立绘。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/column.css">
+<style>
+
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开） */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  .novel-hero-logo{display:block;margin:0 auto 18px;width:min(520px,86vw);height:auto;}
+  .novel-portraits{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px auto 36px;max-width:940px;}
+  .novel-portraits figure{margin:0;flex:1 1 260px;max-width:330px;}
+  .novel-portraits img{width:100%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);background:#0c1230;display:block;}
+  .novel-portraits figcaption{font-size:12px;color:#999;text-align:center;margin-top:6px;letter-spacing:1px;}
+  .novel-body{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:40px 44px;}
+  .novel-body p{font-size:15px;line-height:2;color:#222;margin-bottom:18px;}
+  .novel-body p:last-child{margin-bottom:0;}
+  .novel-back{display:block;text-align:center;margin:34px auto 0;}
+  .novel-back .btn{font-size:14px;}
+  /* 章末导航：上一篇 / 返回目录 / 下一篇 */
+  .novel-nav{display:flex;align-items:center;justify-content:space-between;
+    gap:14px;max-width:820px;margin:34px auto 0;}
+  .novel-nav-side{flex:1 1 0;min-width:0;}
+  .novel-nav-side--right{text-align:right;}
+  .novel-nav .btn{font-size:14px;}
+  @media (max-width:640px){
+    .novel-body{padding:26px 20px;}
+    .novel-body p{font-size:14.5px;line-height:1.95;}
+    .novel-portraits figure{flex-basis:100%;max-width:420px;}
+    .novel-nav{flex-direction:column;align-items:stretch;}
+    .novel-nav-side{text-align:center;}
+    .novel-nav-side--right{text-align:center;}
+    .novel-nav .btn{width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+<main>
+  <section class="page-hero">
+    <img class="novel-hero-logo" src="assets/img/game/rise-of-new-champions/rise_of_new_champions_logo.png" alt="キャプテン翼 RISE OF NEW CHAMPIONS" loading="eager">
+    <span class="kicker">PRE-STORY WEB NOVEL</span>
+    <h1>《队长小翼：新秀崛起》<span class="en">前日谭 · 意大利青少年篇</span></h1>
+    <p class="lead">意大利防守无懈可击却苦无进攻终结者，教练冒险征召问题儿前锋卢恰诺；他以一挑十一的盘带碾压全队，却也留下“若有吉诺在必能驾驭”的悬念。</p>
+  </section>
+  <section class="section"><div class="container">
+    <div class="novel-portraits"><figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel04_01.png" alt="意大利青少年篇 角色立绘 1"><figcaption>意大利青少年篇 · 立绘 1</figcaption></figure>
+<figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel04_02.png" alt="意大利青少年篇 角色立绘 2"><figcaption>意大利青少年篇 · 立绘 2</figcaption></figure></div>
+    <article class="novel-body"><p>意大利青少年队的合宿所。<br>在会议室里看着前几天强化赛的情形，<br>球队教练保罗·卡尔西斯与教练们正发着愁——。</p>
+<p>“这样下去不妙啊”
+年轻教练说。
+“自《法国国际青少年大赛》中止、宣布新大会《青少年世界杯挑战赛》举办以来，我们用严酷训练强化战力。可这比赛内容……”
+另一名教练起身反驳。“成果也不是没有。原本的长处防守，不是更精进了吗”</p>
+<p>正如这教练所言，以“完美门将”之称的吉诺·赫尔南德斯为核心的防守堪称完美，迄今强化赛全数零封。
+“可课题——攻击力不足，还没解决”
+年轻教练反驳。“我们的进攻模式，是在自阵深处夺球、朝空虚的敌阵一齐压上反击。却屡次无法瓦解对手防线，错失良机”</p>
+<p>确实如此，强化赛里好不容易打出反击，却在一对一落败或强行走射被挡，白白浪费机会的情况不少。</p>
+<p>“新大会里，连未受邀法国大赛的国家都会参战，德国法国也在强化。我们意大利当然也想夺冠，可这样下去苦战可想而知”
+球队实力越接近，一次机会的流失就越致命。
+教练与教练们都心知肚明。会议室笼罩沉重沉默时，一名教练呻吟般开口。“攻击线缺个终结者。要是有个好前锋……”</p>
+<p>这时教练打开另一段视频。监视器上出现因队情未征召的某选手的比赛视频。
+“这视频是……”
+“教练，难道？”
+哗然的教练们，教练苦着脸点头。“召集‘他’。虽有风险，但要在短时间内强化球队，别无他法”</p>
+<p>几天后的早晨。意大利青少年队合宿的球场，选手们做赛前热身。
+“呐，今天新前锋要来吧”
+“好像是，可现在才加人没问题吗”
+“就是说啊。连携练习的时间都没有”
+“可我们实在进不了球啊”
+对着这么说的前锋塔尔德利，队长赫尔南德斯安抚。“塔尔德利，心情我懂。但为了球队忍一下”
+“知道啦，吉诺。知道是知道……”
+塔尔德利粗重叹气时，教练带着新选手来了。</p>
+<p>“从今天起他加入球队，莱奥纳尔多·卢恰诺”
+教练向聚集的选手介绍新援。
+卢恰诺是隶属意大利南部小球会的FW，在该地区青少年大赛狂进球，参与球队全部进球助其夺冠——听罢，代表选手们一阵惊呼。</p>
+<p>“来，卢恰诺。和大家打个招呼”
+被教练催促的卢恰诺，不悦地扫视眼前选手，撇了撇嘴。
+“一个个都是什么废物脸啊”
+突如其来的发言让意大利选手一时反应不及，卢恰诺继续放话。
+“就你们这种渣滓聚在一起想争世界冠军？笑死人，笑都笑不出来”
+“什、什么！”
+脸色大变的选手们逼向卢恰诺，教练暗自抱头。他认可能力却仍将其排除在征召外，正是这性格。</p>
+<p>卢恰诺稍有不满，便在训练、比赛中不分敌我骂人，甚至动粗，是个麻烦制造者。教练判断他与重配合的球队足球不合，才在选拔中将其剔除。</p>
+<p>教练正要制止，赫尔南德斯从选手中迈出一步。张开右臂拦住同伴，直视卢恰诺。
+“到此为止。嘲笑球队伙伴，身为队长我绝不答应”
+“哈！渣滓就是渣滓。不然你叫他们什么”
+卢恰诺说罢，像察觉什么似的眯眼看赫尔南德斯。
+“这么说，你就是吉诺·赫尔南德斯。听说过。用那‘黄金右臂’挡下任何射门的门将吧”</p>
+<p>卢恰诺警戒地眯眼，随即浮起浅笑。
+“不过实际如何，可说不定。传闻这种东西靠不住啊”
+这话让周围选手比赫尔南德斯更火大。
+“喂！在南部混出点名气就飘飘然了！”
+“你这种货色能从吉诺脚下进球？”
+“那就打一场不就知道了。呐，队长先生？”
+卢恰诺挑衅，赫尔南德斯也明白。但众目睽睽，被说到这份上不能退。
+“你这么怀疑我的实力，好啊。现在就比一场。我也想见识你的实力”
+“这才对嘛”
+卢恰诺自信满满，又抛出惊人提案。</p>
+<p>“不过一对一无聊。一对十一吧。把你们全突穿，证明我的实力！”</p>
+<p>于是意大利青少年正规军11人对卢恰诺的较量开始。
+意大利选手散落球场，确认卢恰诺拿球进中心圈，教练鸣哨。
+“那么，开始！”</p>
+<p>哨响同时，意大利选手摆好架势防卢恰诺盘带。
+可卢恰诺不出中心圈，就地颠起球。脚背、脚踝、小腿、膝、大腿、胸、背、肩、头……用全身各处，精彩绝伦的颠球。</p>
+<p>呆看的意大利十一人回过神挑衅。
+“不敢攻过来吗，胆小鬼！”
+卢恰诺头顶球保持平衡回嘴。“连胆小鬼的球都抢不到的弱虫们，少摆架子”
+“竟、敢说！”
+“别小看我们！”
+被反挑衅的意大利选手们上头。孔蒂、马泰奥、安德烈亚三人齐扑卢恰诺。
+“终于来劲了啊！”
+三人围住卢恰诺各出脚抢球，却统统落空。</p>
+<p>“哦！”
+“那家伙，好厉害！”
+场上十一人与替补不禁赞叹。
+卢恰诺颠球技术如神。把球送到想送的位置的控制、诱敌后闪开的时机，皆完美，孔蒂等人被单方面玩弄。
+“来啊来啊怎么啦。三打一都抢不到球，丢人啊？”
+“可、恶……”
+上头的马泰奥猛撞身体。卢恰诺侧身闪开。
+卢恰诺踢的球飞向与球门相反方向。
+“哎呀”
+卢恰诺拔腿追去。
+“失误了！机会！”
+意大利选手们气势汹汹追去。</p>
+<p>门前，意大利十一人最后方的赫尔南德斯察觉违和。
+（刚才那次冲撞，卢恰诺是明知会来才侧身的。有那技术身体控制力的选手，会犯那种失误？……）
+看追球的卢恰诺与被引的意大利选手间隔，赫尔南德斯明白了。
+“别去！是陷阱！”</p>
+<p>赫尔南德斯喊。
+“什么意思？”
+塔尔德利问，赫尔南德斯答：“我们本想以卢恰诺为目标，用配合防守抢球。可卢恰诺反过来挑衅我们，引我们自己来抢球”
+赫尔南德斯咬唇。
+“选手脚程不同。一上头各自追，彼此间隔就拉开。那样配合防守无从谈起，只剩一对一……那才是他的目的！！”</p>
+<p>赫尔南德斯的推测正确。追到球的卢恰诺，面向追来的意大利选手。眼中燃起凌厉斗志。
+“哈哈！上钩了！”
+他猛然突破意大利选手。
+“先拿你开刀！”
+卢恰诺朝领头追来的孔蒂迫近，将球从胯下穿过，瞬间突破。
+“好、好快！”
+“来，继续！”</p>
+<p>逼来的意大利选手，卢恰诺用转身、挑球、跳跃……所有盘带花样突破。
+“可恶！”
+“什、什么技术……！”
+被过的选手们呻吟。锤炼防守的他们自信，被碾得粉碎。</p>
+<p>“你们阅读太差了！足球是想象力！！”
+（可恶……但他说得没错！）
+赫尔南德斯也不得不承认卢恰诺的豪言。
+但他当然不会干看。意大利防守指挥是他。
+“马里尼奥、戈尔瓦特，夹击！”
+“交给我！”
+“来了，卢恰诺！”
+受赫尔南德斯指示，二人从左右逼近。
+“这边我盯住了，马里尼奥！”
+“哦！”
+夹住卢恰诺的二人合力冲撞，卢恰诺却身体纹丝不动。</p>
+<p>“我们的冲撞！？”
+“什么身体强度！”
+惊愕的二人，卢恰诺嗤笑。
+“那种软绵绵的冲撞管用吗！”
+他回敬般，以蛮力将二人弹开。
+“哇！”
+“哈！靠人数取胜，是弱者的做派！！”</p>
+<p>只剩塔尔德利与赫尔南德斯。卢恰诺嘲笑。
+“来啊，大块头！”
+“你……我砸碎你！”
+塔尔德利吼着正面冲向卢恰诺。
+因卢恰诺征召大伤自尊的塔尔德利，要把焦躁全倾泻在他身上。
+塔尔德利借冲刺之势猛烈滑铲，抡起练厚的右腿，不惜犯规要把卢恰诺连人带球踢飞。</p>
+<p>“吃这招！”
+塔尔德利抡腿瞬间。
+“你这混蛋！”
+卢恰诺踢的球直击塔尔德利下巴。塔尔德利像突遭上勾拳，脸猛地后仰。
+“……！”
+闷绝翻滚的塔尔德利，卢恰诺跳起闪过。</p>
+<p>“来，决胜负吧，‘完美门将’！”
+终于突破10人的卢恰诺，目光锁定赫尔南德斯。燃起斗志的眼，赫尔南德斯压下心惊，全力运转大脑。
+（他会盘带突破我吗？）
+一闪而过的念头，赫尔南德斯立刻否定。
+（不，他想推翻我的名声。那么，这里该射门！）
+赫尔南德斯读得对。突入禁区的卢恰诺抡起右腿。
+“拿到了！”
+射门飞向赫尔南德斯右侧。直线，也无曲球旋转。</p>
+<p>（能接住！）
+向右扑同时这么想，球却加速般伸长，超出赫尔南德斯预测。
+“什么！？”
+赫尔南德斯伸出的右手够到球，却因预测与时机偏差没抓住，球弹入禁区。
+被挡下的卢恰诺一瞬惊愕，随即扑向弹球，朝球门左侧再射。
+“胜利是我的！”
+“绝对挡下！”
+赫尔南德斯迅速起身，朝反向射门跳去。</p>
+<p>这时，赫尔南德斯与卢恰诺间，一名选手飞身插入。是最先被过的孔蒂。
+“想进球！”
+射门撞上扑去的孔蒂头。拼命的挡拆看似奏效。
+但被挡的球虽减速，仍在空中飘，撞上门柱内侧，伴闷响弹回网内。</p>
+<p>“啊……”
+进球哨响彻球场，意大利选手们发出无声叹息。
+“我们，竟输给一个人……”
+难以置信般呆立的意大利十一人。倒地的孔蒂踉跄起身，垂头弱声。
+“大家，抱歉。是我多事……若是吉诺本可接住的”
+赫尔南德斯却摇头。
+“不对。孔蒂是被过一次仍不放弃，回到这里挡下射门。那是正确的。球进只是运气差”
+赫尔南德斯拍孔蒂肩。
+“而且，若我接住第一球，那时就赢了。责任在我”
+“吉诺……”</p>
+<p>看着这幕的卢恰诺，以鞋跟踢向球场。踢得太狠，草皮翻起露出泥土。
+“切，装好人！！”</p>
+<p>不悦的卢恰诺，赫尔南德斯走近。
+“卢恰诺，胜负是你赢了”
+“……”
+“小看你的实力，我道歉。抱歉”
+“……输了还这么从容。不愧是能当意大利队长的名门菁英”
+卢恰诺敌意毕露，赫尔南德斯仍诚恳。
+“像你这样的实力者成为队友，令人安心。一起让意大利夺冠吧”
+赫尔南德斯伸出右手欲握。卢恰诺却瞪着他拒绝。
+“接下我射门的力量，我认。可，我没兴趣和输了还互相舔伤的家伙套近乎！”
+说罢背对赫尔南德斯，走向教练。
+“呐，教练先生。这届大会，真会受全世界瞩目？”
+“毫无疑问。世界各国天才选手集结，比赛向全球转播”
+卢恰诺点头，傲然道。
+“行，本大爷卢恰诺让意大利赢。就当跳板，转会配得上我的名门俱乐部！”</p>
+<p>卢恰诺昂首球场、意大利选手们苦着脸，教练交替看着，仍不确定自己的决断。
+（真把那种问题儿征召来，对吗）
+但卢恰诺的足球实力货真价实。用他为战力，球队实力必大涨。
+（为夺冠，不得已牺牲。而且——）
+教练目光转向赫尔南德斯。他看重赫尔南德斯不仅门将实力，还有统率力、队长气质。
+此刻赫尔南德斯正逐一安抚低落的选手。</p>
+<p>（卢恰诺虽是问题儿，但若有吉诺在，必能——！）</p></article>
+    <div class="novel-nav"><div class="novel-nav-side"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.03.html" title="上一篇：法国青少年篇"><span class="btn btn--ghost">← 上一篇</span></a></div><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200.html"><span class="btn btn--ghost">返回目录</span></a><div class="novel-nav-side novel-nav-side--right"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.05%20pt1.html" title="下一篇：德国青少年篇·前篇"><span class="btn btn--ghost">下一篇 →</span></a></div></div>
+  </div></section>
+</main>
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">队长小翼 WORLD<div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div></div>
+    <div><h4>内容分类</h4><ul>
+      <li><a href="character.html">登场角色</a></li>
+      <li><a href="comics.html">漫画作品</a></li>
+      <li><a href="anime.html">动画作品</a></li>
+      <li><a href="games.html">游戏作品</a></li>
+      <li><a href="news.html">新闻动态</a></li>
+      <li><a href="special-column.html">特别专栏</a></li>
+    </ul></div>
+    <div><h4>关于</h4><ul>
+      <li><a href="index.html#about">作品简介</a></li>
+      <li><a href="index.html#news">最新动态</a></li>
+      <li><a href="45th.html">45周年祭</a></li>
+    </ul></div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、场景图与官方简介版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，来源：captaintsubasa-csgame.bn-ent.net（日本区角色页 / 前日谭WEB小说）
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

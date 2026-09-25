@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴西青少年篇 · 《队长小翼：新秀崛起》前日谭WEB小说</title>
+<meta name="description" content="《队长小翼：新秀崛起》前日谭WEB小说《巴西青少年篇》汉化译文，含官方角色立绘。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/column.css">
+<style>
+
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开） */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  .novel-hero-logo{display:block;margin:0 auto 18px;width:min(520px,86vw);height:auto;}
+  .novel-portraits{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px auto 36px;max-width:940px;}
+  .novel-portraits figure{margin:0;flex:1 1 260px;max-width:330px;}
+  .novel-portraits img{width:100%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);background:#0c1230;display:block;}
+  .novel-portraits figcaption{font-size:12px;color:#999;text-align:center;margin-top:6px;letter-spacing:1px;}
+  .novel-body{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:40px 44px;}
+  .novel-body p{font-size:15px;line-height:2;color:#222;margin-bottom:18px;}
+  .novel-body p:last-child{margin-bottom:0;}
+  .novel-back{display:block;text-align:center;margin:34px auto 0;}
+  .novel-back .btn{font-size:14px;}
+  /* 章末导航：上一篇 / 返回目录 / 下一篇 */
+  .novel-nav{display:flex;align-items:center;justify-content:space-between;
+    gap:14px;max-width:820px;margin:34px auto 0;}
+  .novel-nav-side{flex:1 1 0;min-width:0;}
+  .novel-nav-side--right{text-align:right;}
+  .novel-nav .btn{font-size:14px;}
+  @media (max-width:640px){
+    .novel-body{padding:26px 20px;}
+    .novel-body p{font-size:14.5px;line-height:1.95;}
+    .novel-portraits figure{flex-basis:100%;max-width:420px;}
+    .novel-nav{flex-direction:column;align-items:stretch;}
+    .novel-nav-side{text-align:center;}
+    .novel-nav-side--right{text-align:center;}
+    .novel-nav .btn{width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+<main>
+  <section class="page-hero">
+    <img class="novel-hero-logo" src="assets/img/game/rise-of-new-champions/rise_of_new_champions_logo.png" alt="キャプテン翼 RISE OF NEW CHAMPIONS" loading="eager">
+    <span class="kicker">PRE-STORY WEB NOVEL</span>
+    <h1>《队长小翼：新秀崛起》<span class="en">前日谭 · 巴西青少年篇</span></h1>
+    <p class="lead">巴西代表征召临近大会才迟迟敲定，队内各有盘算；被老板当作“摇钱树”的“神之子”卡洛斯·巴朗冷峻无言，唯有队友雷奥决心全力支援他。</p>
+  </section>
+  <section class="section"><div class="container">
+    <div class="novel-portraits"><figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel06_01.png" alt="巴西青少年篇 角色立绘 1"><figcaption>巴西青少年篇 · 立绘 1</figcaption></figure>
+<figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel06_02.png" alt="巴西青少年篇 角色立绘 2"><figcaption>巴西青少年篇 · 立绘 2</figcaption></figure></div>
+    <article class="novel-body"><p>在《青少年世界杯挑战赛》开幕临近的一天，巴西青少年代表队的选手们正在巴西国内的训练场进行队内分组赛。<br>从巴西俱乐部球队巴朗FC入选代表的卢西亚诺·雷奥在球场边轻轻活动着身体，有一搭没一搭地听着同样在做热身准备的队友们的对话。</p>
+<p>“喂，大会马上就要开始了对吧？”
+“都临到这种节骨眼才把人召集起来，配合练习根本做不了啊”
+“那有什么，只要能把自个儿推销给全世界的俱乐部不就得了！”
+“就是啊！这么大规模的大会，肯定有世界各地的球探都来了！”</p>
+<p>在一片气势高涨的声音中，也夹杂着这样的牢骚。
+“话说回来，招集怎么会拖到这么晚啊”</p>
+<p>关于本次代表征召，雷奥也听到了种种传言。为何不参加《法国国际青少年大赛》的巴西，会改为参加这场新大会；为何代表征召会拖到几乎临近大会的这个时候。
+但雷奥尽量不去在意那些说法。
+（传言就只是传言）
+无论出于什么理由，被选入代表的我们，只需为国家的荣誉与世界各国一战。
+（况且，被“大人的算计”折腾的，光是俱乐部就够受的了）</p>
+<p>雷奥将目光投向正进行分组赛的球场。在那里，同样从巴朗FC入选代表的卡洛斯·巴朗正对着队友们展示自己的实力。
+卡洛斯一拿球，即便是从巴西各地集结而来的高水平选手们也束手无策。
+（将如机器般精准的技术与千锤百炼的身体能力、冰一般的冷静融为一体的、只求胜利的最强足球运动员。那就是卡洛斯……卡洛斯·巴朗）</p>
+<p>“原来如此，那就是巴朗FC的‘神之子’的球风吗”
+望着卡洛斯表现的雷奥，身兼球队队长的后卫阿尔贝托开口道。
+“和传闻一样，是个可怕的选手。要挡下他的盘带，简直难如登天”
+“嘛，连阿尔贝托都觉得难吧”
+“那只能多人配合去挑战了”
+阿尔贝托说着，露出平静的笑容。与话语相反的神情中，雷奥窥见了阿尔贝托的自信。不过，没自信的人也不可能当上巴西的队长。
+“你说配合，后卫的动向可是乱得很啊”
+阿尔贝托苦笑着纠正雷奥：“不止后卫。进攻也很散。就算是我们，照这样下去大赛也走不远吧”
+“可是，现在才开始练配合，赶得上大会吗”
+雷奥说罢，阿尔贝托耸了耸宽阔的肩膀。“没时间也是没办法。反过来说，这也是信任我们的实力”</p>
+<p>这时，队里嗓门最大的中场卢卡斯插话进来。
+“放心放心！天下没比我们巴西代表更厉害的啦！”
+但阿尔贝托平静地说：“世界很大。刚听教练说，我们的对手阿根廷好像有个厉害的选手。而且那家伙这一个月里成长了不少”
+“那种传言啦？根本不算啥！”
+卢卡斯说罢跑开了。雷奥苦笑。“带这种人还真辛苦啊，队长”
+“再辛苦，也总得有人去做”
+阿尔贝托神情认真起来，把手搭在雷奥肩上。“正如刚才说的，大赛前半段会是一连串苦战。所以，特别期待同俱乐部的雷奥和卡洛斯。拜托了”
+“啊，交给我吧”</p>
+<p>分组赛以狂进多球、由卡洛斯率领的队伍获胜。雷奥跑向卡洛斯。
+“不愧是卡洛斯。分组赛也毫不留情啊”
+“当然。我站上球场，只为了胜利”
+卡洛斯用听不出半点喜悦的声音答道。此时，背后传来格外开朗的声音。
+“卡洛斯，辛苦啦！”
+出声的是与卡洛斯同队门将凯吉尼奥。
+“好厉害的盘带和射门！我在后面看着都起鸡皮疙瘩了！”
+与兴奋喋喋不休的凯吉尼奥相反，卡洛斯面无表情。雷奥知道那种看似冷漠的态度背后的理由。
+“我虽是门将，但也好想试试那种踢法啊！”
+“说这种话的凯吉尼奥，扑救也很精彩连连啊”
+雷奥说。
+“虽说比不上卡洛斯，但能防住巴西代表选手们的全部射门，很了不起哦”
+“谢谢！”
+凯吉尼奥开心地笑了。
+“不过我还是想接接卡洛斯的射门呢。呐，待会儿比一场吧！”
+“……”
+对凯吉尼奥的邀约，卡洛斯沉默以对。但凯吉尼奥才不管这些，又问卡洛斯：
+“说起来，明明踢得那么厉害还赢了，卡洛斯从刚才起就一直没笑呢，为什么？”
+“……”
+卡洛斯不答，默默背过身去离开。
+“啊，等等卡洛斯……！”
+“凯吉尼奥，那正是卡洛斯现在的风格。别打听太多”
+“这样啊。不过，总觉得好可惜啊。足球明明笑着踢才最开心”
+这时，高亢尖锐的哨声刺入雷奥等人的耳朵。担任分组赛裁判的教练在叫雷奥。
+“哦，轮到雷奥了。加油哦！”</p>
+<p>训练结束后，换好衣服的雷奥在更衣室寻找卡洛斯。
+“卡洛斯？”
+但哪儿都不见卡洛斯的身影。看他的储物柜，行李还留在原处。
+（他还在训练场的某处吧）
+雷奥忽然想到，走出更衣室去了摆放训练器械的房间。
+（果然）
+卡洛斯正一声不响地在训练房里运转着器械。从那近乎空洞的表情里，完全读不出卡洛斯的内心。
+雷奥想起几天前，被巴朗FC的老板巴尔索雷·巴朗叫去时的情形。</p>
+<p>——卡洛斯。你若在这届大会活跃，巴朗FC之名将传遍世界。那样自会有众多赞助商找上门，我的俱乐部也会更加赚钱。我让你进代表，就是为了这个。务必拿下世界第一。</p>
+<p>——雷奥。你要支援卡洛斯。不光是让巴西成为世界第一，“要靠卡洛斯的活跃让巴西登上世界第一”——给我办到。明白吗。</p>
+<p>雷奥摇头，把不快的事赶出脑海。
+（跟巴朗怎么样无关。我会拼命支援卡洛斯。然后和卡洛斯一起夺冠……！）</p></article>
+    <div class="novel-nav"><div class="novel-nav-side"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.05%20pt2.html" title="上一篇：德国青少年篇·后篇"><span class="btn btn--ghost">← 上一篇</span></a></div><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200.html"><span class="btn btn--ghost">返回目录</span></a><div class="novel-nav-side novel-nav-side--right"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.07.html" title="下一篇：日本青少年篇"><span class="btn btn--ghost">下一篇 →</span></a></div></div>
+  </div></section>
+</main>
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">队长小翼 WORLD<div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div></div>
+    <div><h4>内容分类</h4><ul>
+      <li><a href="character.html">登场角色</a></li>
+      <li><a href="comics.html">漫画作品</a></li>
+      <li><a href="anime.html">动画作品</a></li>
+      <li><a href="games.html">游戏作品</a></li>
+      <li><a href="news.html">新闻动态</a></li>
+      <li><a href="special-column.html">特别专栏</a></li>
+    </ul></div>
+    <div><h4>关于</h4><ul>
+      <li><a href="index.html#about">作品简介</a></li>
+      <li><a href="index.html#news">最新动态</a></li>
+      <li><a href="45th.html">45周年祭</a></li>
+    </ul></div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、场景图与官方简介版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，来源：captaintsubasa-csgame.bn-ent.net（日本区角色页 / 前日谭WEB小说）
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

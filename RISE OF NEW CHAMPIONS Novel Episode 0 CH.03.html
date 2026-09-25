@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法国青少年篇 · 《队长小翼：新秀崛起》前日谭WEB小说</title>
+<meta name="description" content="《队长小翼：新秀崛起》前日谭WEB小说《法国青少年篇》汉化译文，含官方角色立绘。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/column.css">
+<style>
+
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开） */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  .novel-hero-logo{display:block;margin:0 auto 18px;width:min(520px,86vw);height:auto;}
+  .novel-portraits{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px auto 36px;max-width:940px;}
+  .novel-portraits figure{margin:0;flex:1 1 260px;max-width:330px;}
+  .novel-portraits img{width:100%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);background:#0c1230;display:block;}
+  .novel-portraits figcaption{font-size:12px;color:#999;text-align:center;margin-top:6px;letter-spacing:1px;}
+  .novel-body{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:40px 44px;}
+  .novel-body p{font-size:15px;line-height:2;color:#222;margin-bottom:18px;}
+  .novel-body p:last-child{margin-bottom:0;}
+  .novel-back{display:block;text-align:center;margin:34px auto 0;}
+  .novel-back .btn{font-size:14px;}
+  /* 章末导航：上一篇 / 返回目录 / 下一篇 */
+  .novel-nav{display:flex;align-items:center;justify-content:space-between;
+    gap:14px;max-width:820px;margin:34px auto 0;}
+  .novel-nav-side{flex:1 1 0;min-width:0;}
+  .novel-nav-side--right{text-align:right;}
+  .novel-nav .btn{font-size:14px;}
+  @media (max-width:640px){
+    .novel-body{padding:26px 20px;}
+    .novel-body p{font-size:14.5px;line-height:1.95;}
+    .novel-portraits figure{flex-basis:100%;max-width:420px;}
+    .novel-nav{flex-direction:column;align-items:stretch;}
+    .novel-nav-side{text-align:center;}
+    .novel-nav-side--right{text-align:center;}
+    .novel-nav .btn{width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+<main>
+  <section class="page-hero">
+    <img class="novel-hero-logo" src="assets/img/game/rise-of-new-champions/rise_of_new_champions_logo.png" alt="キャプテン翼 RISE OF NEW CHAMPIONS" loading="eager">
+    <span class="kicker">PRE-STORY WEB NOVEL</span>
+    <h1>《队长小翼：新秀崛起》<span class="en">前日谭 · 法国青少年篇</span></h1>
+    <p class="lead">法国惨败荷兰后，皮埃尔与拿破仑远赴马赛寻访“刺头”后卫让；公园一战惺惺相惜，最终父亲一句话让让重拾追梦的勇气。</p>
+  </section>
+  <section class="section"><div class="container">
+    <div class="novel-portraits"><figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel03_01.png" alt="法国青少年篇 角色立绘 1"><figcaption>法国青少年篇 · 立绘 1</figcaption></figure>
+<figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel03_02.png" alt="法国青少年篇 角色立绘 2"><figcaption>法国青少年篇 · 立绘 2</figcaption></figure></div>
+    <article class="novel-body"><p>终场哨响刹那，看台一齐悲叹。<br>法国青少年与荷兰青少年的强化赛，以法国完败收场。</p>
+<p>以骇人攻击力蹂躏法国的荷兰青少年代表队长布莱恩·克莱福特接受采访。<br>“虽是强化赛，我对这结果满意。荷兰进攻的完成度——”
+听着这采访，法国青少年队长艾尔·西德·皮埃尔咬紧嘴唇。</p>
+<p>“法国大赛刚中止，美国横插一杠宣布新大会《青少年世界杯挑战赛》举办，协会被杀了措手不及——”
+露天咖啡座，青年与两友喝咖啡，看着手机新闻嘟囔。
+“本要举办的《法国国际青少年大赛》被美国搅黄，如今还要去美国参加那什么大会，谁不恼火”
+黑发友接话。“最火大的肯定是协会。法国足球的骄傲被撕得粉碎”
+“所以协会才发誓‘从抢走大会的美国土地上夺冠’，用严酷训练强化球队。可结果，却是那副德行”
+青年说，另一友开口。“不过，还是有成果的。皮埃尔与拿破仑搭档的进攻，已证明能和世界抗衡”
+确实，皮埃尔与拿破仑的进攻从荷兰抢下2球。
+“问题在防守。统管防守、或一对一强的DF，一个都没有”
+“是啊。能做到的只有皮埃尔，可皮埃尔回防，拿破仑就孤立，进攻就瘫痪”
+青年喝口咖啡。“这届大会除荷兰，还有德国这样攻击强劲的队。这样下去夺冠无望。究竟打算怎么办……”</p>
+<p>这时，青年看的网站弹出新讯。<br>“法国足协决定追加选拔法国青少年代表选手——”如此写道。</p>
+<p>（选拔是好事，可真有那种救世主般的选手埋没着吗）
+看着新指示的防守练习，皮埃尔怀着说不出口的心事。
+（不改善防守，法国夺不了冠）
+却有人把那心思，明白地说了出来——而且以辱骂的形式。</p>
+<p>“啊——就这种废物DF和GK，法国夺不了冠啊！”
+出声的是拿破仑。
+起初DF和GK也回嘴，可荷兰战拿出结果的拿破仑面前，防守线重得说不出话。
+如今DF们只浮苦涩表情，无言以对。</p>
+<p>“呸，连回嘴都不会。一群没骨气没胆子的家伙！”
+“拿破仑，适可而止”
+皮埃尔终于制止。
+“他们是从法国各地集结的菁英。咬牙痛的，我们自己最清楚吧”
+“……那种丑态也叫菁英？”
+故意大声的拿破仑，DF们皱眉却不语。拿破仑咂嘴，转向皮埃尔。</p>
+<p>“呐，真从全法集结了吗？”
+“本来就是为法国大赛，数月前组建的队。当然”
+“……那，那家伙怎么不在”
+“那家伙？”
+“约一年前对战过的俱乐部DF，真够缠人的……我挨了他脏动作，揍了回去。结果两人都被罚下”
+“……就因这种事，才叫‘刺头’”
+皮埃尔轻叹，拿破仑却不在意继续。“可敢还手揍回来的，他是头一个；被那样压制，也是头一遭。所以记得……悔啊”
+听罢，皮埃尔对那DF生出兴趣。
+能压制拿破仑的实力，还有胆气与好胜心。若有那种选手在代表……
+“嘛，连我都不叫的代表，漏掉那家伙也不奇怪”
+“拿破仑。还记得那选手的名字和所属吗”
+“好像……让，马赛的小球会”
+拿破仑歪头答。
+“可问这干嘛”
+“明摆的。去确认实力”</p>
+<p>次日，利用休息日，皮埃尔与拿破仑乘火车赴马赛。
+“拿破仑。不必跟来”
+“嘿，和那帮人在一起，不如这边有趣”</p>
+<p>数小时后到马赛，二人前往俱乐部训练场。</p>
+<p>场上选手与教练和睦练习。可皮埃尔觉得练习质量低、缺紧张感。
+“怎样，看到那选手了吗”
+“……没，不在”
+皮埃尔向路过职员打听让。
+“他啊，几个月前就辞了”
+“诶，为什么”
+“说找到了别的梦……真的怎样就不知了”
+“什么意思”
+职员不愿说，听皮埃尔说明来意，才开口。“不太想说，但他太独断。只主张自己正确，和队友冲突不断。也不听教练话，在队里孤立”</p>
+<p>终无收获，皮埃尔们离开马赛训练场。
+“辞了的话，没被选中也无奈”
+拿破仑说，皮埃尔思索。
+（那俱乐部毫无紧张感。在那种地方仍主张‘正确’的让……）
+“嘛，和队友吵成那样，也待不住队”
+“拿破仑你说这个？”
+“啰嗦”</p>
+<p>聊着走向车站，附近公园传来孩子活力声音。公园里，稍矮少年正与六七岁男孩女孩踢球。
+皮埃尔随意望了眼要继续走，拿破仑叫住。</p>
+<p>“……皮埃尔，那家伙是让”</p>
+<p>皮埃尔再看公园踢球的矮少年。
+“不会错？”
+“那副欠揍的脸忘不了”
+“这样啊”</p>
+<p>皮埃尔点头，忽然冲进公园，直奔让，瞬间从脚下夺球。吓呆的男孩女孩。让也惊，却立刻护在弟妹前。
+“突然干什么。吓到我弟妹，什么意思”
+“抱歉。没想吓两位”
+“嗯？”
+瞪视皮埃尔的让惊呼。
+“你是青少年代表队长，艾尔·西德·皮埃尔！”
+另一人也来。“哟，让。记得我吗”
+“……路易·拿破仑吧。倒想忘了”
+让毫无好感地答。</p>
+<p>“呐，青少年两位，有何贵干”
+“听拿破仑说起你。想和你比一场”
+皮埃尔颠起脚下球，轻巧颠球。即便随便颠球，技术也有魅力，让的弟妹睁亮眼。
+“怎样，让我见识下压制拿破仑的实力”
+让却沉下脸摇头。“拒绝。正式足球我不踢了”
+“别找借口。是怕输吧？”
+拿破仑挑衅，让一瞬竖眉却不语。让的弟妹却怒声回嘴。
+“哥哥很厉害！绝对不会输！”
+“就是！这哥哥也很强，可让哥哥更强！”
+弟妹望让。“哥哥，怎么不说话！”
+“就是！我好不甘心！”
+“……明白了”
+让叹气转向皮埃尔。“难得来，比一场。但，这是为了弟妹，不是为你”
+“那样也行”
+皮埃尔点头。“一分钟一对一。期间你从我脚抢走球，就算你赢”
+“明白。夏尔、艾玛努埃尔，退下”
+弟妹离让。拿破仑开手机秒表，设一分钟闹钟。</p>
+<p>“两人准备好了？”
+无人应答，便是准备。
+“啧……开球！”
+拿破仑示意同时，让直线铲抢。皮埃尔却将球挑起，夹在大腿小腿间，跳起闪过。被闪的让借反弹再扑。那反应速度气势，略超皮埃尔预测。</p>
+<p>“可！”
+险险闪过的皮埃尔，对让的力量战栗。
+（这感觉……和真矢对战时一样！）
+在巴黎公园与代表合宿两度交手的日本少年，掠过皮埃尔脑海。力质不同，让的实力却不逊真矢。皮埃尔斗志燃起。</p>
+<p>“来啊，让！”
+“呼，正该如此！”</p>
+<p>此后让锐逼皮埃尔，皮埃尔用尽假动作闪让。二人位置瞬息交替，夏尔艾玛努埃尔与拿破仑捏汗观战。
+“啊，可惜！”
+“哥哥加油！”
+“竟能和皮埃尔不相上下……！”
+剩时无几时，皮埃尔的假动作首度被让读破。</p>
+<p>（糟！）
+“拿到了！”
+皮埃尔欲抢球，让欲夺球，二人猛踢。球伴巨响弹向高空。</p>
+<p>“这是最后一决胜负！”
+“我不会输！”
+皮埃尔与让同时起跳。自认身高占优的皮埃尔，却没料让的弹跳。
+“什么！？”
+空中争顶，让胜。皮埃尔失衡先落地。</p>
+<p>“太好了！”
+夏尔喜叫。皮埃尔却未放弃。
+“还没！”
+迅速起身，在让与球落地前伸脚。如镰刀从让脚下掠走球。让失衡倒地。此刻秒表响。</p>
+<p>夏尔艾玛努埃尔扑向让。
+“刚才，是哥哥赢吧！抢到球了！”
+“不，是我输”
+让坐草地说。“皮埃尔的球离了脚。可没保持住。那不算‘抢到’”
+“可，我也难说赢”
+皮埃尔伸手拉坐地的让。让握起立。
+“不过，那假动作怎会被读？这场没用过的”
+“啊，那个”
+让拍衣上草。“荷兰战用过吧。那时发现习惯，本想能抢到”
+让自嘲，皮埃尔内心惊讶。自己的技术，绝非谁都看穿。绝对。</p>
+<p>“看了那场比赛？”
+“惨透了。防守那样破，就算你在也没用”
+让语气发热。“至少需一对一能胜对手关键先生的DF。那样你就能专攻……嘛，拿破仑也算合格FW”
+“合格！？对法国头号前锋这么说话！”
+拿破仑怒，皮埃尔安抚。“让，我们来，正是为此”</p>
+<p>皮埃尔说明代表追加选拔。夏尔眼亮。
+“去那个选拔，哥哥就能进代表？”
+“不敢说定。可凭他实力，可能性高”
+皮埃尔答，艾玛努埃尔兴奋。“让哥哥，去吧！”
+让却摇头。“心领了。我对足球的热情已消失”
+“不，不可能”
+皮埃尔断然。“失去热情的人，不会看青少年、还只是强化赛；不会分析我的踢法与球队战术”
+“那是……”
+让沉默，皮埃尔继续。“你因何离队，我不问。但，我答应你——”
+皮埃尔直视让眼。</p>
+<p>“哪怕与他人相左，只要为让法国夺冠是正确的，我便接受，也让你大家接受。身为队长”</p>
+<p>“皮埃尔……”
+这时拿破仑看手机。“哦，回程火车快了”
+“让，代表等你。夺回被抢的法国骄傲，靠我们”
+“嘛，我可没期待。回见！”
+去远的皮埃尔拿破仑背影，让默送。弟妹寂望让。</p>
+<p>那夜。让躺下仍难入睡。
+辞俱乐部后，让决定继承父业当渔夫，随父学艺。明早需随父出海，得早起。
+可睡不着。白天皮埃尔的话绕脑。</p>
+<p>（哪怕与他人相左……只要为夺冠正确……）
+让下床开电脑，播下录的法国对荷兰强化赛。
+（法国弱点在防守。我若进去，皮埃尔就能专攻。那样必能夺冠——）
+对自己比任何现役DF都强，让有信心。
+（可是……）
+离队前队友教练的话，浮现脑海。</p>
+<p>“让在队里，气氛就糟”
+“摆什么架子”
+“明明拼命，却不懂破坏和谐”
+“你照说的踢就行”
+“作为教练，不听指示的选手不用”</p>
+<p>（我没错。正如我所忧，输的比赛很多！）
+可越主张，越被孤立，连朋友队友也无交流。
+（无人理解，我留队无意义）
+让悟而辞队，想去别队。可让的名声传开，无队收。
+（所以我弃了足球。不想把最爱的足球，变更多痛苦回忆）
+让未对父母说辞足球理由，只说“想当渔夫”。父母幸而未问。弟妹起初吵，也渐不提。
+半年多，随父数次出海，也学会活计。想成如父般出色渔夫的心，真萌生。</p>
+<p>（这样就好）
+让一直这么告诉自己。
+（就算再踢，也不过在队里兴风作浪）
+何况若为代表更甚。对谁都是不幸，显而易见。
+可是。</p>
+<p>（可，若皮埃尔的话当真——）
+这时，房门被敲。“让，睡了？”
+“父？”
+让关电脑。“抱歉，睡了。明早早”
+“不，不是。有话，行吗”
+“话？”</p>
+<p>让诧异开门。父进屋，瞥电脑坐地。让对坐。</p>
+<p>“听夏尔说。法国代表的选手，来邀你去选拔”
+“……啊，那事”
+“可你拒绝了。为什么”
+“明摆的。我对足球没兴趣。目标是如父当渔夫”
+让干脆说。可那时，目光避开父亲。
+父凝视，说。“真的，吗”
+“诶”
+“从小学前你就说。将来当职业球员，世界杯夺冠。那梦，真能弃？”
+“那……”
+让语塞。语塞本身便是答。可话出不来。</p>
+<p>父温和微笑。“让，你还喜欢足球吧”
+“……”
+“你说想当渔夫，我直率高兴。可，我想让你追真正的梦。会被说任性是吧，可支持孩子梦，是父母的幸福”
+“……确实，我还喜欢足球。可，足球算了”
+仍不看父脸，让说。</p>
+<p>长久沉默后，父缓缓开口。</p>
+<p>“让，要被人信任，先得信任对方”</p>
+<p>“……！”
+“所以，试着相信那个信任你的人。邀你去选拔的代表选手们，定是信你来才来的”</p>
+<p>父笑说“晚安”离去。让躺床望天花板，缓缓吐大气。</p>
+<p>选拔当日。晴空万里好天气。会场体育场周边，全法逐梦代表者云集。</p>
+<p>让也在其中。感谢特地来访的皮埃尔们，与推自己一把的家人。</p>
+<p>让闭眼，想起今早离家时。</p>
+<p>灿烂笑脸加油的弟妹。</p>
+<p>为打气猛拍背的母亲。</p>
+<p>望儿只点头之父。</p>
+<p>让脑中浮数日前父的话。</p>
+<p>（要被人信任，先信人——）</p>
+<p>父知让弃足球真因。仍信。信儿子会从失意站起，再向梦行。</p>
+<p>（谢了，父）
+让睁眼望体育场。眼中强决意与自信满溢。</p>
+<p>（艾尔·西德·皮埃尔。你的话，我信了！）</p></article>
+    <div class="novel-nav"><div class="novel-nav-side"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.02.html" title="上一篇：塞内加尔青少年篇"><span class="btn btn--ghost">← 上一篇</span></a></div><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200.html"><span class="btn btn--ghost">返回目录</span></a><div class="novel-nav-side novel-nav-side--right"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.04.html" title="下一篇：意大利青少年篇"><span class="btn btn--ghost">下一篇 →</span></a></div></div>
+  </div></section>
+</main>
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">队长小翼 WORLD<div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div></div>
+    <div><h4>内容分类</h4><ul>
+      <li><a href="character.html">登场角色</a></li>
+      <li><a href="comics.html">漫画作品</a></li>
+      <li><a href="anime.html">动画作品</a></li>
+      <li><a href="games.html">游戏作品</a></li>
+      <li><a href="news.html">新闻动态</a></li>
+      <li><a href="special-column.html">特别专栏</a></li>
+    </ul></div>
+    <div><h4>关于</h4><ul>
+      <li><a href="index.html#about">作品简介</a></li>
+      <li><a href="index.html#news">最新动态</a></li>
+      <li><a href="45th.html">45周年祭</a></li>
+    </ul></div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、场景图与官方简介版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，来源：captaintsubasa-csgame.bn-ent.net（日本区角色页 / 前日谭WEB小说）
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美国青少年篇 · 《队长小翼：新秀崛起》前日谭WEB小说</title>
+<meta name="description" content="《队长小翼：新秀崛起》前日谭WEB小说《美国青少年篇》汉化译文，含官方角色立绘。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/column.css">
+<style>
+
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开） */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  .novel-hero-logo{display:block;margin:0 auto 18px;width:min(520px,86vw);height:auto;}
+  .novel-portraits{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px auto 36px;max-width:940px;}
+  .novel-portraits figure{margin:0;flex:1 1 260px;max-width:330px;}
+  .novel-portraits img{width:100%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);background:#0c1230;display:block;}
+  .novel-portraits figcaption{font-size:12px;color:#999;text-align:center;margin-top:6px;letter-spacing:1px;}
+  .novel-body{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:40px 44px;}
+  .novel-body p{font-size:15px;line-height:2;color:#222;margin-bottom:18px;}
+  .novel-body p:last-child{margin-bottom:0;}
+  .novel-back{display:block;text-align:center;margin:34px auto 0;}
+  .novel-back .btn{font-size:14px;}
+  /* 章末导航：上一篇 / 返回目录 / 下一篇 */
+  .novel-nav{display:flex;align-items:center;justify-content:space-between;
+    gap:14px;max-width:820px;margin:34px auto 0;}
+  .novel-nav-side{flex:1 1 0;min-width:0;}
+  .novel-nav-side--right{text-align:right;}
+  .novel-nav .btn{font-size:14px;}
+  @media (max-width:640px){
+    .novel-body{padding:26px 20px;}
+    .novel-body p{font-size:14.5px;line-height:1.95;}
+    .novel-portraits figure{flex-basis:100%;max-width:420px;}
+    .novel-nav{flex-direction:column;align-items:stretch;}
+    .novel-nav-side{text-align:center;}
+    .novel-nav-side--right{text-align:center;}
+    .novel-nav .btn{width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+<main>
+  <section class="page-hero">
+    <img class="novel-hero-logo" src="assets/img/game/rise-of-new-champions/rise_of_new_champions_logo.png" alt="キャプテン翼 RISE OF NEW CHAMPIONS" loading="eager">
+    <span class="kicker">PRE-STORY WEB NOVEL</span>
+    <h1>《队长小翼：新秀崛起》<span class="en">前日谭 · 美国青少年篇</span></h1>
+    <p class="lead">《青少年世界杯挑战赛》主赞助商——世界级IT企业创始人乔治·卡吉纳尔，从日本考察归来，通过各地情报网审视美国队与各强敌的备战。</p>
+  </section>
+  <section class="section"><div class="container">
+    <div class="novel-portraits"><figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel_01.png" alt="美国青少年篇 角色立绘 1"><figcaption>美国青少年篇 · 立绘 1</figcaption></figure>
+<figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel_02.png" alt="美国青少年篇 角色立绘 2"><figcaption>美国青少年篇 · 立绘 2</figcaption></figure>
+<figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel_03.png" alt="美国青少年篇 角色立绘 3"><figcaption>美国青少年篇 · 立绘 3</figcaption></figure></div>
+    <article class="novel-body"><p>美国西海岸，某座人工岛。<br>岛的中央，矗立着《青少年世界杯挑战赛》主赞助商——一家世界级IT企业的巨大办公大楼。<br>一辆豪车停在楼下的环岛，一位衣冠楚楚的中年男子从车后座走下。</p>
+<p>他便是这家IT企业的创始人兼社长，乔治·卡吉纳尔。<br>一位秘书模样的青年从大楼入口附近小跑过来。</p>
+<p>“您回来了，社长。日本足球的考察如何？”
+“挺有意思的。尤其是中学足球，激战连着激战。<br>那样拼尽灵魂的战斗，无论什么运动、什么较量，都难得一见”
+卡吉纳尔满意地笑了。
+“报告里提到的那个大空翼我也仔细看了。他无疑是天赋异禀的选手。我确信今后必须盯紧他”</p>
+<p>卡吉纳尔与秘书走进大楼，乘上能看见外面景色的透明电梯。<br>门合上，电梯静静上升。时值黄昏。沉入太平洋的夕阳美不胜收。</p>
+<p>“有什么新情报吗？”
+“有。各地职员发来几份报告”</p>
+<p>秘书操作手里的平板，把画面给卡吉纳尔看。<br>“首先是英格兰那边的职员。据说以后卫罗布森为核心巩固防守，强化从边路进攻得分的模式”
+“忠于基本面，磨炼自己的武器吗。很有英格兰风范”
+“乌拉圭的职员也传来了主力选手拉蒙·维克托里诺的情报。<br>说是南美数一数二的速度与技术兼备，必会在大会上大受瞩目”
+“哦。能在南美中脱颖而出，了不起”
+“另外，参加大会的其他国家的职员也报告说，各有踢法有趣的选手”
+“有趣吗。虽不具体，正因如此才勾人兴趣。吩咐他们好好收集数据”
+“……还有，刚才大会组委会通知，有未参赛国家申请来考察”
+“唔……”
+卡吉纳尔手托下巴。
+“那种门路，迟早必有用处。告诉大会委员，我全知道了”</p>
+<p>电梯抵达大楼顶层——展望室。走出电梯的两人，走到玻璃墙边。</p>
+<p>脚下，许多足球训练场及附属住宿设施，<br>还有大会会场、最先进的专用足球场“星冠体育场”，正沐浴夕阳余晖闪耀。<br>这些设施自不待言，这座广阔的人工岛本身，便是卡吉纳尔与他公司的财产。</p>
+<p>望着那片景色，卡吉纳尔问秘书。<br>“那么，我们美国队的情况如何？”
+“嗯。一切顺利。详细数据在这里”
+秘书递上平板。卡吉纳尔接过，逐一读起上面的数据。</p>
+<p>“原来如此……大家都如预期在成长啊”
+“是的。从其他运动挖来的孩子，也完全适应了足球”
+“那再好不过。他们的成长关系美国足球的未来”
+卡吉纳尔打开附带的视频文件。画面里是美国的青少年代表队的训练情景。
+“用最先进训练机器与最新训练理论技术锤炼。今后凡事都靠数据与科学，还有效率”
+“不过社长，那训练绝不轻松吧？”
+“当然”
+卡吉纳尔点头。
+“为高效锤炼，训练密度远高于以往。身心负担自然也重”
+“那种辛劳靠精神训练来磨炼意志力吧？”
+“话是这么说，难就难在这。尤其是‘上进心’这种东西，训练是练不出来的”
+但选手们咬紧牙关承受严酷训练，无一人掉队。</p>
+<p>“说到底，是他的影响吧”</p>
+<p>看着视频的卡吉纳尔，目光落在名为布雷克·马丁的选手身上。<br>在美国选手中体格格外出众的他，带头主动跑动，高声激励鼓舞着选手们。<br>“像布雷克这样的体育精英，全美国找也找不出几个。由他来当这支队伍的队长正合适”
+“……这位选手也很出色呢。一看就运动神经很好”
+“谢克·阿兹万吗。实力自不用说，他对代表的执念给队伍带来的东西也很大”
+“说起来，这视频里——”</p>
+<p>秘书正要说时，手机响了。<br>“喂……社长在……这样，知道了”
+“怎么了？”
+“说是社长的客人到了”
+“足球的还是生意的？”
+“生意的”
+“……是吗”
+卡吉纳尔无奈地摇了摇头。
+“这种时候，就想要有两个身子。那样我就能专心最爱的足球了”
+“可就算社长再多一个，那位社长怕也会说同样的话吧？”
+“没错。解决不了啊”
+卡吉纳尔苦笑。
+“明白了。请带客人去会客室。我马上去”
+“是”</p>
+<p>秘书乘电梯离去，只剩卡吉纳尔一人的展望室里，他望着暮色中的岛景与星冠体育场，自言自语。<br>“我们美国的，乃至全世界有天赋的选手们。必须好好收集数据。大会从现在起就让人期待了”</p></article>
+    <div class="novel-nav"><div class="novel-nav-side"></div><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200.html"><span class="btn btn--ghost">返回目录</span></a><div class="novel-nav-side novel-nav-side--right"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.02.html" title="下一篇：塞内加尔青少年篇"><span class="btn btn--ghost">下一篇 →</span></a></div></div>
+  </div></section>
+</main>
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">队长小翼 WORLD<div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div></div>
+    <div><h4>内容分类</h4><ul>
+      <li><a href="character.html">登场角色</a></li>
+      <li><a href="comics.html">漫画作品</a></li>
+      <li><a href="anime.html">动画作品</a></li>
+      <li><a href="games.html">游戏作品</a></li>
+      <li><a href="news.html">新闻动态</a></li>
+      <li><a href="special-column.html">特别专栏</a></li>
+    </ul></div>
+    <div><h4>关于</h4><ul>
+      <li><a href="index.html#about">作品简介</a></li>
+      <li><a href="index.html#news">最新动态</a></li>
+      <li><a href="45th.html">45周年祭</a></li>
+    </ul></div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、场景图与官方简介版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，来源：captaintsubasa-csgame.bn-ent.net（日本区角色页 / 前日谭WEB小说）
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《队长小翼2：世界群星》角色一览 · 队长小翼 WORLD</title>
+<meta name="description" content="《队长小翼2：世界群星》（キャプテン翼２ WORLD FIGHTERS）游戏角色资料：国家队 / 俱乐部 / 高校，含官方团体半身立绘与角色立绘。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/character.css">
+<style>
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开）——与《新秀崛起》角色页完全一致 */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    /* 左边缘与「游戏作品」对齐：菜单内首字的左内边距与导航项一致（14px），
+       使「队长小翼」与「游戏作品」两个词首字对齐 */
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，
+     故统一用 .header .nav .nav-drop-menu a 提高权重，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    /* 汉堡菜单内：下拉改为展开式二级列表 */
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      /* 触屏无 hover，汉堡菜单内改为常驻展开的二级列表 */
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  /* 页头游戏标题 LOGO（世界群星） */
+  .ws-hero-logo{display:block;margin:0 auto 18px;width:min(560px,90vw);height:auto;
+    filter:drop-shadow(0 6px 18px rgba(0,0,0,.18));}
+  /* 页头统一格式：游戏 LOGO → 中文作品名（字号收小）→ 下方蓝色英文名（更小） */
+  .page-hero h1{font-size:clamp(30px,5.4vw,60px);}
+  .page-hero h1 .en{font-size:.32em;letter-spacing:6px;margin-top:14px;}
+  /* 一级标签：底部横线对齐 character.css 的 .tabs（border-bottom + padding-bottom 24px） */
+  .ws-cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+    margin:0 0 30px;border-bottom:1px solid var(--line);padding-bottom:24px;}
+  .ws-cat{padding:10px 22px;border:1px solid var(--line);background:#fff;color:var(--ink);
+    cursor:pointer;font-family:var(--font-display);font-weight:900;font-size:15px;letter-spacing:1px;transition:.2s;}
+  .ws-cat:hover{border-color:var(--brand);color:var(--brand);}
+  .ws-cat--active{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .ws-catpanel{display:none;}
+  .ws-catpanel--active{display:block;}
+  .ws-teamtabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px;}
+  .ws-teamtab{padding:7px 14px;border:1px solid var(--line);background:#fff;color:var(--ink);
+    cursor:pointer;font-family:var(--font-display);font-weight:700;font-size:13px;transition:.2s;}
+  .ws-teamtab:hover{border-color:var(--brand);color:var(--brand);}
+  .ws-teamtab--active{background:var(--brand);border-color:var(--brand);color:#fff;}
+  .ws-teampanel{display:none;}
+  .ws-teampanel--active{display:block;}
+  .ws-teamhead{display:flex;flex-direction:column;align-items:center;gap:12px;
+    margin:0 auto 34px;max-width:560px;text-align:center;}
+  .ws-teamthumb{--teamc:#d8dee2;width:100%;max-width:520px;height:auto;border-radius:10px;
+    box-shadow:0 10px 28px rgba(0,0,0,.12);background:var(--teamc);
+    border:2px solid var(--teamc);display:block;}
+  .ws-teamthumb--light{border-color:rgba(0,0,0,.2);}
+  .ws-teamhead h2{font-family:var(--font-display);font-weight:900;
+    font-size:clamp(22px,4vw,30px);margin:0;letter-spacing:.5px;}
+  .ws-teamja{font-size:12px;letter-spacing:1px;color:var(--brand);}
+  .ws-charagrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:18px 16px;max-width:980px;margin:0 auto;}
+  .ws-chara{--teamc:#d8dee2;position:relative;background:#fff;border:2px solid var(--teamc);border-radius:8px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,.15);}
+  /* 角色卡左上角角标：原创 / 疑似原创（后接 DLC） */
+  .ws-chara-badges{position:absolute;left:10px;top:10px;z-index:2;
+    display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+  .ws-badge{font-size:10px;font-weight:900;letter-spacing:2px;line-height:1;
+    padding:4px 7px 4px 9px;border-radius:2px;white-space:nowrap;}
+  .ws-badge--orig{color:#fff;background:#2f6fed;}
+  .ws-badge--maybe{font-weight:700;letter-spacing:.5px;color:#2f6fed;
+    background:rgba(255,255,255,.94);border:1px solid #9db8f5;}
+  .ws-badge--dlc{color:#fff;background:#f28c1b;}
+  .ws-chara--light{border-color:rgba(0,0,0,.2);}
+  .ws-chara img{width:100%;height:auto;display:block;background:var(--teamc);}
+  .ws-chara-body{padding:10px 8px 14px;text-align:center;}
+  .ws-chara-name{font-family:var(--font-display);font-weight:900;font-size:15px;color:var(--ink);}
+  .ws-chara-ja{font-size:11px;color:var(--brand);margin:2px 0 4px;letter-spacing:.5px;}
+  .ws-chara-cv{font-size:11px;color:#999;}
+  @media (max-width:640px){
+    .ws-charagrid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px 10px;}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+<main>
+  <section class="page-hero">
+    <img class="ws-hero-logo" src="assets/img/game/world-fighters/mv_logo.webp"
+         alt="キャプテン翼 WORLD FIGHTERS" loading="eager">
+    <h1>《队长小翼2：世界群星》<span class="en">WORLD FIGHTERS</span></h1>
+    <p class="lead">《キャプテン翼２ WORLD FIGHTERS》官方角色页汉化整理。按「国家队 / 俱乐部 / 高校」分类，每队附官方团体半身立绘与角色立绘（含 CV）。本作无角色详细资料，故不设点击放大的资料卡。</p>
+  </section>
+  <section class="section"><div class="container">
+<div class="ws-cats">
+<button class="ws-cat ws-cat--active" data-cat="国家队">国家队</button>
+<button class="ws-cat" data-cat="俱乐部">俱乐部</button>
+<button class="ws-cat" data-cat="高校">高校</button>
+</div>
+<div class="ws-catpanel ws-catpanel--active" data-cat="国家队">
+<div class="ws-teamtabs">
+<button class="ws-teamtab ws-teamtab--active" data-team="japan">日本</button>
+<button class="ws-teamtab" data-team="uzbekistan">乌兹别克斯坦</button>
+<button class="ws-teamtab" data-team="thailand">泰国</button>
+<button class="ws-teamtab" data-team="saudi-arabia">沙特阿拉伯</button>
+<button class="ws-teamtab" data-team="china">中国</button>
+<button class="ws-teamtab" data-team="cameroon">喀麦隆</button>
+<button class="ws-teamtab" data-team="uruguay">乌拉圭</button>
+<button class="ws-teamtab" data-team="mexico">墨西哥</button>
+<button class="ws-teamtab" data-team="sweden">瑞典</button>
+<button class="ws-teamtab" data-team="argentina">阿根廷</button>
+<button class="ws-teamtab" data-team="the-netherlands">荷兰</button>
+<button class="ws-teamtab" data-team="brazil">巴西</button>
+<button class="ws-teamtab" data-team="republic-of-indonesia">印度尼西亚</button>
+<button class="ws-teamtab" data-team="spain">西班牙</button>
+<button class="ws-teamtab" data-team="senegal">塞内加尔</button>
+<button class="ws-teamtab" data-team="england">英格兰</button>
+<button class="ws-teamtab" data-team="south-korea">韩国</button>
+<button class="ws-teamtab" data-team="canada">加拿大</button>
+<button class="ws-teamtab" data-team="usa">美国</button>
+<button class="ws-teamtab" data-team="france">法国</button>
+<button class="ws-teamtab" data-team="italy">意大利</button>
+<button class="ws-teamtab" data-team="germany">德国</button>
+</div>
+<div class="ws-teampanel ws-teampanel--active" data-team="japan">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#64bcf1" loading="lazy" src="assets/img/game/world-fighters/japan__thumb.webp" alt="日本 团体半身立绘">
+<h2>日本</h2>
+<div class="ws-teamja">日本</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara01.webp" alt="大空翼"><div class="ws-chara-body"><div class="ws-chara-name">大空翼</div><div class="ws-chara-ja">大空 翼</div><div class="ws-chara-cv">CV：三瓶由布子</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara02.webp" alt="日向小次郎"><div class="ws-chara-body"><div class="ws-chara-name">日向小次郎</div><div class="ws-chara-ja">日向 小次郎</div><div class="ws-chara-cv">CV：佐藤拓也</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara03.webp" alt="若林源三"><div class="ws-chara-body"><div class="ws-chara-name">若林源三</div><div class="ws-chara-ja">若林 源三</div><div class="ws-chara-cv">CV：鈴村健一</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara04.webp" alt="岬太郎"><div class="ws-chara-body"><div class="ws-chara-name">岬太郎</div><div class="ws-chara-ja">岬 太郎</div><div class="ws-chara-cv">CV：福原綾香</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara05.webp" alt="三杉淳"><div class="ws-chara-body"><div class="ws-chara-name">三杉淳</div><div class="ws-chara-ja">三杉 淳</div><div class="ws-chara-cv">CV：斉藤壮馬</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara06.webp" alt="松山光"><div class="ws-chara-body"><div class="ws-chara-name">松山光</div><div class="ws-chara-ja">松山 光</div><div class="ws-chara-cv">CV：羽多野渉</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara07.webp" alt="葵新伍"><div class="ws-chara-body"><div class="ws-chara-name">葵新伍</div><div class="ws-chara-ja">葵 新伍</div><div class="ws-chara-cv">CV：逢坂良太</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara08.webp" alt="新田瞬"><div class="ws-chara-body"><div class="ws-chara-name">新田瞬</div><div class="ws-chara-ja">新田 瞬</div><div class="ws-chara-cv">CV：上村祐翔</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara13.webp" alt="立花政夫"><div class="ws-chara-body"><div class="ws-chara-name">立花政夫</div><div class="ws-chara-ja">立花 政夫</div><div class="ws-chara-cv">CV：竹内絢子</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara14.webp" alt="立花和夫"><div class="ws-chara-body"><div class="ws-chara-name">立花和夫</div><div class="ws-chara-ja">立花 和夫</div><div class="ws-chara-cv">CV：渡辺優里奈</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara09.webp" alt="石崎了"><div class="ws-chara-body"><div class="ws-chara-name">石崎了</div><div class="ws-chara-ja">石崎 了</div><div class="ws-chara-cv">CV：田村睦心</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara10.webp" alt="次藤洋"><div class="ws-chara-body"><div class="ws-chara-name">次藤洋</div><div class="ws-chara-ja">次藤 洋</div><div class="ws-chara-cv">CV：平川大輔</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara15.webp" alt="早田诚"><div class="ws-chara-body"><div class="ws-chara-name">早田诚</div><div class="ws-chara-ja">早田 誠</div><div class="ws-chara-cv">CV：小林裕介</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara11.webp" alt="赤井止也"><div class="ws-chara-body"><div class="ws-chara-name">赤井止也</div><div class="ws-chara-ja">赤井 止也</div><div class="ws-chara-cv">CV：八代拓</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara12.webp" alt="若岛津健"><div class="ws-chara-body"><div class="ws-chara-name">若岛津健</div><div class="ws-chara-ja">若島津 健</div><div class="ws-chara-cv">CV：梅原裕一郎</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara16.webp" alt="泷一"><div class="ws-chara-body"><div class="ws-chara-name">泷一</div><div class="ws-chara-ja">滝 一</div><div class="ws-chara-cv">CV：吉野裕行</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara17.webp" alt="来生哲兵"><div class="ws-chara-body"><div class="ws-chara-name">来生哲兵</div><div class="ws-chara-ja">来生 哲兵</div><div class="ws-chara-cv">CV：酒井広大</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara18.webp" alt="反町一树"><div class="ws-chara-body"><div class="ws-chara-name">反町一树</div><div class="ws-chara-ja">反町 一樹</div><div class="ws-chara-cv">CV：村田太志</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara19.webp" alt="佐野满"><div class="ws-chara-body"><div class="ws-chara-name">佐野满</div><div class="ws-chara-ja">佐野 満</div><div class="ws-chara-cv">CV：吉野裕行</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara20.webp" alt="小田和正"><div class="ws-chara-body"><div class="ws-chara-name">小田和正</div><div class="ws-chara-ja">小田 和正</div><div class="ws-chara-cv">CV：畠中祐</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara21.webp" alt="泽木升"><div class="ws-chara-body"><div class="ws-chara-name">泽木升</div><div class="ws-chara-ja">沢木 昇</div><div class="ws-chara-cv">CV：小林大紀</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara22.webp" alt="井泽守"><div class="ws-chara-body"><div class="ws-chara-name">井泽守</div><div class="ws-chara-ja">井沢 守</div><div class="ws-chara-cv">CV：岩中睦樹</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara23.webp" alt="泽田武志"><div class="ws-chara-body"><div class="ws-chara-name">泽田武志</div><div class="ws-chara-ja">沢田 タケシ</div><div class="ws-chara-cv">CV：潘めぐみ</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara24.webp" alt="本间实"><div class="ws-chara-body"><div class="ws-chara-name">本间实</div><div class="ws-chara-ja">本間 実</div><div class="ws-chara-cv">CV：米内佑希</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara25.webp" alt="石田铁男"><div class="ws-chara-body"><div class="ws-chara-name">石田铁男</div><div class="ws-chara-ja">石田 鉄男</div><div class="ws-chara-cv">CV：村田太志</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara28.webp" alt="岸田猛"><div class="ws-chara-body"><div class="ws-chara-name">岸田猛</div><div class="ws-chara-ja">岸田 猛</div><div class="ws-chara-cv">CV：小林大紀</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara26.webp" alt="浦边反次"><div class="ws-chara-body"><div class="ws-chara-name">浦边反次</div><div class="ws-chara-ja">浦辺 反次</div><div class="ws-chara-cv">CV：日野未歩</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara27.webp" alt="高杉真吾"><div class="ws-chara-body"><div class="ws-chara-name">高杉真吾</div><div class="ws-chara-ja">高杉 真吾</div><div class="ws-chara-cv">CV：木内太郎</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara29.webp" alt="中山政男"><div class="ws-chara-body"><div class="ws-chara-name">中山政男</div><div class="ws-chara-ja">中山 政男</div><div class="ws-chara-cv">CV：伊藤節生</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara30.webp" alt="森崎有三"><div class="ws-chara-body"><div class="ws-chara-name">森崎有三</div><div class="ws-chara-ja">森崎 有三</div><div class="ws-chara-cv">CV：畠中祐</div></div></div>
+<div class="ws-chara" style="--teamc:#64bcf1"><img loading="lazy" src="assets/img/game/world-fighters/japan__img_chara31.webp" alt="中西太一"><div class="ws-chara-body"><div class="ws-chara-name">中西太一</div><div class="ws-chara-ja">中西 太一</div><div class="ws-chara-cv">CV：松本忍</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="uzbekistan">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#7499f5" loading="lazy" src="assets/img/game/world-fighters/uzbekistan__thumb.webp" alt="乌兹别克斯坦 团体半身立绘">
+<h2>乌兹别克斯坦</h2>
+<div class="ws-teamja">ウズベキスタン</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#7499f5"><img loading="lazy" src="assets/img/game/world-fighters/uzbekistan__img_chara01.webp" alt="赞基耶夫"><div class="ws-chara-body"><div class="ws-chara-name">赞基耶夫</div><div class="ws-chara-ja">ザンギエフ</div><div class="ws-chara-cv">CV：川原元幸</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="thailand">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#7a73bb" loading="lazy" src="assets/img/game/world-fighters/thailand__thumb.webp" alt="泰国 团体半身立绘">
+<h2>泰国</h2>
+<div class="ws-teamja">タイ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#7a73bb"><img loading="lazy" src="assets/img/game/world-fighters/thailand__img_chara01.webp" alt="辛普拉萨特·布纳克"><div class="ws-chara-body"><div class="ws-chara-name">辛普拉萨特·布纳克</div><div class="ws-chara-ja">シンプラサート・ブンナーク</div><div class="ws-chara-cv">CV：小林親弘</div></div></div>
+<div class="ws-chara" style="--teamc:#7a73bb"><img loading="lazy" src="assets/img/game/world-fighters/thailand__img_chara02.webp" alt="查纳·坤沙瓦"><div class="ws-chara-body"><div class="ws-chara-name">查纳·坤沙瓦</div><div class="ws-chara-ja">チャナ・コンサワット</div><div class="ws-chara-cv">CV：佐藤元</div></div></div>
+<div class="ws-chara" style="--teamc:#7a73bb"><img loading="lazy" src="assets/img/game/world-fighters/thailand__img_chara03.webp" alt="法兰·坤沙瓦"><div class="ws-chara-body"><div class="ws-chara-name">法兰·坤沙瓦</div><div class="ws-chara-ja">ファーラン・コンサワット</div><div class="ws-chara-cv">CV：高梨謙吾</div></div></div>
+<div class="ws-chara" style="--teamc:#7a73bb"><img loading="lazy" src="assets/img/game/world-fighters/thailand__img_chara04.webp" alt="萨坤·坤沙瓦"><div class="ws-chara-body"><div class="ws-chara-name">萨坤·坤沙瓦</div><div class="ws-chara-ja">サークーン・コンサワット</div><div class="ws-chara-cv">CV：神尾晋一郎</div></div></div>
+<div class="ws-chara" style="--teamc:#7a73bb"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/thailand__img_chara05.webp" alt="帕塔拉·素奈"><div class="ws-chara-body"><div class="ws-chara-name">帕塔拉·素奈</div><div class="ws-chara-ja">パタラ・スナライ</div><div class="ws-chara-cv">CV：堀金蒼平</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="saudi-arabia">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#53b78c" loading="lazy" src="assets/img/game/world-fighters/saudi-arabia__thumb.webp" alt="沙特阿拉伯 团体半身立绘">
+<h2>沙特阿拉伯</h2>
+<div class="ws-teamja">サウジアラビア</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#53b78c"><img loading="lazy" src="assets/img/game/world-fighters/saudi-arabia__img_chara01.webp" alt="马克·奥瓦伊兰"><div class="ws-chara-body"><div class="ws-chara-name">马克·奥瓦伊兰</div><div class="ws-chara-ja">マーク・オワイラン</div><div class="ws-chara-cv">CV：新垣樽助</div></div></div>
+<div class="ws-chara" style="--teamc:#53b78c"><img loading="lazy" src="assets/img/game/world-fighters/saudi-arabia__img_chara02.webp" alt="巴尔干"><div class="ws-chara-body"><div class="ws-chara-name">巴尔干</div><div class="ws-chara-ja">バルカン</div><div class="ws-chara-cv">CV：後藤ヒロキ</div></div></div>
+<div class="ws-chara" style="--teamc:#53b78c"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/saudi-arabia__img_chara03.webp" alt="哈里斯"><div class="ws-chara-body"><div class="ws-chara-name">哈里斯</div><div class="ws-chara-ja">ハーリス</div><div class="ws-chara-cv">CV：宮城一貴</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="china">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#ff9878" loading="lazy" src="assets/img/game/world-fighters/china__thumb.webp" alt="中国 团体半身立绘">
+<h2>中国</h2>
+<div class="ws-teamja">中国</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#ff9878"><img loading="lazy" src="assets/img/game/world-fighters/china__img_chara01.webp" alt="肖俊光"><div class="ws-chara-body"><div class="ws-chara-name">肖俊光</div><div class="ws-chara-ja">肖 俊光</div><div class="ws-chara-cv">CV：増田俊樹</div></div></div>
+<div class="ws-chara" style="--teamc:#ff9878"><img loading="lazy" src="assets/img/game/world-fighters/china__img_chara02.webp" alt="吴俊仁"><div class="ws-chara-body"><div class="ws-chara-name">吴俊仁</div><div class="ws-chara-ja">呉 俊仁</div><div class="ws-chara-cv">CV：熊谷健太郎</div></div></div>
+<div class="ws-chara" style="--teamc:#ff9878"><img loading="lazy" src="assets/img/game/world-fighters/china__img_chara03.webp" alt="飞翔"><div class="ws-chara-body"><div class="ws-chara-name">飞翔</div><div class="ws-chara-ja">飛 翔</div><div class="ws-chara-cv">CV：猪股慧士</div></div></div>
+<div class="ws-chara" style="--teamc:#ff9878"><img loading="lazy" src="assets/img/game/world-fighters/china__img_chara04.webp" alt="王忠明"><div class="ws-chara-body"><div class="ws-chara-name">王忠明</div><div class="ws-chara-ja">王 忠明</div><div class="ws-chara-cv">CV：永塚拓馬</div></div></div>
+<div class="ws-chara" style="--teamc:#ff9878"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/china__img_chara05.webp" alt="岳清海"><div class="ws-chara-body"><div class="ws-chara-name">岳清海</div><div class="ws-chara-ja">岳 清海</div><div class="ws-chara-cv">CV：祐仙勇</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="cameroon">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#00db9a" loading="lazy" src="assets/img/game/world-fighters/cameroon__thumb.webp" alt="喀麦隆 团体半身立绘">
+<h2>喀麦隆</h2>
+<div class="ws-teamja">カメルーン</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#00db9a"><img loading="lazy" src="assets/img/game/world-fighters/cameroon__img_chara01.webp" alt="雷蒙德·钱德勒"><div class="ws-chara-body"><div class="ws-chara-name">雷蒙德·钱德勒</div><div class="ws-chara-ja">レイモンド・チャンドラー</div><div class="ws-chara-cv">CV：櫻井トオル</div></div></div>
+<div class="ws-chara" style="--teamc:#00db9a"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/cameroon__img_chara02.webp" alt="布巴·米拉"><div class="ws-chara-body"><div class="ws-chara-name">布巴·米拉</div><div class="ws-chara-ja">ブーバ・ミラ</div><div class="ws-chara-cv">CV：佐藤正幸</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="uruguay">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#72cdff" loading="lazy" src="assets/img/game/world-fighters/uruguay__thumb.webp" alt="乌拉圭 团体半身立绘">
+<h2>乌拉圭</h2>
+<div class="ws-teamja">ウルグアイ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#72cdff"><img loading="lazy" src="assets/img/game/world-fighters/uruguay__img_chara01.webp" alt="火野龙马"><div class="ws-chara-body"><div class="ws-chara-name">火野龙马</div><div class="ws-chara-ja">火野 竜馬</div><div class="ws-chara-cv">CV：古田一紀</div></div></div>
+<div class="ws-chara" style="--teamc:#72cdff"><img loading="lazy" src="assets/img/game/world-fighters/uruguay__img_chara02.webp" alt="拉蒙·维克多里诺"><div class="ws-chara-body"><div class="ws-chara-name">拉蒙·维克多里诺</div><div class="ws-chara-ja">ラモン・ビクトリーノ</div><div class="ws-chara-cv">CV：山下誠一郎</div></div></div>
+<div class="ws-chara" style="--teamc:#72cdff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/uruguay__img_chara03.webp" alt="尼古拉斯·卡斯蒂略"><div class="ws-chara-body"><div class="ws-chara-name">尼古拉斯·卡斯蒂略</div><div class="ws-chara-ja">ニコラス・カスティーロ</div><div class="ws-chara-cv">CV：杉崎亮</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="mexico">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#66d166" loading="lazy" src="assets/img/game/world-fighters/mexico__thumb.webp" alt="墨西哥 团体半身立绘">
+<h2>墨西哥</h2>
+<div class="ws-teamja">メキシコ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#66d166"><img loading="lazy" src="assets/img/game/world-fighters/mexico__img_chara01.webp" alt="里卡多·埃斯帕达斯"><div class="ws-chara-body"><div class="ws-chara-name">里卡多·埃斯帕达斯</div><div class="ws-chara-ja">リカルド・エスパダス</div><div class="ws-chara-cv">CV：檜山修之</div></div></div>
+<div class="ws-chara" style="--teamc:#66d166"><img loading="lazy" src="assets/img/game/world-fighters/mexico__img_chara02.webp" alt="阿尔维斯"><div class="ws-chara-body"><div class="ws-chara-name">阿尔维斯</div><div class="ws-chara-ja">アルベス</div><div class="ws-chara-cv">CV：中村太亮</div></div></div>
+<div class="ws-chara" style="--teamc:#66d166"><img loading="lazy" src="assets/img/game/world-fighters/mexico__img_chara03.webp" alt="洛佩斯"><div class="ws-chara-body"><div class="ws-chara-name">洛佩斯</div><div class="ws-chara-ja">ロペス</div><div class="ws-chara-cv">CV：北村和真</div></div></div>
+<div class="ws-chara" style="--teamc:#66d166"><img loading="lazy" src="assets/img/game/world-fighters/mexico__img_chara04.webp" alt="萨拉戈萨"><div class="ws-chara-body"><div class="ws-chara-name">萨拉戈萨</div><div class="ws-chara-ja">サラゴサ</div><div class="ws-chara-cv">CV：山本趣宇</div></div></div>
+<div class="ws-chara" style="--teamc:#66d166"><img loading="lazy" src="assets/img/game/world-fighters/mexico__img_chara05.webp" alt="苏亚雷斯"><div class="ws-chara-body"><div class="ws-chara-name">苏亚雷斯</div><div class="ws-chara-ja">スアレス</div><div class="ws-chara-cv">CV：村上聡</div></div></div>
+<div class="ws-chara" style="--teamc:#66d166"><img loading="lazy" src="assets/img/game/world-fighters/mexico__img_chara06.webp" alt="加西亚"><div class="ws-chara-body"><div class="ws-chara-name">加西亚</div><div class="ws-chara-ja">ガルシア</div><div class="ws-chara-cv">CV：堀総士郎</div></div></div>
+<div class="ws-chara" style="--teamc:#66d166"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/mexico__img_chara07.webp" alt="埃斯特拉达"><div class="ws-chara-body"><div class="ws-chara-name">埃斯特拉达</div><div class="ws-chara-ja">エストラーダ</div><div class="ws-chara-cv">CV：小林康介</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="sweden">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#617ae6" loading="lazy" src="assets/img/game/world-fighters/sweden__thumb.webp" alt="瑞典 团体半身立绘">
+<h2>瑞典</h2>
+<div class="ws-teamja">スウェーデン</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#617ae6"><img loading="lazy" src="assets/img/game/world-fighters/sweden__img_chara01.webp" alt="斯蒂芬·莱文"><div class="ws-chara-body"><div class="ws-chara-name">斯蒂芬·莱文</div><div class="ws-chara-ja">ステファン・レヴィン</div><div class="ws-chara-cv">CV：塩尻浩規</div></div></div>
+<div class="ws-chara" style="--teamc:#617ae6"><img loading="lazy" src="assets/img/game/world-fighters/sweden__img_chara02.webp" alt="拉尔森"><div class="ws-chara-body"><div class="ws-chara-name">拉尔森</div><div class="ws-chara-ja">ラーソン</div><div class="ws-chara-cv">CV：渡邉秀哉</div></div></div>
+<div class="ws-chara" style="--teamc:#617ae6"><img loading="lazy" src="assets/img/game/world-fighters/sweden__img_chara03.webp" alt="费德里克斯"><div class="ws-chara-body"><div class="ws-chara-name">费德里克斯</div><div class="ws-chara-ja">フェデリックス</div><div class="ws-chara-cv">CV：豊島聖人</div></div></div>
+<div class="ws-chara" style="--teamc:#617ae6"><img loading="lazy" src="assets/img/game/world-fighters/sweden__img_chara04.webp" alt="布洛林"><div class="ws-chara-body"><div class="ws-chara-name">布洛林</div><div class="ws-chara-ja">ブローリン</div><div class="ws-chara-cv">CV：喜屋武和輝</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="argentina">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#90e1ff" loading="lazy" src="assets/img/game/world-fighters/argentina__thumb.webp" alt="阿根廷 团体半身立绘">
+<h2>阿根廷</h2>
+<div class="ws-teamja">アルゼンチン</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#90e1ff"><img loading="lazy" src="assets/img/game/world-fighters/argentina__img_chara01.webp" alt="胡安·迪亚斯"><div class="ws-chara-body"><div class="ws-chara-name">胡安·迪亚斯</div><div class="ws-chara-ja">ファン・ディアス</div><div class="ws-chara-cv">CV：松岡禎丞</div></div></div>
+<div class="ws-chara" style="--teamc:#90e1ff"><img loading="lazy" src="assets/img/game/world-fighters/argentina__img_chara03.webp" alt="阿兰·帕斯卡尔"><div class="ws-chara-body"><div class="ws-chara-name">阿兰·帕斯卡尔</div><div class="ws-chara-ja">アラン・パスカル</div><div class="ws-chara-cv">CV：山下大輝</div></div></div>
+<div class="ws-chara" style="--teamc:#90e1ff"><img loading="lazy" src="assets/img/game/world-fighters/argentina__img_chara02.webp" alt="格鲁巴"><div class="ws-chara-body"><div class="ws-chara-name">格鲁巴</div><div class="ws-chara-ja">ガルバン</div><div class="ws-chara-cv">CV：阿座上洋平</div></div></div>
+<div class="ws-chara" style="--teamc:#90e1ff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/argentina__img_chara04.webp" alt="卡米洛·卢纳"><div class="ws-chara-body"><div class="ws-chara-name">卡米洛·卢纳</div><div class="ws-chara-ja">カミロ・ルーナ</div><div class="ws-chara-cv">CV：大谷祐貴</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="the-netherlands">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#ffc776" loading="lazy" src="assets/img/game/world-fighters/the-netherlands__thumb.webp" alt="荷兰 团体半身立绘">
+<h2>荷兰</h2>
+<div class="ws-teamja">オランダ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#ffc776"><img loading="lazy" src="assets/img/game/world-fighters/the-netherlands__img_chara01.webp" alt="布莱安·克鲁伊夫"><div class="ws-chara-body"><div class="ws-chara-name">布莱安·克鲁伊夫</div><div class="ws-chara-ja">ブライアン・クライフォート</div><div class="ws-chara-cv">CV：柿原徹也</div></div></div>
+<div class="ws-chara" style="--teamc:#ffc776"><img loading="lazy" src="assets/img/game/world-fighters/the-netherlands__img_chara02.webp" alt="古力特·凯萨"><div class="ws-chara-body"><div class="ws-chara-name">古力特·凯萨</div><div class="ws-chara-ja">ゲルト・カイザー</div><div class="ws-chara-cv">CV：木島隆一</div></div></div>
+<div class="ws-chara" style="--teamc:#ffc776"><img loading="lazy" src="assets/img/game/world-fighters/the-netherlands__img_chara03.webp" alt="约翰·雷森布里克"><div class="ws-chara-body"><div class="ws-chara-name">约翰·雷森布里克</div><div class="ws-chara-ja">ヨハン・レンセンブリンク</div><div class="ws-chara-cv">CV：千葉翔也</div></div></div>
+<div class="ws-chara" style="--teamc:#ffc776"><img loading="lazy" src="assets/img/game/world-fighters/the-netherlands__img_chara04.webp" alt="鲁特·克里斯曼"><div class="ws-chara-body"><div class="ws-chara-name">鲁特·克里斯曼</div><div class="ws-chara-ja">ルート・クリスマン</div><div class="ws-chara-cv">CV：梶原岳人</div></div></div>
+<div class="ws-chara" style="--teamc:#ffc776"><img loading="lazy" src="assets/img/game/world-fighters/the-netherlands__img_chara05.webp" alt="阿尔达特·马尔达"><div class="ws-chara-body"><div class="ws-chara-name">阿尔达特·马尔达</div><div class="ws-chara-ja">アルダート・マルダー</div><div class="ws-chara-cv">CV：内田雄馬</div></div></div>
+<div class="ws-chara" style="--teamc:#ffc776"><img loading="lazy" src="assets/img/game/world-fighters/the-netherlands__img_chara06.webp" alt="雷翁·迪克"><div class="ws-chara-body"><div class="ws-chara-name">雷翁·迪克</div><div class="ws-chara-ja">レオン・ディック</div><div class="ws-chara-cv">CV：村上裕哉</div></div></div>
+<div class="ws-chara" style="--teamc:#ffc776"><img loading="lazy" src="assets/img/game/world-fighters/the-netherlands__img_chara07.webp" alt="汉斯·多尔曼"><div class="ws-chara-body"><div class="ws-chara-name">汉斯·多尔曼</div><div class="ws-chara-ja">ハンス・ドールマン</div><div class="ws-chara-cv">CV：間宮康弘</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="brazil">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#fff18d" loading="lazy" src="assets/img/game/world-fighters/brazil__thumb.webp" alt="巴西 团体半身立绘">
+<h2>巴西</h2>
+<div class="ws-teamja">ブラジル</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#fff18d"><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara01.webp" alt="卡洛斯·桑塔纳"><div class="ws-chara-body"><div class="ws-chara-name">卡洛斯·桑塔纳</div><div class="ws-chara-ja">カルロス・サンターナ</div><div class="ws-chara-cv">CV：石川界人</div></div></div>
+<div class="ws-chara" style="--teamc:#fff18d"><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara02.webp" alt="纳图雷扎"><div class="ws-chara-body"><div class="ws-chara-name">纳图雷扎</div><div class="ws-chara-ja">ナトゥレーザ</div><div class="ws-chara-cv">CV：中村悠一</div></div></div>
+<div class="ws-chara" style="--teamc:#fff18d"><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara03.webp" alt="阿尔贝托"><div class="ws-chara-body"><div class="ws-chara-name">阿尔贝托</div><div class="ws-chara-ja">アルベルト</div><div class="ws-chara-cv">CV：日野聡</div></div></div>
+<div class="ws-chara" style="--teamc:#fff18d"><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara04.webp" alt="贝佩"><div class="ws-chara-body"><div class="ws-chara-name">贝佩</div><div class="ws-chara-ja">ペペ</div><div class="ws-chara-cv">CV：下野紘</div></div></div>
+<div class="ws-chara" style="--teamc:#fff18d"><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara05.webp" alt="卢西亚诺·雷欧"><div class="ws-chara-body"><div class="ws-chara-name">卢西亚诺·雷欧</div><div class="ws-chara-ja">ルシアーノ・レオ</div><div class="ws-chara-cv">CV：田丸篤志</div></div></div>
+<div class="ws-chara" style="--teamc:#fff18d"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara06.webp" alt="维克托"><div class="ws-chara-body"><div class="ws-chara-name">维克托</div><div class="ws-chara-ja">ヴィクター</div><div class="ws-chara-cv">CV：こばたけまさふみ</div></div></div>
+<div class="ws-chara" style="--teamc:#fff18d"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara07.webp" alt="凯吉诺"><div class="ws-chara-body"><div class="ws-chara-name">凯吉诺</div><div class="ws-chara-ja">ケイジーニョ</div><div class="ws-chara-cv">CV：KENN</div></div></div>
+<div class="ws-chara" style="--teamc:#fff18d"><img loading="lazy" src="assets/img/game/world-fighters/brazil__img_chara08.webp" alt="萨利纳斯"><div class="ws-chara-body"><div class="ws-chara-name">萨利纳斯</div><div class="ws-chara-ja">サリナス</div><div class="ws-chara-cv">CV：大野智敬</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="republic-of-indonesia">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#5ddd95" loading="lazy" src="assets/img/game/world-fighters/republic-of-indonesia__thumb.webp" alt="印度尼西亚 团体半身立绘">
+<h2>印度尼西亚</h2>
+<div class="ws-teamja">インドネシア</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#5ddd95"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/republic-of-indonesia__img_chara01.webp" alt="埃科·贾瓦特"><div class="ws-chara-body"><div class="ws-chara-name">埃科·贾瓦特</div><div class="ws-chara-ja">エコ・ジャワト</div><div class="ws-chara-cv">CV：森なな子</div></div></div>
+<div class="ws-chara" style="--teamc:#5ddd95"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/republic-of-indonesia__img_chara02.webp" alt="弗雷迪"><div class="ws-chara-body"><div class="ws-chara-name">弗雷迪</div><div class="ws-chara-ja">フレディ</div><div class="ws-chara-cv">CV：岡峯雄登</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="spain">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#e47a7a" loading="lazy" src="assets/img/game/world-fighters/spain__thumb.webp" alt="西班牙 团体半身立绘">
+<h2>西班牙</h2>
+<div class="ws-teamja">スペイン</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#e47a7a"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/spain__img_chara01.webp" alt="埃米里奥·罗梅罗"><div class="ws-chara-body"><div class="ws-chara-name">埃米里奥·罗梅罗</div><div class="ws-chara-ja">エミリオ・ロメロ</div><div class="ws-chara-cv">CV：大桃陽介</div></div></div>
+<div class="ws-chara" style="--teamc:#e47a7a"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/spain__img_chara02.webp" alt="阿贝尔·罗梅罗"><div class="ws-chara-body"><div class="ws-chara-name">阿贝尔·罗梅罗</div><div class="ws-chara-ja">アベル・ロメロ</div><div class="ws-chara-cv">CV：白石冬弥</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="senegal">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#a2ed8a" loading="lazy" src="assets/img/game/world-fighters/senegal__thumb.webp" alt="塞内加尔 团体半身立绘">
+<h2>塞内加尔</h2>
+<div class="ws-teamja">セネガル</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#a2ed8a"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/senegal__img_chara01.webp" alt="伊士麦·桑戈尔"><div class="ws-chara-body"><div class="ws-chara-name">伊士麦·桑戈尔</div><div class="ws-chara-ja">イスマイル・サンゴール</div><div class="ws-chara-cv">CV：堀江瞬</div></div></div>
+<div class="ws-chara" style="--teamc:#a2ed8a"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/senegal__img_chara02.webp" alt="穆萨·马里克·贾罗"><div class="ws-chara-body"><div class="ws-chara-name">穆萨·马里克·贾罗</div><div class="ws-chara-ja">ムーサ・マリック・ジャロ</div><div class="ws-chara-cv">CV：林勇</div></div></div>
+<div class="ws-chara" style="--teamc:#a2ed8a"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/senegal__img_chara03.webp" alt="迪亚克·瓦德"><div class="ws-chara-body"><div class="ws-chara-name">迪亚克·瓦德</div><div class="ws-chara-ja">ディアク・ワッド</div><div class="ws-chara-cv">CV：奥村翔</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="england">
+<div class="ws-teamhead">
+<img class="ws-teamthumb ws-teamthumb--light" style="--teamc:#8c8bbb" loading="lazy" src="assets/img/game/world-fighters/england__thumb.webp" alt="英格兰 团体半身立绘">
+<h2>英格兰</h2>
+<div class="ws-teamja">イングランド</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara ws-chara--light" style="--teamc:#8c8bbb"><img loading="lazy" src="assets/img/game/world-fighters/england__img_chara01.webp" alt="罗布森"><div class="ws-chara-body"><div class="ws-chara-name">罗布森</div><div class="ws-chara-ja">ロブソン</div><div class="ws-chara-cv">CV：竹内良太</div></div></div>
+<div class="ws-chara ws-chara--light" style="--teamc:#8c8bbb"><img loading="lazy" src="assets/img/game/world-fighters/england__img_chara02.webp" alt="芬·肖伍德"><div class="ws-chara-body"><div class="ws-chara-name">芬·肖伍德</div><div class="ws-chara-ja">フィン・シャーウッド</div><div class="ws-chara-cv">CV：加隈亜衣</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="south-korea">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#ff9095" loading="lazy" src="assets/img/game/world-fighters/south-korea__thumb.webp" alt="韩国 团体半身立绘">
+<h2>韩国</h2>
+<div class="ws-teamja">韓国</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#ff9095"><img loading="lazy" src="assets/img/game/world-fighters/south-korea__img_chara01.webp" alt="李龙云"><div class="ws-chara-body"><div class="ws-chara-name">李龙云</div><div class="ws-chara-ja">李 龍雲</div><div class="ws-chara-cv">CV：笠間淳</div></div></div>
+<div class="ws-chara" style="--teamc:#ff9095"><img loading="lazy" src="assets/img/game/world-fighters/south-korea__img_chara02.webp" alt="车仁天"><div class="ws-chara-body"><div class="ws-chara-name">车仁天</div><div class="ws-chara-ja">車 仁天</div><div class="ws-chara-cv">CV：広瀬淳</div></div></div>
+<div class="ws-chara" style="--teamc:#ff9095"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/south-korea__img_chara03.webp" alt="吉始友"><div class="ws-chara-body"><div class="ws-chara-name">吉始友</div><div class="ws-chara-ja">吉 始友</div><div class="ws-chara-cv">CV：高橋伸也</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="canada">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#ff8d73" loading="lazy" src="assets/img/game/world-fighters/canada__thumb.webp" alt="加拿大 团体半身立绘">
+<h2>加拿大</h2>
+<div class="ws-teamja">カナダ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#ff8d73"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/canada__img_chara01.webp" alt="利亚姆·温科特"><div class="ws-chara-body"><div class="ws-chara-name">利亚姆·温科特</div><div class="ws-chara-ja">リアム・ウィンコット</div><div class="ws-chara-cv">CV：大塚剛央</div></div></div>
+<div class="ws-chara" style="--teamc:#ff8d73"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/canada__img_chara02.webp" alt="康纳·伯纳德"><div class="ws-chara-body"><div class="ws-chara-name">康纳·伯纳德</div><div class="ws-chara-ja">コナー・バーナード</div><div class="ws-chara-cv">CV：山口智広</div></div></div>
+<div class="ws-chara" style="--teamc:#ff8d73"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/canada__img_chara03.webp" alt="坦纳·伯纳德"><div class="ws-chara-body"><div class="ws-chara-name">坦纳·伯纳德</div><div class="ws-chara-ja">タナー・バーナード</div><div class="ws-chara-cv">CV：高塚智人</div></div></div>
+<div class="ws-chara" style="--teamc:#ff8d73"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/canada__img_chara04.webp" alt="诺兰·斯图尔特"><div class="ws-chara-body"><div class="ws-chara-name">诺兰·斯图尔特</div><div class="ws-chara-ja">ノーラン・スチュアート</div><div class="ws-chara-cv">CV：光富崇雄</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="usa">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#6896ff" loading="lazy" src="assets/img/game/world-fighters/usa__thumb.webp" alt="美国 团体半身立绘">
+<h2>美国</h2>
+<div class="ws-teamja">アメリカ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#6896ff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/usa__img_chara01.webp" alt="莱恩·奥尔蒂斯"><div class="ws-chara-body"><div class="ws-chara-name">莱恩·奥尔蒂斯</div><div class="ws-chara-ja">ライアン・オルティス</div><div class="ws-chara-cv">CV：広瀬裕也</div></div></div>
+<div class="ws-chara" style="--teamc:#6896ff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/usa__img_chara02.webp" alt="布莱克·马丁"><div class="ws-chara-body"><div class="ws-chara-name">布莱克·马丁</div><div class="ws-chara-ja">ブレイク・マーティン</div><div class="ws-chara-cv">CV：武内駿輔</div></div></div>
+<div class="ws-chara" style="--teamc:#6896ff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/usa__img_chara03.webp" alt="凯莱布·沃德"><div class="ws-chara-body"><div class="ws-chara-name">凯莱布·沃德</div><div class="ws-chara-ja">ケイレブ・ウォード</div><div class="ws-chara-cv">CV：松岡洋平</div></div></div>
+<div class="ws-chara" style="--teamc:#6896ff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/usa__img_chara04.webp" alt="谢尔克·艾斯文"><div class="ws-chara-body"><div class="ws-chara-name">谢尔克·艾斯文</div><div class="ws-chara-ja">シェイク・アズワン</div><div class="ws-chara-cv">CV：伊丸岡篤</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="france">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#ff7e7e" loading="lazy" src="assets/img/game/world-fighters/france__thumb.webp" alt="法国 团体半身立绘">
+<h2>法国</h2>
+<div class="ws-teamja">フランス</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#ff7e7e"><img loading="lazy" src="assets/img/game/world-fighters/france__img_chara01.webp" alt="艾尔·席德·皮耶尔"><div class="ws-chara-body"><div class="ws-chara-name">艾尔·席德·皮耶尔</div><div class="ws-chara-ja">エル・シド・ピエール</div><div class="ws-chara-cv">CV：河西健吾</div></div></div>
+<div class="ws-chara" style="--teamc:#ff7e7e"><img loading="lazy" src="assets/img/game/world-fighters/france__img_chara02.webp" alt="路易·拿破仑"><div class="ws-chara-body"><div class="ws-chara-name">路易·拿破仑</div><div class="ws-chara-ja">ルイ・ナポレオン</div><div class="ws-chara-cv">CV：小野友樹</div></div></div>
+<div class="ws-chara" style="--teamc:#ff7e7e"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/france__img_chara03.webp" alt="菲利克斯·布朗"><div class="ws-chara-body"><div class="ws-chara-name">菲利克斯·布朗</div><div class="ws-chara-ja">フェリクス・ブラン</div><div class="ws-chara-cv">CV：藤原夏海</div></div></div>
+<div class="ws-chara" style="--teamc:#ff7e7e"><img loading="lazy" src="assets/img/game/world-fighters/france__img_chara04.webp" alt="尚"><div class="ws-chara-body"><div class="ws-chara-name">尚</div><div class="ws-chara-ja">ジャン</div><div class="ws-chara-cv">CV：中島ヨシキ</div></div></div>
+<div class="ws-chara" style="--teamc:#ff7e7e"><img loading="lazy" src="assets/img/game/world-fighters/france__img_chara05.webp" alt="博西"><div class="ws-chara-body"><div class="ws-chara-name">博西</div><div class="ws-chara-ja">ボッシ</div><div class="ws-chara-cv">CV：小松昌平</div></div></div>
+<div class="ws-chara" style="--teamc:#ff7e7e"><img loading="lazy" src="assets/img/game/world-fighters/france__img_chara06.webp" alt="阿莫罗"><div class="ws-chara-body"><div class="ws-chara-name">阿莫罗</div><div class="ws-chara-ja">アモロ</div><div class="ws-chara-cv">CV：髙橋英則</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="italy">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#7ea2ff" loading="lazy" src="assets/img/game/world-fighters/italy__thumb.webp" alt="意大利 团体半身立绘">
+<h2>意大利</h2>
+<div class="ws-teamja">イタリア</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#7ea2ff"><img loading="lazy" src="assets/img/game/world-fighters/italy__img_chara01.webp" alt="齐诺·埃尔南德斯"><div class="ws-chara-body"><div class="ws-chara-name">齐诺·埃尔南德斯</div><div class="ws-chara-ja">ジノ・ヘルナンデス</div><div class="ws-chara-cv">CV：興津和幸</div></div></div>
+<div class="ws-chara" style="--teamc:#7ea2ff"><img loading="lazy" src="assets/img/game/world-fighters/italy__img_chara02.webp" alt="萨尔瓦托雷·真蒂莱"><div class="ws-chara-body"><div class="ws-chara-name">萨尔瓦托雷·真蒂莱</div><div class="ws-chara-ja">サルバトーレ・ジェンティーレ</div><div class="ws-chara-cv">CV：松風雅也</div></div></div>
+<div class="ws-chara" style="--teamc:#7ea2ff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/italy__img_chara03.webp" alt="列奥那多·鲁斯亚诺"><div class="ws-chara-body"><div class="ws-chara-name">列奥那多·鲁斯亚诺</div><div class="ws-chara-ja">レオナルド・ルチアーノ</div><div class="ws-chara-cv">CV：白井悠介</div></div></div>
+<div class="ws-chara" style="--teamc:#7ea2ff"><img loading="lazy" src="assets/img/game/world-fighters/italy__img_chara04.webp" alt="塔尔代利"><div class="ws-chara-body"><div class="ws-chara-name">塔尔代利</div><div class="ws-chara-ja">タルデリ</div><div class="ws-chara-cv">CV：松田修平</div></div></div>
+<div class="ws-chara" style="--teamc:#7ea2ff"><img loading="lazy" src="assets/img/game/world-fighters/italy__img_chara05.webp" alt="孔蒂"><div class="ws-chara-body"><div class="ws-chara-name">孔蒂</div><div class="ws-chara-ja">コンティ</div><div class="ws-chara-cv">CV：井上雄貴</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="germany">
+<div class="ws-teamhead">
+<img class="ws-teamthumb ws-teamthumb--light" style="--teamc:#ffffff" loading="lazy" src="assets/img/game/world-fighters/germany__thumb.webp" alt="德国 团体半身立绘">
+<h2>德国</h2>
+<div class="ws-teamja">ドイツ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara ws-chara--light" style="--teamc:#ffffff"><img loading="lazy" src="assets/img/game/world-fighters/germany__img_chara01.webp" alt="卡尔·海因兹·施奈德"><div class="ws-chara-body"><div class="ws-chara-name">卡尔·海因兹·施奈德</div><div class="ws-chara-ja">カール・ハインツ・シュナイダー</div><div class="ws-chara-cv">CV：福山潤</div></div></div>
+<div class="ws-chara ws-chara--light" style="--teamc:#ffffff"><img loading="lazy" src="assets/img/game/world-fighters/germany__img_chara02.webp" alt="曼弗雷德·马盖斯"><div class="ws-chara-body"><div class="ws-chara-name">曼弗雷德·马盖斯</div><div class="ws-chara-ja">マンフレート・マーガス</div><div class="ws-chara-cv">CV：江口拓也</div></div></div>
+<div class="ws-chara ws-chara--light" style="--teamc:#ffffff"><img loading="lazy" src="assets/img/game/world-fighters/germany__img_chara03.webp" alt="舒巴尔·泰格博兰"><div class="ws-chara-body"><div class="ws-chara-name">舒巴尔·泰格博兰</div><div class="ws-chara-ja">シュバイル・タイガーボラン</div><div class="ws-chara-cv">CV：秋本哲志</div></div></div>
+<div class="ws-chara ws-chara--light" style="--teamc:#ffffff"><img loading="lazy" src="assets/img/game/world-fighters/germany__img_chara04.webp" alt="赫尔曼·卡尔兹"><div class="ws-chara-body"><div class="ws-chara-name">赫尔曼·卡尔兹</div><div class="ws-chara-ja">ヘルマン・カルツ</div><div class="ws-chara-cv">CV：三宅健太</div></div></div>
+<div class="ws-chara ws-chara--light" style="--teamc:#ffffff"><img loading="lazy" src="assets/img/game/world-fighters/germany__img_chara05.webp" alt="弗朗茨·舒斯特"><div class="ws-chara-body"><div class="ws-chara-name">弗朗茨·舒斯特</div><div class="ws-chara-ja">フランツ・シェスター</div><div class="ws-chara-cv">CV：榎木淳弥</div></div></div>
+<div class="ws-chara ws-chara--light" style="--teamc:#ffffff"><img loading="lazy" src="assets/img/game/world-fighters/germany__img_chara06.webp" alt="柯内留斯·海涅"><div class="ws-chara-body"><div class="ws-chara-name">柯内留斯·海涅</div><div class="ws-chara-ja">コルネリアス・ハイネ</div><div class="ws-chara-cv">CV：寺島拓篤</div></div></div>
+<div class="ws-chara ws-chara--light" style="--teamc:#ffffff"><img loading="lazy" src="assets/img/game/world-fighters/germany__img_chara07.webp" alt="都达·穆勒"><div class="ws-chara-body"><div class="ws-chara-name">都达·穆勒</div><div class="ws-chara-ja">デューター・ミューラー</div><div class="ws-chara-cv">CV：増元拓也</div></div></div>
+</div>
+</div>
+</div>
+<div class="ws-catpanel" data-cat="俱乐部">
+<div class="ws-teamtabs">
+<button class="ws-teamtab ws-teamtab--active" data-team="sao-paulo">圣保罗</button>
+<button class="ws-teamtab" data-team="sao-paulo-youth">圣保罗青年队</button>
+<button class="ws-teamtab" data-team="la-boca-youth">拉博卡青年队</button>
+<button class="ws-teamtab" data-team="porto-alegre-youth">阿雷格里港青年队</button>
+<button class="ws-teamtab" data-team="rio-de-janeiro">里约</button>
+<button class="ws-teamtab" data-team="stuttgart-youth">斯图加特青年队</button>
+</div>
+<div class="ws-teampanel ws-teampanel--active" data-team="sao-paulo">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#f4f4f4" loading="lazy" src="assets/img/game/world-fighters/sao-paulo__thumb.webp" alt="圣保罗 团体半身立绘">
+<h2>圣保罗</h2>
+<div class="ws-teamja">サンパウロ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#f4f4f4"><img loading="lazy" src="assets/img/game/world-fighters/sao-paulo__img_chara01.webp" alt="大空翼"><div class="ws-chara-body"><div class="ws-chara-name">大空翼</div><div class="ws-chara-ja">大空 翼</div><div class="ws-chara-cv">CV：三瓶由布子</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="sao-paulo-youth">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#f4f4f4" loading="lazy" src="assets/img/game/world-fighters/sao-paulo-youth__thumb.webp" alt="圣保罗青年队 团体半身立绘">
+<h2>圣保罗青年队</h2>
+<div class="ws-teamja">サンパウロユース</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#f4f4f4"><img loading="lazy" src="assets/img/game/world-fighters/sao-paulo-youth__img_chara01.webp" alt="贝佩"><div class="ws-chara-body"><div class="ws-chara-name">贝佩</div><div class="ws-chara-ja">ペペ</div><div class="ws-chara-cv">CV：下野紘</div></div></div>
+<div class="ws-chara" style="--teamc:#f4f4f4"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/sao-paulo-youth__img_chara02.webp" alt="卢卡斯"><div class="ws-chara-body"><div class="ws-chara-name">卢卡斯</div><div class="ws-chara-ja">ルーカス</div><div class="ws-chara-cv">CV：小笠原仁</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="la-boca-youth">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#407ada" loading="lazy" src="assets/img/game/world-fighters/la-boca-youth__thumb.webp" alt="拉博卡青年队 团体半身立绘">
+<h2>拉博卡青年队</h2>
+<div class="ws-teamja">ラボカユース</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#407ada"><img loading="lazy" src="assets/img/game/world-fighters/la-boca-youth__img_chara01.webp" alt="胡安·迪亚斯"><div class="ws-chara-body"><div class="ws-chara-name">胡安·迪亚斯</div><div class="ws-chara-ja">ファン・ディアス</div><div class="ws-chara-cv">CV：松岡禎丞</div></div></div>
+<div class="ws-chara" style="--teamc:#407ada"><img loading="lazy" src="assets/img/game/world-fighters/la-boca-youth__img_chara02.webp" alt="阿兰·帕斯卡尔"><div class="ws-chara-body"><div class="ws-chara-name">阿兰·帕斯卡尔</div><div class="ws-chara-ja">アラン・パスカル</div><div class="ws-chara-cv">CV：山下大輝</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="porto-alegre-youth">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#4db8ff" loading="lazy" src="assets/img/game/world-fighters/porto-alegre-youth__thumb.webp" alt="阿雷格里港青年队 团体半身立绘">
+<h2>阿雷格里港青年队</h2>
+<div class="ws-teamja">ポルト・アレグレユース</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#4db8ff"><img loading="lazy" src="assets/img/game/world-fighters/porto-alegre-youth__img_chara01.webp" alt="萨利纳斯"><div class="ws-chara-body"><div class="ws-chara-name">萨利纳斯</div><div class="ws-chara-ja">サリナス</div><div class="ws-chara-cv">CV：大野智敬</div></div></div>
+<div class="ws-chara" style="--teamc:#4db8ff"><div class="ws-chara-badges"><div class="ws-badge ws-badge--maybe">疑似原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/porto-alegre-youth__img_chara02.webp" alt="维克托"><div class="ws-chara-body"><div class="ws-chara-name">维克托</div><div class="ws-chara-ja">ヴィクター</div><div class="ws-chara-cv">CV：こばたけまさふみ</div></div></div>
+<div class="ws-chara" style="--teamc:#4db8ff"><img loading="lazy" src="assets/img/game/world-fighters/porto-alegre-youth__img_chara03.webp" alt="卡萨格兰德"><div class="ws-chara-body"><div class="ws-chara-name">卡萨格兰德</div><div class="ws-chara-ja">カーザ・グランデ</div><div class="ws-chara-cv">CV：大泊貴揮</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="rio-de-janeiro">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#d94c4c" loading="lazy" src="assets/img/game/world-fighters/rio-de-janeiro__thumb.webp" alt="里约 团体半身立绘">
+<h2>里约</h2>
+<div class="ws-teamja">リオ</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#d94c4c"><img loading="lazy" src="assets/img/game/world-fighters/rio-de-janeiro__img_chara01.webp" alt="卡洛斯·桑塔纳"><div class="ws-chara-body"><div class="ws-chara-name">卡洛斯·桑塔纳</div><div class="ws-chara-ja">カルロス・サンターナ</div><div class="ws-chara-cv">CV：石川界人</div></div></div>
+<div class="ws-chara" style="--teamc:#d94c4c"><img loading="lazy" src="assets/img/game/world-fighters/rio-de-janeiro__img_chara02.webp" alt="卢西亚诺·雷欧"><div class="ws-chara-body"><div class="ws-chara-name">卢西亚诺·雷欧</div><div class="ws-chara-ja">ルシアーノ・レオ</div><div class="ws-chara-cv">CV：田丸篤志</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="stuttgart-youth">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#fc9b9b" loading="lazy" src="assets/img/game/world-fighters/stuttgart-youth__thumb.webp" alt="斯图加特青年队 团体半身立绘">
+<h2>斯图加特青年队</h2>
+<div class="ws-teamja">シュトゥットガルトユース</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#fc9b9b"><img loading="lazy" src="assets/img/game/world-fighters/stuttgart-youth__img_chara01.webp" alt="李龙云"><div class="ws-chara-body"><div class="ws-chara-name">李龙云</div><div class="ws-chara-ja">李 龍雲</div><div class="ws-chara-cv">CV：笠間淳</div></div></div>
+<div class="ws-chara" style="--teamc:#fc9b9b"><img loading="lazy" src="assets/img/game/world-fighters/stuttgart-youth__img_chara02.webp" alt="雷蒙德·钱德勒"><div class="ws-chara-body"><div class="ws-chara-name">雷蒙德·钱德勒</div><div class="ws-chara-ja">レイモンド・チャンドラー</div><div class="ws-chara-cv">CV：櫻井トオル</div></div></div>
+</div>
+</div>
+</div>
+<div class="ws-catpanel" data-cat="高校">
+<div class="ws-teamtabs">
+<button class="ws-teamtab ws-teamtab--active" data-team="nankatsu-high">南葛高校</button>
+<button class="ws-teamtab" data-team="kunimi-Institute">国见学院</button>
+<button class="ws-teamtab" data-team="akita-commercial">秋田商工</button>
+<button class="ws-teamtab" data-team="narugahama-academy">成滨学院</button>
+<button class="ws-teamtab" data-team="toho-academy">东邦学园</button>
+<button class="ws-teamtab" data-team="real-japan">真实日本7</button>
+</div>
+<div class="ws-teampanel ws-teampanel--active" data-team="nankatsu-high">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#bcdcff" loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__thumb.webp" alt="南葛高校 团体半身立绘">
+<h2>南葛高校</h2>
+<div class="ws-teamja">南葛高校</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara01.webp" alt="岬太郎"><div class="ws-chara-body"><div class="ws-chara-name">岬太郎</div><div class="ws-chara-ja">岬 太郎</div><div class="ws-chara-cv">CV：福原綾香</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara02.webp" alt="石崎了"><div class="ws-chara-body"><div class="ws-chara-name">石崎了</div><div class="ws-chara-ja">石崎 了</div><div class="ws-chara-cv">CV：田村睦心</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara03.webp" alt="新田瞬"><div class="ws-chara-body"><div class="ws-chara-name">新田瞬</div><div class="ws-chara-ja">新田 瞬</div><div class="ws-chara-cv">CV：上村祐翔</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara04.webp" alt="森崎有三"><div class="ws-chara-body"><div class="ws-chara-name">森崎有三</div><div class="ws-chara-ja">森崎 有三</div><div class="ws-chara-cv">CV：畠中祐</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara05.webp" alt="来生哲兵"><div class="ws-chara-body"><div class="ws-chara-name">来生哲兵</div><div class="ws-chara-ja">来生 哲兵</div><div class="ws-chara-cv">CV：酒井広大</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara06.webp" alt="泷一"><div class="ws-chara-body"><div class="ws-chara-name">泷一</div><div class="ws-chara-ja">滝 一</div><div class="ws-chara-cv">CV：吉野裕行</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara07.webp" alt="井泽守"><div class="ws-chara-body"><div class="ws-chara-name">井泽守</div><div class="ws-chara-ja">井沢 守</div><div class="ws-chara-cv">CV：岩中睦樹</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara08.webp" alt="岸田猛"><div class="ws-chara-body"><div class="ws-chara-name">岸田猛</div><div class="ws-chara-ja">岸田 猛</div><div class="ws-chara-cv">CV：小林大紀</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara09.webp" alt="浦边反次"><div class="ws-chara-body"><div class="ws-chara-name">浦边反次</div><div class="ws-chara-ja">浦辺 反次</div><div class="ws-chara-cv">CV：日野未歩</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara10.webp" alt="高杉真吾"><div class="ws-chara-body"><div class="ws-chara-name">高杉真吾</div><div class="ws-chara-ja">高杉 真吾</div><div class="ws-chara-cv">CV：木内太郎</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara11.webp" alt="中山政男"><div class="ws-chara-body"><div class="ws-chara-name">中山政男</div><div class="ws-chara-ja">中山 政男</div><div class="ws-chara-cv">CV：伊藤節生</div></div></div>
+<div class="ws-chara" style="--teamc:#bcdcff"><img loading="lazy" src="assets/img/game/world-fighters/nankatsu-high__img_chara12.webp" alt="西尾浩司"><div class="ws-chara-body"><div class="ws-chara-name">西尾浩司</div><div class="ws-chara-ja">西尾 浩司</div><div class="ws-chara-cv">CV：米内佑希</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="kunimi-Institute">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#b0c1ff" loading="lazy" src="assets/img/game/world-fighters/kunimi-Institute__thumb.webp" alt="国见学院 团体半身立绘">
+<h2>国见学院</h2>
+<div class="ws-teamja">国見学院</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#b0c1ff"><img loading="lazy" src="assets/img/game/world-fighters/kunimi-Institute__img_chara01.webp" alt="次藤洋"><div class="ws-chara-body"><div class="ws-chara-name">次藤洋</div><div class="ws-chara-ja">次藤 洋</div><div class="ws-chara-cv">CV：平川大輔</div></div></div>
+<div class="ws-chara" style="--teamc:#b0c1ff"><img loading="lazy" src="assets/img/game/world-fighters/kunimi-Institute__img_chara02.webp" alt="佐野满"><div class="ws-chara-body"><div class="ws-chara-name">佐野满</div><div class="ws-chara-ja">佐野 満</div><div class="ws-chara-cv">CV：吉野裕行</div></div></div>
+<div class="ws-chara" style="--teamc:#b0c1ff"><img loading="lazy" src="assets/img/game/world-fighters/kunimi-Institute__img_chara03.webp" alt="一条勇"><div class="ws-chara-body"><div class="ws-chara-name">一条勇</div><div class="ws-chara-ja">一条 勇</div><div class="ws-chara-cv">CV：木内太郎</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="akita-commercial">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#6eccae" loading="lazy" src="assets/img/game/world-fighters/akita-commercial__thumb.webp" alt="秋田商工 团体半身立绘">
+<h2>秋田商工</h2>
+<div class="ws-teamja">秋田商工</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#6eccae"><img loading="lazy" src="assets/img/game/world-fighters/akita-commercial__img_chara01.webp" alt="立花政夫"><div class="ws-chara-body"><div class="ws-chara-name">立花政夫</div><div class="ws-chara-ja">立花 政夫</div><div class="ws-chara-cv">CV：竹内絢子</div></div></div>
+<div class="ws-chara" style="--teamc:#6eccae"><img loading="lazy" src="assets/img/game/world-fighters/akita-commercial__img_chara02.webp" alt="立花和夫"><div class="ws-chara-body"><div class="ws-chara-name">立花和夫</div><div class="ws-chara-ja">立花 和夫</div><div class="ws-chara-cv">CV：渡辺優里奈</div></div></div>
+<div class="ws-chara" style="--teamc:#6eccae"><div class="ws-chara-badges"><div class="ws-badge ws-badge--orig">原创</div></div><img loading="lazy" src="assets/img/game/world-fighters/akita-commercial__img_chara03.webp" alt="凯吉诺"><div class="ws-chara-body"><div class="ws-chara-name">凯吉诺</div><div class="ws-chara-ja">ケイジーニョ</div><div class="ws-chara-cv">CV：KENN</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="narugahama-academy">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#97ebff" loading="lazy" src="assets/img/game/world-fighters/narugahama-academy__thumb.webp" alt="成滨学院 团体半身立绘">
+<h2>成滨学院</h2>
+<div class="ws-teamja">成ヶ浜学院</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#97ebff"><img loading="lazy" src="assets/img/game/world-fighters/narugahama-academy__img_chara01.webp" alt="火野龙马"><div class="ws-chara-body"><div class="ws-chara-name">火野龙马</div><div class="ws-chara-ja">火野 竜馬</div><div class="ws-chara-cv">CV：古田一紀</div></div></div>
+<div class="ws-chara" style="--teamc:#97ebff"><img loading="lazy" src="assets/img/game/world-fighters/narugahama-academy__img_chara02.webp" alt="佐佐木健太"><div class="ws-chara-body"><div class="ws-chara-name">佐佐木健太</div><div class="ws-chara-ja">佐々木 健太</div><div class="ws-chara-cv">CV：西山宏太朗</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="toho-academy">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#b1b1b1" loading="lazy" src="assets/img/game/world-fighters/toho-academy__thumb.webp" alt="东邦学园 团体半身立绘">
+<h2>东邦学园</h2>
+<div class="ws-teamja">東邦学園</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#b1b1b1"><img loading="lazy" src="assets/img/game/world-fighters/toho-academy__img_chara01.webp" alt="日向小次郎"><div class="ws-chara-body"><div class="ws-chara-name">日向小次郎</div><div class="ws-chara-ja">日向 小次郎</div><div class="ws-chara-cv">CV：佐藤拓也</div></div></div>
+<div class="ws-chara" style="--teamc:#b1b1b1"><img loading="lazy" src="assets/img/game/world-fighters/toho-academy__img_chara02.webp" alt="若岛津健"><div class="ws-chara-body"><div class="ws-chara-name">若岛津健</div><div class="ws-chara-ja">若島津 健</div><div class="ws-chara-cv">CV：梅原裕一郎</div></div></div>
+<div class="ws-chara" style="--teamc:#b1b1b1"><img loading="lazy" src="assets/img/game/world-fighters/toho-academy__img_chara03.webp" alt="反町一树"><div class="ws-chara-body"><div class="ws-chara-name">反町一树</div><div class="ws-chara-ja">反町 一樹</div><div class="ws-chara-cv">CV：村田太志</div></div></div>
+<div class="ws-chara" style="--teamc:#b1b1b1"><img loading="lazy" src="assets/img/game/world-fighters/toho-academy__img_chara04.webp" alt="泽田武志"><div class="ws-chara-body"><div class="ws-chara-name">泽田武志</div><div class="ws-chara-ja">沢田 タケシ</div><div class="ws-chara-cv">CV：潘めぐみ</div></div></div>
+</div>
+</div>
+<div class="ws-teampanel" data-team="real-japan">
+<div class="ws-teamhead">
+<img class="ws-teamthumb" style="--teamc:#97b4ff" loading="lazy" src="assets/img/game/world-fighters/real-japan__thumb.webp" alt="真实日本7 团体半身立绘">
+<h2>真实日本7</h2>
+<div class="ws-teamja">リアル・ジャパン・7</div>
+</div>
+<div class="ws-charagrid">
+<div class="ws-chara" style="--teamc:#97b4ff"><img loading="lazy" src="assets/img/game/world-fighters/real-japan__img_chara01.webp" alt="火野龙马"><div class="ws-chara-body"><div class="ws-chara-name">火野龙马</div><div class="ws-chara-ja">火野 竜馬</div><div class="ws-chara-cv">CV：古田一紀</div></div></div>
+<div class="ws-chara" style="--teamc:#97b4ff"><img loading="lazy" src="assets/img/game/world-fighters/real-japan__img_chara05.webp" alt="弓仓宣之"><div class="ws-chara-body"><div class="ws-chara-name">弓仓宣之</div><div class="ws-chara-ja">弓倉 宣之</div><div class="ws-chara-cv">CV：柳晃平</div></div></div>
+<div class="ws-chara" style="--teamc:#97b4ff"><img loading="lazy" src="assets/img/game/world-fighters/real-japan__img_chara02.webp" alt="浦边反次"><div class="ws-chara-body"><div class="ws-chara-name">浦边反次</div><div class="ws-chara-ja">浦辺 反次</div><div class="ws-chara-cv">CV：日野未歩</div></div></div>
+<div class="ws-chara" style="--teamc:#97b4ff"><img loading="lazy" src="assets/img/game/world-fighters/real-japan__img_chara03.webp" alt="冈野俊也"><div class="ws-chara-body"><div class="ws-chara-name">冈野俊也</div><div class="ws-chara-ja">岡野 俊也</div><div class="ws-chara-cv">CV：德石勝大</div></div></div>
+<div class="ws-chara" style="--teamc:#97b4ff"><img loading="lazy" src="assets/img/game/world-fighters/real-japan__img_chara04.webp" alt="吉川晃司"><div class="ws-chara-body"><div class="ws-chara-name">吉川晃司</div><div class="ws-chara-ja">吉川 晃司</div><div class="ws-chara-cv">CV：石狩勇気</div></div></div>
+<div class="ws-chara" style="--teamc:#97b4ff"><img loading="lazy" src="assets/img/game/world-fighters/real-japan__img_chara06.webp" alt="坂木优二"><div class="ws-chara-body"><div class="ws-chara-name">坂木优二</div><div class="ws-chara-ja">坂木 優二</div><div class="ws-chara-cv">CV：関幸司</div></div></div>
+<div class="ws-chara" style="--teamc:#97b4ff"><img loading="lazy" src="assets/img/game/world-fighters/real-japan__img_chara07.webp" alt="米歇尔·山田"><div class="ws-chara-body"><div class="ws-chara-name">米歇尔·山田</div><div class="ws-chara-ja">ミシェル 山田</div><div class="ws-chara-cv">CV：木田祐</div></div></div>
+</div>
+</div>
+</div>
+  </div></section>
+</main>
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">队长小翼 WORLD<div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div></div>
+    <div><h4>内容分类</h4><ul>
+      <li><a href="character.html">登场角色</a></li>
+      <li><a href="comics.html">漫画作品</a></li>
+      <li><a href="anime.html">动画作品</a></li>
+      <li><a href="games.html">游戏作品</a></li>
+      <li><a href="news.html">新闻动态</a></li>
+      <li><a href="special-column.html">特别专栏</a></li>
+    </ul></div>
+    <div><h4>关于</h4><ul>
+      <li><a href="index.html#about">作品简介</a></li>
+      <li><a href="index.html#news">最新动态</a></li>
+      <li><a href="45th.html">45周年祭</a></li>
+    </ul></div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘与团体半身立绘版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，来源：cap2wf.bn-ent.net（キャプテン翼２ WORLD FIGHTERS 日本官网角色页）
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.ws-cat').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.ws-cat').forEach(function(x){x.classList.remove('ws-cat--active');});
+    b.classList.add('ws-cat--active');
+    var cat=b.dataset.cat;
+    document.querySelectorAll('.ws-catpanel').forEach(function(p){
+      p.classList.toggle('ws-catpanel--active', p.dataset.cat===cat);
+    });
+    var panel=document.querySelector('.ws-catpanel[data-cat="'+cat+'"]');
+    var first=panel.querySelector('.ws-teamtab');
+    if(first) first.click();
+  });
+});
+document.querySelectorAll('.ws-teamtab').forEach(function(b){
+  b.addEventListener('click', function(){
+    var panel=b.closest('.ws-catpanel');
+    panel.querySelectorAll('.ws-teamtab').forEach(function(x){x.classList.remove('ws-teamtab--active');});
+    b.classList.add('ws-teamtab--active');
+    var team=b.dataset.team;
+    panel.querySelectorAll('.ws-teampanel').forEach(function(p){
+      p.classList.toggle('ws-teampanel--active', p.dataset.team===team);
+    });
+  });
+});
+var initCat=document.querySelector('.ws-cat--active');
+if(initCat) initCat.click();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

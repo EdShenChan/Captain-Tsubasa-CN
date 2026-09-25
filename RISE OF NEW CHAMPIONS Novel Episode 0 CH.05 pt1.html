@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德国青少年篇·前篇 · 《队长小翼：新秀崛起》前日谭WEB小说</title>
+<meta name="description" content="《队长小翼：新秀崛起》前日谭WEB小说《德国青少年篇·前篇》汉化译文，含官方角色立绘。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/column.css">
+<style>
+
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开） */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  .novel-hero-logo{display:block;margin:0 auto 18px;width:min(520px,86vw);height:auto;}
+  .novel-portraits{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px auto 36px;max-width:940px;}
+  .novel-portraits figure{margin:0;flex:1 1 260px;max-width:330px;}
+  .novel-portraits img{width:100%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);background:#0c1230;display:block;}
+  .novel-portraits figcaption{font-size:12px;color:#999;text-align:center;margin-top:6px;letter-spacing:1px;}
+  .novel-body{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:40px 44px;}
+  .novel-body p{font-size:15px;line-height:2;color:#222;margin-bottom:18px;}
+  .novel-body p:last-child{margin-bottom:0;}
+  .novel-back{display:block;text-align:center;margin:34px auto 0;}
+  .novel-back .btn{font-size:14px;}
+  /* 章末导航：上一篇 / 返回目录 / 下一篇 */
+  .novel-nav{display:flex;align-items:center;justify-content:space-between;
+    gap:14px;max-width:820px;margin:34px auto 0;}
+  .novel-nav-side{flex:1 1 0;min-width:0;}
+  .novel-nav-side--right{text-align:right;}
+  .novel-nav .btn{font-size:14px;}
+  @media (max-width:640px){
+    .novel-body{padding:26px 20px;}
+    .novel-body p{font-size:14.5px;line-height:1.95;}
+    .novel-portraits figure{flex-basis:100%;max-width:420px;}
+    .novel-nav{flex-direction:column;align-items:stretch;}
+    .novel-nav-side{text-align:center;}
+    .novel-nav-side--right{text-align:center;}
+    .novel-nav .btn{width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+<main>
+  <section class="page-hero">
+    <img class="novel-hero-logo" src="assets/img/game/rise-of-new-champions/rise_of_new_champions_logo.png" alt="キャプテン翼 RISE OF NEW CHAMPIONS" loading="eager">
+    <span class="kicker">PRE-STORY WEB NOVEL</span>
+    <h1>《队长小翼：新秀崛起》<span class="en">前日谭 · 德国青少年篇·前篇</span></h1>
+    <p class="lead">国内大赛决赛，汉堡的“皇帝”施奈德对上德累斯顿的“妖精”海涅；海涅以浮球射门破若林，却也读破了施奈德的火焰射门，誓言打回——上半场战成平手。</p>
+  </section>
+  <section class="section"><div class="container">
+    <div class="novel-portraits"><figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel05_01.png" alt="德国青少年篇·前篇 角色立绘 1"><figcaption>德国青少年篇·前篇 · 立绘 1</figcaption></figure>
+<figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel05_02.png" alt="德国青少年篇·前篇 角色立绘 2"><figcaption>德国青少年篇·前篇 · 立绘 2</figcaption></figure></div>
+    <article class="novel-body"><p>德国国内俱乐部青少年大赛决赛——
+汉堡VS德累斯顿。</p>
+<p>比赛球场，赛前便挤满观众。
+观众目标是卡尔·海因茨·施奈德。
+汉堡的王牌前锋。
+以一击必杀远程射门“火焰射门”为武器，
+众人想亲眼看他踢球，从全德赶来。</p>
+<p>“今天也期待‘德累斯顿妖精’活跃哦！
+加油！”
+德累斯顿MF科尼利乌斯·海涅，
+以讨喜笑容向看台挥手。
+于是从各地赶来的狂热球迷，
+尤其女孩们中，爆出巨大欢呼。
+场边汉堡选手们苦笑。</p>
+<p>“那海涅，挺受女孩欢迎”
+“好像是……但不及谢斯特”</p>
+<p>赛前，汉堡选手们有余裕。
+理所当然。至今施奈德每场帽子戏法，
+若林每场零封，压倒性晋级。</p>
+<p>“看啊。德累斯顿的练习，
+像来玩似的”
+“能打到决赛就满足了吧”
+“就是说。
+从无名状态飘飘然打到决赛，
+能和我们战”</p>
+<p>这时队长施奈德对选手们说话。
+“最好别小看他们”
+若林附和。“我也这么想。
+准决赛赢布雷门的实力，不能侮”
+若林视线落海涅。“尤其那海涅要注意。
+比我们小一岁，
+却在与德国头号MF谢斯特的中场之争中胜出的男人”</p>
+<p>听了若林，MF卡尔茨笑说。“也就是说，轮到我出场了”
+练习结束的德累斯顿选手聚到长椅。
+DF绍尔对海涅说。“这时候还向女孩搭话，真从容”
+“哈哈，这是明星的义务”
+海涅爽快答。
+“而且大家有女孩欢呼更有干劲吧？”
+德累斯顿十一人苦笑不否认。
+“不过，不紧张？”
+“不紧张。不如说期待”
+赛前仪式后，两队队长施奈德与海涅中心圈握手。
+“今天多关照，好比赛”
+施奈德问候，海涅挑衅笑。“今天的观众走运。
+能目睹我这颗新星诞生”
+“……”
+“所以，今天的比赛我赢，
+证明我是德国头号选手，
+多指教！”
+海涅的话，施奈德一顿轻笑。“呼……德国头号”
+“……那从容，马上让你消失”
+海涅一瞬不悦，立刻换挑衅笑瞪施奈德。
+掷币结果，德累斯顿开球。中心圈海涅们拿球，观众静下。全场屏息，主裁哨响。</p>
+<p>开球后，拿球的海涅冲出中心圈。
+“上啊！德国头号的位子，是德累斯顿和我的！”
+“哦，有精神的家伙”
+卡尔茨笑。施奈德直冲海涅。“施奈德？”
+海涅也冲来的施奈德，不敌笑。
+“正面对决……正合我意！”
+海涅与施奈德——
+互不减速逼近，右脚相撞。
+刹那，骇人冲击袭二人。
+“什么……！？”
+“这是……！！”
+海涅被撞飞，
+体格占优的施奈德也失衡跪地。
+都没保持住的球，
+飞出边线外。
+“哦！！”
+“骗人吧？”
+原以为施奈德必胜的观众与汉堡选手哗然。
+“哎呀哎呀。好麻”
+坐地的海涅揉右脚。
+却立刻强气望施奈德。“不愧施奈德先生。对手就该这样！”
+“……”
+对海涅挑衅不发一语离去的施奈德。
+卡尔茨见，牙签微动。（……这家伙，可能有点苦战）</p>
+<p>比赛以德累斯顿掷界外球重启。拿球的海涅向队友开朗喊。“重新来，开球！”
+“哦！！”
+德累斯顿十一人活跃，呼应他们的应援推德累斯顿。
+“来啊，我的盘带秀开始！”
+攻来的海涅，汉堡选手抢球。“你这种货色！”
+锐铲，海涅花步闪过。“什、什么！”
+“哈哈哈，那种程度免谈”
+“别小看！”
+嘲笑的海涅，汉堡选手接连扑。
+海涅轻巧突破防守。
+“那样我可拦不住”
+“可恶，别小看！”
+上头的汉堡选手涌海涅。海涅引他们足够，传自由队友。“什么！”
+“不止盘带！”
+跑过汉堡选手旁的海涅，
+立刻接回传，冲右路。“兰克先生！”
+海涅传中。德累斯顿长身FW兰克跳起头球。
+“自由让我顶也行。反击！”
+若林指示，信他的汉堡选手冲德累斯顿阵。这时——
+“兰克先生，这边！”
+传中的海涅竟冲左路猛跑。
+前冲的汉堡选手反应慢半拍。“拜托了！”
+兰克空中扭身，头球送海涅。
+“糟！”
+若林重整。
+禁区左角外——
+接球的海涅抡右腿。
+“拿到了！”
+海涅射门直线，
+如他所想最佳路线，
+飞向汉堡门右端。
+但若林读穿路线扑出。
+“禁区外射门，对我无效！”
+若林伸臂身，
+球破门线前接住。
+“那球不进……
+这就是若林传说”
+海涅微悔嘟囔。“嘛，算了。种子播下了”
+海涅耸肩回阵。
+“抱歉大家”
+若林谢读偏，队友鼓励。“没事！好扑，若林！”
+若林点头，加强对海涅警戒。（难怪赢布雷门。那家伙，不简单）</p>
+<p>海涅这射门，德累斯顿一气夺节奏。
+德累斯顿以多人密防施奈德、防其传球，
+把球给海涅攻。汉堡选手被动防守。
+（单看实力，汉堡确优。
+却如此苦战，因中场被海涅完全压制）
+最后方看选手动的若林，
+分析德累斯顿与海涅。
+（确凿技术与引出队友的能力，
+还有战术眼……。
+像崛与三杉特质合一的选手？）
+若林以日本时代记忆评海涅。</p>
+<p>边分析边指示，
+若林挡在德累斯顿攻击前。
+所有射门皆接，
+每次完美终结德累斯顿进攻。
+“有我在，不容进球。
+大家冷静踢”
+若林鼓舞队友，思索。
+（反过来说，无海涅中场便是我们的。那么——）
+上半场补时，汉堡阵内右深，海涅传中。“这回怎样”
+这时兰克完全自由（DF标记松）。
+“吃吧，若林！”
+兰克完美时机，强射门左角。
+若林却读穿。“这里！”
+兰克射前若林已跑，
+不扑接球门前。
+“什么！？”
+比赛大动。
+“就是，现在！”
+若林速传前卡尔茨。“卡尔茨，拜托！”
+“这、这样啊！”
+海涅悟。
+故意引自己深攻，诱反击。
+（我竟……
+所以汉堡选手才这么少！）
+“终于轮到我”
+接若林球的卡尔茨，速传攻。
+德累斯顿人数足，无海涅中场跟不上。
+德累斯顿连携崩时，卡尔茨接球。
+“这里！”
+卡尔茨盘带，瞬过德累斯顿MF二人。
+“别让球给施奈德先生！”
+“明白！！”
+听海涅的绍尔扑施奈德。
+卡尔茨见，笑。
+施奈德被盯，必有人自由。那卡尔茨目的。
+“去，克劳斯！”
+绍尔被引开，自由的FW克劳斯，
+接卡尔茨绝妙传。“糟！”
+完全被骗的海涅失望。
+“我也是汉堡FW！”
+克劳斯全力射门，
+德累斯顿GK卢茨扑。
+“不让你进球！！”
+卢茨指尖触球。
+偏轨球撞门柱，
+弹回场。
+“还没！”
+施奈德扑弹球。
+失衡卢茨也咬住。
+“不让！”
+施奈德脚及球前，
+卢茨长臂捞走。
+“哦……！”
+汉堡粉失望，德累斯顿粉安心。
+“可！”
+施奈德悔哼。
+因多一德累斯顿标记，
+起跑慢半步。</p>
+<p>攻防暂歇，球场气氛缓。
+最先察的海涅不放过。
+“卢茨先生，现在！球！”
+“哦、哦！！”
+海涅声，卢茨速起传海涅。
+“来，反击！别输卢茨先生斗志！！”
+“哦！”
+海涅呼，德累斯顿十一人锐动。
+看台德累斯顿应援大推。
+海涅前，卡尔茨挡。
+海涅正面冲。“胜负，卡尔茨先生！”
+“好胆。返杀你”
+“——才怪”
+海涅在卡尔茨眼前，
+反转横拨传队友，
+一回身从卡尔茨旁溜过。
+“什么！？”
+“妖精随性”
+接回传的海涅甩开卡尔茨，
+左路冲入禁区。
+若林对海涅戒备。（海涅位置与首射几乎同。
+必自射！）
+若林确信，海涅抬腿。
+“去啊啊啊！这球！”
+海涅射门同首射轨迹，
+绝妙控制飞门右端。
+普通GK必进的完美路线，
+若林读穿弹道路线，有信心挡。
+（好射门，但够得到！）
+若林确信跳伸手——
+瞬间。
+（这旋转……和刚才不同！？）
+觉察同时，
+直线射门忽浮起。
+“可恶！”
+若林拼命伸臂，
+手已伸尽，上无可动。
+海涅射门，
+擦若林掌心入网。
+“进球！”
+裁判哨响，
+欢呼叹息包球场。
+海涅全身受欢呼，场上狂奔。
+“看到了吗大家！！这才是‘德累斯顿妖精’！！”
+队友扑覆海涅。“好射门，海涅！”
+“对汉堡先制！”
+“哈哈哈！对我当然！”
+满面笑的海涅，
+向看台大欢声、尤其黄色欢声挥手。
+然后正色对队友。“下次必是那个。
+照练习来！”
+重开前中心圈。
+脚边球的卡尔茨，施奈德静声。“卡尔茨，快给球”
+望德累斯顿门的施奈德。
+眼燃斗志，卡尔茨点头。“时间上，还剩一攻”
+哨响同时卡尔茨轻踢。施奈德抡右腿。
+观众哗然。“火焰射门！！”
+施奈德射，
+爆音般轰响，
+弹丸飞德累斯顿门。
+但。
+“什么！？”
+火焰射门轨道上有德累斯顿DF。
+施奈德射前他们已扑入。
+“呜啊！！”
+DF被火焰射门弹飞。
+舍身挡，
+轨道略偏，
+擦门柱飞场外出。
+观众哗然叹息。
+“果然，料到你会来”
+海涅走近施奈德。“设想过，大家练过。
+哎呀，成功”
+得意的海涅，施奈德无言背去。
+随即主裁哨响，上半场终。</p>
+<p>后半展开前，德累斯顿控更衣室明亮。“压施奈德进球，上半完美”
+“都靠海涅”
+“哪有哪有，别那么说。
+多夸点”
+“你太得意了！”
+德累斯顿十一人笑。
+“话说回来，开赛那一骑打惊”
+“真没想到海涅能和施奈德平分”
+“啊，过分。不信我实力？”
+“可海涅。
+让众人认你超施奈德，
+只那球还弱”
+“就是说啊。不破若林传说不够”
+“是啊。
+可上半被挡，
+嗯，没法子”
+海涅小哼思索，
+忽频点头。
+“行。做给你们看！
+我的足球没不可能！”
+“哦，信你”
+“交给我！”
+海涅上机笑。“就这样赢，
+德累斯顿街大办凯旋游行！”
+“哦！！”
+“我们为今天拼到现在！”
+德累斯顿十一人，下半更鼓劲。
+汉堡选手意消沉。“我们什么都没做成”
+“还被进球……”
+“实力该我们优，为何……”
+“大家，别灰心早”
+施奈德。“我们到决赛全胜。
+可这就是足球。
+不会总如愿”
+施奈德不激。“不如说对自己说。
+“但，我们不会就此结束。
+对吧”
+“施奈德……”
+“下半必翻盘。
+证明汉堡头号”
+“哦！！”
+队长激励，汉堡选手复苏。
+施奈德近卡尔茨。“海涅怎样”
+“那洞察与技术，了得。
+谢斯特被克，懂”
+卡尔茨认，施奈德提。“下半，我稍回撤？”
+“嘿，别施奈德”
+卡尔茨嘴角笑。
+“我也有骨气。下半现真本事”
+若林附。“那点是我轻心。
+但同样招不再吃。下半必零封！”
+下半开始。
+开球后，
+比上半更大更响欢呼。
+好比赛，尤德累斯顿欢呼大。
+“大家期待巨人杀手。
+上啊！”
+“哦，猛攻！”
+海涅呼，德累斯顿十一人齐冲。
+下半承上半势。
+但上半忙防守的汉堡MF阻止。“他们强升强度扑海涅。
+“不让你称心！”
+“别小看我们！”
+海涅盘带拼命跟，
+过也追。
+甚至黄牌级狠铲，
+屡猎海涅脚。
+“上半明了。
+德累斯顿强在海涅。即——
+封海涅，地力优的我们占优”
+卡尔茨言中。
+自由海涅，汉堡中场活。
+但海涅不输。“没事海涅？”
+队友忧，海涅笑。“没事！
+被削是王牌宿命，
+被削再起，是明星义务！”
+海涅鼓舞，德累斯顿不怯战，
+海涅多射。
+“吃吧，若林！”
+若林铁壁挡浮射。
+“抱歉，誓不再丢一球”
+汉堡强中场拿球，
+比赛渐汉堡节奏。
+“怎样海涅。
+这样下去我们进球是时间问题”
+卡尔茨挑衅，海涅鼻笑。“行。你们招我读到了”
+淡淡说。“而‘那时’，
+正是我证德国头号！”
+下半10分。“上半的债还！”
+拿球的卡尔茨，
+以技术简过德累斯顿一人。
+追的卡尔茨，
+海涅读传球路线。
+（这次必读卡尔茨传）
+卡尔茨引DF切进，
+巧控球。
+前冲施奈德，三人密防。
+（不会同招……那——）
+卡尔茨抬腿。“去！亚拉！”
+德累斯顿DF扑FW亚拉。
+卡尔茨脚空振。
+“诶？”
+全场目集卡尔茨——次瞬。
+“那里！”
+卡尔茨前送脚猛拉，
+鞋底踢球向后——
+德累斯顿阵。
+跑向的影——
+德累斯顿DF疏忽施奈德的一瞬，
+施奈德脱防。
+“拜托，施奈德！”
+施奈德与卡尔茨，以心传心骗招。
+但有人读穿。
+海涅。
+“想这招！”
+“什……我这被读！？”
+施奈德海涅球德累斯顿门汉堡门直线。
+海涅等这位置。
+（打回德国头号施奈德射门！
+禁区外进球破若林传说！）
+这是海涅上半想出。
+火焰射门时机威力已看一次。
+（对方反转打。我冲入势可用。
+这次不再输！）
+施奈德接球转向德累斯顿门。
+同时抬腿。
+“火焰！！”
+施奈德叫，球轰鸣发射。（明星必在盛况诞生！！）
+火球射门，
+冲入海涅右脚劈下。
+“德国头号是我！！”
+——续后篇</p></article>
+    <div class="novel-nav"><div class="novel-nav-side"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.04.html" title="上一篇：意大利青少年篇"><span class="btn btn--ghost">← 上一篇</span></a></div><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200.html"><span class="btn btn--ghost">返回目录</span></a><div class="novel-nav-side novel-nav-side--right"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.05%20pt2.html" title="下一篇：德国青少年篇·后篇"><span class="btn btn--ghost">下一篇 →</span></a></div></div>
+  </div></section>
+</main>
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">队长小翼 WORLD<div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div></div>
+    <div><h4>内容分类</h4><ul>
+      <li><a href="character.html">登场角色</a></li>
+      <li><a href="comics.html">漫画作品</a></li>
+      <li><a href="anime.html">动画作品</a></li>
+      <li><a href="games.html">游戏作品</a></li>
+      <li><a href="news.html">新闻动态</a></li>
+      <li><a href="special-column.html">特别专栏</a></li>
+    </ul></div>
+    <div><h4>关于</h4><ul>
+      <li><a href="index.html#about">作品简介</a></li>
+      <li><a href="index.html#news">最新动态</a></li>
+      <li><a href="45th.html">45周年祭</a></li>
+    </ul></div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、场景图与官方简介版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，来源：captaintsubasa-csgame.bn-ent.net（日本区角色页 / 前日谭WEB小说）
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -3,7 +3,16 @@
   'use strict';
 
   var data = window.CHARA_DATA;
-  var IMG_BASE = 'assets/img/character/chara/';
+  // 角色立绘按「所属漫画作品」分目录存放（见 图片素材出处对照表.md）
+  var SERIES_IMG_PATH = {
+    1: 'assets/img/manga/captain-tsubasa/',
+    2: 'assets/img/manga/world-youth/',
+    3: 'assets/img/manga/road-to-2002/',
+    4: 'assets/img/manga/golden-23/',
+    5: 'assets/img/manga/in-calcio/',
+    6: 'assets/img/manga/en-la-liga/',
+    7: 'assets/img/manga/rising-sun/'
+  };
 
   var tabsEl = document.getElementById('seriesTabs');
   var headEl = document.getElementById('seriesHead');
@@ -76,8 +85,9 @@
 
   // 角色图片路径（优先使用 img 字段，兼容旧 code 映射）
   function imgSrc(c) {
-    if (c.img) return IMG_BASE + c.img;
-    return IMG_BASE + 'chara_' + c.code + '.webp';
+    var base = SERIES_IMG_PATH[c.series] || SERIES_IMG_PATH[1];
+    if (c.img) return base + c.img;
+    return base + 'chara_' + c.code + '.webp';
   }
 
   // 渲染角色网格

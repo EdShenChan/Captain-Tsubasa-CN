@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《队长小翼：新秀崛起》登场角色 · 队长小翼 WORLD</title>
+<meta name="description" content="《队长小翼：新秀崛起》（RISE OF NEW CHAMPIONS）游戏角色资料：中学生篇 / 世界青少年篇 / 非球员角色，含官方立绘与简介。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/character.css">
+<style>
+  /* 一级标签：沿用角色页 .tabs，但只显示文字（无作品 LOGO） */
+  .rcs-tabs .tab { min-width: 132px; }
+  .rcs-tabs .tab-name { font-size: 14px; }
+
+  /* 二级标签：球队 / 代表队（含官方队徽） */
+  .team-tabs {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-bottom: 36px;
+  }
+  .team-tab {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--line); background: #fff;
+    color: var(--ink); cursor: pointer;
+    font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    letter-spacing: .5px; transition: all .2s;
+  }
+  .team-tab:hover { border-color: var(--brand); color: var(--brand); }
+  .team-tab img { height: 26px; width: auto; object-fit: contain; }
+  .team-tab--active {
+    background: var(--ink); border-color: var(--ink); color: #fff;
+  }
+  .team-tab--active:hover { color: #fff; }
+
+  /* 队伍说明：LOGO 在左（等比缩放至高度 100px），右侧为队名 + 日文名 + 简介 */
+  .team-head {
+    max-width: 820px; margin: 0 auto 40px;
+  }
+  .team-head-top {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 24px; text-align: left;
+  }
+  .team-head-logo {
+    height: 100px; width: auto; flex: none; margin: 0;
+  }
+  .team-head-text { text-align: left; min-width: 0; }
+  .team-head-title {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(24px, 4vw, 34px); letter-spacing: -1px; margin: 0 0 4px;
+  }
+  .team-head-ja { font-size: 12px; letter-spacing: 1px; color: var(--brand); margin-bottom: 10px; }
+  .team-head-desc {
+    font-size: 14px; line-height: 1.9; color: #555; white-space: pre-line;
+  }
+  .team-head .self-note {
+    display: inline-block; margin-top: 10px; font-size: 11.5px;
+    color: var(--muted); border: 1px dashed var(--line); padding: 4px 10px;
+  }
+
+  /* 角色卡：日文名 + 自译角标 */
+  .chara-card-ja { font-size: 11px; letter-spacing: 1px; color: var(--brand); margin-bottom: 4px; }
+  /* 角色卡角标：原创（蓝）/ 疑似原创 → DLC（橙）/ 自译待校，左上角纵向堆叠 */
+  .chara-card-orig {
+    font-size: 10px; font-weight: 900; letter-spacing: 2px;
+    color: #fff; background: #2f6fed;
+    padding: 3px 8px 3px 10px; border-radius: 2px;
+  }
+  .chara-card-maybe {
+    font-size: 10px; font-weight: 700; letter-spacing: .5px;
+    background: rgba(255,255,255,.94); color: #2f6fed;
+    border: 1px solid #9db8f5; padding: 3px 7px; border-radius: 2px;
+  }
+  .chara-card-badges {
+    position: absolute; left: 12px; top: 12px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+    z-index: 1;
+  }
+  .chara-card-dlc {
+    font-size: 10px; font-weight: 900; letter-spacing: 2px;
+    color: #fff; background: #f28c1b;
+    padding: 3px 8px 3px 10px; border-radius: 2px;
+  }
+  .chara-card-self {
+    font-size: 10px; letter-spacing: .5px;
+    background: rgba(255,255,255,.92); color: #b06a00;
+    border: 1px solid #e0b070; padding: 3px 7px;
+  }
+
+  /* 弹窗 */
+  .modal-note {
+    margin-top: 14px; font-size: 12px; color: #b06a00;
+    background: #fff8ec; border: 1px dashed #e0b070; padding: 8px 12px;
+  }
+  .modal-ja { font-size: 13px; letter-spacing: 1px; color: #888; margin-bottom: 14px; }
+
+  /* 页头游戏标题 LOGO */
+  .rcs-hero-logo {
+    display: block; margin: 0 auto 20px;
+    width: min(520px, 86vw); height: auto;
+  }
+  /* 页头统一格式：游戏 LOGO → 中文作品名（字号收小）→ 下方蓝色英文名（更小）
+     与《世界群星》角色页一致，去掉原蓝色底纹 kicker */
+  .page-hero h1 { font-size: clamp(30px, 5.4vw, 60px); }
+  .page-hero h1 .en { font-size: .32em; letter-spacing: 6px; margin-top: 14px; }
+
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开） */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    /* 左边缘与「游戏作品」对齐：菜单内首字的左内边距与导航项一致（14px），
+       使「队长小翼」与「游戏作品」两个词首字对齐 */
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，
+     故统一用 .header .nav .nav-drop-menu a 提高权重，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    /* 汉堡菜单内：下拉改为展开式二级列表 */
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      /* 触屏无 hover，汉堡菜单内改为常驻展开的二级列表 */
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .team-head-top { flex-direction: column; align-items: center; gap: 14px; }
+    .team-head-text { text-align: center; }
+    .team-head-logo { height: 84px; }
+    .team-tab { font-size: 12px; padding: 7px 11px; }
+    .team-tab img { height: 22px; }
+  }
+  /* ---------- 前日谭WEB小说卡片（样式取自动画页「映像特典」栏目） ---------- */
+  .podcast-grid--single { grid-template-columns: 1fr; max-width: 860px; margin-inline: auto; }
+  .section--podcast { padding-bottom: 96px; }
+  
+  .podcast-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  
+  .podcast {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  }
+  .podcast:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand);
+    box-shadow: 0 16px 36px rgba(8, 6, 22, .12);
+  }
+  
+  /* 顶部视觉条：波形 + 标签 */
+  .podcast-media {
+    position: relative;
+    height: 148px;
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    overflow: hidden;
+  }
+  .podcast-media--vhs { background: linear-gradient(135deg, #1b1f4b 0%, #3b2f8f 60%, #6b3fa0 100%); }
+  .podcast-media--radio { background: linear-gradient(135deg, #0a5a2f 0%, #137a3f 55%, #2fae4b 100%); }
+  
+  .podcast-media .tag {
+    align-self: flex-start;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .18);
+    border: 1px solid rgba(255, 255, 255, .4);
+    backdrop-filter: blur(4px);
+  }
+  .podcast-media .no {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 62px;
+    line-height: 1;
+    color: rgba(255, 255, 255, .16);
+  }
+  
+  /* 波形装饰 */
+  .wave {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 34px;
+    margin-top: 6px;
+  }
+  .wave i {
+    display: block;
+    width: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, .75);
+  }
+  
+  .podcast-body {
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .podcast-en {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 1px;
+    color: var(--brand);
+    margin-bottom: 8px;
+  }
+  .podcast-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.3px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    color: #000;
+  }
+  .podcast-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .podcast-meta {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    margin-bottom: 22px;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .podcast-meta li { display: flex; gap: 10px; }
+  .podcast-meta li span {
+    flex: 0 0 62px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .podcast .btn { align-self: flex-start; margin-top: auto; }
+  
+  .podcast-note {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  
+  @media (max-width: 820px) {
+    .podcast-grid { grid-template-columns: 1fr; }
+    .section--podcast { padding-bottom: 64px; }
+    .podcast-title { font-size: 19px; }
+    .podcast-media { height: 132px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <img class="rcs-hero-logo" src="assets/img/game/rise-of-new-champions/rise_of_new_champions_logo.png"
+         alt="キャプテン翼 RISE OF NEW CHAMPIONS" loading="eager">
+    <h1>《队长小翼：新秀崛起》<span class="en">RISE OF NEW CHAMPIONS</span></h1>
+    <p class="lead">
+      家用游戏《队长小翼：新秀崛起》（キャプテン翼 RISE OF NEW CHAMPIONS）官方站角色资料汉化整理。
+      一级标签沿用官网分类：<b>中学生篇</b>（JAPANESE PLAYER）、<b>世界青少年篇</b>（WORLD PLAYER）、<b>非球员角色</b>（OTHER）；
+      二级标签为球队／代表队（附官方队徽与简介），点击角色卡片可查看立绘与简介。
+      繁体原文已统一转为简体；官网中文站未收录的 <b>23 项</b>已依日文原文补译并标注。
+    </p>
+  </section>
+
+  <section class="series-tabs rcs-tabs" data-reveal>
+    <div class="container">
+      <div class="tabs" id="rcsTabs"></div>
+    </div>
+  </section>
+
+  <section class="section chara-section" data-reveal>
+    <div class="container">
+      <div class="team-tabs" id="teamTabs"></div>
+      <div class="team-head" id="teamHead"></div>
+      <div class="chara-grid" id="charaGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 前日谭WEB小说 ===================== -->
+  <section class="section section--podcast" id="novel-prequel" data-reveal>
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">SPECIAL</span>
+        <h2>前日谭WEB小说</h2>
+        <p class="desc">官方为参赛各队撰写的赛事前传小说，共 8 篇，全文汉化并附官方角色立绘。</p>
+      </div>
+
+      <div class="podcast-grid podcast-grid--single">
+        <article class="podcast">
+          <div class="podcast-media podcast-media--vhs">
+            <span class="tag">前日谭小说</span>
+            <span class="no">01</span>
+            <div class="wave" aria-hidden="true">
+              <i style="height:14px"></i><i style="height:26px"></i><i style="height:18px"></i>
+              <i style="height:32px"></i><i style="height:12px"></i><i style="height:28px"></i>
+              <i style="height:20px"></i><i style="height:34px"></i><i style="height:16px"></i>
+              <i style="height:24px"></i><i style="height:30px"></i><i style="height:18px"></i>
+            </div>
+          </div>
+          <div class="podcast-body">
+            <p class="podcast-en">RISE OF NEW CHAMPIONS 前日譚WEB小説</p>
+            <h3 class="podcast-title">《队长小翼：新秀崛起》前日谭WEB小说</h3>
+            <p class="podcast-desc">
+              日本官网角色页底部连载的官方前传小说，为参加「青少年世界挑战赛」的队伍补写赛事之前的来历，共 8 篇：
+              <b>美国篇、塞内加尔篇、法国篇、意大利篇、德国篇（前 / 后）、巴西篇、日本篇</b>。
+              内容包括美国卡迪纳尔中学出身的莱恩一行、塞内加尔的桑戈尔与贾罗、意大利的鲁斯亚诺与塔尔德里、
+              德国施奈德的火焰射门与海涅的浮球射门、巴西桑塔纳阵营，以及日本篇的选拔与集训始末。
+              每篇均配 2–3 张官方角色立绘。
+            </p>
+            <ul class="podcast-meta">
+              <li><span>篇数</span>全 8 篇（德国分前 / 后篇）</li>
+              <li><span>来源</span>captaintsubasa-csgame.bn-ent.net（日本区角色页）</li>
+              <li><span>立绘</span>每篇 2–3 张官方角色立绘</li>
+              <li><span>译文</span>依日文原文汉化（简体）</li>
+            </ul>
+            <a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200.html" class="btn">内容详情 →</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="podcast-note">
+        译文依据官方日文原文翻译，人名与队名沿用本站词库，部分译名尚待校对。
+      </p>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="charaModal">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-body">
+    <button class="modal-close" data-close aria-label="关闭">×</button>
+    <div class="modal-inner" id="modalInner"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      队长小翼 WORLD
+      <div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div>
+    </div>
+    <div>
+      <h4>内容分类</h4>
+      <ul>
+        <li><a href="character.html">登场角色</a></li>
+        <li><a href="comics.html">漫画作品</a></li>
+        <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
+        <li><a href="news.html">新闻动态</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>关于</h4>
+      <ul>
+        <li><a href="index.html#about">作品简介</a></li>
+        <li><a href="index.html#news">最新动态</a></li>
+        <li><a href="45th.html">45周年祭</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、队徽与官方简介版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，
+    来源：captaintsubasa-csgame.bn-ent.net（台湾区 / 日本区角色页）
+  </div>
+</footer>
+
+
+<script src="js/rcs-data.js"></script>
+<script src="js/rcs.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

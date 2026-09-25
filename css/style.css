@@ -386,3 +386,55 @@ ul { list-style: none; }
 @media (max-width: 480px) {
   .to-top-btn { right: 16px; bottom: 16px; width: 44px; height: 44px; font-size: 20px; }
 }
+
+/* ==========================================================
+   顶部导航「游戏作品」下拉菜单（全站共用）
+   注意：style.css 原本没有 .nav-drop 规则，以往各页需各自内联；
+   统一放到这里后，所有页面（含新并入的游戏角色页 / 前日谭小说页）自动生效。
+   ========================================================== */
+.nav-drop { position: relative; }
+.nav-drop-menu {
+  /* 左边缘与「游戏作品」对齐：菜单内首字的左内边距与导航项一致（14px） */
+  position: absolute; top: 100%; left: 0;
+  transform: translateY(6px);
+  min-width: 208px; padding: 6px 0;
+  background: #fff; border: 1px solid var(--line);
+  box-shadow: 0 12px 32px rgba(0,0,0,.14);
+  opacity: 0; visibility: hidden;
+  transition: opacity .18s, transform .18s, visibility .18s;
+  z-index: 80;
+}
+.nav-drop:hover .nav-drop-menu,
+.nav-drop:focus-within .nav-drop-menu {
+  opacity: 1; visibility: visible;
+  transform: translateY(0);
+}
+.header .nav .nav-drop-menu a {
+  display: block; padding: 11px 18px 11px 14px;
+  font-size: 13px; font-weight: 700; letter-spacing: .5px;
+  color: var(--ink); white-space: nowrap; text-align: left;
+}
+.header .nav .nav-drop-menu a:hover,
+.header .nav .nav-drop-menu a:focus,
+.header .nav .nav-drop-menu a:active,
+.header .nav .nav-drop-menu a:visited:hover { background: var(--brand); color: #fff; }
+.header .nav .nav-drop-menu a:hover::after,
+.header .nav .nav-drop-menu a:focus::after { display: none; }
+@media (max-width: 860px) {
+  .nav-drop { width: 100%; }
+  .nav-drop-menu {
+    position: static; transform: none;
+    min-width: 0; padding: 0; background: transparent; border: none; box-shadow: none;
+    display: block; opacity: 1; visibility: visible;
+  }
+  .header .nav .nav-drop-menu a {
+    color: #fff; padding: 12px 28px 12px 46px;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover { background: var(--brand); color: #fff; }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本青少年篇 · 《队长小翼：新秀崛起》前日谭WEB小说</title>
+<meta name="description" content="《队长小翼：新秀崛起》前日谭WEB小说《日本青少年篇》汉化译文，含官方角色立绘。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/column.css">
+<style>
+
+  /* 顶部导航「游戏作品」下拉菜单（悬停展开） */
+  .nav-drop { position: relative; }
+  .nav-drop-menu {
+    position: absolute; top: 100%; left: 0;
+    transform: translateY(6px);
+    min-width: 208px; padding: 6px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(0,0,0,.14);
+    opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility .18s;
+    z-index: 80;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+  }
+  /* 下拉项配色：需压过 style.css 的 .header .nav a / a:hover，避免「蓝底蓝字」看不清 */
+  .header .nav .nav-drop-menu a {
+    display: block; padding: 11px 18px 11px 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    color: var(--ink); white-space: nowrap; text-align: left;
+  }
+  .header .nav .nav-drop-menu a:hover,
+  .header .nav .nav-drop-menu a:focus,
+  .header .nav .nav-drop-menu a:active,
+  .header .nav .nav-drop-menu a:visited:hover {
+    background: var(--brand); color: #fff;
+  }
+  .header .nav .nav-drop-menu a:hover::after,
+  .header .nav .nav-drop-menu a:focus::after { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-drop { width: 100%; }
+    .nav-drop-menu {
+      position: static; transform: none;
+      min-width: 0; padding: 0; background: transparent;
+      border: none; box-shadow: none;
+      display: block; opacity: 1; visibility: visible;
+    }
+    .header .nav .nav-drop-menu a {
+      color: #fff; padding: 12px 28px 12px 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .header .nav .nav-drop-menu a:hover,
+    .header .nav .nav-drop-menu a:focus,
+    .header .nav .nav-drop-menu a:active,
+    .header .nav .nav-drop-menu a:visited:hover {
+      background: var(--brand); color: #fff;
+    }
+    .header .nav .nav-drop-menu a:hover::after,
+    .header .nav .nav-drop-menu a:focus::after { display: none; }
+  }
+
+  .novel-hero-logo{display:block;margin:0 auto 18px;width:min(520px,86vw);height:auto;}
+  .novel-portraits{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px auto 36px;max-width:940px;}
+  .novel-portraits figure{margin:0;flex:1 1 260px;max-width:330px;}
+  .novel-portraits img{width:100%;height:auto;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.12);background:#0c1230;display:block;}
+  .novel-portraits figcaption{font-size:12px;color:#999;text-align:center;margin-top:6px;letter-spacing:1px;}
+  .novel-body{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:40px 44px;}
+  .novel-body p{font-size:15px;line-height:2;color:#222;margin-bottom:18px;}
+  .novel-body p:last-child{margin-bottom:0;}
+  .novel-back{display:block;text-align:center;margin:34px auto 0;}
+  .novel-back .btn{font-size:14px;}
+  /* 章末导航：上一篇 / 返回目录 / 下一篇 */
+  .novel-nav{display:flex;align-items:center;justify-content:space-between;
+    gap:14px;max-width:820px;margin:34px auto 0;}
+  .novel-nav-side{flex:1 1 0;min-width:0;}
+  .novel-nav-side--right{text-align:right;}
+  .novel-nav .btn{font-size:14px;}
+  @media (max-width:640px){
+    .novel-body{padding:26px 20px;}
+    .novel-body p{font-size:14.5px;line-height:1.95;}
+    .novel-portraits figure{flex-basis:100%;max-width:420px;}
+    .novel-nav{flex-direction:column;align-items:stretch;}
+    .novel-nav-side{text-align:center;}
+    .novel-nav-side--right{text-align:center;}
+    .novel-nav .btn{width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+<main>
+  <section class="page-hero">
+    <img class="novel-hero-logo" src="assets/img/game/rise-of-new-champions/rise_of_new_champions_logo.png" alt="キャプテン翼 RISE OF NEW CHAMPIONS" loading="eager">
+    <span class="kicker">PRE-STORY WEB NOVEL</span>
+    <h1>《队长小翼：新秀崛起》<span class="en">前日谭 · 日本青少年篇</span></h1>
+    <p class="lead">全国中学生大赛落幕后，日本足协的片桐与见上教练盘点新秀，并分头奔赴德、法，为若林归队与岬太郎加盟展开谈判；同时为新大会重新收集各国情报。</p>
+  </section>
+  <section class="section"><div class="container">
+    <div class="novel-portraits"><figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel07_01.png" alt="日本青少年篇 角色立绘 1"><figcaption>日本青少年篇 · 立绘 1</figcaption></figure>
+<figure><img loading="lazy" src="assets/img/game/rise-of-new-champions/nobel07_02.png" alt="日本青少年篇 角色立绘 2"><figcaption>日本青少年篇 · 立绘 2</figcaption></figure></div>
+    <article class="novel-body"><p>全国中学生足球大赛在激烈厮杀后落幕的次日清晨。</p>
+<p>在日本足球协会负责青少年代表队强化的片桐，与担任青少年代表队教练的见上，在协会办公室碰了面。</p>
+<p>“片桐君也够辛苦的。为了《新英雄联赛》的谈判，今天还要去北海道？”
+“为了日本足球，无论何时何地我都去”
+“我从现役时就觉得，你的精力真惊人”
+“还年轻嘛”
+“喂喂，我也没那么老啊”</p>
+<p>两人相视而笑。他们也曾作为日本代表选手并肩作战。</p>
+<p>“话说，谈判顺利吗？”
+“大体上都得到了好答复。体育场与住宿设施方面，难处也都解决了”</p>
+<p>片桐的声音里透着安心。</p>
+<p>“剩下的，我去参赛校当面做最后谈判，若谈妥，近日就能公布《新英雄联赛》的举办”</p>
+<p>“见上先生，今天是对代表选手的选拔会议？”
+“啊”</p>
+<p>见上把桌上代表选手选拔的资料拉到手边，翻起页来。</p>
+<p>“以翼与日向为队伍核心的构想，和大赛前一样不变。但除了这两人，还看到许多有潜力的选手，选拔会是很费工的事啊”</p>
+<p>见上短促苦笑，继续道。</p>
+<p>“年轻人有时会以惊人的速度成长，这届大赛我就多次亲眼目睹。真是了不起”</p>
+<p>片桐也点头称是。</p>
+<p>“这届大赛开始前，我以为如今的日本没有翼的对手。但也对此抱有危机感”
+“嗯。不出现能打倒翼的实力派，就谈不上是真正强化日本足球”
+“然而，通过全国大赛及其预选，涌现了许多足以与翼抗衡的选手”
+“尤其是日向。他的大幅成长，堪称这届最大的成果”</p>
+<p>片桐对见上的话点头。</p>
+<p>“从小学起就关注日向的我，这两年的他让我觉得不够尽兴。但本届大赛中日向展现的球风与做派，正是肩扛全队的王牌前锋”
+“嗯。原本我就打算让他代表穿9号，如今更觉他是合适的人选”</p>
+<p>“翼组织进攻，日向终结——剩下的就是防守了”
+“其实，有件事想和片桐君商量”</p>
+<p>片桐正色。</p>
+<p>“什么事？”
+“等手头工作告一段落，去一趟德国可好？”
+“德国？”</p>
+<p>片桐反问，见上说明。</p>
+<p>“这次选拔代表，本打算召门将源三入队——”</p>
+<p>源三，是见上曾担任专属教练的门将若林。
+若林小学毕业同时，赴见上去教练研修的德国汉堡俱乐部磨砺才华。
+若林的实力，已由今年称霸欧洲青少年大赛证明。</p>
+<p>“与俱乐部在代表参赛上出了合约问题。想拜托你去谈判”
+“明白了。交给我”
+“抱歉。若我去得成便好，无奈代表教练工作太忙”</p>
+<p>见上道歉，片桐摇头。</p>
+<p>“其实，我的《新英雄联赛》准备一结束，也打算去法国”</p>
+<p>“法国……”</p>
+<p>见上手托下巴。</p>
+<p>“那该不会，是岬的事？”
+“您知道？”
+“前几天源三来信。说在那里重逢了”
+“我也让翼看了那封邮件”</p>
+<p>全国中学生足球大赛开幕前夕，
+在德国的若林给见上与翼发来邮件。
+信中写着，与小学时在南葛SC和翼搭档、共夺全国大赛冠军的岬重逢了。</p>
+<p>“据源三看，岬的实力足够在欧洲通用”
+“嗯。若属实，对日本代表是大力援”
+“大空翼与岬太郎——。没有黄金组合，就谈不上真正的全日本青少年代表队。
+我是这么想的”
+“是，我也这么想。
+所以要去法国，亲眼确认岬的实力，邀他入队”
+“拜托了”</p>
+<p>这时，见上的手机响了。</p>
+<p>“失陪一下”</p>
+<p>见上离席，与电话那头谈了片刻，重回座位。</p>
+<p>“是日本青年代表的球探打来的”
+“青年代表的？”
+“啊。为收集《青少年世界杯挑战赛》参赛国情报，拜托了他们协助”</p>
+<p>原定举办的法国国际青少年大赛的参赛国，协会也收集了些情报。
+但新大会隔了一个月，需要重新调查。</p>
+<p>“是啊，无论哪国都会把这一个月用于强化”
+“还有一点，新大会有未计划参加法国大会的国家。这方面也急需收集情报，可事出突然，《新英雄联赛》的准备也缺人手。
+于是时间与人力都不足……”
+“原来如此。所以才请求协助”
+“如今足球也是信息战。队伍的踢法、选手的能力——情报越广越多越有利。
+我在德国受教练研修时，深有体会”</p>
+<p>见上说着，递给片桐一本笔记本。片桐翻页，上面密密麻麻写着见上去德国时收集的德国青少年选手数据。</p>
+<p>“这真厉害……”
+“教练研修之余，尽可能多看选手记下来的。
+为迟早之日做准备”</p>
+<p>见上从片桐手中拿回笔记本，自己也翻起页。</p>
+<p>“主要选手基本都看了。但定有漏看的选手吧”
+“这点我也一样”
+“嗯？”</p>
+<p>片桐指尖抵在太阳镜腿上。</p>
+<p>“这三年，我走遍日本各地，细察中学生年龄层的选手。
+可即便如此，必定仍有未能发现的才华”
+“唔……”
+“今年夏天——
+全国大赛及其地方预选，众多选手砥砺切磋、提升能力。
+若《新英雄联赛》也上演这样的战斗，或许迄今未现的才华会绽放——
+我如此期待”</p>
+<p>见上重重点头。</p>
+<p>“我们的梦——‘总有一天让日本足球登上世界之巅’
+——那些才华正聚拢而来”
+“是。而我们的职责，是培育那些才华。
+这届《青少年世界杯挑战赛》，正是第一步”
+“别输给他们的成长，我们也加油吧，片桐君”
+“是！”</p>
+<p>完</p></article>
+    <div class="novel-nav"><div class="novel-nav-side"><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200%20CH.06.html" title="上一篇：巴西青少年篇"><span class="btn btn--ghost">← 上一篇</span></a></div><a href="RISE%20OF%20NEW%20CHAMPIONS%20Novel%20Episode%200.html"><span class="btn btn--ghost">返回目录</span></a><div class="novel-nav-side novel-nav-side--right"></div></div>
+  </div></section>
+</main>
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">队长小翼 WORLD<div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div></div>
+    <div><h4>内容分类</h4><ul>
+      <li><a href="character.html">登场角色</a></li>
+      <li><a href="comics.html">漫画作品</a></li>
+      <li><a href="anime.html">动画作品</a></li>
+      <li><a href="games.html">游戏作品</a></li>
+      <li><a href="news.html">新闻动态</a></li>
+      <li><a href="special-column.html">特别专栏</a></li>
+    </ul></div>
+    <div><h4>关于</h4><ul>
+      <li><a href="index.html#about">作品简介</a></li>
+      <li><a href="index.html#news">最新动态</a></li>
+      <li><a href="45th.html">45周年祭</a></li>
+    </ul></div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、场景图与官方简介版权归 © 高桥阳一 / 集英社 · 万代南梦宫娱乐 所有，来源：captaintsubasa-csgame.bn-ent.net（日本区角色页 / 前日谭WEB小说）
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
