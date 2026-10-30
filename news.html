@@ -192,11 +192,53 @@
 <script>
 /* 《队长小翼》汉化版知识库 · 新闻动态数据
  * 来源：ボールはともだち.com 各新闻 / SPECIAL 页面、キャプテン翼WORLD（captain-tsubasa.world）NEWS
- * （sourceUrl 渲染为可点击链接，新标签页打开；正文中的地址按约定保持纯文本）
+ * （sourceUrl 渲染为可点击链接，新标签页打开；sourceText 渲染为纯文本来源行，不跳转；正文中的地址按约定保持纯文本）
  * 图片为本地托管（assets/img/news/），不引用外部域名，保持全站零外链
  * 按时间倒序排列（最新在前）；date 为 YYYY.MM.DD 字符串，空日至月即可
  */
 const NEWS_DATA = [
+  {
+    id: "anipara-ep1-20171110",
+    date: "2017.11.10",
+    category: "ANIME",
+    title: "《アニ×パラ》第1弹《盲人足球》首播——高桥阳一执笔，将残奥魅力化作动画必杀技",
+    titleJa: "アニ×パラ 〜あなたのヒーローは誰ですか〜「エピソード1 ブラインドサッカー」",
+    sourceText: "MANTANWEB（https://mantan-web.jp/article/20171110dog00m200029000c.html）",
+    body: [
+      "NHK 于 2017 年 11 月 10 日（周五）15:40 在 BS1 频道首播动画短片《アニ×パラ 〜あなたのヒーローは誰ですか〜》第 1 弹《エピソード1 ブラインドサッカー》（盲人足球，5 分钟版）。",
+      "本作是 NHK 为传递残奥运动魅力而策划的动画企划《アニ×パラ》的开篇之作，由《足球小将》（キャプテン翼）原作者高桥阳一操刀角色设定与必杀技设计。短片以动画形式呈现视障运动员凭借听觉、触觉等敏锐感官在黑暗中完成的精彩表现，向观众传递盲人足球这一残奥项目的独特魅力。高桥阳一为本作原创了必杀技「トルネードタイガー」（龙卷老虎射门）。",
+      "30 秒与 1 分钟预告版已于 2017 年 10 月 25 日起在 NHK 综合、E テレ等频道先行播出。",
+      "（官方简介：パラスポーツの魅力を伝える「アニ×パラ」。第1弾はブラインドサッカー。視覚障害者の研ぎ澄ました感覚で生み出すスーパープレーを「キャプテン翼」の高橋陽一が描く。）"
+    ]
+  },
+  {
+    id: "anipara-world-ouendan-20210325",
+    date: "2021.03.25",
+    category: "ANIME",
+    title: "《アニ×パラワールド 応援団が語る》盲人足球×高桥阳一：配音阵容畅谈必杀技",
+    titleJa: "アニ×パラワールド 応援団が語る…第1弾 ブラインドサッカー×高橋陽一",
+    sourceText: "NHK 番組表（https://www.web.nhk/tv/an/anipara/pl/series-tep-WP2WMV14N3/ep/EJMPX1MXY9）",
+    body: [
+      "NHK 迷你衍生节目《アニ×パラワールド》推出《応援団が語る》系列，首集聚焦第 1 弹《盲人足球》与《足球小将》作者高桥阳一的合作。",
+      "节目由参与配音的「应援团」阵容（含为主角配音的阿部敦等）出镜，畅谈对盲人足球必杀技的理解，以及高桥阳一在创作背后的思路与巧思，带领观众从配音者的视角重新认识这部短片的魅力。",
+      "该集于 2021 年 3 月 25 日 16:15 在 NHK BS 首播。",
+      "（官方简介：キャプテン翼の高橋陽一の制作舞台裏。ブラインドサッカーの必殺技への思いは——）"
+    ]
+  },
+  {
+    id: "anipara-world-making-20220329",
+    date: "2022.03.29",
+    category: "ANIME",
+    title: "《アニ×パラワールド》盲人足球特辑：走进高桥阳一的「必杀技」制作幕后",
+    titleJa: "アニ×パラワールド #1 ブラインドサッカー キャプテン翼の高橋陽一が描く必殺技 OKAMOTO'Sのテーマ曲も!",
+    sourceText: "NHK 番組表（https://www.web.nhk/tv/an/anipara/pl/series-tep-WP2WMV14N3/ep/9NGP6G9M54）",
+    body: [
+      "NHK 迷你节目《アニ×パラワールド》推出第 1 弹盲人足球特辑，作为配合正片播出的衍生内容，以「创作者访谈 + 制作幕后」为主轴。",
+      "节目走进《足球小将》作者高桥阳一为本作设计必杀技的创作现场，揭示动画必杀技从发想到落稿的全过程，并回顾东京残奥会上日本盲人足球队的精彩表现与「奇迹般的射门」。本集主题曲由 OKAMOTO'S 演唱。",
+      "该集于 2022 年 3 月 29 日 03:00 在 NHK BS 首播。",
+      "（官方简介：パラスポーツの魅力をアニメで描くアニ×パラをクリエーターたちの思いと共に楽しむミニ番組。キャプテン翼の高橋陽一の制作舞台裏。東京大会の活躍、奇跡のシュートも!）"
+    ]
+  },
   {
     id: "world-611",
     date: "2026.07.31",
@@ -1229,13 +1271,15 @@ const NEWS_DATA = [
       }).join('') + '</div>';
     }
 
-    // 来源：可点击跳转（新标签页打开，同特别专栏页 target="_blank" rel="noopener" 做法）
+    // 来源：默认可点击跳转；sourceText 字段则渲染为纯文本（零外链约定）
     let sourceHtml = '';
     if (item.sourceUrl) {
       const suEsc = esc(item.sourceUrl);
       const isExt = /^https?:\/\//i.test(item.sourceUrl);
       const target = isExt ? ' target="_blank" rel="noopener"' : '';
       sourceHtml = '<p class="col-source">来源：<a href="' + suEsc + '"' + target + '>' + suEsc + '</a></p>';
+    } else if (item.sourceText) {
+      sourceHtml = '<p class="col-source">来源：' + esc(item.sourceText) + '</p>';
     }
 
     const foldInner = '<div class="col-body">' + bodyHtml + '</div>' + sourceHtml;

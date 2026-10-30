@@ -74,6 +74,49 @@
   margin-top: 28px;
 }
 
+/* 特集头图（底层背景图 + 透明前景图叠加，Comic Natalie 通算100卷采访） */
+.iv-hero {
+  position: relative;
+  margin: 36px 0 26px;
+}
+
+.iv-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.iv-hero .iv-hero-fg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* natalie 100卷采访：英文副标压小 */
+.iv-head-title .en-tight {
+  font-size: clamp(11px, 1.6vw, 14px);
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+/* 采访出处（正文结尾） */
+.iv-source {
+  margin: 22px 0 0;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* 采访（一）散文正文 */
+.iv-prose p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+  margin-bottom: 16px;
+}
+.iv-prose p:last-child { margin-bottom: 0; }
+
 /* 响应式 */
 @media (max-width: 480px) {
   .iv-head-lead { font-size: 14px; line-height: 1.9; }

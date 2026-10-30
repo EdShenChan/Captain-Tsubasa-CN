@@ -198,8 +198,8 @@
   .anime-desc { font-size: 13px; }
 }
 
-/* ============================ 播客特辑 ============================ */
-.section--podcast { padding-bottom: 96px; }
+/* ============================ 播客特典 ============================ */
+.section--podcast { padding-bottom: 48px; }
 
 .podcast-grid {
   display: grid;
@@ -236,6 +236,7 @@
 }
 .podcast-media--vhs { background: linear-gradient(135deg, #1b1f4b 0%, #3b2f8f 60%, #6b3fa0 100%); }
 .podcast-media--radio { background: linear-gradient(135deg, #0a5a2f 0%, #137a3f 55%, #2fae4b 100%); }
+.podcast-media--para { background: linear-gradient(135deg, #0b2d6b 0%, #1c5fc0 55%, #3d8fe0 100%); }
 
 .podcast-media .tag {
   align-self: flex-start;
@@ -373,6 +374,15 @@
 .anime-c9  .game-bg { background: #5a67d8; }
 .anime-c10 .game-bg { background: #ff9500; }
 .anime-c11 .game-bg { background: #20c997; }
+.anime-c12 .game-bg { background: #1d5fc4; }
+.anime-c13 .game-bg { background: #18a04a; }
+.anime-c14 .game-bg { background: #7c3aed; }
+.anime-c15 .game-bg { background: #0e7490; }
+.anime-c16 .game-bg { background: #c2255c; }
+
+/* 卡片内跳转按钮（映像特典内衍生卡片专用）：多按钮并排 */
+.game-link { margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.game-link .btn { font-size: 13px; }
 
 @media (max-width: 720px) {
   .anime-toc { gap: 8px; }

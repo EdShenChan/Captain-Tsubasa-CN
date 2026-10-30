@@ -6,7 +6,9 @@
   if (!list || typeof COLUMN_DATA === 'undefined') return;
 
   // 自动按时间顺序排序（倒序：最新在前）。日期为 YYYY.MM.DD 字符串，字典序即时间序。
+  // pin: true 的条目（需突出展示的采访等）始终置顶，不受日期排序影响。
   COLUMN_DATA.sort(function (a, b) {
+    if (!!a.pin !== !!b.pin) return a.pin ? -1 : 1;
     return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0);
   });
 
@@ -56,6 +58,23 @@
       return '<p>' + safe.replace(/\n/g, '<br>') + '</p>';
     }).join('');
 
+    // 采访评论段（heading + 圆形头像 + 正文左对齐缩进，仿采访页 iv-a 发言格式）
+    let quoteHtml = '';
+    if (col.quote) {
+      const q = col.quote;
+      const qParas = Array.isArray(q.text) ? q.text : [q.text];
+      const qText = qParas.map(function (p) {
+        const safe = p.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return '<p>' + safe.replace(/\n/g, '<br>') + '</p>';
+      }).join('');
+      const qHeading = q.heading ? '<p class="col-quote-heading">' + q.heading + '</p>' : '';
+      quoteHtml = qHeading +
+        '<div class="col-quote">' +
+          '<img class="col-quote-avatar" src="' + q.avatar + '" alt="高桥阳一" loading="lazy">' +
+          '<div class="col-quote-body">' + qText + '</div>' +
+        '</div>';
+    }
+
     // 配图（插在正文末尾）
     let imgsHtml = '';
     if (col.imgs && col.imgs.length) {
@@ -65,6 +84,16 @@
         return '<figure><img src="' + src + '" alt="' + (cap || col.title) + '" loading="lazy">' + (cap ? '<figcaption>' + cap + '</figcaption>' : '') + '</figure>';
       }).join('');
       imgsHtml = '<div class="col-imgs">' + figs + '</div>';
+    }
+
+    // 新闻式排版（newsLayout: true）：配图提到标题下方、正文之上，横排缩略图
+    // 与【新闻动态】卡片一致；此类条目保留「展开全文」按钮（按内容高度判断）
+    const newsLayout = !!col.newsLayout;
+    let thumbsHtml = '';
+    if (newsLayout && col.imgs && col.imgs.length) {
+      thumbsHtml = '<div class="col-thumbs">' + col.imgs.map(function (src) {
+        return '<img class="col-thumb" src="' + src + '" alt="' + col.title + '" loading="lazy">';
+      }).join('') + '</div>';
     }
 
     // 署名
@@ -99,10 +128,23 @@
       } else {
         sourceHtml = '<p class="col-source">原文出处：<a href="https://captain-tsubasa.world/special/' + col.id + '/" target="_blank" rel="noopener">captain-tsubasa.world/special/' + col.id + '/</a></p>';
       }
+    } else if (col.sourceText) {
+      // full 条目：纯文本来源（零外链约定，不做成可点击链接）
+      sourceHtml = '<p class="col-source">原文出处：' + col.sourceText + '</p>';
     }
 
     // 折叠区内容 = 正文 + 配图 + 署名 + 来源（来源在折叠区内部、正文末尾）
-    const foldInner = '<div class="col-body">' + bodyHtml + imgsHtml + '</div>' + signHtml + sourceHtml;
+    // full 条目且带配图：正文与配图左右分栏（配图在右），无折叠按钮
+    let foldInner;
+    if (isFull && col.imgs && col.imgs.length && !newsLayout) {
+      foldInner = '<div class="col-flex">' +
+                    '<div class="col-body">' + bodyHtml + quoteHtml + '</div>' +
+                    imgsHtml +
+                  '</div>' + signHtml + sourceHtml;
+    } else {
+      // 新闻式排版的配图已提到标题下方，正文内不再重复插入
+      foldInner = '<div class="col-body">' + bodyHtml + quoteHtml + (newsLayout ? '' : imgsHtml) + '</div>' + signHtml + sourceHtml;
+    }
 
     article.innerHTML =
       '<div class="col-meta">' +
@@ -111,6 +153,7 @@
       '</div>' +
       '<h2 class="col-title">' + col.title + '</h2>' +
       jaHtml +
+      thumbsHtml +
       '<div class="col-fold">' + foldInner + '</div>' +
       '<button type="button" class="col-toggle" aria-expanded="false">' +
         '<span class="col-toggle-label">展开全文</span>' +
@@ -125,7 +168,7 @@
     const fold = article.querySelector('.col-fold');
     const toggleBtn = article.querySelector('.col-toggle');
 
-    if (isFull) {
+    if (isFull && !newsLayout) {
       // 完整展示：不折叠、无展开按钮
       fold.classList.add('no-fold');
       toggleBtn.style.display = 'none';
@@ -138,7 +181,8 @@
     const contentH = fold.scrollHeight;
     fold.style.maxHeight = '';
 
-    const hasImages = col.imgs && col.imgs.length > 0;
+    // 新闻式排版的配图在折叠区之外，不因「有图」而强制折叠
+    const hasImages = !newsLayout && col.imgs && col.imgs.length > 0;
 
     if (contentH <= FOLD_H + 8 && !hasImages) {
       // 内容很短，无需折叠：隐藏按钮、移除渐变遮罩

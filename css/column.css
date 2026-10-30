@@ -129,6 +129,78 @@
   text-align: center;
 }
 
+/* 新闻式配图：位于标题下方、正文之上，横排缩略图（与新闻动态页一致） */
+.column-item .col-thumbs {
+  margin: 14px 0 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.column-item .col-thumb {
+  width: 60%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  background: #f3f1ec;
+  border: 1px solid #e7e2d6;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+}
+@media (max-width: 640px) {
+  .column-item .col-thumb { width: 80%; }
+}
+
+/* 采访评论段：小标题 + 圆形头像 + 正文左对齐缩进（仿采访页 iv-a 发言格式） */
+.column-item .col-quote-heading {
+  margin: 18px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink, #333);
+}
+.column-item .col-quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 10px;
+}
+.column-item .col-quote-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--brand);
+}
+.column-item .col-quote-body {
+  flex: 1;
+  padding-top: 2px;
+  min-width: 0;
+}
+.column-item .col-quote-body p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+  margin-bottom: 14px;
+}
+.column-item .col-quote-body p:last-child { margin-bottom: 0; }
+
+/* full 采访条目：正文 + 配图左右分栏（配图在右） */
+.column-item .col-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.column-item .col-flex .col-body { flex: 1 1 auto; min-width: 0; }
+.column-item .col-flex .col-imgs {
+  flex: 0 0 160px;
+  width: 160px;
+  margin: 0;
+}
+@media (max-width: 560px) {
+  .column-item .col-flex { flex-direction: column; }
+  .column-item .col-flex .col-imgs { flex: none; width: 60%; margin: 0 auto; }
+}
+
 /* 原文出处链接 */
 .column-item .col-source {
   margin-top: 20px;
