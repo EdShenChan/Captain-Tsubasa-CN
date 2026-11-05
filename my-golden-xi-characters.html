@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《队长小翼：我的黄金十一人》登场角色 · 队长小翼 WORLD</title>
+<meta name="description" content="《队长小翼：我的黄金十一人》（MY GOLDEN XI）游戏角色资料：日本 / 德国 / 法国 / 阿根廷 / 沙特阿拉伯 5 个国家队共 30 名球员，含官方立绘、头像、声优、PROFILE 数据与角色介绍。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/character.css">
+<style>
+  /* ===================== 页头（沿用新秀崛起 / 世界群星专页格式） ===================== */
+  .mg11-hero-logo {
+    display: block; margin: 0 auto 20px;
+    width: min(430px, 82vw); height: auto;
+  }
+  .page-hero h1 { font-size: clamp(30px, 5.4vw, 60px); overflow-wrap: anywhere; }
+  .page-hero h1 .en { font-size: .32em; letter-spacing: 6px; margin-top: 14px; }
+  .page-hero .lead { max-width: 760px; }
+
+  /* ===================== 官网同款角色舞台 ===================== */
+  .mg11-section { padding-top: 24px; }
+  .mg11-stage {
+    position: relative; overflow: hidden;
+    max-width: 1180px; margin: 0 auto;
+    padding: 30px clamp(16px, 3vw, 42px) 42px;
+    border-radius: 18px;
+    color: #fff;
+    background: #021a81 url("assets/img/game/my-golden-xi/pjct_bg_21.webp") center top / cover no-repeat;
+    box-shadow: 0 20px 54px rgba(2, 26, 129, .24);
+  }
+  .mg11-stage::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(1, 16, 82, .62) 0%, rgba(1, 16, 82, .18) 42%, rgba(1, 16, 82, .55) 100%);
+  }
+  .mg11-stage > * { position: relative; }
+
+  /* 官网 CHARACTER 标题条 */
+  .mg11-stage-title {
+    display: block; width: min(360px, 72%); height: auto;
+    margin: 0 auto 22px;
+  }
+
+  /* 一级标签：5 个国家队（官网白底蓝字 / 选中橙红渐变） */
+  .mg11-tabs {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px; margin-bottom: 26px;
+  }
+  .mg11-tab {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    flex: 1 1 0; min-width: 116px; max-width: 230px;
+    padding: 11px 16px;
+    background: #fff; color: #001f80;
+    border: 2px solid transparent; border-radius: 2px;
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 17px; letter-spacing: 1px; white-space: nowrap;
+    cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .mg11-tab img {
+    width: 22px; height: 22px; object-fit: contain; flex: none;
+    border-radius: 50%; box-shadow: 0 0 0 1px rgba(0, 0, 0, .15);
+  }
+  .mg11-tab:hover:not(.is-active) {
+    background: #e6f5ff; border-color: #0044b3; transform: translateY(-2px);
+  }
+  .mg11-tab.is-active {
+    background: linear-gradient(180deg, #ff0004, #ffcb1e);
+    color: #fff; border-color: #fff;
+    box-shadow: 0 0 14px rgba(0, 68, 255, .9);
+  }
+
+  /* 主展示：立绘 + 名字/CV/PROFILE */
+  .mg11-main {
+    display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    gap: 14px; align-items: center;
+  }
+  .mg11-portrait-wrap {
+    display: flex; align-items: flex-end; justify-content: center;
+    min-height: 400px;
+  }
+  .mg11-portrait {
+    max-height: 440px; max-width: 100%; width: auto; height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 22px rgba(0, 0, 0, .38));
+    transition: opacity .22s ease;
+  }
+  .mg11-portrait.is-swapping { opacity: .28; }
+  .mg11-info { min-width: 0; padding-left: clamp(4px, 1.6vw, 24px); }
+
+  .mg11-name {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(32px, 4.6vw, 62px); line-height: 1.06;
+    letter-spacing: 2px; color: #fff;
+    text-shadow: 0 3px 0 #021a81, 0 0 12px rgba(2, 26, 129, .9), 3px 3px 0 rgba(0, 0, 0, .35);
+    word-break: break-word;
+  }
+  .mg11-name.is-long { font-size: clamp(22px, 2.9vw, 38px); letter-spacing: 0; }
+  .mg11-name-rule {
+    width: 96px; height: 5px; margin: 12px 0 10px;
+    background: linear-gradient(90deg, #ff1c87, #a200ff);
+    border-radius: 3px;
+  }
+  /* 角色介绍 + PROFILE 表 居中容器：整体在页面内水平居中，内部文字保持左对齐 */
+  .mg11-card {
+    width: 100%; max-width: 560px;
+    margin-inline: auto;            /* 整块水平居中，不受父级 text-align 影响 */
+  }
+  /* 角色介绍：直接展示于资料卡（替代原 CV 行位置） */
+  .mg11-intro {
+    width: 100%; max-width: 560px;          /* 与下方 PROFILE 表等宽、左缘对齐 */
+    margin: 2px 0 20px;
+    line-height: 1.45;                       /* 段内行距收紧，贴近表格观感 */
+    font-weight: 600; color: #fff;
+    container-type: inline-size;             /* 供内部 cqw 与表格字号一致 */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .45);
+  }
+  .mg11-intro-h {
+    display: block; font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(13px, 2.9cqw, 19px); color: #ffd24a;   /* 字号与表格一致 */
+    margin: 0 0 6px; letter-spacing: 1px;
+  }
+  .mg11-intro p {
+    font-size: clamp(13px, 2.9cqw, 19px);    /* 字号与 PROFILE 表格文字一致 */
+    line-height: 1.45;
+    margin: 0 0 .42em;                        /* 三行简介间距缩小一半（原 .85em） */
+  }
+  .mg11-intro p:last-child { margin-bottom: 0; }
+
+  /* PROFILE 板：官网原图（683×334）作底，百分比定位 5 行 */
+  .mg11-board {
+    width: 100%; max-width: 560px; aspect-ratio: 683 / 334;
+    background: url("assets/img/game/my-golden-xi/pjct_chara_data.webp") 0 0 / 100% 100% no-repeat;
+    position: relative; container-type: inline-size;
+  }
+  /* 底板实测（683×334）：粉紫标签块 x=4~190（0.6%~27.8%），
+     银白数值块 x=190~620（27.8%~90.8%）；5 行中心 y = 18.71 / 37.28 /
+     55.84 / 74.55 / 93.11%（官网 data-row top 值）。 */
+  .mg11-row {
+    position: absolute; left: 0; width: 100%; height: 16%;
+    transform: translateY(-50%);
+    display: flex; align-items: center;
+  }
+  .mg11-row .k {
+    width: 27.8%; flex: none; text-align: center;   /* 标签居中于粉色块内（移动端不改成左对齐） */
+    color: #fff; font-weight: 900;
+    font-size: clamp(13px, 2.9cqw, 19px); letter-spacing: .06em;
+    padding-left: .6%;                                /* 避开底板左缘深色缝隙，落入粉色块内 */
+  }
+  .mg11-row .v {
+    flex: 1; min-width: 0; padding-left: 2.5%; padding-right: 9.2%;
+    color: #021a81; font-weight: 900;
+    font-size: clamp(13px, 2.9cqw, 19px);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* 头像列表（官网：未选中白底 / 选中橙色速度线底） */
+  .mg11-thumbs {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 10px; margin-top: 34px;
+  }
+  .mg11-thumb {
+    position: relative; aspect-ratio: 190 / 162;
+    padding: 0; border: 0; background: transparent;
+    cursor: pointer; border-radius: 4px;
+    transition: transform .22s ease, filter .22s ease, box-shadow .22s ease;
+  }
+  .mg11-thumb img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain; transition: opacity .2s ease;
+  }
+  .mg11-thumb .on { opacity: 0; }
+  /* 仅当前显示角色（is-active）放大 + 橙黄高亮；其余头像保持默认，悬停/聚焦不放大、不切图 */
+  .mg11-thumb.is-active {
+    transform: translateY(-4px) scale(1.06); z-index: 2; outline: none;
+  }
+  .mg11-thumb.is-active .off { opacity: 0; }
+  .mg11-thumb.is-active .on { opacity: 1; }
+  .mg11-thumb.is-active {
+    box-shadow: 0 0 0 2px #ffcb1e, 0 10px 22px rgba(0, 0, 0, .42);
+  }
+  /* 键盘聚焦仅给出轮廓提示，不放大、不切图 */
+  .mg11-thumb:focus-visible { outline: 2px solid #ffcb1e; outline-offset: 2px; }
+
+  /* ===================== 响应式 ===================== */
+  @media (max-width: 900px) {
+    .mg11-main { grid-template-columns: 1fr; gap: 6px; }
+    .mg11-portrait-wrap { min-height: 240px; }
+    .mg11-portrait { max-height: 240px; }
+    .mg11-info { padding-left: 0; text-align: center; }
+    .mg11-name-rule { margin-inline: auto; }
+    .mg11-row .v { text-align: left; }     /* 仅数值左对齐；标签保持居中于粉色块 */
+    .mg11-intro { text-align: left; }
+  }
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: clamp(24px, 6.2vw, 34px); letter-spacing: -1px; }
+    .mg11-hero-logo { width: min(320px, 78vw); }
+    .mg11-stage { padding: 22px 14px 30px; border-radius: 12px; }
+    .mg11-tab { min-width: 0; flex: 1 1 30%; font-size: 14px; padding: 9px 8px; gap: 7px; }
+    .mg11-tab img { width: 18px; height: 18px; }
+    .mg11-portrait-wrap { min-height: 220px; }
+    .mg11-portrait { max-height: 220px; }
+    .mg11-thumbs { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
+  }
+  @media (max-width: 400px) {
+    .mg11-thumbs { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+        <a href="my-golden-xi-characters.html">队长小翼：我的黄金十一人</a>
+        <a href="dream-team-characters.html">队长小翼：梦幻队伍</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <img class="mg11-hero-logo" src="assets/img/game/my-golden-xi/pjct_logo_zh-cn.webp"
+         alt="队长小翼 黄金十一人 CAPTAIN TSUBASA" loading="eager">
+    <h1>《队长小翼：我的黄金十一人》<span class="en">MY GOLDEN XI</span></h1>
+    <p class="lead">
+      手机游戏《队长小翼：我的黄金十一人》（Captain Tsubasa: My Golden XI）官方角色页资料汉化整理。
+      依官网一级分类分为<b>日本、德国、法国、阿根廷、沙特阿拉伯</b> 5 个国家队，共收录 <b>30 名球员</b>；
+      点击下方头像即可切换立绘、PROFILE 数据与角色介绍（介绍文字直接展示于资料卡，不再另设弹窗）。
+      官网简／繁中文页的角色介绍文字存在整段互换，本页已逐条取简体底本并统一转为简体；
+      CV 配音演员信息已另行建立存档文件独立留存，未在本资料卡展示。
+    </p>
+  </section>
+
+  <section class="section mg11-section" data-reveal>
+    <div class="container">
+      <div class="mg11-stage">
+        <img class="mg11-stage-title" src="assets/img/game/my-golden-xi/pjct_title_character.webp"
+             alt="CHARACTER" loading="lazy">
+
+        <!-- 一级标签：仅 5 个国家队 -->
+        <div class="mg11-tabs" id="mg11Tabs" role="tablist" aria-label="国家队分类"></div>
+
+        <div class="mg11-main">
+          <div class="mg11-portrait-wrap">
+            <img class="mg11-portrait" id="mg11Portrait" src="" alt="" loading="eager">
+          </div>
+          <div class="mg11-info">
+            <div class="mg11-name" id="mg11Name"></div>
+            <div class="mg11-name-rule" aria-hidden="true"></div>
+
+            <div class="mg11-card">
+              <div class="mg11-intro" id="mg11Intro"></div>
+
+              <div class="mg11-board">
+                <div class="mg11-row" style="top:18.71%"><span class="k">所属</span><span class="v" id="mg11Team"></span></div>
+                <div class="mg11-row" style="top:37.28%"><span class="k">生日</span><span class="v" id="mg11Birthday"></span></div>
+                <div class="mg11-row" style="top:55.84%"><span class="k">身高</span><span class="v" id="mg11Height"></span></div>
+                <div class="mg11-row" style="top:74.55%"><span class="k">体重</span><span class="v" id="mg11Weight"></span></div>
+                <div class="mg11-row" style="top:93.11%"><span class="k">血型</span><span class="v" id="mg11Blood"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mg11-thumbs" id="mg11Thumbs"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      队长小翼 WORLD
+      <div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div>
+    </div>
+    <div>
+      <h4>内容分类</h4>
+      <ul>
+        <li><a href="character.html">登场角色</a></li>
+        <li><a href="comics.html">漫画作品</a></li>
+        <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
+        <li><a href="news.html">新闻动态</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>关于</h4>
+      <ul>
+        <li><a href="index.html#about">作品简介</a></li>
+        <li><a href="index.html#news">最新动态</a></li>
+        <li><a href="45th.html">45周年祭</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    角色立绘、头像与官方简介版权归原著作权人所有，
+    资料来源：captaintsubasa-mg11.com（官方角色页 / 简中、繁中交叉校对）
+  </div>
+</footer>
+
+<script src="js/mg11-data.js"></script>
+<script src="js/mg11.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

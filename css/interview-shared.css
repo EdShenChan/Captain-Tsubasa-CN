@@ -117,6 +117,25 @@
 }
 .iv-prose p:last-child { margin-bottom: 0; }
 
+/* 报道小标题（保留原网址小見出し：J3下位を上回る動員 / 地域密着で集客 / 約1億円のスポンサー獲得） */
+.iv-subhead {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.6;
+  margin: 30px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid #c8102e;
+}
+
+/* 专访导语（原网址「高橋氏に話を聞いた」段落） */
+.iv-interview-intro {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+  margin: 22px 0 26px;
+}
+
 /* 响应式 */
 @media (max-width: 480px) {
   .iv-head-lead { font-size: 14px; line-height: 1.9; }

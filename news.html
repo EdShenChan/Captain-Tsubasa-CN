@@ -70,18 +70,6 @@
     margin-top:10px; font-size:12px; color:#8a8276; word-break:break-all;
     line-height:1.7;
   }
-  /* 来源地址：可点击跳转新标签页（同特别专栏页做法） */
-  .col-source a{
-    color:#1a4fd6; text-decoration:underline; word-break:break-all;
-  }
-  .col-source a:hover{ color:#0d3ba8; }
-  .col-source a::after{
-    content:""; display:inline-block; width:.72em; height:.72em; margin-left:.28em;
-    vertical-align:baseline;
-    background:currentColor;
-    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.3 9.3 1.41 1.41 9.3-9.3V10h2V3z'/%3E%3Cpath d='M5 5h5V3H3v18h18v-7h-2v5H5z'/%3E%3C/svg%3E") no-repeat center / contain;
-    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.3 9.3 1.41 1.41 9.3-9.3V10h2V3z'/%3E%3Cpath d='M5 5h5V3H3v18h18v-7h-2v5H5z'/%3E%3C/svg%3E") no-repeat center / contain;
-  }
   .news-template-note{
     margin-top:32px; padding:16px 20px;
     background:#f7f5f0; border:1px solid #e7e2d6; border-radius:8px;
@@ -112,6 +100,8 @@
       <div class="nav-drop-menu">
         <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
         <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+        <a href="my-golden-xi-characters.html">队长小翼：我的黄金十一人</a>
+        <a href="dream-team-characters.html">队长小翼：梦幻队伍</a>
       </div>
     </div>
     <a href="news.html" class="active">新闻动态</a>
@@ -132,7 +122,7 @@
       <b>キャプテン翼WORLD（captain-tsubasa.world）</b> 发布的相关资讯汉化整理，
       按 <b>NEWS</b>（媒体资讯）、<b>COMIC</b>（漫画连载与休刊动态）、<b>ANIME</b>（动画本篇、音乐、BD·DVD、声优评论、WEB 广播）、
       <b>GAME</b>（游戏作品）、<b>EVENT</b>（线下活动与联动）、<b>45TH</b>（连载 45 周年）六大类划分。
-      上方标签中，<b>ALL</b> 为全部新闻；点击其余标签可只看对应分类，列表<b>每 10 条为一页</b>，底部可翻页。<b>点击可跳转官方原文页</b>（新标签页打开）。
+      上方标签中，<b>ALL</b> 为全部新闻；点击其余标签可只看对应分类，列表<b>每 10 条为一页</b>，底部可翻页。<b>来源网址以纯文本标注</b>（不跳转外站）。
     </p>
   </section>
 
@@ -150,7 +140,7 @@
         <b>※ 原站通用链接说明</b>（适用于来源为 ボールはともだち.com 的各条新闻）<br>
         该类新闻的原文地址底部，均带有站内通用跳转「過去のイベントはこちらから確認できます。」
         （过往活动请由此确认），指向：
-        <a href="https://ball-ha-tomodachi.com/news/hp0001/list.php#NEWS_EVENT" target="_blank" rel="noopener">https://ball-ha-tomodachi.com/news/hp0001/list.php#NEWS_EVENT</a>
+        https://ball-ha-tomodachi.com/news/hp0001/list.php#NEWS_EVENT
       </div>
     </div>
   </section>
@@ -245,7 +235,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "《队长小翼原画展～FINAL 然后走向未来！～》POP UP STORE 在三重举办中!!",
     titleJa: "『キャプテン翼原画展～FINAL そして未来へ！～』のPOP UP STOREが三重県で開催中!!",
-    sourceUrl: "https://captain-tsubasa.world/special/611/",
+    sourceText: "https://captain-tsubasa.world/special/611/",
     image: "assets/img/news/mie-popup-store.png",
     body: [
       "2024 年夏在东京、2025 年春在大阪、夏天在香川举办并引发巨大反响的原画展。2026 年 6 月在东京、7 月在大阪也举办了 POP UP STORE。如今更进一步，追加决定在三重举办 POP UP STORE！",
@@ -270,7 +260,7 @@ const NEWS_DATA = [
     category: "45TH",
     title: "集英社漫画博览《队长小翼》全卷 1 册 100 日元（含税）活动实施中!!",
     titleJa: "集英社マンガエキスポで 『キャプテン翼』 全巻1冊100円（税込）キャンペーン実施中!!",
-    sourceUrl: "https://captain-tsubasa.world/special/597/",
+    sourceText: "https://captain-tsubasa.world/special/597/",
     image: "assets/img/news/shueisha-mangaexpo.jpg",
     body: [
       "集英社创业 100 周年纪念特设网站「集英社漫画博览」开幕!!",
@@ -287,7 +277,7 @@ const NEWS_DATA = [
     category: "NEWS",
     title: "纪念路易威登与 UNICEF 合作 10 周年的书籍《REBONDS》发售！",
     titleJa: "ルイ・ヴィトンとユニセフのパートナーシップ10周年を記念した書籍『REBONDS』が発売！",
-    sourceUrl: "https://captain-tsubasa.world/special/576/",
+    sourceText: "https://captain-tsubasa.world/special/576/",
     image: "assets/img/news/lv-rebonds-book.jpg",
     body: [
       "高桥阳一老师参与的、纪念路易威登与联合国儿童基金会（UNICEF）合作 10 周年的书籍《REBONDS》发售!!",
@@ -303,7 +293,7 @@ const NEWS_DATA = [
     category: "COMIC",
     title: "ヤンジャン＋ 上《队长小翼》系列免费阅读的大型活动启动！",
     titleJa: "ヤンジャン＋にて『キャプテン翼』シリーズが無料で読める大型キャンペーンが開始！",
-    sourceUrl: "https://captain-tsubasa.world/special/555/",
+    sourceText: "https://captain-tsubasa.world/special/555/",
     image: "assets/img/news/ynjn-free-campaign.png",
     body: [
       "自 6 月 4 日起，正在连载《队长小翼 RISING SUN FINALS》的ヤンジャン＋ 举办《队长小翼》系列全话免费阅读的大型活动！",
@@ -326,7 +316,7 @@ const NEWS_DATA = [
     category: "45TH",
     title: "TOBU×队长小翼 FAIR 举办!!",
     titleJa: "TOBU×キャプテン翼フェア開催!!",
-    sourceUrl: "https://captain-tsubasa.world/special/549/",
+    sourceText: "https://captain-tsubasa.world/special/549/",
     image: "assets/img/news/45th-logo.jpg",
     body: [
       "为纪念《队长小翼》连载 45 周年，6 月 4 日（周四）至 6 月 24 日（周三）在东武百货店池袋店举办「TOBU×队长小翼 FAIR」!!",
@@ -350,7 +340,7 @@ const NEWS_DATA = [
     category: "COMIC",
     title: "《队长小翼 RISING SUN FINALS》暂时休载的通知",
     titleJa: "『キャプテン翼 ライジングサン FINALS』連載一時お休みのお知らせ",
-    sourceUrl: "https://captain-tsubasa.world/special/545/",
+    sourceText: "https://captain-tsubasa.world/special/545/",
     image: "assets/img/news/risingsun-hiatus-logo.png",
     body: [
       "感谢大家一直以来对《队长小翼 RISING SUN FINALS》的喜爱。",
@@ -365,7 +355,7 @@ const NEWS_DATA = [
     category: "45TH",
     title: "《队长小翼 RISING SUN FINALS》连载 100 回＆作品连载 45 周年的双重纪念关注＆转发活动",
     titleJa: "『キャプテン翼 ライジングサン FINALS』連載100回＆作品連載45周年のW記念フォロー＆RPキャンペーン",
-    sourceUrl: "https://captain-tsubasa.world/special/538/",
+    sourceText: "https://captain-tsubasa.world/special/538/",
     image: "assets/img/news/risingsun-100-campaign.jpg",
     body: [
       "关注队长小翼 WORLD 官方 X 账号并转发对象帖子，即可获得奖品！",
@@ -386,7 +376,7 @@ const NEWS_DATA = [
     category: "45TH",
     title: "队长小翼连载 45 周年网站公开！",
     titleJa: "キャプテン翼連載45周年サイト公開！",
-    sourceUrl: "https://captain-tsubasa.world/special/513/",
+    sourceText: "https://captain-tsubasa.world/special/513/",
     image: "assets/img/news/45th-site-open.png",
     body: [
       "自连载开始迎来 45 周年！值此值得纪念的机会，预定实施特别企划！",
@@ -400,7 +390,7 @@ const NEWS_DATA = [
     category: "45TH",
     title: "祝·连载 45 周年！",
     titleJa: "祝・連載45周年！",
-    sourceUrl: "https://captain-tsubasa.world/special/493/",
+    sourceText: "https://captain-tsubasa.world/special/493/",
     image: "assets/img/news/45th-logo.jpg",
     body: [
       "1981 年 3 月 31 日发售的《周刊少年 JUMP》18 号上，《队长小翼》开始连载。",
@@ -416,7 +406,7 @@ const NEWS_DATA = [
     category: "GAME",
     title: "《队长翼２ WORLD FIGHTERS》决定 2026 年发售！",
     titleJa: "『キャプテン翼２ WORLD FIGHTERS』2026年発売決定！",
-    sourceUrl: "https://captain-tsubasa.world/special/471/",
+    sourceText: "https://captain-tsubasa.world/special/471/",
     image: "assets/img/news/cap2wf-main-kv.png",
     body: [
       "世界啊。这就是足球。",
@@ -435,7 +425,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "《队长小翼》数字集章拉力赛在新小岩实施！",
     titleJa: "『キャプテン翼』デジタルスタンプラリーが新小岩で実施！",
-    sourceUrl: "https://captain-tsubasa.world/special/457/",
+    sourceText: "https://captain-tsubasa.world/special/457/",
     image: "assets/img/news/shinkoiwa-stamprally.jpg",
     body: [
       "免费参加！任何人都可用智能手机参加！收集数字印章，获得《队长小翼》周边吧！",
@@ -461,7 +451,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "POP UP 钱汤「南葛SC湯」collaborate with クーリッシュ 实施中！",
     titleJa: "POP UP銭湯 “南葛SC湯”collaborate withクーリッシュ実施中！",
-    sourceUrl: "https://captain-tsubasa.world/special/447/",
+    sourceText: "https://captain-tsubasa.world/special/447/",
     image: "assets/img/news/nankatsu-sento.jpg",
     body: [
       "限期 POP UP 钱汤在东京都葛饰区的「富士之汤」实施中。",
@@ -480,7 +470,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "队长小翼原画展 ～FINAL 然后走向未来！～ 举办纪念 双重关注＆转发活动",
     titleJa: "キャプテン翼原画展 ～FINAL そして未来へ！～開催記念Wフォロー＆RPキャンペーン",
-    sourceUrl: "https://captain-tsubasa.world/special/282/",
+    sourceText: "https://captain-tsubasa.world/special/282/",
     image: "assets/img/news/gengaten-campaign.jpg",
     body: [
       "关注《队长小翼 ～战斗吧梦之队～》官方 X 账号（@tsubasa_dteam）与队长小翼 WORLD 官方 X 账号（@Tsubasa728world），并转发（RP）对象帖子，即可获得奖品！",
@@ -501,7 +491,7 @@ const NEWS_DATA = [
     category: "GAME",
     title: "时隔约 10 年，《队长小翼》最新家用游戏决定发售！",
     titleJa: "約10年ぶりに『キャプテン翼』の最新家庭用ゲームが発売決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index01090000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index01090000.html",
     body: [
       "《队长小翼》约 10 年来的最新家用游戏——PlayStation®4 / Nintendo Switch™《队长小翼 RISE OF NEW CHAMPIONS》决定发售！",
       "这是系列首款足球动作游戏，以高品质动画视觉呈现高速碰撞的超级扑救与射门。在最新主机呈现的梦幻舞台上，大空翼等 Jr. Youth 世代选手的战斗身姿不容错过。",
@@ -517,7 +507,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "2019/3/4 起 京成电铁押上线「四木站」动画《队长小翼》特别装饰中！",
     titleJa: "2019/03/04(月)～京成電鉄押上線「四ツ木駅」、アニメ「キャプテン翼」特別装飾中！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index01050000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index01050000.html",
     body: [
       "位于《队长小翼》渊源之地·葛饰区的京成电铁押上线「四木站」，化身动画《队长小翼》主题车站！",
       "入口、大厅、楼梯等各处均大幅包裝装饰，整座车站沉浸于《队长小翼》之中。",
@@ -530,7 +520,7 @@ const NEWS_DATA = [
     category: "NEWS",
     title: "5/25（周六）晚 9 点 东京电视台《Ad 街天国》高桥阳一老师担任演播室嘉宾！",
     titleJa: "5/25(土)夜9:00～テレビ東京「アド街ック天国」に高橋陽一先生がスタジオゲスト出演！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index01060000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index01060000.html",
     body: [
       "5 月 25 日（周六）播出的特辑为「葛饰·四木」。原作者高桥阳一老师将作为演播室嘉宾出演。四木周边既是高桥老师的渊源之地，也因《队长小翼》而备受关注，敬请收看！",
       "■ 节目详情：东京电视台《出没！Ad 街天国》｜2019 年 5 月 25 日（周六）21:00～21:54｜MC：井之原快彦、须黑清华（东京电视台主播）｜常规：峰龙太、药丸裕英、山田五郎｜嘉宾：高桥阳一、土田晃之、LiLiCo（敬称略）。"
@@ -542,7 +532,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "最终话今日播出！录音集合照 & 声优评论送达",
     titleJa: "最終話、本日放送!!アフレコ集合写真&キャストコメント到着!!",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index01040000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index01040000.html",
     image: "assets/img/news/final-ep.jpg",
     body: [
       "自 2018 年 4 月开播、共 52 话的 TV 动画《队长小翼》，终于迎来播出尾声。原作者高桥阳一老师出席的最终话录音集合照已送达！",
@@ -556,7 +546,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "WEB 广播《日向小次郎的强势广播！》第 1 回 今日开始配信！",
     titleJa: "WEBラジオ「日向小次郎の強引なラジオ！」第1回、本日配信スタート！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00850000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00850000.html",
     image: "assets/img/news/radio-ctgouin.jpg",
     body: [
       "为应援 TV 动画《队长小翼》，因无法上场而静静燃烧斗志的日向小次郎，从赛场之外传递火热心声的 WEB 广播开播！",
@@ -572,7 +562,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "TV 动画《队长小翼》声优评论（中学生篇开播前夕）",
     titleJa: "中学生編ついにキックオフ！放送直前キャストコメント！",
-    sourceUrl: "https://ball-ha-tomodachi.com/special/comment3.html",
+    sourceText: "https://ball-ha-tomodachi.com/special/comment3.html",
     body: [
       "自第 29 话起，动画进入中学生篇。官方网站在播出前夕汇集了新老声优的留言，以下为各轮提问的完整回答整理编译。",
       "━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
@@ -659,7 +649,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "TV 动画《队长小翼》中学生篇决定播出！！！！",
     titleJa: "TVアニメ「キャプテン翼」中学生編放送決定!!!!",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00460000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00460000.html",
     image: "assets/img/news/junior-broadcast.jpg",
     body: [
       "TV 动画《队长小翼》中学生篇决定播出！继正在播出的小学生篇之后，10 月起中学生篇也将开播！",
@@ -673,7 +663,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "2018/8/8～8/21 东京站八重洲地下街《TV 动画〈队长小翼〉展》决定举办！",
     titleJa: "2018/8/8(水)～2018/8/21(水)東京駅八重洲地下街にて「TVアニメ 『キャプテン翼』展」が開催決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00440000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00440000.html",
     image: "assets/img/news/yaesu-exhibition.jpg",
     body: [
       "东京站八重洲地下街（Yaesu Chika）将于 8 月 8 日（周三）起举办体感·展示活动《TV 动画〈队长小翼〉展》，粉丝不可错过的专属内容满满！",
@@ -688,7 +678,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "2018/6/8～6/20《队长小翼的世界展 ～ROAD TO 2018～》决定举办！",
     titleJa: "2018/6/8(金)～2018/6/20(日)「キャプテン翼の世界展 ～ROAD TO 2018～」開催決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00160000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00160000.html",
     image: "assets/img/news/world-exhibition.jpg",
     body: [
       "为纪念 2018 年 4 月开播的新作动画，高桥阳一《队长小翼》展览《队长小翼的世界展 ～ROAD TO 2018～》定于 6 月 8 日（周五）至 20 日（周三）于东京·西武池袋本店举办！",
@@ -707,7 +697,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "TV 动画《队长小翼》声优评论（小学生篇播出启动）",
     titleJa: "TVアニメ「キャプテン翼」出演キャストコメント",
-    sourceUrl: "https://ball-ha-tomodachi.com/special/comment.html",
+    sourceText: "https://ball-ha-tomodachi.com/special/comment.html",
     image: ["assets/img/news/comment-1.jpg", "assets/img/news/comment-2.jpg"],
     body: [
       "2018 年新作 TV 动画《队长小翼》正式开播，官方网站汇集了出演声优的留言。以下为 5 轮提问的完整回答整理编译。",
@@ -800,7 +790,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "Blu-ray&DVD～小学生篇 下卷～与中学生篇 ED「燃えてヒーロー」Collection 封面、试听视频公开！",
     titleJa: "Blu-ray&DVD～小学生編 下巻～と中学生編ED「燃えてヒーロー」コレクションのジャケット、試聴動画を公開しました！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00730000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00730000.html",
     image: ["assets/img/news/bd-box-2-jacket.jpg", "assets/img/news/bd-box-2-contents.jpg", "assets/img/news/dvd-set-2-jacket.jpg", "assets/img/news/moete-hero-collection-junior-jacket.jpg"],
     body: [
       "「Blu-ray BOX&DVD SET～小学生篇 下卷～」与「中学生篇片尾曲『燃えてヒーロー』Collection」的封面照片已公开！「燃えてヒーロー」Collection 的 CM 与试听视频也一并解禁。",
@@ -814,7 +804,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "小学生篇 Blu-ray&DVD 各店铺专属特典图公开！",
     titleJa: "小学生編Blu-ray&DVD店舗別オリジナル特典画像が公開！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00630000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00630000.html",
     image: ["assets/img/news/store-bonus-badges-1.jpg", "assets/img/news/store-bonus-badges-2.jpg", "assets/img/news/store-bonus-ball.jpg", "assets/img/news/store-bonus-card-1.jpg", "assets/img/news/store-bonus-card-2.jpg", "assets/img/news/store-bonus-keychain.jpg"],
     body: [
       "小学生篇 Blu-ray BOX&DVD SET 的各店铺专属特典图公开！收录收藏徽章组、签名足球、色纸插画、南葛球衣造型钥匙扣等特典。",
@@ -831,7 +821,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "「中学生篇」片头曲与片尾曲决定！",
     titleJa: "「中学生編」オープニングテーマとエンディングテーマが決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00620000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00620000.html",
     image: ["assets/img/news/junior-key-visual.jpg", "assets/img/news/kizudarake-ai-artist.jpg"],
     body: [
       "TV 动画《队长小翼》中学生篇的片头曲与片尾曲决定！",
@@ -846,7 +836,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "小学生篇 Blu-ray BOX & DVD SET 决定发售！",
     titleJa: "小学生編のBlu-ray BOX&DVD SET発売決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00470000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00470000.html",
     image: ["assets/img/news/bd-box-1-jacket.jpg", "assets/img/news/bd-box-1-contents.jpg", "assets/img/news/dvd-set-1-jacket.jpg"],
     body: [
       "TV 动画《队长小翼》小学生篇的 Blu-ray BOX・DVD SET 决定发售！分为附豪华特典的 Blu-ray BOX 与特别价格 DVD SET 两种版本登场！",
@@ -859,7 +849,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "ED 主题曲「燃えてヒーロー」Collection 决定发售！",
     titleJa: "EDテーマ「燃えてヒーロー」コレクション 発売決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00360000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00360000.html",
     image: ["assets/img/news/moete-hero-collection-jacket.jpg", "assets/img/news/moete-hero-collection-ad.jpg"],
     body: [
       "由主人公·大空翼与其对手·若林源三演唱、备受瞩目的《队长小翼》片尾曲「燃えてヒーロー」决定发售 CD！！",
@@ -873,7 +863,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "大空翼、若林源三演唱的 ED 主题曲「燃えてヒーロー」full size 终于开始配信！",
     titleJa: "大空翼、若林源三が歌うEDテーマ「燃えてヒーロー」いよいよフルサイズが配信開始！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00310000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00310000.html",
     image: "assets/img/news/moete-hero-jacket.jpg",
     body: [
       "初代 TV 动画系列片头曲「燃えてヒーロー」，由大空翼、若林源三翻唱，作为当前播出中的新 TV 动画系列片尾曲引发热议。其 full ver. 已于今日 6 月 6 日（周三）起在各音乐配信平台开始配信。敬请尽情享受那首名动画歌曲！",
@@ -891,7 +881,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "翼与若林演唱的 ED 主题曲「燃えてヒーロー」full ver. 决定配信！",
     titleJa: "翼や若林が歌うEDテーマ「燃えてヒーロー」フルver.配信決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00220000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00220000.html",
     image: "assets/img/news/moete-hero-jacket.jpg",
     body: [
       "初代 TV 动画系列片头曲「燃えてヒーロー」，由大空翼（CV：三瓶由布子）与若林源三（CV：铃村健一）翻唱，作为当前播出中的新 TV 动画系列片尾曲引发热议。其 full ver. 决定于 6 月 6 日（周三）起在各音乐配信平台配信。连钱巴也奔跑起来的那首名动画歌曲，敬请尽情享受！",
@@ -907,7 +897,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "ED 主题曲「燃えてヒーロー」（TV 尺寸）决定独家先行配信！",
     titleJa: "EDテーマ「燃えてヒーロー」（TVサイズ）の独占先行配信決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/news/index00150000.html",
+    sourceText: "https://ball-ha-tomodachi.com/news/index00150000.html",
     body: [
       "片尾曲：大空翼（CV：三瓶由布子）演唱的「燃えてヒーロー」TV 尺寸版本，决定在 animelo mix 独家先行配信！",
       "■ 配信开始时间：4 月 17 日（周二）0:00 起",
@@ -921,7 +911,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "东京电视台 2023 年 10 月决定播出！预览视觉图、作品 LOGO、预览 PV、主要声优同时解禁！",
     titleJa: "テレビ東京にて2023年10月放送決定！ティザービジュアル、作品ロゴ、ティザーPV、メインキャストを同時解禁！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00010000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00010000.html",
     image: ["assets/img/news/s2-announce-teaser.jpg", "assets/img/news/s2-announce-sanpei.jpg", "assets/img/news/s2-announce-fukuyama.jpg"],
     body: [
       "■ 作品介绍：《队长小翼》描写转入南葛小的天才足球少年大空翼，在与若林源三、日向小次郎等全国对手的战斗中，作为一名足球选手成长起来的身姿。凭借清爽的故事、个性丰富的角色，以及任谁都想模仿的充满魄力的众多招式，一举成为超人气漫画，其人气更跨越海洋，在世界各地掀起【队长小翼热潮】。其影响甚至及于现实的足球界，据说成为国内外众多职业足球选手诞生的契机。2018 年播出了第 4 部 TV 动画系列，以全 52 话描绘了相当于原作漫画「小学生篇～中学生篇」的情节。从【队长小翼热潮】世代的粉丝，到现役的足球少年少女，作品获得了各年龄层的支持，同时制作续篇的期待也日益高涨。",
@@ -942,7 +932,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "《动画〈队长小翼〉展》决定于 7 月 22 日（周六）起在杉并动画博物馆举办！",
     titleJa: "杉並アニメーションミュージアムにてアニメ『キャプテン翼』展 7月22日（土）より開催決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00030000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00030000.html",
     image: "assets/img/news/suginami-expo-kv.jpg",
     body: [
       "动画《队长小翼》登陆杉并动画博物馆！除 2018 年播出的小学生篇·中学生篇展示外，还将介绍录音台本、分镜等资料，并首次公开新系列「赛季2 青少年篇」的相关信息。",
@@ -958,7 +948,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "豪华追加声优解禁！三宅健太·榎木淳弥·兴津和幸·河西健吾·小野友树·松冈祯丞·山下大辉·山下诚一郎评论送达！",
     titleJa: "豪華追加キャスト解禁！三宅健太・榎木淳弥・興津和幸・河西健吾・小野友樹・松岡禎丞・山下大輝・山下誠一郎からコメント到着！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00040000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00040000.html",
     image: ["assets/img/news/cast-karutz.jpg", "assets/img/news/cast-schester.jpg", "assets/img/news/cast-hernandez.jpg", "assets/img/news/cast-pierre.jpg", "assets/img/news/cast-napoleon.jpg", "assets/img/news/cast-dias.jpg", "assets/img/news/cast-pascal.jpg", "assets/img/news/cast-victorino.jpg"],
     body: [
       "■ 德国代表",
@@ -982,7 +972,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "公开随播出日期一同首次解禁音源的新 PV！实况役前野智昭评论送达！",
     titleJa: "放送開始日時とともに音源初解禁となる新PVを公開！実況役の前野智昭さんからのコメントも到着！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00060000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00060000.html",
     image: "assets/img/news/cast-maeno.jpg",
     body: [
       "片头曲与新 PV、播出日程、追加声优一挙解禁！片头曲继续由赛季 1 的杰尼斯 WEST 担当，为本作全新创作的曲目名为「AS ONE」，音源在同时公开的新 PV 中首次解禁——以充满能量与疾走感的声音为背景，收录了挑战青少年大赛的各国代表的魅力。",
@@ -999,7 +989,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "片头曲决定为杰尼斯 WEST「AS ONE」！",
     titleJa: "オープニングテーマはジャニーズWEST「AS ONE」に決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00070000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00070000.html",
     image: ["assets/img/news/west-group.jpg", "assets/img/news/west-kotaki.jpg"],
     body: [
       "片头曲解禁！担当者继赛季 1 之后仍是杰尼斯 WEST，为本作全新创作的曲目名为「AS ONE」，音源在同时公开的新 PV 中首次解禁！",
@@ -1012,7 +1002,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "10 月 1 日（周日），大空翼将亮相南葛 SC vs 流通经济大学龙崎龙比赛！",
     titleJa: "10月1日（日）、南葛SCvs流通経済大学ドラゴンズ龍ケ崎の試合に大空 翼が登場！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00090000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00090000.html",
     image: "assets/img/news/nankatsu-sc-greeting.jpg",
     body: [
       "本编开播当天 10 月 1 日（周日），大空翼将亮相南葛 SC vs 流通经济大学龙崎龙比赛！在第 57 回关东联赛 1 部后期第 9 节（奥户综合体育中心田径竞技场举行）实施踢球入场仪式与见面会。",
@@ -1027,7 +1017,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "东京电视台决定播出《队长小翼 赛季2 青少年篇》开球前特别节目！",
     titleJa: "テレビ東京にて、「キャプテン翼シーズン２ ジュニアユース編」キックオフ直前特番放送決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00110000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00110000.html",
     image: ["assets/img/news/kickoff-special-cast.jpg", "assets/img/news/kickoff-inamoto.jpg", "assets/img/news/kickoff-sasaki.jpg", "assets/img/news/kickoff-makihika.jpg", "assets/img/news/kickoff-special-logo.png"],
     body: [
       "「队长小翼 赛季2 青少年篇」开球前特别节目决定播出！东京电视台，9 月 27 日（周三）24 时起播出。嘉宾邀请南葛 SC 所属的稲本潤一选手与佐々木竜太选手、足球系 YouTuber MAKIHIKA，畅谈《队长小翼》的回忆，并介绍青少年篇的看点与注目选手。元日本国脚稲本选手还将分享珍贵的国脚时代轶事！",
@@ -1043,7 +1033,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "「JUMP FESTA 2024」ADK EMOTIONS 展位：谈话舞台、人偶见面会 & 射门目标游戏决定举办！",
     titleJa: "2023年12月16日（土）・17日開催の「ジャンプフェスタ2024」ADKエモーションズブースにて アニメ『キャプテン翼シーズン２ ジュニアユース編』トークステージ、着ぐるみグリーティング＆キックターゲットゲーム実施！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00140000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00140000.html",
     body: [
       "2023 年 12 月 16 日（周六）·17 日（周日）举办的「JUMP FESTA 2024」ADK EMOTIONS 展位，将实施本作声优登坛谈话舞台与大空翼人偶见面会 & 射门目标游戏！欢迎来会场游玩！",
       "■ 出展概要：举办日时 12 月 16 日（周六）·17 日（周日）9:00～17:00（最终入场 16:30）｜会场 幕张 Messe 国际展示场（千叶县千叶市美滨区中濑 2 丁目 1）展示 Hall 1～8 之展示 6 Hall ADK EMOTIONS 展位｜入场 免费（事前应募/招待制）——小学岁以上全体来场者需要「JUMP NAVI」应用的入场券（电子票），参加方法详见 https://www.jumpfesta.com/",
@@ -1057,7 +1047,7 @@ const NEWS_DATA = [
     category: "COMIC",
     title: "集英社 JUMP REMIX《队长小翼 Jr. Youth 篇① 全日本 Jr. Youth 迈向梦想的启程》决定 12 月 8 日发售！",
     titleJa: "集英社ジャンプリミックス『キャプテン翼Jr.ユース編①　全日本Jr.ユース夢への始動』が12月8日（火）に発売決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00130000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00130000.html",
     image: "assets/img/news/jump-remix-cover.jpg",
     body: [
       "集英社 JUMP REMIX《队长小翼 Jr. Youth 篇① 全日本 Jr. Youth 迈向梦想的启程》将于 12 月 8 日起在日本全国便利店发售。",
@@ -1071,7 +1061,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "Blu-ray&DVD BOX 上卷决定 2024 年 3 月 27 日（周三）发售！",
     titleJa: "Blu-ray＆DVD BOX上巻　2024年3月27日（水）発売決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00150000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00150000.html",
     image: "assets/img/news/bd-box1-promo.jpg",
     body: [
       "「队长小翼 赛季2 青少年篇」Blu-ray&DVD BOX 上卷决定于 2024 年 3 月 27 日（周三）起贩售。",
@@ -1087,7 +1077,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "京成电铁 × 动画《队长小翼 赛季2 青少年篇》联动进行中！",
     titleJa: "京成電鉄×アニメ『キャプテン翼シーズン２ ジュニアユース編』コラボ実施中！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00180000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00180000.html",
     image: ["assets/img/news/keisei-ticket-design.jpg", "assets/img/news/keisei-ticket-face.jpg", "assets/img/news/yotsugi-ceiling.jpg", "assets/img/news/yotsugi-hall.png", "assets/img/news/yotsugi-stairs.jpg", "assets/img/news/yotsugi-exterior.jpg", "assets/img/news/keisei-stamp-rally.png", "assets/img/news/skyliner-front.jpg", "assets/img/news/skyliner-wrap.jpg", "assets/img/news/skyliner-interior.jpg"],
     body: [
       "动画《队长小翼 赛季2 青少年篇》与京成电铁正在实施车站装饰、京成 Skyliner 车身包装等丰富的联动企划！欢迎假日与家人朋友一同到访！",
@@ -1104,7 +1094,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "3 月 2 日（周六）翼君来到 Ario 龟有！",
     titleJa: "3月2日（土）アリオ亀有に翼くんがやってくる！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00190000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00190000.html",
     image: "assets/img/news/bd-box1-jacket-illust.jpg",
     body: [
       "3 月 2 日（周六），翼君将在 Ario 龟有举办的「南葛 SC 2024 开幕直前特别谈话秀」登场！",
@@ -1119,7 +1109,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "「AnimeJapan 2024」ADK EMOTIONS 展位参展信息解禁！谈话舞台三瓶由布子·福山润·佐藤拓也·松冈祯丞出演",
     titleJa: "「AnimeJapan2024」ADKエモーションズブース出展情報を解禁！トークステージに三瓶由布子・福山 潤・佐藤拓也・松岡禎丞が出演",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00210000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00210000.html",
     image: ["assets/img/news/aj2024-sanpei.jpg", "assets/img/news/aj2024-fukuyama.jpg", "assets/img/news/aj2024-sato.jpg", "assets/img/news/aj2024-matsuoka.jpg"],
     body: [
       "3 月 23 日（周六）、24 日（周日）两日举办的「AnimeJapan 2024」参展信息解禁！ADK EMOTIONS 展位在 23 日（周六）实施主人公大空翼人偶见面会，24 日举办射门目标游戏！参加者赠送纪念赠品。",
@@ -1136,7 +1126,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "2024 年 6 月 30 日举办 Blu-ray&DVD BOX 上卷发售纪念活动！三瓶由布子·佐藤拓也·前野智昭等预定出演",
     titleJa: "2024年6月30日にBlu-ray＆DVD BOX上巻リリースイベントを開催！三瓶由布子・佐藤拓也・前野智昭ほか出演予定",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00200000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00200000.html",
     image: ["assets/img/news/release-event-sanpei.jpg", "assets/img/news/release-event-sato.jpg", "assets/img/news/release-event-maeno.jpg"],
     body: [
       "为纪念 TV 动画「队长小翼 赛季2 青少年篇」Blu-ray&DVD BOX 上卷发售，决定于 6 月 30 日（周日）举办发售纪念活动！邀请三瓶由布子（大空翼役）、佐藤拓也（日向小次郎役）、前野智昭（实况役）等豪华嘉宾，面向同日 17:30 起播出的最终回展开火热谈话。",
@@ -1153,7 +1143,7 @@ const NEWS_DATA = [
     category: "ANIME",
     title: "Blu-ray&DVD BOX 中·下卷发售信息解禁！封面插画同时公开",
     titleJa: "Blu-ray&DVD BOX　中・下巻の発売情報を解禁！ジャケットイラストも公開",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00220000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00220000.html",
     image: "assets/img/news/bd-box2-jacket.jpg",
     body: [
       "TV 动画「队长小翼 赛季2 青少年篇」Blu-ray&DVD BOX 中·下卷发售信息解禁！同时公开日向小次郎施展猛虎射球的封面插画。",
@@ -1167,7 +1157,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "BD BOX 上卷发售纪念活动决定追加若林源三役·铃村健一 & 岬太郎役·福原绫香登坛！应募期间延长至 5 月 24 日（周五）！",
     titleJa: "Blu-ray BOX上巻リリースイベントに若林源三役・鈴村健一さん＆岬 太郎役・福原綾香さんの追加登壇が決定！応募期間は5月24日（金）まで延長！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00250000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00250000.html",
     body: [
       "为纪念 TV 动画「队长小翼 赛季2 青少年篇」Blu-ray BOX 上卷发售，6 月 30 日（周日）举办发售纪念活动。在三瓶由布子（大空翼役）、佐藤拓也（日向小次郎役）、前野智昭（实况役）的基础上，本次决定追加铃村健一（若林源三役）、福原绫香（岬太郎役）登坛！面向同日 17:30 起播出的最终回展开火热谈话。",
       "在对象店铺购买上卷并应募者可获邀请。伴随追加声优登坛，应募期间延长至 2024 年 5 月 24 日（周五）。",
@@ -1183,7 +1173,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "关于 6 月 30 日（周日）举办的上卷发售纪念活动出演者的通知",
     titleJa: "6月30日（日）開催アニメ『キャプテン翼 シーズン２ ジュニアユース編』Blu-ray＆DVD上巻の発売記念イベント出演者に関してのお知らせ",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00260000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00260000.html",
     body: [
       "关于目前正在抽选受理中的 6 月 30 日（周日）举办的动画《队长小翼 赛季2 青少年篇》Blu-ray&DVD 上卷发售纪念活动：出演预定名单中列有若林源三役·铃村健一先生的名字，但依照其所属事务所的发表，为优先本人的身体状况恢复，存在不出演本活动的可能性。",
       "出演情况，今后将通过动画《队长小翼 赛季2 青少年篇》官方 HP·X 等另行通知。给各位观众带来困扰与担忧，深表歉意，敬请谅解。",
@@ -1196,7 +1186,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "6 月 30 日发售纪念活动：仅限优先招待者参加的特别环节决定举办！",
     titleJa: "6月30日（日）開催アニメ『キャプテン翼 シーズン２ ジュニアユース編』Blu-ray＆DVD上巻の発売記念優先招待者のみ参加頂ける特別プログラム開催決定！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00270000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00270000.html",
     body: [
       "在 6 月 30 日（周日）举办的动画《队长小翼 赛季2 青少年篇》Blu-ray&DVD 上卷发售纪念活动中，决定举办仅限「通过发售纪念活动参加优先应募序列码申请参加活动者」参加的特别环节。",
       "希望参加活动者，请于 5 月 24 日（周五）23:59 前，通过「发售纪念活动参加优先应募序列码」所记载的受理专用页面申请。",
@@ -1209,7 +1199,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "6 月 30 日 BD BOX 上卷发售纪念活动开始募集一般招待者！",
     titleJa: "6月30日（日）開催アニメ『キャプテン翼シーズン２ ジュニアユース編』 Blu-ray BOX上巻発売記念イベント一般招待者の募集を開始！",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00280000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00280000.html",
     body: [
       "为纪念 TV 动画「队长小翼 赛季2 青少年篇」Blu-ray BOX 上卷发售，6 月 30 日（周日）举办发售纪念活动。自今日 6 月 3 日（周一）18 时起，开始募集一般招待者！静候各位的应募！",
       "■ 应募表单：https://new-wave-ad.com/event/bd-event/",
@@ -1224,7 +1214,7 @@ const NEWS_DATA = [
     category: "EVENT",
     title: "6 月 30 日发售纪念活动：铃村健一不出演的通知",
     titleJa: "6月30日（日）開催アニメ『キャプテン翼 シーズン２ ジュニアユース編』Blu-rayBOX上巻発売記念イベント 鈴村健一さん出演見送りのお知らせ",
-    sourceUrl: "https://ball-ha-tomodachi.com/jryouth/news/index00290000.html",
+    sourceText: "https://ball-ha-tomodachi.com/jryouth/news/index00290000.html",
     body: [
       "关于预定出演 6 月 30 日（周日）举办的动画《队长小翼 赛季2 青少年篇》Blu-ray BOX 上卷发售纪念活动的若林源三役·铃村健一先生，因身体不适，决定不出演本活动。",
       "对期待出演而等待的各位，由衷致歉。",
@@ -1271,15 +1261,11 @@ const NEWS_DATA = [
       }).join('') + '</div>';
     }
 
-    // 来源：默认可点击跳转；sourceText 字段则渲染为纯文本（零外链约定）
+    // 零外链约定：来源网址一律纯文本显示，不生成可点击跳转（href="https://"）
     let sourceHtml = '';
-    if (item.sourceUrl) {
-      const suEsc = esc(item.sourceUrl);
-      const isExt = /^https?:\/\//i.test(item.sourceUrl);
-      const target = isExt ? ' target="_blank" rel="noopener"' : '';
-      sourceHtml = '<p class="col-source">来源：<a href="' + suEsc + '"' + target + '>' + suEsc + '</a></p>';
-    } else if (item.sourceText) {
-      sourceHtml = '<p class="col-source">来源：' + esc(item.sourceText) + '</p>';
+    const srcRaw = item.sourceText || item.sourceUrl || '';
+    if (srcRaw) {
+      sourceHtml = '<p class="col-source">来源：' + esc(srcRaw) + '</p>';
     }
 
     const foldInner = '<div class="col-body">' + bodyHtml + '</div>' + sourceHtml;
