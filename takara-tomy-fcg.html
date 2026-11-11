@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《キャプテン翼 FOOTBALL CARD GAME》· 队长小翼 WORLD</title>
+<meta name="description" content="TAKARA TOMY《キャプテン翼 FOOTBALL CARD GAME》（FCG）集换式卡牌：商品情报、玩法指南与全 256 张卡片图鉴，日文原文，未作翻译。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/character.css">
+<style>
+  /* ===================== 页头 ===================== */
+  .page-hero h1 { font-size: clamp(28px, 4.6vw, 52px); overflow-wrap: anywhere; }
+  .page-hero h1 .en { font-size: .32em; letter-spacing: 5px; margin-top: 14px; }
+  .page-hero .lead { max-width: 820px; }
+
+  /* 页头 LOGO：置于标题上方，对齐新秀崛起 / 武士道 WS 专页的 LOGO 位 */
+  .page-hero .fcg-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;        /* 与下方主标题的间距 = 2× 段落间距(14px) */
+  }
+  .page-hero .fcg-logo img {
+    width: auto;
+    height: 202.5px;            /* 150% 显示：135px × 1.5（官方 LOGO 原尺寸 204×135） */
+    object-fit: contain;
+    filter: drop-shadow(4px 8px 10px rgba(8, 6, 22, .35));
+  }
+
+  /* ===================== 卡片网格（主站 character.css 用 .chara-grid，本页用 JS 注入的 #charaGrid） ===================== */
+  .chara-grid, #charaGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+    gap: 20px;
+  }
+
+  /* ===================== 卡牌图方向适配 ===================== */
+  /* 官方卡图：竖版 529×740 / 740×1035（≈0.715），横版 740×530 / 1034×740（≈1.397） */
+  /* 覆盖共享 character.css 的 3/4 竖框 + cover 裁切，改为按真实方向完整呈现 */
+  .chara-card-img { aspect-ratio: 529 / 740; }
+  .chara-card-img img { object-fit: contain; }
+  .chara-card-img.is-landscape { aspect-ratio: 740 / 529; }
+  /* 弹窗大图同样处理 */
+  .modal-img { aspect-ratio: 529 / 740; }
+  .modal-img img { object-fit: contain; object-position: center; }
+  .modal-img.is-landscape { aspect-ratio: 740 / 529; }
+
+  /* ===================== §2 卡牌专用段（不写入共享 character.css） ===================== */
+  .chara-card-btn,
+  .chara-card:hover .chara-card-btn { opacity: 1 !important; transform: none !important; visibility: visible !important; font-weight: 700; z-index: 3 !important; }
+  .chara-card-name { font-size: 15px; line-height: 1.35; }
+  .chara-card-nick { font-size: 12px; }
+
+  /* レアリティ：改用官网官方图标 img/<rare>.png，不沿用 WS 专页的自创配色文字角标 */
+  .chara-card-btn.fcg-card-rare {
+    background: rgba(255, 255, 255, .94); border: 1px solid var(--line);
+    padding: 3px 7px; display: inline-flex; align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .12);
+  }
+  .fcg-rare-img { height: 24px; width: auto; display: block; }
+  .fcg-tab-count { font-size: 11px; opacity: .7; margin-left: 6px; }
+
+  /* 筛选栏 */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; margin-bottom: 32px; }
+  .filter-search { width: min(320px, 100%); padding: 10px 14px; border: 1px solid var(--line); font-family: var(--font-body); font-size: 14px; outline: none; border-radius: 2px; }
+  .filter-search:focus { border-color: var(--brand); }
+  .filter-select { padding: 10px 12px; border: 1px solid var(--line); background: #fff; font-family: var(--font-body); font-size: 13px; color: var(--ink); cursor: pointer; border-radius: 2px; }
+  .filter-select:focus { border-color: var(--brand); outline: none; }
+  .result-count { font-family: var(--font-display); font-size: 13px; letter-spacing: 1px; color: var(--muted); text-align: center; margin-bottom: 28px; }
+  .result-count b { color: var(--brand); font-size: 18px; }
+  .no-result { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--muted); }
+
+  /* 弹窗：原文文本与全字段表 */
+  .modal-text { margin-top: 20px; padding: 16px 18px; background: #f6f6fb; border-left: 4px solid var(--brand); font-size: 13.5px; line-height: 1.9; color: #333; }
+  .modal-text-h { font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: var(--brand); margin-bottom: 10px; }
+  .modal-flavor { font-size: 13px; color: var(--muted); margin-top: 12px; }
+  .modal-raw { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .modal-raw summary { cursor: pointer; font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: var(--brand); }
+  .modal-raw table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 12px; }
+  .modal-raw th, .modal-raw td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: top; word-break: break-all; }
+  .modal-raw th { width: 150px; color: var(--brand); font-weight: 700; font-family: var(--font-mono, monospace); }
+  .modal-raw td { color: #444; }
+  .modal-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+  .modal-nav button { flex: 1; padding: 10px; border: 1px solid var(--line); background: #fff; font-family: var(--font-display); font-size: 12px; letter-spacing: 1px; cursor: pointer; border-radius: 2px; }
+  .modal-nav button:hover { border-color: var(--brand); color: var(--brand); }
+
+  /* 分类标签条：系列（6 弹，主轴）+ カテゴリ（3 种），均为多美自身体系 */
+  #seriesTabs, #kindTabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
+  #seriesTabs .tab, #kindTabs .tab {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 8px 14px; border: 1px solid var(--line); background: #fff;
+    font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--ink);
+    cursor: pointer; border-radius: 2px; transition: border-color .2s, color .2s, background .2s;
+  }
+  #seriesTabs .tab:hover, #kindTabs .tab:hover { border-color: var(--brand); color: var(--brand); }
+  #seriesTabs .tab--active, #kindTabs .tab--active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  #seriesTabs .tab-name, #kindTabs .tab-name { font-weight: 700; }
+
+  /* ===================== 详情弹窗：仿官网 card/card.html?card=<no> 构图 ===================== */
+  /* 覆盖共享 character.css 的「左图右文」两列 grid，改为官网的「图上表下」单列构图 */
+  #charaModal .modal-inner { display: block; padding: 32px 36px; }
+  #charaModal .modal-body { max-width: 760px; }
+
+  .fcg-single { width: 100%; max-width: 640px; margin: 0 auto; }
+  .fcg-single-title {
+    font-family: var(--font-display); font-weight: 900; font-size: clamp(22px, 3vw, 28px);
+    margin: 0 0 24px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  }
+  .fcg-single-no { font-size: 13px; letter-spacing: 2px; color: var(--muted); font-family: var(--font-mono, monospace); }
+
+  /* 大图：官网竖卡 50% 宽 / 横卡 80% 宽，翻页箭头浮于图左右外侧 */
+  .fcg-figure { position: relative; width: 50%; margin: 0 auto 24px; }
+  .fcg-figure.is-landscape { width: 80%; }
+  .fcg-figure > img { display: block; width: 100%; height: auto; }
+  .fcg-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 34px; height: 34px; border: 0; border-radius: 50%;
+    background: rgba(255, 255, 255, .92); color: #303030;
+    font-size: 26px; line-height: 1; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .22); padding: 0;
+  }
+  .fcg-nav--prev { left: -42px; }
+  .fcg-nav--next { right: -42px; }
+  .fcg-nav:disabled { color: #c0c0c0; cursor: default; opacity: .5; }
+
+  /* 图标行：ガードアイコン / ガッツ / シュートポイント（官网背景图 + 白字描边） */
+  .fcg-icons { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 8px; min-height: 50px; }
+  .fcg-guard-img { height: 50px; width: auto; }
+  .fcg-guts, .fcg-sp {
+    width: 45px; height: 50px; background-position: center center; background-repeat: no-repeat;
+    background-size: contain; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 24px;
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  }
+  .fcg-guts { background-image: url('assets/img/game/fcg/icons/guts.png'); }
+  .fcg-sp { width: 50px; background-image: url('assets/img/game/fcg/icons/sp.png'); }
+
+  /* 属性表：深灰表头 + 灰边框 + 居中，完全沿用官网 .card_single table 口径 */
+  .fcg-tbl { border-collapse: collapse; width: 100%; margin-bottom: .45em; font-size: 13px; }
+  .fcg-tbl th, .fcg-tbl td { border: 1px solid #999; padding: 6px; text-align: center; vertical-align: middle; }
+  .fcg-tbl th { width: 18%; background: #303030; color: #fff; font-weight: 700; }
+  .fcg-tbl td { width: 32%; }
+  .fcg-tbl td.fcg-state { width: 82%; }
+  .fcg-tbl td > img { height: 33px; width: auto; vertical-align: middle; }
+  .fcg-tbl th.fcg-th-full { width: 100%; text-align: left; padding-left: 10px; }
+  .fcg-tbl td.fcg-textcell { width: 100%; text-align: left; line-height: 1.9; padding: 10px 12px; }
+  .fcg-text-icon { height: 25px !important; width: auto; vertical-align: middle; margin: 0 2px; }
+  .fcg-dash { color: #999; }
+  .fcg-stat {
+    display: inline-block; width: 68px; height: 64px; padding-top: 18px;
+    background-position: center center; background-repeat: no-repeat; background-size: contain;
+    text-align: center;
+  }
+  .fcg-stat--deffence { background-image: url('assets/img/game/fcg/icons/deffence.png'); }
+  .fcg-stat--cover { background-image: url('assets/img/game/fcg/icons/cover.png'); }
+  .fcg-stat--assist { background-image: url('assets/img/game/fcg/icons/assist.png'); }
+  .fcg-stat--offence { background-image: url('assets/img/game/fcg/icons/offence.png'); }
+  .fcg-stat .fcg-num-img { height: 30px; width: auto; display: inline-block; }
+
+  .fcg-illust { font-size: 13px; color: #333; margin: 14px 0 4px; }
+  .fcg-copyright { font-size: 11px; color: var(--muted); margin: 0 0 18px; }
+  .fcg-raw { border-top: 1px solid var(--line); padding-top: 14px; }
+  .fcg-raw summary { cursor: pointer; font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: var(--brand); }
+  .fcg-raw table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
+  .fcg-raw th, .fcg-raw td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: top; word-break: break-all; }
+  .fcg-raw th { width: 150px; color: var(--brand); font-weight: 700; font-family: var(--font-mono, monospace); }
+  .fcg-raw td { color: #444; }
+
+  /* ===================== 响应式 ===================== */
+  @media (max-width: 720px) {
+    .chara-grid, #charaGrid { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 14px; }
+    .filter-bar { gap: 10px; }
+    .filter-search { width: 100%; }
+    .page-hero .fcg-logo img { height: 110px; }
+    #charaModal .modal-inner { padding: 24px 20px; }
+    .fcg-figure { width: 68%; }
+    .fcg-figure.is-landscape { width: 94%; }
+    .fcg-nav--prev { left: -6px; }
+    .fcg-nav--next { right: -6px; }
+    .fcg-tbl { font-size: 12px; }
+    .fcg-stat { width: 58px; height: 56px; padding-top: 16px; }
+    .fcg-stat .fcg-num-img { height: 26px; display: inline-block; }
+  }
+  @media (max-width: 420px) {
+    .chara-grid, #charaGrid { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
+    .page-hero .fcg-logo img { height: 90px; }
+  }
+
+  /* ===================== 三版面：吸顶页标签 ===================== */
+  [hidden] { display: none !important; }
+  .fcg-tabs {
+    position: sticky; top: var(--header-h); z-index: 900;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(20, 0, 255, .05);
+  }
+  .fcg-tabs-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 28px;
+    display: flex; justify-content: center; gap: 8px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .fcg-tabs a {
+    flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+    padding: 15px 22px; font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    letter-spacing: 1px; color: var(--muted); text-decoration: none;
+    border-bottom: 3px solid transparent; transition: color .2s, border-color .2s, background .2s;
+  }
+  .fcg-tabs a:hover { color: var(--brand); background: rgba(26, 0, 255, .03); }
+  .fcg-tabs a[aria-current="page"] { color: var(--brand); border-bottom-color: var(--brand); }
+
+  .fcg-panel { scroll-margin-top: calc(var(--header-h) + 64px); }
+  .fcg-panel > .container { max-width: 1040px; }
+  .fcg-panel-head { text-align: center; margin-bottom: 40px; }
+  .fcg-panel-head .kicker { font-family: var(--font-display); font-size: 11px; letter-spacing: 3px; color: var(--brand); display: block; margin-bottom: 10px; }
+  .fcg-panel-head h2 { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 34px); font-weight: 900; letter-spacing: -1px; }
+  .fcg-panel-head p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 760px; margin: 12px auto 0; }
+  .fcg-note { background: #f6f6fb; border-left: 4px solid var(--brand); padding: 14px 18px; font-size: 13px; line-height: 1.85; color: #444; margin-bottom: 32px; }
+  .fcg-subhead { font-family: var(--font-display); font-size: 17px; font-weight: 900; margin: 36px 0 16px; padding-left: 12px; border-left: 4px solid var(--brand); }
+  .fcg-source { font-size: 12px; color: var(--muted); margin-top: 32px; text-align: center; }
+
+  /* --- 版面 1：商品情报 --- */
+  /* 板块导语 */
+  .fcg-intro { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--brand); border-radius: 8px; padding: 18px 22px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(20,50,80,.05); }
+  .fcg-intro-q { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--brand); }
+  .fcg-intro p { font-size: 14.5px; color: #33424f; margin-bottom: 8px; line-height: 1.75; }
+  .fcg-intro p:last-child { margin-bottom: 0; }
+
+  /* 单独一行的头图（完整显示，不裁切） */
+  .fcg-hero-solo { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(20,50,80,.12); margin-bottom: 8px; }
+  .fcg-hero-solo img { display: block; width: 100%; height: auto; }
+
+  /* 分节标题条（第一／二／三弾） */
+  .fcg-sec-bar { display: flex; align-items: center; gap: 12px; margin: 40px 0 18px; }
+  .fcg-sec-bar .tag { background: linear-gradient(90deg, var(--brand), #2a8fd6); color: #fff; font-weight: 700; font-size: 18px; padding: 6px 16px; border-radius: 6px; letter-spacing: .06em; }
+  .fcg-sec-bar .en { color: var(--muted); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+
+  /* 商品卡（复用） */
+  .fcg-prod { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+  .fcg-prod .box { background: #f7f7fb; padding: 16px; display: flex; align-items: center; justify-content: center; height: 212px; }
+  .fcg-prod .box img { max-height: 180px; max-width: 100%; object-fit: contain; }
+  .fcg-prod .body { padding: 14px 16px 18px; }
+  .fcg-prod .pn { font-family: var(--font-display); font-weight: 900; font-size: 15px; margin: 0 0 2px; }
+  .fcg-prod .ps { font-size: 11.5px; color: var(--muted); margin: 0 0 12px; }
+  .fcg-prod dl { margin: 0; font-size: 12px; }
+  .fcg-prod dl > div { display: grid; grid-template-columns: 60px 1fr; gap: 6px; padding: 5px 0; border-top: 1px solid #f0f0f5; }
+  .fcg-prod dt { color: var(--muted); }
+  .fcg-prod dd { margin: 0; font-weight: 700; }
+
+  /* 第一弾：三张等宽并排 */
+  .fcg-card-row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  /* 第二／三弾：头图(完整显示) + 单卡 同行 1.7:1 */
+  .fcg-pair { display: grid; grid-template-columns: 1.7fr 1fr; gap: 20px; align-items: start; }
+  .fcg-pair .banner { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(20,50,80,.12); background: #eef4f9; align-self: start; }
+  .fcg-pair .banner img { display: block; width: 100%; height: auto; }
+
+  /* --- 版面 2：玩法指南 --- */
+  .fcg-guide-intro { font-size: 13.5px; line-height: 1.95; color: #444; margin: 0 0 24px; }
+  .fcg-video { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: center; border: 1px solid var(--line); padding: 18px; border-radius: 8px; margin-bottom: 24px; background: #fff; }
+  .fcg-video img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 4px; display: block; }
+  .fcg-video .meta h3 { font-family: var(--font-display); font-size: 15px; font-weight: 900; margin: 0 0 10px; }
+  .fcg-video .meta p { font-size: 13px; line-height: 1.9; color: #444; margin: 0; }
+  .fcg-reslist { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .fcg-resitem { border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; background: #fff; }
+  .fcg-resitem b { display: block; font-size: 13.5px; margin-bottom: 4px; }
+  .fcg-resitem span { font-size: 11.5px; color: var(--muted); }
+  /* PDF 下载网址：仅作纯文本罗列，不设置超链接（零外链约束） */
+  .fcg-resurl {
+    display: block; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line);
+    font-family: var(--font-mono, monospace); font-size: 10.5px; color: #787878;
+    word-break: break-all; line-height: 1.5;
+  }
+  /* 玩法说明（翻译）子层级 */
+  .fcg-sub2 { font-family: var(--font-display); font-size: 14.5px; font-weight: 800; color: #333; margin: 24px 0 10px; }
+  .fcg-ul { margin: 0 0 16px; padding-left: 22px; font-size: 13.5px; line-height: 1.95; color: #444; }
+  .fcg-ul li { margin-bottom: 6px; }
+  .fcg-ul b { color: #222; }
+  .fcg-stage { border-left: 3px solid var(--brand); background: #fafafe; padding: 12px 16px; margin: 0 0 14px; border-radius: 0 6px 6px 0; }
+  .fcg-stage b { color: var(--brand); }
+  /* 玩法说明：折叠面板（扩展/收起按钮） */
+  .fcg-acc { border: 1px solid var(--line); border-radius: 8px; margin: 0 0 18px; background: #fff; overflow: hidden; }
+  .fcg-acc > summary.fcg-acc-head {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; font-family: var(--font-display); font-weight: 900; font-size: 15.5px; color: #222;
+    background: #fafafe; user-select: none;
+  }
+  .fcg-acc > summary.fcg-acc-head::-webkit-details-marker { display: none; }
+  .fcg-acc > summary.fcg-acc-head:hover { background: #f1f1fa; }
+  .fcg-acc-ico { position: relative; flex: 0 0 auto; width: 18px; height: 18px; }
+  .fcg-acc-ico::before, .fcg-acc-ico::after {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    background: var(--brand); border-radius: 2px;
+  }
+  .fcg-acc-ico::before { width: 14px; height: 2px; }   /* 横杠（常驻） */
+  .fcg-acc-ico::after { width: 2px; height: 14px; }    /* 竖杠（闭合时显示 → 呈「+」） */
+  .fcg-acc[open] .fcg-acc-ico::after { display: none; } /* 展开时仅横杠 → 呈「−」 */
+  .fcg-acc-body { padding: 18px 20px 8px; }
+  .fcg-sub3 { font-size: 13px; font-weight: 700; color: #444; margin: 18px 0 8px; }
+  .fcg-sub3:first-child { margin-top: 0; }
+  .fcg-ol { margin: 0 0 16px; padding-left: 22px; font-size: 13.5px; line-height: 1.95; color: #444; }
+  .fcg-ol li { margin-bottom: 6px; }
+
+  /* ===================== 分页控件（卡牌图鉴 20 张/页） ===================== */
+  .fcg-pager { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 32px; }
+  .fcg-pager .pager-btn {
+    min-width: 40px; padding: 9px 14px; border: 1px solid var(--line); background: #fff;
+    font-family: var(--font-display); font-size: 13px; color: var(--ink); cursor: pointer; border-radius: 2px;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .fcg-pager .pager-btn:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
+  .fcg-pager .pager-btn--active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .fcg-pager .pager-btn:disabled { opacity: .4; cursor: default; }
+  .fcg-pager .pager-ellipsis { padding: 0 4px; color: var(--muted); }
+
+  @media (max-width: 720px) {
+    .fcg-tabs-inner { justify-content: flex-start; padding: 0 12px; }
+    .fcg-tabs a { padding: 13px 14px; font-size: 12px; letter-spacing: 0; }
+    .fcg-video { grid-template-columns: 1fr; }
+    .fcg-card-row3 { grid-template-columns: 1fr; }
+    .fcg-pair { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+        <a href="my-golden-xi-characters.html">队长小翼：我的黄金十一人</a>
+        <a href="dream-team-characters.html">队长小翼：梦幻队伍</a>
+        <a href="weiss-schwarz-ctb.html">武士道TCG卡牌</a>
+          <a href="takara-tomy-fcg.html">多美TCG卡牌</a>
+          <a href="konami-champion-of-field.html">科乐美TCG卡牌</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="fcg-logo">
+      <img src="assets/img/game/fcg/rogo.png"
+           alt="キャプテン翼 FOOTBALL CARD GAME 官方 LOGO" width="204" height="135" loading="eager">
+    </div>
+    <h1>《キャプテン翼 FOOTBALL CARD GAME》<span class="en">TAKARA TOMY · CAPTAIN TSUBASA FCG · CT-01 / CT-02 / CT-03 / CTD / CT-PR</span></h1>
+    <p class="lead">
+      《キャプテン翼 FOOTBALL CARD GAME》（FCG）是 TAKARA TOMY（多美）于 2018 年 12 月推出的
+      <b>实体集换式卡牌</b>（Trading Card Game），以 2018 年版 TV 动画《队长小翼》为题材。
+      本图鉴收录官方卡表全 <b>256 张卡片</b>原图与完整数据，涵盖 3 弹扩展包、2 款起始牌组与宣传卡，
+      含稀有度、种类、所属、位置、四项攻防数值、能力文本、效果文本、卡面台词与插画师等字段。
+    </p>
+    <p class="lead" style="margin-top:14px;color:var(--muted);font-size:14px">
+      本页分为 <b>商品情报 / 玩法指南 / 卡牌图鉴</b> 三个版面，可用上方页标签切换。
+      数据取自 takaratomy.co.jp 官方（纯文本标示来源，站内无外链）。
+      <b>卡名与全部文本保留日文原文，未作翻译</b>；中文正式定名待确定，暂沿用日文原名。
+      卡牌图鉴支持按系列 / 种类 / 稀有度 / 位置 / 所属 / 插画师筛选、搜索与排序，并分页显示（每页 20 张）。
+    </p>
+  </section>
+
+  <!-- ===================== 三版面吸顶页标签 ===================== -->
+  <nav class="fcg-tabs" id="fcgTabs" aria-label="版面切换">
+    <div class="fcg-tabs-inner">
+      <a href="#info" data-panel="info">商品情报</a>
+      <a href="#guide" data-panel="guide">玩法指南</a>
+      <a href="#cards" data-panel="cards" aria-current="page">卡牌图鉴</a>
+    </div>
+  </nav>
+
+  <!-- ===================== 版面 1：商品情报 ===================== -->
+  <section class="section fcg-panel" id="info" hidden>
+    <div class="container">
+      <div class="fcg-panel-head">
+        <span class="kicker">PRODUCT INFO</span>
+        <h2>商品情报</h2>
+        <p>TAKARA TOMY（多美）发行的《队长小翼》题材集换式卡牌游戏——キャプテン翼 FOOTBALL CARD GAME（FCG）。</p>
+      </div>
+
+      <!-- 商品情報 简介（融合 ct-02 / ct-03 官方介绍，翻译并修正为全3弹） -->
+      <div class="fcg-intro">
+        <div class="fcg-intro-q">「队长小翼 FOOTBALL CARD GAME」是什么？</div>
+        <p>由多美（TAKARA TOMY）推出、以动画《队长小翼》为题材的集换式卡牌游戏。以大空翼为首的一众魅力角色，连同众多必杀技与经典名场面，都凝缩于一张张卡牌之中。</p>
+        <p>凭借人人皆可轻松上手的简单规则，即可沉浸体验《队长小翼》的世界观。目前，预组卡组「南葛SC篇」与「明和FC篇」，以及扩充包（全 3 弹）正热销中。</p>
+      </div>
+
+      <!-- 头图1：单独一行 -->
+      <div class="fcg-hero-solo">
+        <img src="assets/img/game/fcg/panel-info/mv002.png" alt="头图1 第1弾 主视觉" loading="lazy">
+      </div>
+
+      <!-- 第一弾：CTD-01 / CTD-02 / CT-01 三张并排 -->
+      <div class="fcg-sec-bar">
+        <span class="tag">第一弾</span><span class="en">Vol.1</span>
+      </div>
+      <div class="fcg-card-row3">
+        <div class="fcg-prod">
+          <div class="box"><img src="assets/img/game/fcg/panel-info/ctd-01.jpg" alt="CTD-01 スターターデック 南葛SC編 盒图" loading="lazy"></div>
+          <div class="body">
+            <p class="pn">CTD-01 スターターデック 南葛SC編</p>
+            <p class="ps">2018.12.27 発売</p>
+            <dl>
+              <div><dt>価格</dt><dd>1,430円(税込)</dd></div>
+              <div><dt>入数</dt><dd>44枚+シート</dd></div>
+              <div><dt>種類</dt><dd>全13種(5限定)</dd></div>
+              <div><dt>BOX</dt><dd>—</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="fcg-prod">
+          <div class="box"><img src="assets/img/game/fcg/panel-info/ctd-02.jpg" alt="CTD-02 スターターデック 明和FC編 盒图" loading="lazy"></div>
+          <div class="body">
+            <p class="pn">CTD-02 スターターデック 明和FC編</p>
+            <p class="ps">2018.12.27 発売</p>
+            <dl>
+              <div><dt>価格</dt><dd>1,430円(税込)</dd></div>
+              <div><dt>入数</dt><dd>44枚+シート</dd></div>
+              <div><dt>種類</dt><dd>全13種(6限定)</dd></div>
+              <div><dt>BOX</dt><dd>—</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="fcg-prod">
+          <div class="box"><img src="assets/img/game/fcg/panel-info/ct-01.jpg" alt="CT-01 拡張パック「第1節」盒图" loading="lazy"></div>
+          <div class="body">
+            <p class="pn">CT-01 拡張パック「第1節」</p>
+            <p class="ps">2018.12.27 発売</p>
+            <dl>
+              <div><dt>価格</dt><dd>264円(税込)</dd></div>
+              <div><dt>入数</dt><dd>6枚(1枚フォイル)</dd></div>
+              <div><dt>種類</dt><dd>全60種</dd></div>
+              <div><dt>BOX</dt><dd>24パック入り</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二弾：头图2(mv001) + CT-02 同行 -->
+      <div class="fcg-sec-bar">
+        <span class="tag">第二弾</span><span class="en">Vol.2</span>
+      </div>
+      <div class="fcg-pair">
+        <div class="banner"><img src="assets/img/game/fcg/panel-info/mv001.png" alt="头图2 第2弾 主视觉" loading="lazy"></div>
+        <div class="fcg-prod">
+          <div class="box"><img src="assets/img/game/fcg/panel-info/ct-02.jpg" alt="CT-02 拡張パック「第2節」盒图" loading="lazy"></div>
+          <div class="body">
+            <p class="pn">CT-02 拡張パック「第2節」</p>
+            <p class="ps">2019.4.27 発売</p>
+            <dl>
+              <div><dt>価格</dt><dd>264円(税込)</dd></div>
+              <div><dt>入数</dt><dd>6枚(2枚フォイル)</dd></div>
+              <div><dt>種類</dt><dd>全82種</dd></div>
+              <div><dt>BOX</dt><dd>24パック入り</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第三弾：头图3(ct-03) + CT-03 同行 -->
+      <div class="fcg-sec-bar">
+        <span class="tag">第三弾</span><span class="en">Vol.3</span>
+      </div>
+      <div class="fcg-pair">
+        <div class="banner"><img src="assets/img/game/fcg/panel-info/ct-03.png" alt="头图3 第3弾 主视觉" loading="lazy"></div>
+        <div class="fcg-prod">
+          <div class="box"><img src="assets/img/game/fcg/panel-info/ct-03.jpg" alt="CT-03 拡張パック「第3節」盒图" loading="lazy"></div>
+          <div class="body">
+            <p class="pn">CT-03 拡張パック「第3節」</p>
+            <p class="ps">2019.10.26 発売</p>
+            <dl>
+              <div><dt>価格</dt><dd>264円(税込)</dd></div>
+              <div><dt>入数</dt><dd>6枚(2枚フォイル)</dd></div>
+              <div><dt>種類</dt><dd>全70種</dd></div>
+              <div><dt>BOX</dt><dd>24パック入り</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="fcg-note" style="margin-top:32px">
+        此外，官方另以赛事／店铺活动配布形式发行 <b>CT-PR プロモカード 18 种</b>（非贩卖商品，图鉴中单独标记为 PR）。
+      </div>
+      <p class="fcg-source">资料来源：takaratomy.co.jp 官方商品页（products/index · ct-02 · ct-03，価格・仕様为官方发表值，仅作资料记录，本站不提供购买入口）。</p>
+    </div>
+  </section>
+
+  <!-- ===================== 版面 2：玩法指南 ===================== -->
+  <section class="section fcg-panel" id="guide" hidden>
+    <div class="container">
+      <div class="fcg-panel-head">
+        <span class="kicker">HOW TO PLAY</span>
+        <h2>玩法指南</h2>
+        <p>了解《队长小翼 FCG》的基本玩法与官方提供的学习资源。</p>
+      </div>
+
+      <div class="fcg-note">
+        以下为官方「遊び方・Q&amp;A」栏目的整理。FCG 是"誰でも遊べる簡単なルール"的 TCG，用喜欢的角色卡与必杀技卡片重现动画对战。
+        完整规则由官方以 PDF 规则表与对战视频提供，本页不臆造规则步骤。
+      </div>
+
+      <h3 class="fcg-subhead">デッキ構成（卡组构成）</h3>
+      <p class="fcg-guide-intro">
+        游戏需要一副牌组才能游玩：先以 <b>スターターデック（预组）</b>「南葛SC編」或「明和FC編」上手，
+        再以 <b>拡張パック（补充包）</b>「第1節／第2節／第3節」扩充、强化自己的原创卡组。
+      </p>
+
+      <h3 class="fcg-subhead">対戦動画（官方）</h3>
+      <div class="fcg-video">
+        <img src="assets/img/game/fcg/panel-guide/mv001.jpg" alt="官方対戦動画缩略图（小野伸二 × ワッキー）" loading="lazy">
+        <div class="meta">
+          <h3>天才サッカープレイヤー 小野伸二選手 × ペナルティ・ワッキー 对战</h3>
+          <p>
+            官方「遊び方・Q&amp;A」栏目公开的对战演示视频，能理解游戏的基本流程（对战开始约 03:20 起）。
+            <br><span style="color:var(--muted)">（本站仅嵌入官方视频缩略图作资料展示，不放置外部播放器与外链。）</span>
+          </p>
+        </div>
+      </div>
+
+      <h3 class="fcg-subhead">官方提供の学習資源（PDF）</h3>
+      <p class="fcg-guide-intro" style="margin-bottom:16px">以下资源由官方提供，本站仅作资料罗列，<b>不提供下载入口、不设置超链接</b>；下方每条附官方下载网址（纯文本），供自行前往官网获取：</p>
+      <div class="fcg-reslist">
+        <div class="fcg-resitem"><b>スターターデック 南葛SC編 ルールシート</b><span>规则表 · 7.17MB（PDF）</span><code class="fcg-resurl">https://www.takaratomy.co.jp/products/tsubasa_fcg/howto/pdf/sheet1_ctd01_rule.pdf</code></div>
+        <div class="fcg-resitem"><b>スターターデック 明和FC編 ルールシート</b><span>规则表 · 7.22MB（PDF）</span><code class="fcg-resurl">https://www.takaratomy.co.jp/products/tsubasa_fcg/howto/pdf/sheet1_ctd02_rule.pdf</code></div>
+        <div class="fcg-resitem"><b>スターターデック 南葛SC編 情報シート</b><span>信息表 · 7.83MB（PDF）</span><code class="fcg-resurl">https://www.takaratomy.co.jp/products/tsubasa_fcg/howto/pdf/sheet2_ctd01_info.pdf</code></div>
+        <div class="fcg-resitem"><b>スターターデック 明和FC編 情報シート</b><span>信息表 · 12.49MB（PDF）</span><code class="fcg-resurl">https://www.takaratomy.co.jp/products/tsubasa_fcg/howto/pdf/sheet2_ctd02_info.pdf</code></div>
+        <div class="fcg-resitem"><b>スターターデック 南葛SC編 プレイシート</b><span>对战场地表 · 15.60MB（PDF）</span><code class="fcg-resurl">https://www.takaratomy.co.jp/products/tsubasa_fcg/howto/pdf/sheet3_ctd01_play.pdf</code></div>
+        <div class="fcg-resitem"><b>スターターデック 明和FC編 プレイシート</b><span>对战场地表 · 16.34MB（PDF）</span><code class="fcg-resurl">https://www.takaratomy.co.jp/products/tsubasa_fcg/howto/pdf/sheet3_ctd02_play.pdf</code></div>
+      </div>
+
+      <h3 class="fcg-subhead">玩法说明（どう遊ぶか）</h3>
+      <p class="fcg-guide-intro">
+        以下为《队长小翼 FCG》玩法的中文翻译，整理自粉丝目录站「ジャガーノーツのTCGカタログ」的《キャプテン翼 フットボールカードゲーム》页面
+        （原 URL：<code class="fcg-resurl" style="display:inline;margin:0;padding:0;border:0">https://ss1.xrea.com/card.g1.xrea.com/t3/ttk21cpt.html</code>，文责 DOP，2019/10/26）。
+        该作规则与科乐美旧版（王者之场／完美十一人）完全不同，核心为「气力（Guts）」与「射门回合／守卫回合」机制。
+      </p>
+
+      <p class="fcg-guide-intro">
+        两人对战、以「获取积分」定胜负的竞赛形式（模拟体育比赛）。玩家扮演足球教练或队长，率领选手战胜对方球队。
+        本作拥有与其他作品不同的独特结构：自己的回合总之先忍耐，看准对方回合、对方「喘不过气」的时机射门得分——宛如松山率领的富良野那般坚韧的打法才是所求。
+        以下内容按原目录页结构，由「基本構成」一路整理至「場の構成」。
+      </p>
+
+      <!-- ============ 基本構成 ============ -->
+      <details class="fcg-acc" open>
+        <summary class="fcg-acc-head"><span class="fcg-acc-title">基本構成（Basic Structure）</span><span class="fcg-acc-ico" aria-hidden="true"></span></summary>
+        <div class="fcg-acc-body">
+
+          <h4 class="fcg-sub2">胜利条件</h4>
+          <p class="fcg-guide-intro">获得 <b>2 分</b> 者获胜（得分时，若对方无法从牌组抽到门将卡，则攻方直接获胜）。</p>
+
+          <h4 class="fcg-sub2">事前准备</h4>
+          <h5 class="fcg-sub3">● 牌组（1 人份的游戏卡）</h5>
+          <ul class="fcg-ul">
+            <li>牌组张数：恰好 <b>40 张</b>。</li>
+            <li>构筑条件：仅由角色卡构成；带有守卫图标的卡合计最多 8 张。</li>
+            <li>※ 无同名卡限制等特别规定。</li>
+          </ul>
+          <h5 class="fcg-sub3">● 额外牌组（Extra Deck）（1 人份的辅助牌组）</h5>
+          <ul class="fcg-ul">
+            <li>牌组张数：<b>6 张以下</b>。</li>
+            <li>构筑条件：由额外卡（动作卡与射门卡）构成。</li>
+            <li>※ 额外牌组被当作「第 2 手牌」使用，可不洗牌、由本人自由查看内容后使用。但存在「单局使用／未使用」的概念，使用后（正面）的卡此后不能再打出。</li>
+          </ul>
+          <h5 class="fcg-sub3">● 其他准备</h5>
+          <p class="fcg-guide-intro">游戏间交换卡：无。</p>
+
+          <h4 class="fcg-sub2">游戏开始时的基本设置</h4>
+          <ul class="fcg-ul">
+            <li>胜利积分（获得得分）：<b>0 分</b>，之后累积。</li>
+            <li>初始手牌：<b>6 张</b>，无上限（射门结束时进行补充）。</li>
+            <li>重抽（Mulligan）：<b>任意 1 次</b>（任意张数回洗后，抽回相同张数）。</li>
+            <li>首抽限制：无；但存在类似概念（游戏开始时、以及守卫回合重启后的主回合，不进行防守阶段）。</li>
+          </ul>
+
+          <h4 class="fcg-sub2">其他构成</h4>
+          <h5 class="fcg-sub3">● 卡片的行动表现</h5>
+          <ul class="fcg-ul">
+            <li>卡片竖放：通常时。</li>
+            <li>卡片横放：（角色卡的）射门。</li>
+          </ul>
+          <h5 class="fcg-sub3">● 基本构成细则</h5>
+          <ul class="fcg-ul">
+            <li>弃牌（Discard）：无。</li>
+            <li>牌库耗尽（Library Out）：无（所有气力与弃牌堆可重复使用）。</li>
+            <li>三人以上游玩：未设想。</li>
+            <li>召唤眩晕：无需考虑。</li>
+            <li>跨回合的卡外成本累积：无（以卡的形式累积）。</li>
+            <li>跨回合的卡牌伤害累积：无需考虑。</li>
+            <li>唯一处理（Unique）：在中心线等处，部分存在同名角色的唯一概念。</li>
+            <li>进攻以「突破对方防御」的形式，作为射门执行条件之一来进行。</li>
+          </ul>
+
+        </div>
+      </details>
+
+      <!-- ============ 游戏流程 ============ -->
+      <details class="fcg-acc" open>
+        <summary class="fcg-acc-head"><span class="fcg-acc-title">游戏流程（Game Flow）</span><span class="fcg-acc-ico" aria-hidden="true"></span></summary>
+        <div class="fcg-acc-body">
+
+          <h4 class="fcg-sub2">开始准备</h4>
+          <ol class="fcg-ol">
+            <li>各自洗牌，背面置于场上。</li>
+            <li>各自的额外牌组背面置于场上。</li>
+            <li>决定先攻／后攻。</li>
+            <li>各自从牌组抽 6 张作为手牌。</li>
+            <li>各自从牌组抽 1 张，背面作为「门将卡」置于球门线。</li>
+            <li>按需进行重抽处理。</li>
+          </ol>
+
+          <h4 class="fcg-sub2">整体基本进行</h4>
+          <p class="fcg-guide-intro">
+            双方重复称为「主回合」的步骤，一方满足胜利条件即游戏结束。
+            ※ 主回合中满足特定条件时，处理被截断并进入「射门回合 ＆ 守卫回合」。一连串射门处理结束后，由成为守卫玩家的一方重启主回合（续投）。
+          </p>
+
+          <h4 class="fcg-sub2">主回合（自己的手番）的进行</h4>
+          <div class="fcg-stage"><b>① 抽牌阶段</b>：从牌组抽 1 张入手牌；可任意使用 1 张额外牌组的背面卡。</div>
+          <div class="fcg-stage"><b>② 防守阶段</b>：※ 游戏开始与守卫回合重启后的回合不进行（视为开球／球门球）。从手牌放 1 张角色卡为「防守角色」于防守线；可任意使用 1 张额外卡。若本阶段未出角色，则截断进入「射门回合」。</div>
+          <div class="fcg-stage"><b>③ 中心阶段</b>：从手牌放 1 张角色卡为「中心角色」于中心线（不可与防守阶段所放同名）；可任意使用 1 张额外卡。防守成功判定如下：
+            己方防守点 ＝ 防守角色的防守点 ＋ 中心角色的掩护点（该位置无角色则该部分计 0）；
+            对方进攻点 ＝ 进攻角色的进攻点 ＋ 中心角色的助攻点。
+            己方防守点 ≥ 对方进攻点 → 防守成功；对方进攻点 ＞ 己方防守点 → 防守失败。
+            本阶段未出角色 → 截断进入「射门回合」；若防守失败（对方进攻成功）→ 同样截断进入「射门回合」。</div>
+          <div class="fcg-stage"><b>④ 进攻阶段</b>：从手牌放 1 张角色卡为「进攻角色」于进攻线（不可与中心阶段所放同名）；可任意使用 1 张额外卡。未出角色 → 截断；出了角色 → 主回合结束。</div>
+
+          <h4 class="fcg-sub2">射门回合 ＆ 守卫回合</h4>
+          <p class="fcg-guide-intro">两者是一组，仅当主回合内满足条件时被调用。</p>
+          <ul class="fcg-ul">
+            <li><b>射门回合</b>：主回合中的对方玩家成为射门玩家，以下任一方式射门——使用额外牌组的背面射门卡（置于射门线）；或将自己的进攻角色横置移入射门线。</li>
+            <li><b>守卫回合 · 至射门的处理</b>：主回合玩家成为守卫玩家，可任意使用 1 张额外卡；守卫玩家从牌组抽 3 张，正面排于「检查区」。</li>
+            <li><b>射门成功判定（依射门方式）</b>：
+              <ul class="fcg-ul">
+                <li>使用射门卡时：射门卡的射门点 ＞ 检查区内带守卫图标卡的防守点合计 → 成功（无守卫卡则防守点计 0）。</li>
+                <li>使用角色卡时：检查区无任何守卫图标卡 → 成功。</li>
+              </ul>
+            </li>
+            <li><b>射门后处理</b>：射门玩家移动射门线卡（射门卡 → 正面回额外牌组；角色卡 → 弃牌堆）；守卫玩家移动检查区卡（带守卫图标 → 正面置板凳；不带 → 弃牌堆）；各自补牌至手牌 6 张。本次射门成功则射门玩家得 1 分，守卫玩家将门将卡入手（手牌 7 张；被攻入 2 分且无法入手门将卡则败北）。本次守卫玩家成为下回合先手，重启主回合（续投）。</li>
+          </ul>
+
+          <h4 class="fcg-sub2">1 局结束时的处理</h4>
+          <p class="fcg-guide-intro">无特别。</p>
+
+        </div>
+      </details>
+
+      <!-- ============ 规则细则 ============ -->
+      <details class="fcg-acc" open>
+        <summary class="fcg-acc-head"><span class="fcg-acc-title">规则细则（Rules）</span><span class="fcg-acc-ico" aria-hidden="true"></span></summary>
+        <div class="fcg-acc-body">
+
+          <h4 class="fcg-sub2">关于气力（Guts）</h4>
+          <p class="fcg-guide-intro">
+            各配置线按放置顺序叠卡，仅最上方卡片生效；下方旧卡获得「气力」这一新角色（但球门线／门将卡、射门线卡不成为气力）。
+            部分额外卡以气力作为成本概念，消耗指定数量气力发动；气力消耗通过将自己某线上任意气力送入弃牌堆进行。
+          </p>
+
+          <h4 class="fcg-sub2">卡片构成</h4>
+          <h5 class="fcg-sub3">● 永久留场卡</h5>
+          <ul class="fcg-ul">
+            <li><b>角色卡（无需成本）</b>：玩家的部下球员，但再现的是选手「某一瞬间的行动」而非选手本身；入牌组；拥有防守／掩护／助攻／进攻各点，成为玩家的武器／盾；有所属球队与位置等项；位置（FW／MF／DF／GK）与配置位置（防守／中心／进攻）是不同概念；部分带守卫图标用于防射门，用后送板凳而非弃牌堆；本作传球基本靠 Pass，无特殊效果不单独带球，故中心角色必与攻防角色不同名；部分卡由多名角色构成。</li>
+          </ul>
+          <h5 class="fcg-sub3">● 瞬间使用卡</h5>
+          <ul class="fcg-ul">
+            <li><b>动作卡（需成本）</b>：游戏中各种事件；额外卡一种，横置卡，入额外牌组；各阶段有指定使用时机；部分有特定角色配置等使用条件；暂置检查区使用，后正面回额外牌组。</li>
+            <li><b>射门卡（需成本）</b>：即所谓必杀射门，强于普通射门；※ 射门本身不用射门卡也能由进攻角色进行；额外卡一种横置卡，1 次射门回合仅可用 1 张；部分有特定条件；暂置射门线使用，后正面回额外牌组。</li>
+          </ul>
+
+          <h4 class="fcg-sub2">場の構成（Field Composition）</h4>
+          <p class="fcg-guide-intro">
+            永久卡存在于「球场（Pitch）」空间；球场分为防守／中心／进攻／射门各线；各线仅最上方卡生效，下方为气力（射门线除外）；另有球门线／检查区等。
+            气力消耗或射门等用过的角色卡入弃牌堆；守卫用过的带守卫图标卡入板凳；额外卡用后正面回额外牌组。
+          </p>
+
+        </div>
+      </details>
+      <p class="fcg-source">玩法翻译整理自：ジャガーノーツのTCGカタログ《キャプテン翼 フットボールカードゲーム》（https://ss1.xrea.com/card.g1.xrea.com/t3/ttk21cpt.html，文责 DOP，2019/10/26）。PDF 下载网址与对战视频来源：takaratomy.co.jp 官方「遊び方・Q&amp;A」栏目。</p>
+    </div>
+  </section>
+
+  <!-- ===================== 版面 3：卡牌图鉴（默认显示） ===================== -->
+  <section class="section chara-section fcg-panel" id="cards" data-reveal>
+    <div class="container">
+      <div class="series-head">
+        <h2 class="series-head-title">カード一覧</h2>
+        <p class="series-head-desc">
+          全 256 张：CT-01 第1節 60 · CT-02 第2節 82 · CT-03 第3節 70 · CTD-01 南葛SC編 13 · CTD-02 明和FC編 13 · CT-PR プロモカード 18。
+          纵向为キャラ卡（193 张），横向为シュート／アクション卡（63 张），均按原图比例完整呈现。每页显示 20 张。
+        </p>
+      </div>
+
+      <div id="seriesTabs"></div>
+      <div id="kindTabs"></div>
+
+      <div class="filter-bar">
+        <input class="filter-search" id="q" type="search" placeholder="搜索卡号 / 卡名 / 能力 / 台词 / 插画师…" autocomplete="off">
+        <select class="filter-select" id="rareSel"><option value="ALL">レアリティ：全部</option></select>
+        <select class="filter-select" id="posSel"><option value="ALL">ポジション：全部</option></select>
+        <select class="filter-select" id="attachedSel"><option value="ALL">所属：全部</option></select>
+        <select class="filter-select" id="illustSel"><option value="ALL">イラスト：全部</option></select>
+        <select class="filter-select" id="sortSel">
+          <option value="order">排序：官方顺序</option>
+          <option value="number">排序：卡号</option>
+          <option value="series">排序：系列</option>
+          <option value="name">排序：卡名</option>
+          <option value="rare">排序：稀有度</option>
+        </select>
+      </div>
+
+      <div class="result-count" id="resultCount"></div>
+      <div class="chara-grid" id="charaGrid"></div>
+      <div class="fcg-pager" id="fcgPager"></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="charaModal">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-body">
+    <button class="modal-close" data-close aria-label="关闭">×</button>
+    <div class="modal-inner" id="modalInner"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      队长小翼 WORLD
+      <div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div>
+    </div>
+    <div>
+      <h4>内容分类</h4>
+      <ul>
+        <li><a href="character.html">登场角色</a></li>
+        <li><a href="comics.html">漫画作品</a></li>
+        <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
+        <li><a href="news.html">新闻动态</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>关于</h4>
+      <ul>
+        <li><a href="index.html#about">作品简介</a></li>
+        <li><a href="index.html#news">最新动态</a></li>
+        <li><a href="45th.html">45周年祭</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    卡片图像与文本版权归 © 高橋陽一／集英社・2018キャプテン翼製作委員会 © TOMY 所有。
+  </div>
+</footer>
+
+<!-- 数据以 JS 全局变量加载：window.FCG_CARDS（日文原文，勿手改） -->
+<script src="js/fcg-data.js"></script>
+<script src="js/fcg-cards.js"></script>
+<script src="js/main.js"></script>
+<!-- 三版面：页标签切换（#hash 直达 + aria-current + 动态 title） -->
+<script>
+(function () {
+  var PANELS = ['info', 'guide', 'cards'];
+  var TITLES = { info: '商品情报', guide: '玩法指南', cards: '卡牌图鉴' };
+  var BASE = document.title;
+  var tabs = document.getElementById('fcgTabs');
+  function apply(id, updateHash) {
+    if (PANELS.indexOf(id) < 0) id = 'cards';
+    PANELS.forEach(function (p) {
+      var s = document.getElementById(p);
+      if (s) s.hidden = (p !== id);
+    });
+    if (tabs) {
+      Array.prototype.forEach.call(tabs.querySelectorAll('[data-panel]'), function (a) {
+        if (a.dataset.panel === id) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      });
+    }
+    document.title = (id === 'cards' ? '' : TITLES[id] + ' · ') + BASE;
+    if (updateHash) {
+      var h = '#' + id;
+      if (location.hash !== h) {
+        try { history.replaceState(null, '', h); } catch (err) { location.hash = id; }
+      }
+    }
+  }
+  function fromHash() {
+    var h = (location.hash || '').replace(/^#/, '');
+    return PANELS.indexOf(h) >= 0 ? h : 'cards';
+  }
+  if (tabs) {
+    tabs.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-panel]');
+      if (!a) return;
+      e.preventDefault();
+      apply(a.dataset.panel, true);
+      var top = tabs.getBoundingClientRect().top + window.pageYOffset -
+        (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 72);
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+    window.addEventListener('hashchange', function () { apply(fromHash(), false); });
+    apply(fromHash(), false);
+  }
+})();
+</script>
+</body>
+</html>

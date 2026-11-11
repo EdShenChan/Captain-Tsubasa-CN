@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《Weiss Schwarz 队长小翼》卡牌图鉴 · 队长小翼 WORLD</title>
+<meta name="description" content="Weiß Schwarz「キャプテン翼」（CTB / W118）集换式卡牌图鉴：全 203 张卡片原图与官方卡片数据，日文原文，未作翻译。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/character.css">
+<style>
+  /* ===================== 页头 ===================== */
+  .page-hero h1 { font-size: clamp(28px, 4.6vw, 52px); overflow-wrap: anywhere; }
+  .page-hero h1 .en { font-size: .32em; letter-spacing: 5px; margin-top: 14px; }
+  .page-hero .lead { max-width: 820px; }
+
+  /* 页头盒绘：横向排列（顺序固定：alt 版在左、12 包装在右），替代游戏 LOGO 位置 */
+  .page-hero .ctb-covers {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: nowrap;          /* 强制横向排列 */
+    margin-bottom: 28px;        /* 与下方主标题的间距 = 2× 段落间距(14px)，顶部间距沿用 .page-hero 的 padding-top，与其他游戏专页 LOGO 一致 */
+  }
+  .page-hero .ctb-covers img {
+    width: auto;
+    height: 240px;            /* 正常 100% 尺寸 */
+    object-fit: contain;
+    filter: drop-shadow(4px 8px 10px rgba(8, 6, 22, .4));
+  }
+
+  /* ===================== 卡片网格（主站 character.css 用 .chara-grid，本页用 JS 注入的 #charaGrid） ===================== */
+  .chara-grid, #charaGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+    gap: 20px;
+  }
+
+  /* ===================== 卡牌图方向适配（覆盖共享 character.css 的 3/4 竖框裁切） ===================== */
+  /* 竖版卡（球员卡等）：容器比例精确对齐真实卡 400×559，不裁切 */
+  .chara-card-img { aspect-ratio: 400 / 559; }
+  .chara-card-img img { object-fit: contain; }
+  /* 横版卡（事件/高潮/道具卡）：559×400，加载后由 JS 加 .is-landscape 切换比例，完整呈现不裁切 */
+  .chara-card-img.is-landscape { aspect-ratio: 559 / 400; }
+
+  /* 弹窗大图同样处理 */
+  .modal-img { aspect-ratio: 400 / 559; }
+  .modal-img img { object-fit: contain; object-position: center; }
+  .modal-img.is-landscape { aspect-ratio: 559 / 400; }
+
+  /* ===================== §2 卡牌专用段（并人主站后保留，不写入共享 character.css） ===================== */
+  /* 稀有度角标常显（主站角色页风格为 hover 显示，这里为浏览效率改为常显，并确保 hover 时不消失）
+     关键：hover 时 .chara-card-img img 有 transform:scale，会新建层叠上下文并盖住角标，
+     故必须给角标 z-index 压在图片之上（仅 opacity 不够） */
+  .chara-card-btn,
+  .chara-card:hover .chara-card-btn {
+    opacity: 1 !important; transform: none !important; visibility: visible !important;
+    font-weight: 700; z-index: 3 !important;
+  }
+  .chara-card-name { font-size: 15px; line-height: 1.35; }
+  .chara-card-nick { font-size: 12px; }
+
+  /* 筛选栏 */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; margin-bottom: 32px; }
+  .filter-search { width: min(320px, 100%); padding: 10px 14px; border: 1px solid var(--line); font-family: var(--font-body); font-size: 14px; outline: none; border-radius: 2px; }
+  .filter-search:focus { border-color: var(--brand); }
+  .filter-select { padding: 10px 12px; border: 1px solid var(--line); background: #fff; font-family: var(--font-body); font-size: 13px; color: var(--ink); cursor: pointer; border-radius: 2px; }
+  .filter-select:focus { border-color: var(--brand); outline: none; }
+  .result-count { font-family: var(--font-display); font-size: 13px; letter-spacing: 1px; color: var(--muted); text-align: center; margin-bottom: 28px; }
+  .result-count b { color: var(--brand); font-size: 18px; }
+  .no-result { grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--muted); }
+
+  /* 卡片角标配色（按稀有度） */
+  .rare-SP, .rare-RRR, .rare-SR { background: var(--brand); }
+  .rare-RR, .rare-R { background: #111; }
+  .rare-CR { background: #b8860b; }
+  .rare-U, .rare-C, .rare-PR { background: #555; }
+  .color-dot { display: inline-block; width: 9px; height: 9px; border: 1px solid rgba(0,0,0,.2); margin-right: 5px; vertical-align: middle; }
+
+  /* ===================== 详情弹窗（参照 ws-tcg.com 官方 cardModal 排版） ===================== */
+  #charaModal .modal-body { max-width: 980px; }
+  #charaModal .modal-inner { display: block; padding: 0; }
+  .ctb-detail { padding: 36px 40px 40px; }
+  .ctb-detail-flex { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 36px; align-items: start; }
+
+  .ctb-detail-img { aspect-ratio: 400 / 559; background: linear-gradient(160deg, #f0f0ff, #e0e0ff); overflow: hidden; border: 1px solid var(--line); }
+  .ctb-detail-img img { width: 100%; height: 100%; object-fit: contain; }
+  .ctb-detail-img.is-landscape { aspect-ratio: 559 / 400; }
+
+  .ctb-detail-texts { min-width: 0; }
+  .ctb-detail-num { font-family: var(--font-display); font-size: 13px; letter-spacing: 2px; color: var(--brand); font-weight: 700; margin: 0 0 8px; }
+  .ctb-detail-kana { font-size: 12px; color: var(--muted); letter-spacing: 1px; margin: 0 0 4px; }
+  .ctb-detail-name { font-family: var(--font-display); font-size: 26px; font-weight: 900; line-height: 1.3; margin: 0 0 8px; }
+  .ctb-detail-type { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+
+  /* 官方 GIF 小图标：共享 style.css 有 img{display:block}，必须显式改回 inline-block */
+  .ctb-ico { display: inline-block; height: 16px; width: auto; vertical-align: middle; margin: 0 1px; }
+
+  .ctb-neo { margin: 0 0 18px; border-top: 1px solid var(--line); }
+  .ctb-neo > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .ctb-neo dt { font-weight: 700; color: var(--brand); }
+  .ctb-neo dd { margin: 0; color: var(--ink); }
+  .ctb-exp-cat { color: var(--muted); font-size: 12px; }
+
+  .ctb-spec-lists { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .ctb-spec-item { padding: 10px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; }
+  .ctb-spec-item dt { font-size: 11px; color: var(--muted); letter-spacing: .5px; margin-bottom: 5px; }
+  .ctb-spec-item dd { margin: 0; font-size: 14px; font-weight: 700; word-break: break-word; }
+  .ctb-spec-wide { grid-column: 1 / -1; }
+  /* 仅桌面 3 列时让孤立项占满，避免末行空格子；移动端 2 列需还原为单格 */
+  .ctb-spec-alone { grid-column: 1 / -1; }
+  .ctb-sub { color: var(--muted); font-size: 12px; font-weight: 400; }
+
+  .ctb-detail-desc { margin-top: 28px; padding: 18px 20px; background: #f6f6fb; border-left: 4px solid var(--brand); }
+  .ctb-detail-h { font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: var(--brand); font-weight: 700; margin-bottom: 10px; }
+  .ctb-detail-body { font-size: 13.5px; line-height: 1.95; color: #333; }
+
+  /* 特殊发布方式注释（PR 卡） */
+  .ctb-pr-note { margin-top: 22px; padding: 18px 20px; background: #fffaf0; border: 1px solid #e8c98a; border-left: 4px solid #c8952e; }
+  .ctb-pr-note-h { font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: #8a6414; font-weight: 700; margin-bottom: 10px; }
+  .ctb-pr-note p { font-size: 13px; line-height: 1.85; color: #4a3c1c; margin: 0 0 12px; }
+  .ctb-pr-note dl { margin: 0 0 10px; }
+  .ctb-pr-note dl > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px; padding: 7px 0; border-bottom: 1px dashed #e8d6ad; font-size: 13px; }
+  .ctb-pr-note dt { font-weight: 700; color: #8a6414; }
+  .ctb-pr-note dd { margin: 0; color: #33270c; }
+  .ctb-pr-note-src { font-size: 12px !important; color: #8a7a55 !important; margin: 0 !important; }
+
+  /* Q&A（官方原文） */
+  .ctb-faq { margin-top: 24px; }
+  .ctb-faq h3 { font-family: var(--font-display); font-size: 15px; letter-spacing: 2px; color: var(--brand); margin: 0 0 12px; }
+  .ctb-faq-item { border: 1px solid var(--line); padding: 14px 16px; margin-bottom: 10px; }
+  .ctb-faq-date { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .ctb-faq-q, .ctb-faq-a { font-size: 13px; line-height: 1.85; display: flex; gap: 10px; }
+  .ctb-faq-q { margin-bottom: 10px; font-weight: 700; }
+  .ctb-faq-q span { color: var(--brand); font-weight: 900; flex: 0 0 auto; }
+  .ctb-faq-a span { color: #c8952e; font-weight: 900; flex: 0 0 auto; }
+
+  /* 卡片上的特殊配布标记（左上角，与右上角稀有度角标错开） */
+  .ctb-pr-flag { position: absolute; top: 10px; left: 10px; z-index: 3;
+    background: #c8952e; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    padding: 4px 7px; border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+  .ctb-pr-card-note { margin-top: 6px; font-size: 11px; line-height: 1.5; color: #8a6414; }
+  .chara-card.is-pr { border-color: #d9b56a; }
+
+  @media (max-width: 720px) {
+    .ctb-detail { padding: 24px 20px 28px; }
+    .ctb-detail-flex { grid-template-columns: 1fr; gap: 22px; }
+    .ctb-detail-img { max-width: 260px; margin: 0 auto; }
+    .ctb-spec-lists { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ctb-spec-alone { grid-column: auto; }
+    .ctb-neo > div, .ctb-pr-note dl > div { grid-template-columns: 1fr; gap: 3px; }
+    .ctb-neo dt { font-size: 12px; }
+  }
+
+  /* 弹窗：效果文本与原始字段 */
+  .modal-text { margin-top: 20px; padding: 16px 18px; background: #f6f6fb; border-left: 4px solid var(--brand); font-size: 13.5px; line-height: 1.9; color: #333; }
+  .modal-text-h { font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: var(--brand); margin-bottom: 10px; }
+  .modal-flavor { font-size: 13px; color: var(--muted); margin-top: 12px; }
+  .modal-raw { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .modal-raw summary { cursor: pointer; font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: var(--brand); }
+  .modal-raw table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 12px; }
+  .modal-raw th, .modal-raw td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: top; word-break: break-all; }
+  .modal-raw th { width: 150px; color: var(--brand); font-weight: 700; font-family: var(--font-mono, monospace); }
+  .modal-raw td { color: #444; }
+  .modal-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+  .modal-nav button { flex: 1; padding: 10px; border: 1px solid var(--line); background: #fff; font-family: var(--font-display); font-size: 12px; letter-spacing: 1px; cursor: pointer; border-radius: 2px; }
+  .modal-nav button:hover { border-color: var(--brand); color: var(--brand); }
+
+  /* 稀有度 / 种类标签条 */
+  #rareTabs, #kindTabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
+  #rareTabs .tab, #kindTabs .stage-tab {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border: 1px solid var(--line); background: #fff;
+    font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--ink);
+    cursor: pointer; border-radius: 2px; transition: border-color .2s, color .2s, background .2s;
+  }
+  #rareTabs .tab:hover, #kindTabs .stage-tab:hover { border-color: var(--brand); color: var(--brand); }
+  #rareTabs .tab--active, #kindTabs .stage-tab--active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  #rareTabs .tab-name { font-weight: 700; }
+
+  /* ===================== 分页控件 ===================== */
+  .ctb-pager { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 32px; }
+  .ctb-pager .pager-btn {
+    min-width: 40px; padding: 9px 14px; border: 1px solid var(--line); background: #fff;
+    font-family: var(--font-display); font-size: 13px; color: var(--ink); cursor: pointer; border-radius: 2px;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .ctb-pager .pager-btn:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
+  .ctb-pager .pager-btn--active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .ctb-pager .pager-btn:disabled { opacity: .4; cursor: default; }
+  .ctb-pager .pager-ellipsis { padding: 0 4px; color: var(--muted); }
+
+  /* ===================== 响应式 ===================== */
+  @media (max-width: 720px) {
+    .chara-grid, #charaGrid { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 14px; }
+    .filter-bar { gap: 10px; }
+    .filter-search { width: 100%; }
+    .page-hero .ctb-covers { gap: 12px; }
+    .page-hero .ctb-covers img { height: 150px; }   /* 正常 100% 尺寸 */
+    .ctb-pager { gap: 6px; margin-top: 24px; }
+    .ctb-pager .pager-btn { min-width: 34px; padding: 8px 10px; font-size: 12px; }
+  }
+  @media (max-width: 420px) {
+    .page-hero .ctb-covers img { height: 120px; }   /* 正常 100% 尺寸 */
+  }
+  @media (max-width: 420px) {
+    .chara-grid, #charaGrid { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
+  }
+
+  /* ===================== 四版面：吸顶页标签 ===================== */
+  [hidden] { display: none !important; }
+  .ctb-tabs {
+    position: sticky; top: var(--header-h); z-index: 900;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(20, 0, 255, .05);
+  }
+  .ctb-tabs-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 28px;
+    display: flex; justify-content: center; gap: 8px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .ctb-tabs a {
+    flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+    padding: 15px 22px; font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    letter-spacing: 1px; color: var(--muted); text-decoration: none;
+    border-bottom: 3px solid transparent; transition: color .2s, border-color .2s, background .2s;
+  }
+  .ctb-tabs a:hover { color: var(--brand); background: rgba(26, 0, 255, .03); }
+  .ctb-tabs a[aria-current="page"] { color: var(--brand); border-bottom-color: var(--brand); }
+
+  .ctb-panel { scroll-margin-top: calc(var(--header-h) + 64px); }
+  .ctb-panel > .container { max-width: 1040px; }
+  .ctb-panel-head { text-align: center; margin-bottom: 40px; }
+  .ctb-panel-head .kicker { font-family: var(--font-display); font-size: 11px; letter-spacing: 3px; color: var(--brand); display: block; margin-bottom: 10px; }
+  .ctb-panel-head h2 { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 34px); font-weight: 900; letter-spacing: -1px; }
+  .ctb-panel-head p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 760px; margin: 12px auto 0; }
+  .ctb-note { background: #f6f6fb; border-left: 4px solid var(--brand); padding: 14px 18px; font-size: 13px; line-height: 1.85; color: #444; margin-bottom: 32px; }
+  .ctb-source { font-size: 12px; color: var(--muted); margin-top: 32px; text-align: center; }
+
+  /* --- 版面 1：商品情报 --- */
+  .ctb-info-hero { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center; margin-bottom: 40px; }
+  .ctb-info-hero img { width: 100%; height: auto; border: 1px solid var(--line); }
+  .ctb-info-hero h3 { font-family: var(--font-display); font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+  .ctb-info-hero .sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+  .ctb-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .ctb-facts > div { background: #fff; padding: 12px 14px; }
+  .ctb-facts dt { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-bottom: 5px; }
+  .ctb-facts dd { margin: 0; font-size: 15px; font-weight: 700; }
+  .ctb-facts dd .en { font-size: 12px; font-weight: 400; color: var(--muted); display: block; margin-top: 3px; }
+  .ctb-subhead { font-family: var(--font-display); font-size: 17px; font-weight: 900; margin: 40px 0 16px; padding-left: 12px; border-left: 4px solid var(--brand); }
+  .ctb-rare-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .ctb-rare-item { border: 1px solid var(--line); padding: 12px; text-align: center; }
+  .ctb-rare-item b { display: block; font-family: var(--font-display); font-size: 20px; color: var(--brand); }
+  .ctb-rare-item .rare-code { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+  .ctb-rare-item .rare-full { display: block; font-size: 11.5px; color: var(--ink); margin-top: 6px; line-height: 1.5; }
+  .ctb-rare-item .rare-full i { font-style: normal; color: var(--muted); font-size: 11px; }
+  .ctb-rare-sep { grid-column: 1 / -1; height: 1px; background: var(--line); margin: 4px 0; }
+  .ctb-rare-note { grid-column: 1 / -1; font-size: 12px; color: var(--muted); text-align: left; margin-top: 4px; }
+  .ctb-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .ctb-list { font-size: 13.5px; line-height: 2; color: #333; padding-left: 20px; }
+  .ctb-list li { margin-bottom: 2px; }
+  .ctb-samples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+  .ctb-samples img { width: 100%; height: auto; border: 1px solid var(--line); }
+
+  /* --- 版面 2：玩法指南 --- */
+  .ctb-guide-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .ctb-guide-card { border: 1px solid var(--line); padding: 22px; }
+  .ctb-guide-card .no { font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; color: var(--brand); font-weight: 700; }
+  .ctb-guide-card h3 { font-family: var(--font-display); font-size: 16px; font-weight: 900; margin: 8px 0 10px; }
+  .ctb-guide-card p { font-size: 13px; line-height: 1.9; color: #444; }
+  .ctb-guide-card img { width: 100%; height: auto; margin-top: 14px; border: 1px solid var(--line); }
+  /* 三类卡片示例：统一展示高度，横版高潮卡等比留白，不拉伸 */
+  .ctb-guide-card img.ctb-sample { height: 200px; object-fit: contain; background: #f6f6fb; }
+  .ctb-guide-card img.ctb-sample--wide { height: 200px; object-fit: contain; }
+  .ctb-rule-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .ctb-rule { border: 1px solid var(--line); padding: 20px; }
+  .ctb-rule h3 { font-family: var(--font-display); font-size: 15px; font-weight: 900; margin-bottom: 10px; color: var(--brand); }
+  .ctb-rule p, .ctb-rule li { font-size: 13px; line-height: 1.9; color: #444; }
+  .ctb-rule ul { padding-left: 18px; }
+  .ctb-mat { display: block; width: 100%; max-width: 720px; height: auto; margin: 18px auto 0; border: 1px solid var(--line); }
+  .ctb-mat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+  .ctb-mat-item { border: 1px solid var(--line); padding: 14px 16px; }
+  .ctb-mat-item b { font-size: 13px; color: var(--brand); font-family: var(--font-display); letter-spacing: .5px; }
+  .ctb-mat-item p { font-size: 12.5px; line-height: 1.85; color: #444; margin: 6px 0 0; }
+  .ctb-phases { list-style: none; counter-reset: phase; padding: 0; margin: 20px 0 0; }
+  .ctb-phases li { counter-increment: phase; position: relative; border: 1px solid var(--line); border-left: 4px solid var(--brand); padding: 14px 18px 14px 54px; margin-bottom: 10px; }
+  .ctb-phases li::before { content: counter(phase); position: absolute; left: 16px; top: 14px; font-family: var(--font-display); font-size: 18px; font-weight: 900; color: var(--brand); }
+  .ctb-phases b { font-size: 13.5px; }
+  .ctb-phases p { font-size: 12.5px; line-height: 1.85; color: #444; margin: 6px 0 0; }
+
+  /* --- 版面 4：优胜者卡组配方 --- */
+  .ctb-recipe { border: 1px solid var(--line); margin-bottom: 14px; background: #fff; }
+  .ctb-recipe-sum {
+    list-style: none; cursor: pointer; padding: 16px 20px;
+    display: grid; grid-template-columns: 60px minmax(0, 1fr) auto; gap: 18px; align-items: center;
+    transition: background .2s;
+  }
+  .ctb-recipe-sum::-webkit-details-marker { display: none; }
+  .ctb-recipe-sum:hover { background: #f6f6fb; }
+  .ctb-recipe-fav { width: 56px; height: 78px; object-fit: contain; border: 1px solid var(--line); }
+  .ctb-recipe-tt { font-family: var(--font-display); font-size: 15px; font-weight: 900; line-height: 1.4; }
+  .ctb-recipe-meta { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.7; }
+  .ctb-recipe-badge { display: inline-block; background: var(--brand); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; margin-right: 8px; }
+  .ctb-recipe-toggle { font-family: var(--font-display); font-size: 12px; letter-spacing: 1px; color: var(--brand); white-space: nowrap; }
+  .ctb-recipe[open] .ctb-recipe-toggle .close { display: inline; }
+  .ctb-recipe[open] .ctb-recipe-toggle .open { display: none; }
+  .ctb-recipe-toggle .close { display: none; }
+  .ctb-recipe-body { border-top: 1px solid var(--line); padding: 20px; }
+  .ctb-recipe-comment { background: #f6f6fb; border-left: 4px solid var(--brand); padding: 14px 16px; font-size: 13px; line-height: 1.9; color: #444; white-space: pre-wrap; margin-bottom: 20px; }
+  .ctb-recipe-group { margin-bottom: 18px; }
+  .ctb-recipe-group h4 { font-family: var(--font-display); font-size: 13px; letter-spacing: 1px; font-weight: 900; margin-bottom: 8px; color: var(--brand); }
+  .ctb-cardtable { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .ctb-cardtable th { text-align: left; font-size: 11px; letter-spacing: 1px; color: var(--muted); font-weight: 700; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+  .ctb-cardtable td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; }
+  .ctb-cardtable tr[data-c] td:first-child { border-left: 3px solid transparent; }
+  .ctb-cardtable tr[data-c="blue"] td:first-child { border-left-color: #1a5fd0; }
+  .ctb-cardtable tr[data-c="yellow"] td:first-child { border-left-color: #f2c200; }
+  .ctb-cardtable tr[data-c="green"] td:first-child { border-left-color: #2e9e4f; }
+  .ctb-cardtable tr[data-c="red"] td:first-child { border-left-color: #d63a2f; }
+  .ctb-cardno { background: none; border: none; padding: 0; font-family: var(--font-mono, monospace); font-size: 12px; color: var(--brand); text-decoration: underline; cursor: pointer; }
+  .ctb-cardno:hover { color: #c8912a; }
+  .ctb-cardno:focus-visible { outline: 2px solid #ffcb1e; outline-offset: 2px; }
+  #charaModal .modal-nav button:disabled { opacity: .38; cursor: default; }
+
+  @media (max-width: 720px) {
+    .ctb-tabs-inner { justify-content: flex-start; padding: 0 12px; }
+    .ctb-tabs a { padding: 13px 14px; font-size: 12px; letter-spacing: 0; }
+    .ctb-info-hero, .ctb-cols, .ctb-guide-steps, .ctb-rule-grid, .ctb-mat-grid { grid-template-columns: 1fr; }
+    .ctb-facts, .ctb-rare-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ctb-samples { grid-template-columns: 1fr; }
+    .ctb-recipe-sum { grid-template-columns: 44px minmax(0, 1fr); gap: 12px; }
+    .ctb-recipe-fav { width: 44px; height: 61px; }
+    .ctb-recipe-toggle { grid-column: 1 / -1; text-align: right; }
+    .ctb-cardtable { font-size: 11.5px; }
+    .ctb-cardtable th, .ctb-cardtable td { padding: 6px 5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+        <a href="my-golden-xi-characters.html">队长小翼：我的黄金十一人</a>
+        <a href="dream-team-characters.html">队长小翼：梦幻队伍</a>
+        <a href="weiss-schwarz-ctb.html">武士道TCG卡牌</a>
+        <a href="takara-tomy-fcg.html">多美TCG卡牌</a>
+        <a href="konami-champion-of-field.html">科乐美TCG卡牌</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="ctb-covers">
+      <img src="assets/img/game/ctb-w118/panel-info/WS_BP_CTB.png"
+           alt="《Weiss Schwarz 队长小翼》补充包商品视觉图" width="400" height="400" loading="lazy">
+    </div>
+    <h1>武士道《队长小翼》动画卡牌图鉴<span class="en">WEISS SCHWARZ · CAPTAIN TSUBASA TCG · CTB W118</span></h1>
+    <p class="lead">
+      Weiß Schwarz「キャプテン翼」（作品代号 <b>CTB</b>、本弹套装号 <b>W118</b>）是日本武士道（Bushiroad）发行的
+      <b>实体集换式卡牌</b>（Trading Card Game）。本图鉴收录该弹全 <b>203 张卡片</b>原图与官方卡片数据，
+      包括角色卡、事件卡与高潮卡，以及稀有度、颜色、等级、费用、战力、灵魂、特征、效果文本等完整字段。
+    </p>
+    <p class="lead" style="margin-top:14px;color:var(--muted);font-size:14px">
+      本页分为 <b>商品情报 / 玩法指南 / 卡牌图鉴 / 优胜者卡组配方</b> 四个版面，可用上方页标签切换。
+      数据取自 ws-tcg.com 官方卡表与官方栏目（日文原文，未作翻译）。
+      点击图鉴中任意卡片可查看完整规格与效果文本，并支持按稀有度 / 种类 / 颜色 / 等级筛选与搜索。
+    </p>
+  </section>
+
+  <!-- ===================== 四版面吸顶页标签 ===================== -->
+  <nav class="ctb-tabs" id="ctbTabs" aria-label="版面切换">
+    <div class="ctb-tabs-inner">
+      <a href="#info" data-panel="info">商品情报</a>
+      <a href="#guide" data-panel="guide">玩法指南</a>
+      <a href="#cards" data-panel="cards" aria-current="page">卡牌图鉴</a>
+      <a href="#recipes" data-panel="recipes">优胜者卡组配方</a>
+    </div>
+  </nav>
+
+  <!-- ===================== 版面 1：商品情报 ===================== -->
+  <section class="section ctb-panel" id="info" hidden>
+    <div class="container">
+      <div class="ctb-panel-head">
+        <span class="kicker">PRODUCT INFO</span>
+        <h2>商品情报</h2>
+        <p>ブースターパック『キャプテン翼』—— 武士道 Weiss Schwarz 于 2024 年 9 月发行的《队长小翼》主题补充包。</p>
+      </div>
+
+      <div class="ctb-info-hero">
+        <img src="assets/img/game/ctb-w118/panel-info/WS_BP_CTB.png" alt="补充包『キャプテン翼』商品视觉图" width="400" height="400" loading="lazy">
+        <div>
+          <h3>ブースターパック『キャプテン翼』</h3>
+          <p class="sub">タイトル区分：キャプテン翼　/　作品番号：CTB　/　套装代码：W118</p>
+          <dl class="ctb-facts">
+            <div><dt>発売日</dt><dd>2024 年 9 月 13 日（金）</dd></div>
+            <div><dt>カード種類数</dt><dd>普通 100 种 ＋ 平行闪卡 100 种<span class="en">ノーマル100種＋パラレル100種</span></dd></div>
+            <div><dt>1 パック</dt><dd>8 张装　440 円（含税）<span class="en">1パック8枚入り / 希望小売価格440円(税込)</span></dd></div>
+            <div><dt>1 ボックス</dt><dd>12 包装　5,280 円（含税）<span class="en">1ボックス12パック入り / 5,280円(税込)</span></dd></div>
+            <div><dt>1 カートン</dt><dd>24 盒装<span class="en">1カートン24ボックス入り</span></dd></div>
+            <div><dt>収録内容</dt><dd>角色卡 / 事件卡 / 高潮卡</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <h3 class="ctb-subhead">稀有度构成（公式発表）</h3>
+      <div class="ctb-rare-grid">
+        <div class="ctb-rare-item"><b>9</b><span class="rare-code">SP</span><span class="rare-full">スペシャル<i>（特别版）</i></span></div>
+        <div class="ctb-rare-item"><b>12</b><span class="rare-code">RRR</span><span class="rare-full">トリプルレア<i>（三重稀有）</i></span></div>
+        <div class="ctb-rare-item"><b>79</b><span class="rare-code">SR</span><span class="rare-full">スーパーレア<i>（超级稀有）</i></span></div>
+        <div class="ctb-rare-item"><b>12</b><span class="rare-code">CR</span><span class="rare-full">クライマックスレア<i>（高潮稀有）</i></span></div>
+        <div class="ctb-rare-sep"></div>
+        <div class="ctb-rare-item"><b>10</b><span class="rare-code">RR</span><span class="rare-full">ダブルレア<i>（双重稀有）</i></span></div>
+        <div class="ctb-rare-item"><b>22</b><span class="rare-code">R</span><span class="rare-full">レア<i>（稀有）</i></span></div>
+        <div class="ctb-rare-item"><b>28</b><span class="rare-code">U</span><span class="rare-full">アンコモン<i>（非普通）</i></span></div>
+        <div class="ctb-rare-item"><b>28</b><span class="rare-code">C</span><span class="rare-full">コモン<i>（普通）</i></span></div>
+        <p class="ctb-rare-note">括号内为官方日文全称，斜体为中文译名。上方四者为高稀有度／特殊加工卡，下方为常规稀有度（沿用官网分隔）。数字为收录种类数。</p>
+      </div>
+
+      <div class="ctb-cols" style="margin-top:40px">
+        <div>
+          <h3 class="ctb-subhead" style="margin-top:0">声优箔押签名卡（全 9 种）</h3>
+          <ul class="ctb-list">
+            <li>大空 翼 —— 三瓶由布子</li>
+            <li>岬 太郎 —— 福原綾香</li>
+            <li>日向小次郎 —— 佐藤拓也</li>
+            <li>若林源三 —— 鈴村健一</li>
+            <li>カール・ハインツ・シュナイダー —— 福山 潤</li>
+            <li>若島津 健 —— 梅原裕一郎</li>
+            <li>三杉 淳 —— 斉藤壮馬</li>
+            <li>松山 光 —— 羽多野渉</li>
+            <li>エル・シド・ピエール —— 河西健吾</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="ctb-subhead" style="margin-top:0">全新绘制插图（5 点）与盒装特典</h3>
+          <p style="font-size:13.5px;line-height:1.9;color:#444">
+            收录大空 翼、岬 太郎、日向小次郎、若林源三、カール・ハインツ・シュナイダー
+            共 5 张全新绘制插图。
+          </p>
+          <p style="font-size:13.5px;line-height:1.9;color:#444;margin-top:14px">
+            <b>ボックス特典</b>：每盒随机封入「特製先攻後攻カード」全 6 种中的 1 张。
+            <span style="color:var(--muted)">（官方注明：再版批次是否封入未定。）</span>
+          </p>
+        </div>
+      </div>
+
+      <h3 class="ctb-subhead">收录卡片文本先行公开图</h3>
+      <div class="ctb-samples">
+        <img src="assets/img/game/ctb-w118/panel-info/CTB_card_01.png" alt="官方先行公开的卡片文本图 1" width="1920" height="1080" loading="lazy">
+        <img src="assets/img/game/ctb-w118/panel-info/CTB_card_02.png" alt="官方先行公开的卡片文本图 2" width="1920" height="1080" loading="lazy">
+        <img src="assets/img/game/ctb-w118/panel-info/CTB_card_03-1.png" alt="官方先行公开的卡片文本图 3" width="1920" height="1080" loading="lazy">
+      </div>
+      <p class="ctb-source">资料来源：ws-tcg.com 官方商品页（価格・仕様为官方发表值，仅作资料记录，本页不提供任何购买入口）。</p>
+    </div>
+  </section>
+
+  <!-- ===================== 版面 2：玩法指南 ===================== -->
+  <section class="section ctb-panel" id="guide" hidden>
+    <div class="container">
+      <div class="ctb-panel-head">
+        <span class="kicker">HOW TO PLAY</span>
+        <h2>玩法指南</h2>
+        <p>Weiß Schwarz 的基础规则与卡组构成方式，帮助第一次接触这个卡牌游戏的读者快速上手。</p>
+      </div>
+
+      <div class="ctb-note">
+        以下为 <b>Weiß Schwarz 全作品通用的基础规则</b>（官方「はじめての方へ」栏目），并非《队长小翼》专属玩法。
+        本弹采用「ネオスタンダード」赛制，构筑时只能使用卡号以 <b>CTB/</b> 开头的卡片。
+      </div>
+
+      <h3 class="ctb-subhead">游戏是什么</h3>
+      <p style="font-size:13.5px;line-height:1.95;color:#444">
+        Weiß Schwarz 是以人气动画、游戏为中心的娱乐角色卡牌游戏，已有 160 个以上作品参加。
+        玩家可以收集喜欢的卡片，也可以用自己的卡组与对手进行 2 人对战（ファイト）。
+        要开始游玩需要一副 <b>50 张</b> 的卡组（デッキ）；新手推荐可直接上手的
+        <b>トライアルデッキ</b>（入门预组），之后再借由 <b>ブースターパック</b> 等商品扩充、强化自己的原创卡组。
+      </p>
+
+      <h3 class="ctb-subhead">三类卡片</h3>
+      <div class="ctb-guide-steps">
+        <div class="ctb-guide-card">
+          <span class="no">01 / キャラ</span>
+          <h3>角色卡</h3>
+          <p>在舞台（舞台）上负责攻击对手、支援己方的核心卡片，是战斗的主角。</p>
+          <img src="assets/img/game/c/ctb_w118/ctb_w118_078.png" class="ctb-sample" alt="角色卡示例：日本Jr.ユース代表 大空 翼（CTB/W118-078）" width="400" height="559" loading="lazy">
+        </div>
+        <div class="ctb-guide-card">
+          <span class="no">02 / イベント</span>
+          <h3>事件卡</h3>
+          <p>一次性使用的卡片，发动各种强力效果。剧中道具等也随之卡片化，可让战况转为有利。</p>
+          <img src="assets/img/game/c/ctb_w118/ctb_w118_028.png" class="ctb-sample" alt="事件卡示例：サッカーボール（CTB/W118-028）" width="400" height="559" loading="lazy">
+        </div>
+        <div class="ctb-guide-card">
+          <span class="no">03 / クライマックス</span>
+          <h3>高潮卡（CX）</h3>
+          <p>由剧中名场面构成的特别卡片，能大幅引出角色力量，是把危机转为胜机、决定胜负的关键一张。</p>
+          <img src="assets/img/game/c/ctb_w118/ctb_w118_030.png" class="ctb-sample ctb-sample--wide" alt="高潮卡示例：イーグルショット（CTB/W118-030）" width="559" height="400" loading="lazy">
+        </div>
+      </div>
+
+      <h3 class="ctb-subhead">胜负条件与卡组构筑</h3>
+      <div class="ctb-rule-grid">
+        <div class="ctb-rule">
+          <h3>胜利条件</h3>
+          <p>受到伤害累积 7 点，等级（レベル）上升 1 级。如此反复，<b>让对手的等级到达 4 即获胜</b>。</p>
+        </div>
+        <div class="ctb-rule">
+          <h3>构筑条件</h3>
+          <ul>
+            <li>卡组固定为 <b>50 张</b>。</li>
+            <li>同名卡在 1 副卡组中最多 <b>4 张</b>（部分卡片效果另有例外）。</li>
+            <li>クライマックス卡最多 <b>8 张</b>。</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="ctb-subhead">对战垫与卡片摆放位置</h3>
+      <img class="ctb-mat" src="assets/img/game/ctb-w118/panel-guide/playmat.jpg" alt="对战垫与各区域摆放示意图" width="800" height="504" loading="lazy">
+      <div class="ctb-mat-grid">
+        <div class="ctb-mat-item"><b>①山札</b><p>把自己的卡组作为山札叠放。不可任意改变顺序。即使变成 0 张也不会因此败北，可重洗山札后继续游戏。</p></div>
+        <div class="ctb-mat-item"><b>②レベル置場（等级区）</b><p>表侧放置表示自己等级的卡片。放上第 4 张的时点即告败北。</p></div>
+        <div class="ctb-mat-item"><b>③クロック置場（伤害区）</b><p>表侧放置表示伤害的卡片，最多 6 张，主要因对手攻击而增加，不可任意改变顺序。达到 7 张以上时等级上升 1 级。</p></div>
+        <div class="ctb-mat-item"><b>④ストック置場（能量区）</b><p>里侧放置资源卡，不可确认内容。由下往上叠放、从最后放置的卡开始使用，不可改变顺序，张数无上限；主要在己方角色攻击时增加。</p></div>
+        <div class="ctb-mat-item"><b>⑤クライマックス置場（高潮区）</b><p>仅可表侧放置 1 张クライマックス，在结束阶段移入控え室。</p></div>
+        <div class="ctb-mat-item"><b>⑥枠（格子）</b><p>表侧放置自己的角色卡，全部共 5 个格子。</p></div>
+        <div class="ctb-mat-item"><b>舞台 · 前列 · 後列</b><p>5 个格子整体称为「舞台」；前 3 格为「前列」，会与正面对手角色进行战斗，优先放置战力高的角色；后 2 格为「後列」，不直接战斗，用来支援前列角色或放置具备特殊能力的角色。</p></div>
+        <div class="ctb-mat-item"><b>⑦控え室（弃牌区）</b><p>表侧叠放已用完、离场的卡片。</p></div>
+        <div class="ctb-mat-item"><b>⑧思い出置場（回忆区）</b><p>表侧叠放被从游戏中移除的卡片。</p></div>
+      </div>
+
+      <h3 class="ctb-subhead">回合流程（ターンの流れ）</h3>
+      <p style="font-size:13.5px;line-height:1.9;color:#444">轮到自己的回合时，依下列顺序推进游戏：</p>
+      <ol class="ctb-phases">
+        <li><b>スタンドフェイズ（重置阶段）</b><p>把自己舞台上横向（休息状态）的角色全部转回纵向（站立状态）。若没有横向角色，直接进入抽卡阶段。</p></li>
+        <li><b>ドローフェイズ（抽卡阶段）</b><p>从自己山札顶抽 1 张卡。</p></li>
+        <li><b>クロックフェイズ（伤害阶段）</b><p>可把 1 张手札放到クロック置場，然后从山札抽 2 张；也可以不放置手札（不强制）。</p></li>
+        <li><b>メインフェイズ（主要阶段）</b><p>下列 ①–④ 可按任意次数、任意顺序进行，也可以完全不做：①把手札中的角色放到舞台；②使用手札中的事件；③把舞台上的角色移动到舞台其他位置；④使用舞台上角色的「起動能力」。</p></li>
+        <li><b>クライマックスフェイズ（高潮阶段）</b><p>可把手札中的クライマックス放到「クライマックス置場」，也可以不放置。</p></li>
+        <li><b>アタックフェイズ（攻击阶段）</b><p>用舞台上的角色进行攻击，给予对手伤害或与对手角色进行战斗。</p></li>
+        <li><b>エンドフェイズ（结束阶段）</b><p>若手札在 8 张以上，选多余的牌弃到控え室直到剩 7 张；若「クライマックス置場」有卡，也将其移入控え室。随后结束自己的回合，进入对手回合的重置阶段。</p></li>
+      </ol>
+      <p class="ctb-source">资料来源：ws-tcg.com 官方「はじめての方へ」栏目（通用规则整理）。</p>
+    </div>
+  </section>
+
+  <!-- ===================== 版面 3：卡牌图鉴（默认显示） ===================== -->
+  <section class="section chara-section ctb-panel" id="cards" data-reveal>
+    <div class="container">
+      <div class="series-head">
+        <h2 class="series-head-title">カード一覧</h2>
+        <p class="series-head-desc">数据来源：ws-tcg.com 官方卡表（日文原文，未翻译）。原图与数据已同步存入本地数据库。</p>
+      </div>
+
+      <div id="rareTabs"></div>
+      <div id="kindTabs"></div>
+
+      <div class="filter-bar">
+        <input class="filter-search" id="q" type="search" placeholder="搜索卡号 / 卡名 / 假名 / 效果文本…" autocomplete="off">
+        <select class="filter-select" id="colorSel">
+          <option value="ALL">颜色：全部</option>
+          <option value="[[yellow.gif]]">黄</option>
+          <option value="[[blue.gif]]">青</option>
+          <option value="[[green.gif]]">緑</option>
+          <option value="[[red.gif]]">赤</option>
+        </select>
+        <select class="filter-select" id="levelSel">
+          <option value="ALL">等级：全部</option>
+          <option value="0">Lv 0</option><option value="1">Lv 1</option>
+          <option value="2">Lv 2</option><option value="3">Lv 3</option>
+          <option value="-">—</option>
+        </select>
+        <select class="filter-select" id="sortSel">
+          <option value="number">排序：卡号</option>
+          <option value="name">排序：卡名</option>
+          <option value="rare">排序：稀有度</option>
+        </select>
+      </div>
+
+      <div class="result-count" id="resultCount"></div>
+      <div class="chara-grid" id="charaGrid"></div>
+      <div class="ctb-pager" id="ctbPager"></div>
+    </div>
+  </section>
+  <!-- ===================== 版面 4：优胜者卡组配方 ===================== -->
+  <section class="section ctb-panel" id="recipes" hidden>
+    <div class="container">
+      <div class="ctb-panel-head">
+        <span class="kicker">WINNING DECK RECIPES</span>
+        <h2>优胜者卡组配方</h2>
+        <p>官方「デッキレシピ」栏目公布的《队长小翼》赛事优胜牌组，共 9 组。点击任一组可展开完整卡表。</p>
+      </div>
+
+      <div class="ctb-note">
+        以下为官方公布的实际优胜牌组（日文原文，未翻译）。点击卡表中的<b>卡号</b>可直接打开本页卡牌图鉴的详情弹窗。
+        其中札幌与仙台两组为同一玩家使用同一副牌组（デッキコード 2WMTM）在两个会场夺冠，卡表内容相同。
+      </div>
+
+      <div id="ctbRecipeList"></div>
+      <p class="ctb-source">资料来源：ws-tcg.com 官方「デッキレシピ」栏目（『キャプテン翼』筛选结果，共 9 组）。</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal" id="charaModal">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-body">
+    <button class="modal-close" data-close aria-label="关闭">×</button>
+    <div class="modal-inner" id="modalInner"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      队长小翼 WORLD
+      <div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div>
+    </div>
+    <div>
+      <h4>内容分类</h4>
+      <ul>
+        <li><a href="character.html">登场角色</a></li>
+        <li><a href="comics.html">漫画作品</a></li>
+        <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
+        <li><a href="news.html">新闻动态</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>关于</h4>
+      <ul>
+        <li><a href="index.html#about">作品简介</a></li>
+        <li><a href="index.html#news">最新动态</a></li>
+        <li><a href="45th.html">45周年祭</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    卡片图像与文本版权归 © 高橋陽一／集英社・キャプテン翼製作委員会 及株式会社ブシロード 所有。
+  </div>
+</footer>
+
+<!-- 数据以 JS 全局变量加载：window.CTB_CARDS（日文原文，勿手改） -->
+<script src="js/ctb-data.js"></script>
+<script src="js/ctb-recipes.js"></script>
+<script src="js/ctb-cards.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

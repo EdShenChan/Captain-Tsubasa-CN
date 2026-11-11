@@ -22,6 +22,19 @@
   @media (max-width:640px){
     .col-thumb{ width:80%; }
   }
+  /* 正文中内联图片（与微信文章对应位置一致） */
+  .col-figure{ margin:16px 0; }
+  .col-figure-img{
+    width:100%; height:auto; max-width:560px;
+    border-radius:8px; background:#f3f1ec; border:1px solid #e7e2d6;
+    box-shadow:0 1px 4px rgba(0,0,0,.06); display:block;
+  }
+  .col-figure figcaption{
+    margin-top:6px; font-size:12.5px; color:#8a8275; line-height:1.5;
+  }
+  @media (max-width:640px){
+    .col-figure-img{ max-width:100%; }
+  }
   /* 分类筛选标签：ALL（全部新闻）+ 六大类 */
   .news-filter{
     display:flex; flex-wrap:wrap; gap:10px; margin:0 0 26px;
@@ -102,6 +115,9 @@
         <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
         <a href="my-golden-xi-characters.html">队长小翼：我的黄金十一人</a>
         <a href="dream-team-characters.html">队长小翼：梦幻队伍</a>
+        <a href="weiss-schwarz-ctb.html">武士道TCG卡牌</a>
+        <a href="takara-tomy-fcg.html">多美TCG卡牌</a>
+        <a href="konami-champion-of-field.html">科乐美TCG卡牌</a>
       </div>
     </div>
     <a href="news.html" class="active">新闻动态</a>
@@ -187,6 +203,28 @@
  * 按时间倒序排列（最新在前）；date 为 YYYY.MM.DD 字符串，空日至月即可
  */
 const NEWS_DATA = [
+  {
+    id: "fcworld-tsubasa-20261104",
+    date: "2026.11.04",
+    category: "GAME",
+    title: "《FC足球世界》开启「队长小翼」联动：重温翼、周末挑战与甄选球员上线",
+    sourceText: "FC足球世界 官方微信公众号（https://mp.weixin.qq.com/s/krt5kd-eYN0XxC1uSoy6xQ）",
+    body: [
+      { img: "assets/img/news/fcworld-tsubasa/fcworld-tsubasa-hero.png", alt: "《FC足球世界》×《队长小翼》联动主视觉", caption: "《FC足球世界》×《队长小翼》联动主视觉" },
+      { img: "assets/img/news/fcworld-tsubasa/fcworld-tsubasa-hero2.jpg", alt: "《FC足球世界》×《队长小翼》联动主视觉", caption: "《FC足球世界》×《队长小翼》联动主视觉" },
+      "腾讯手游《FC足球世界》（FC Mobile 国服）于 2026 年 11 月 4 日公布「队长小翼」联动活动，将于本周四（11 月 5 日）更新后开启。",
+      "【重温队长小翼】进入活动可免费获得一名 143 能力值「队长小翼」球员卡，以及大空翼、日向小次郎头像奖励。",
+      "【周末挑战】11 月 7 日—12 月 5 日期间，每周六解锁一项挑战，完成可得 142—143 能力值球员卡；集齐全部五项挑战还可免费获得 145—146 能力值球员卡。",
+      { img: "assets/img/news/fcworld-tsubasa/fcworld-tsubasa-revisit-weekend.png", alt: "重温队长小翼与周末挑战活动一览", caption: "重温队长小翼与周末挑战活动一览（免费 143 翼球员卡、大空翼／日向头像、分周解锁的 142—143 卡与全勤 145—146 卡）" },
+      "【队长小翼甄选球员·团队1】能力值 140—148，共 40 人，148 能力值顶级球员由阿利松、哈弗茨、米特尔斯塔特、基米希领衔；联动球员将于后续上线。",
+      { img: "assets/img/news/fcworld-tsubasa/fcworld-tsubasa-select-148.png", alt: "队长小翼甄选球员卡池（能力值 145—148）", caption: "队长小翼甄选球员卡池（能力值 145—148）" },
+      { img: "assets/img/news/fcworld-tsubasa/fcworld-tsubasa-select-140.png", alt: "队长小翼甄选球员卡池（能力值 140—144）", caption: "队长小翼甄选球员卡池（能力值 140—144）" },
+      "【队长小翼直购礼包】11 月 5 日 10:00—11 月 11 日 24:00 限时上线，含 1 元 / 6 元 / 30 元 / 68 元四档特惠，必得对应能力值「队长小翼」球员卡。",
+      "【队长小翼宝箱】活动开启后推出新一期队长小翼宝箱，于游戏首页轮播图参与抽取。",
+      "【队长小翼充值返利】11 月 5 日 10:00—11 月 11 日 23:59 期间，最高充值 2000 元可获累计 20000 点券返利。",
+      "【个人资料动态主题】同期推出「大空翼」「日向小次郎」「南葛」三款活动专属匹配背景，可在更衣室—定制化—个人资料主题中装配。"
+    ]
+  },
   {
     id: "anipara-ep1-20171110",
     date: "2017.11.10",
@@ -1247,6 +1285,11 @@ const NEWS_DATA = [
     article.setAttribute('data-cat', item.category);   // 供分类筛选使用
 
     const bodyHtml = (item.body || []).map(function (p) {
+      if (p && typeof p === 'object' && p.img) {
+        const alt = p.alt ? esc(p.alt) : esc(item.title);
+        const cap = p.caption ? '<figcaption>' + esc(p.caption) + '</figcaption>' : '';
+        return '<figure class="col-figure"><img class="col-figure-img" src="' + esc(p.img) + '" alt="' + alt + '" loading="lazy">' + cap + '</figure>';
+      }
       return '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>';
     }).join('');
 

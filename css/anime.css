@@ -416,3 +416,49 @@
 /* ============================ 页面头部紧凑化（对齐角色页间距） ============================ */
 .section--stats { padding-top: 36px; padding-bottom: 36px; }
 .section--anime { padding-top: 48px; }
+
+/* ============================ 中宽度：文字区与封面/色条间隙（821–1120px） ============================ */
+/* 桌面三列布局在窄窗口仍生效，但 game.css 的 .game-thumb translateX(-56px/-28px)
+   只改渲染位置、不占布局，正好吃掉 28px 的 grid gap；且 .game-body 的
+   max-width:600px 在中间列 <600px 时失效，文字区会贴住甚至被封面压住。
+   无封面卡另因 .game--nothumb 取消第三列，文字会延伸到右侧 18% 竖色条上。
+   本区间让封面留在第三列、无封面卡保留空的第三列放色条，使间隙恒为 28px。
+   上界取 1120px（容器最大宽度）：实测 1105px 若回到原 transform 只有 27px 间隙，
+   纳入到 1120 可消掉这段边界值；1121px 起原布局间隙已 ≥45px。
+   只删本媒体块即可回滚；>1120px 与 ≤820px 保持原状。 */
+@media (min-width: 821px) and (max-width: 1120px) {
+  .anime-card .game-thumb { transform: none; }
+  .anime-card.game--nothumb { grid-template-columns: 72px 1fr 160px; }
+  .anime-card.game--nothumb .game-body { grid-column: 2; }
+}
+
+/* ============================ 移动端底部色块（≤820px） ============================ */
+/* game.css 在此断点把 .game-bg 改成 height:18%（相对卡片总高），
+   于是卡片越长、色块越高（实测 768px 下 51–157px、390px 下 124–412px）；
+   且 .game 的 padding-bottom 只有 32px，无封面卡的正文/按钮会压在色块上。
+   本页改为：色块固定高度 + 满宽，无封面卡在色块上方预留间距。 */
+@media (max-width: 820px) {
+  .anime-card {
+    --anime-band-h: 88px;     /* 色块统一高度 */
+    --anime-band-gap: 32px;   /* 内容（文字/按钮）与色块的间距 */
+  }
+  .anime-card .game-bg {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 100%;
+    height: var(--anime-band-h);
+  }
+  /* 有封面卡保持原样（封面落在色块区域）；无封面卡把内容整体抬到色块之上 */
+  .anime-card.game--nothumb {
+    padding-bottom: calc(var(--anime-band-h) + var(--anime-band-gap));
+  }
+}
+
+/* ≤720px：game.css 为单列布局把 .game-body 设为 grid-column:1，
+   但本页 .game--nothumb 仍是两列（72px / 1fr），正文会被挤进 72px 年份列。
+   显式放回第 2 列，保持「两列且正文全宽」的既定口径。 */
+@media (max-width: 720px) {
+  .anime-card.game--nothumb .game-body { grid-column: 2; grid-row: 1; }
+}

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《キャプテン翼 CHAMPION OF FIELD —王者のフィールド—》· 队长小翼 WORLD</title>
+<meta name="description" content="KONAMI 2002《キャプテン翼 トレーディングカードゲーム CHAMPION OF FIELD —王者のフィールド—》：商品情报、玩法指南与卡牌图鉴（扫描卡 116 张）。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/character.css">
+<style>
+  /* ===================== 页头 ===================== */
+  .page-hero { text-align: center; }
+  .page-hero .cof-cover { max-width: 340px; margin: 0 auto 26px; }
+  .page-hero .cof-cover img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, .22); }
+  .page-hero h1 { font-size: clamp(26px, 4.4vw, 46px); overflow-wrap: anywhere; }
+  .page-hero h1 .en { display: block; font-size: .30em; letter-spacing: 4px; margin-top: 14px; }
+  .page-hero .lead { max-width: 820px; margin-left: auto; margin-right: auto; }
+
+  /* ===================== 三版面吸顶页标签 ===================== */
+  .cof-tabs {
+    position: sticky; top: var(--header-h); z-index: 900;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(20, 0, 255, .05);
+  }
+  .cof-tabs-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 28px;
+    display: flex; justify-content: center; gap: 8px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .cof-tabs a {
+    display: block; padding: 15px 24px; font-size: 13px; letter-spacing: .5px;
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent; transition: color .2s, background .2s;
+  }
+  .cof-tabs a:hover { color: var(--brand); background: rgba(26, 0, 255, .03); }
+  .cof-tabs a[aria-current="page"] { color: var(--brand); border-bottom-color: var(--brand); font-weight: 700; }
+  .cof-panel { scroll-margin-top: calc(var(--header-h) + 64px); }
+
+  .cof-panel-head { text-align: center; margin-bottom: 40px; }
+  .cof-panel-head .kicker {
+    font-family: var(--font-display); font-size: 11px; letter-spacing: 3px;
+    color: var(--brand); display: block; margin-bottom: 10px;
+  }
+  .cof-panel-head h2 { font-family: var(--font-display); font-size: clamp(24px, 3.4vw, 34px); font-weight: 900; letter-spacing: -1px; }
+  .cof-panel-head p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 760px; margin: 12px auto 0; }
+
+  .cof-subhead { font-family: var(--font-display); font-size: 17px; font-weight: 900; margin: 36px 0 16px; padding-left: 12px; border-left: 4px solid var(--brand); }
+  .cof-intro { font-size: 13.5px; line-height: 1.95; color: #444; margin: 0 0 24px; }
+  .cof-note { background: #f6f6fb; border-left: 4px solid var(--brand); padding: 14px 18px; font-size: 13px; line-height: 1.85; color: #444; margin-bottom: 32px; }
+  .cof-source { font-size: 12px; color: var(--muted); margin-top: 32px; text-align: center; }
+
+  /* ===================== 商品情报 ===================== */
+  .cof-spec { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 26px; }
+  .cof-spec th, .cof-spec td { border: 1px solid var(--line); padding: 10px 14px; text-align: left; vertical-align: top; line-height: 1.7; }
+  .cof-spec th { background: #fafafe; width: 128px; color: #333; font-weight: 700; white-space: nowrap; }
+  .cof-imgrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 8px; }
+  .cof-imgrow figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+  .cof-imgrow img { width: 100%; height: auto; display: block; }
+  .cof-imgrow figcaption { font-size: 12px; color: var(--muted); text-align: center; padding: 8px 6px; }
+  .cof-prodline { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
+  .cof-prodline th, .cof-prodline td { border: 1px solid var(--line); padding: 9px 11px; text-align: center; }
+  .cof-prodline th { background: #fafafe; font-weight: 700; }
+  .cof-prodline td:first-child { text-align: left; }
+
+  /* ===================== 玩法指南：折叠面板 ===================== */
+  .cof-acc { border: 1px solid var(--line); border-radius: 8px; margin: 0 0 18px; background: #fff; overflow: hidden; }
+  .cof-acc > summary.cof-acc-head {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; font-family: var(--font-display); font-weight: 900; font-size: 15.5px; color: #222;
+    background: #fafafe; user-select: none;
+  }
+  .cof-acc > summary.cof-acc-head::-webkit-details-marker { display: none; }
+  .cof-acc > summary.cof-acc-head:hover { background: #f1f1fa; }
+  .cof-acc-ico { position: relative; flex: 0 0 auto; width: 18px; height: 18px; }
+  .cof-acc-ico::before, .cof-acc-ico::after {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    background: var(--brand); border-radius: 2px;
+  }
+  .cof-acc-ico::before { width: 14px; height: 2px; }
+  .cof-acc-ico::after { width: 2px; height: 14px; }
+  .cof-acc[open] .cof-acc-ico::after { display: none; }
+  .cof-acc-body { padding: 18px 20px 8px; }
+  .cof-sub2 { font-family: var(--font-display); font-size: 14.5px; font-weight: 800; color: #333; margin: 22px 0 10px; }
+  .cof-sub2:first-child { margin-top: 0; }
+  .cof-sub3 { font-size: 13px; font-weight: 700; color: #444; margin: 16px 0 8px; }
+  .cof-ul { margin: 0 0 16px; padding-left: 22px; font-size: 13.5px; line-height: 1.95; color: #444; }
+  .cof-ul li { margin-bottom: 6px; }
+  .cof-ol { margin: 0 0 16px; padding-left: 22px; font-size: 13.5px; line-height: 1.95; color: #444; }
+  .cof-ol li { margin-bottom: 6px; }
+  .cof-stage { border-left: 3px solid var(--brand); background: #fafafe; padding: 12px 16px; margin: 0 0 14px; border-radius: 0 6px 6px 0; }
+  .cof-stage b { color: var(--brand); }
+
+  /* ===================== 卡牌图鉴 ===================== */
+  .cof-filter { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 22px; }
+  .cof-filter button {
+    font-size: 12.5px; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px;
+    background: #fff; color: #444; cursor: pointer; transition: all .18s;
+  }
+  .cof-filter button:hover { border-color: var(--brand); color: var(--brand); }
+  .cof-filter button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; font-weight: 700; }
+  .cof-count { text-align: center; font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .cof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .cof-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 2px 8px rgba(20, 40, 80, .05); }
+  .cof-card img { width: 100%; height: auto; display: block; background: #f0f0f0; }
+  .cof-card figcaption {
+    font-family: var(--font-mono, monospace); font-size: 11px; color: var(--muted);
+    text-align: center; padding: 7px 4px; letter-spacing: .5px; border-top: 1px solid var(--line);
+  }
+  .cof-pager { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 32px; }
+  .cof-pager button {
+    min-width: 36px; height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px;
+    background: #fff; color: #333; cursor: pointer; font-size: 13px;
+  }
+  .cof-pager button[aria-current="page"] { background: var(--brand); border-color: var(--brand); color: #fff; font-weight: 700; }
+  .cof-pager button:disabled { opacity: .4; cursor: default; }
+
+  @media (max-width: 720px) {
+    .cof-tabs-inner { justify-content: flex-start; padding: 0 12px; }
+    .cof-tabs a { padding: 13px 14px; font-size: 12px; letter-spacing: 0; }
+    .cof-cover { max-width: 240px; }
+    .cof-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="games.html" class="active">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+        <a href="my-golden-xi-characters.html">队长小翼：我的黄金十一人</a>
+        <a href="dream-team-characters.html">队长小翼：梦幻队伍</a>
+        <a href="weiss-schwarz-ctb.html">武士道TCG卡牌</a>
+        <a href="takara-tomy-fcg.html">多美TCG卡牌</a>
+        <a href="konami-champion-of-field.html">科乐美TCG卡牌</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="cof-cover">
+      <img src="assets/img/game/champion-of-field/cover.jpg"
+           alt="《キャプテン翼 トレーディングカードゲーム CHAMPION OF FIELD —王者のフィールド—》公式カードカタログ" loading="eager">
+    </div>
+    <h1>《キャプテン翼 CHAMPION OF FIELD —王者のフィールド—》<span class="en">KONAMI · CAPTAIN TSUBASA TCG · CG 040 · 2002</span></h1>
+    <p class="lead">
+      《CHAMPION OF FIELD —王者のフィールド—》是 KONAMI（科乐美）于 <b>2002 年 3 月</b>推出的《队长小翼》主题
+      <b>实体集换式卡牌游戏</b>，依托漫画《ROAD TO 2002》篇与 J.LEAGUE 官方授权，
+      把《队长小翼》的角色与<b>真实 J 联赛球员</b>放进同一套卡牌对战。
+    </p>
+    <p class="lead" style="margin-top:14px;color:var(--muted);font-size:14px">
+      本页分为 <b>商品情报 / 玩法指南 / 卡牌图鉴</b> 三个版面，可用上方页标签切换。
+      卡牌图鉴收录 MediaFire 玩家扫描包中的 <b>116 张卡面</b>（起始卡组 60 ＋ 补充包 56），
+      以原图呈现，<b>暂不设资料详情弹窗</b>。资料取自官方实物扫描与爱好者目录站，站内零外链。
+    </p>
+  </section>
+
+  <!-- ===================== 三版面吸顶页标签 ===================== -->
+  <nav class="cof-tabs" id="cofTabs" aria-label="版面切换">
+    <div class="cof-tabs-inner">
+      <a href="#info" data-panel="info" aria-current="page">商品情报</a>
+      <a href="#guide" data-panel="guide">玩法指南</a>
+      <a href="#cards" data-panel="cards">卡牌图鉴</a>
+    </div>
+  </nav>
+
+  <!-- ===================== 版面 1：商品情报 ===================== -->
+  <section class="section cof-panel" id="info">
+    <div class="container">
+      <div class="cof-panel-head">
+        <span class="kicker">PRODUCT INFO</span>
+        <h2>商品情报</h2>
+        <p>KONAMI 于 2002 年发行的《队长小翼》集换式卡牌游戏——CHAMPION OF FIELD 王者のフィールド。</p>
+      </div>
+
+      <div class="cof-note">
+        本作是 KONAMI 在 2001 年前后那批 Jump 系 TCG（游戏王、棋魂、网球王子等）中的<b>足球题材作品</b>，
+        与 GBA 游戏《キャプテン翼 栄光の軌跡》（2002-02-21）为同一企划的跨媒体联动——
+        <b>先有 GBA 卡牌玩法，再实体 TCG 商品化</b>。
+      </div>
+
+      <h3 class="cof-subhead">商品概要</h3>
+      <table class="cof-spec">
+        <tbody>
+          <tr><th>正式名称</th><td>キャプテン翼 トレーディングカードゲーム「CHAMPION OF FIELD —王者のフィールド—」</td></tr>
+          <tr><th>发行</th><td>コナミ（KONAMI）· 产品编号 CG 040 · MADE IN JAPAN · 条码 4988602 083071</td></tr>
+          <tr><th>发售</th><td>基本セット <b>2002 年 3 月</b>；ブースター Vol.2 日本代表 <b>2002 年 5 月</b></td></tr>
+          <tr><th>卡种数</th><td><b>394 種</b>（基本セット 344 ＋ ブースター Vol.2 50）</td></tr>
+          <tr><th>价格 / 年龄</th><td>起始盒 1,280 円（税別）· 対象年齢 12 岁以上</td></tr>
+          <tr><th>版权 / 授权</th><td>©高橋陽一／集英社・エイベックス・テレビ東京<br>J.LEAGUE OFFICIAL LICENSED PRODUCTS · J-STATS、OPTA 数据协办</td></tr>
+          <tr><th>数据基准</th><td>漫画角色按全系列表现设定数值；真实球员按 <b>2001 赛季 J1 联赛</b>（1st 第 1 节～2nd 第 12 节）OPTA 成绩设定</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="cof-subhead">商品图片</h3>
+      <div class="cof-imgrow">
+        <figure>
+          <img src="assets/img/game/champion-of-field/box-front.jpg" alt="起始盒（正面）" loading="lazy">
+          <figcaption>スターター 起始盒（正面）</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/game/champion-of-field/box-back.jpg" alt="起始盒（背面）" loading="lazy">
+          <figcaption>スターター 起始盒（背面）</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/game/champion-of-field/card-back.jpg" alt="卡牌背面" loading="lazy">
+          <figcaption>カード 卡背</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="cof-subhead">商品线</h3>
+      <table class="cof-prodline">
+        <thead><tr><th>产品线</th><th>发售期</th><th>卡种数</th><th>发售形式（封入枚数／价格）</th></tr></thead>
+        <tbody>
+          <tr><td>基本セット</td><td>2002/3</td><td>344 種</td><td>構築済みスターター（70 枚 / 1,280 円）、ブースター（10 枚 / 300 円）</td></tr>
+          <tr><td>ブースター Vol.2 日本代表（2002 年度版）</td><td>2002/5</td><td>50 種</td><td>ブースター（10 枚 / 300 円）</td></tr>
+        </tbody>
+      </table>
+      <p class="cof-intro" style="font-size:12.5px;color:var(--muted)">
+        ※「394 種」为卡种数，非单盒实际张数。起始盒内含構築済みデッキ 70 枚（選手 22 ＋ 戦術 48）、球场纸 1 张、6 面骰 1 个、球权指示物 1 个、公式规则书 1 册；合法组牌为 <b>60 张</b>（監督 1 ＋ 首発 11 ＋ 牌库 48）。
+      </p>
+
+      <h3 class="cof-subhead">产品谱系</h3>
+      <table class="cof-prodline">
+        <thead><tr><th>时间</th><th>作品</th><th>形态</th><th>关系</th></tr></thead>
+        <tbody>
+          <tr><td>2002-02-21</td><td>キャプテン翼 栄光の軌跡</td><td>GBA 游戏</td><td>先出；TCG 玩法的电子原型</td></tr>
+          <tr><td><b>2002-03</b></td><td><b>实体 TCG 基本セット（本作）</b></td><td>实体卡牌</td><td>GBA 之后商品化</td></tr>
+          <tr><td>2002-05</td><td>ブースター Vol.2 日本代表</td><td>实体卡牌</td><td>本作扩充包</td></tr>
+          <tr><td>2002-07</td><td>パーフェクトイレブン</td><td>实体卡牌</td><td>姊妹作，规则同源；J 联赛官方，全真实球员照片（272 種）</td></tr>
+        </tbody>
+      </table>
+
+      <p class="cof-source">资料来源：KONAMI 官方实物扫描（规则书 / 盒背）＋ card.g1.xrea.com 爱好者 TCG 目录站（文責ＤＯＰ）。站内仅作纯文本标示，无外链。</p>
+    </div>
+  </section>
+
+  <!-- ===================== 版面 2：玩法指南 ===================== -->
+  <section class="section cof-panel" id="guide" hidden>
+    <div class="container">
+      <div class="cof-panel-head">
+        <span class="kicker">HOW TO PLAY</span>
+        <h2>玩法指南</h2>
+        <p>2 人对战、以球场网格 ＋ 6 面骰模拟足球比赛；规则整理自 xrea 目录站（王者のフィールド）与官方规则书扫描。</p>
+      </div>
+
+      <div class="cof-note">
+        本页规则为《CHAMPION OF FIELD —王者のフィールド—》的中文整理。姊妹作《パーフェクトイレブン》规则完全相同，
+        差异仅在登场人物换成纯真实 J 联赛球员照片。核心：球场 5×9 网格 ＋ 球权 ＋ 成本（Cost）＋ 战斗点数（BP）。
+      </div>
+
+      <details class="cof-acc" open>
+        <summary class="cof-acc-head"><span>基本構成（组牌与胜负）</span><span class="cof-acc-ico" aria-hidden="true"></span></summary>
+        <div class="cof-acc-body">
+          <h4 class="cof-sub2">胜利条件</h4>
+          <p class="cof-intro">下半场结束时得分多者获胜；平局则通过 PK 战决胜。</p>
+          <h4 class="cof-sub2">组牌</h4>
+          <ul class="cof-ul">
+            <li>队伍恰好 <b>60 张</b>：監督 1 张 ＋ 首発選手 11 张 ＋ 牌库 48 张。</li>
+            <li>首発选手须为 BP 6 以下，且位置数量比例须与監督卡记载一致。</li>
+            <li>同名卡最多 3 张；BP 7 的卡合计最多 6 张；BP 8 的卡合计最多 6 张。</li>
+            <li>牌库洗牌后分为<b>前半用 / 后半用各 24 张</b>。</li>
+          </ul>
+          <h4 class="cof-sub2">其他准备</h4>
+          <ul class="cof-ul">
+            <li>球权指示物（Ball Counter）1 个、6 面骰适量；游戏间交换卡：无。</li>
+            <li>初始手牌 0 张（上限 6，每回合补充）；无重抽、无首抽限制。</li>
+          </ul>
+          <h4 class="cof-sub2">场地</h4>
+          <p class="cof-intro">
+            共用球场 <b>5×9 ＝ 45 区</b>，另加各自球门区；1 区最多 4 名选手（同一玩家最多 3 名）。
+            主要区域：角落区、罚球区（门前 3 区 ×2）、边区、自由球区（中央为中央圈）。
+          </p>
+        </div>
+      </details>
+
+      <details class="cof-acc" open>
+        <summary class="cof-acc-head"><span>游戏流程（回合结构）</span><span class="cof-acc-ico" aria-hidden="true"></span></summary>
+        <div class="cof-acc-body">
+          <h4 class="cof-sub2">开始准备</h4>
+          <ol class="cof-ol">
+            <li>各自的監督卡置于场上「主教练（Head Coach）」位。</li>
+            <li>首発选手按监督卡位置比例初始配置。</li>
+            <li>各自洗牌，分前后半各 24 张；球标置中心圈。</li>
+            <li>决定球端；持球方为进攻方开球。</li>
+          </ol>
+          <h4 class="cof-sub2">回合结构（每半场反复）</h4>
+          <p class="cof-stage"><b>① 攻击阶段</b>（攻击方）恢复（获 4 点成本）→ 抽牌（补至 6）→ 主要步骤（等级提升 / 设置·弃反转卡 / 支援卡 / 战术卡 / 移动 / 带球 / 传球 / <b>射门＝结束</b>）。※ 攻击方须把球至少移动 1 区，否则不能结束。</p>
+          <p class="cof-stage"><b>② 防守阶段</b>（防守方）恢复 / 抽牌同上 → 主要步骤另可 <b>抢断 / 传球拦截</b>（均＝结束）。</p>
+          <p class="cof-stage"><b>③ 战斗阶段</b> 仅在射门 / 抢断 / 传球拦截引发时进行（见「关键判定」）。</p>
+          <h4 class="cof-sub2">半场休息与 PK</h4>
+          <p class="cof-intro">
+            前半牌库耗尽后进入半场休息：手牌、前半牌库、弃牌堆除外，换后半牌库，选手重新初始配置，开局守方转为进攻方开球。
+            后半战结束仍未分胜负则进行 <b>PK 战</b>：各选 5 名选手互射，以射门力＋骰子对门将防守力＋骰子比大小定胜负。
+          </p>
+        </div>
+      </details>
+
+      <details class="cof-acc" open>
+        <summary class="cof-acc-head"><span>规则细则（成本 / BP / 判定）</span><span class="cof-acc-ico" aria-hidden="true"></span></summary>
+        <div class="cof-acc-body">
+          <h4 class="cof-sub2">成本（Cost）</h4>
+          <p class="cof-intro">
+            每攻击/防守阶段供给基本 <b>4 点</b>（卡片效果可额外获得，阶段内累计上限 6）；跨区 1 区 1 成本；战术卡耗记载值；
+            移动最多 2 区；射门按含球门距离；传球同区为 1 成本；抢断/拦截各 +1。阶段结束成本全废。
+          </p>
+          <h4 class="cof-sub2">战斗点数（BP，1～8）</h4>
+          <p class="cof-intro">
+            战斗阶段双方各将手牌 1 张背面作「战斗卡」，翻开后其 BP 加到己方选手相应属性；无手牌按 BP 0 处理。
+            <b>特殊规则：己方战斗卡 BP 1、对方 BP 8 时，BP 1 方无条件获胜。</b>
+          </p>
+          <h4 class="cof-sub2">判定</h4>
+          <ul class="cof-ul">
+            <li><b>射门</b>：射门选手「射门力」vs 对方门将「防守力」——攻方高 2 点以上 → 进球得 1 分；守方高 2 点以上 → 门将接球、球门球；差值 ≤1 → 门将拳击解围，落点以骰子判定。</li>
+            <li><b>抢断 / 传球拦截</b>：抢断/拦截方「防守力」vs 对方「控球力」，大者得球；平局以骰子判定。</li>
+          </ul>
+          <h4 class="cof-sub2">卡片构成</h4>
+          <ul class="cof-ul">
+            <li><b>監督卡</b>（无需成本）：玩家的分身、组牌基点，记载首発构成比例，多带常驻效果。</li>
+            <li><b>選手卡</b>（行动需成本）：三属性 <b>Shoot（射门）/ Keep（控球）/ Defense（防守）</b> ＋ Cost；左上六角形数字为 BP；指定 FW/MF/DF/GK 与初始配置区。</li>
+            <li><b>支援卡</b>（无需成本）：获取成本，每回合 1 张。</li>
+            <li><b>战术卡</b>（需成本）：效果多样，每回合 1 张。</li>
+            <li><b>反转卡</b>（通常无需成本）：战斗时发动，先背面置于反转区，指定时机翻面；场上最多 3 张。</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3 class="cof-subhead">规则书扫描</h3>
+      <div class="cof-imgrow">
+        <figure><img src="assets/img/game/champion-of-field/booklet/02-03.jpg" alt="公式规则书目次与序言" loading="lazy"><figcaption>目次 · はじめに（第 1–8 章）</figcaption></figure>
+        <figure><img src="assets/img/game/champion-of-field/booklet/04-05.jpg" alt="公式规则书内页" loading="lazy"><figcaption>第 1–2 章（商品内容 / 卡牌种类）</figcaption></figure>
+      </div>
+
+      <p class="cof-source">玩法整理自：card.g1.xrea.com 爱好者 TCG 目录站《王者のフィールド》页（文責ＤＯＰ，2018/12/23）＋ KONAMI 官方公式规则书扫描。</p>
+    </div>
+  </section>
+
+  <!-- ===================== 版面 3：卡牌图鉴 ===================== -->
+  <section class="section cof-panel" id="cards" hidden>
+    <div class="container">
+      <div class="cof-panel-head">
+        <span class="kicker">CARD CATALOG</span>
+        <h2>カード一覧</h2>
+        <p>扫描卡面 116 张：起始卡组 S-0001～S-0060（60 张）＋ 补充包 B1-xxxx（56 张）。以原图呈现，暂不设详情弹窗。</p>
+      </div>
+
+      <div class="cof-filter" id="cofFilter">
+        <button type="button" data-type="all" aria-pressed="true">全部 116</button>
+        <button type="button" data-type="starter" aria-pressed="false">スターター 60</button>
+        <button type="button" data-type="booster" aria-pressed="false">ブースター 56</button>
+      </div>
+      <div class="cof-count" id="cofCount"></div>
+      <div class="cof-grid" id="cofGrid"></div>
+      <div class="cof-pager" id="cofPager"></div>
+
+      <p class="cof-source">卡面扫描：MediaFire「Captain Tsubasa - Champion of Field」（FeelTheXtasy，2019），非官方全卡表；本站仅收录该扫描包所含 116 张。版权归 © 高橋陽一／集英社・エイベックス・テレビ東京 所有。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      队长小翼 WORLD
+      <div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div>
+    </div>
+    <div>
+      <h4>内容分类</h4>
+      <ul>
+        <li><a href="character.html">登场角色</a></li>
+        <li><a href="comics.html">漫画作品</a></li>
+        <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
+        <li><a href="news.html">新闻动态</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>关于</h4>
+      <ul>
+        <li><a href="index.html#about">作品简介</a></li>
+        <li><a href="index.html#news">最新动态</a></li>
+        <li><a href="45th.html">45周年祭</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    卡片图像与文本版权归 © 高橋陽一／集英社・エイベックス・テレビ東京 · J.LEAGUE OFFICIAL LICENSED PRODUCTS 所有。
+  </div>
+</footer>
+
+<!-- 卡图数据与渲染 -->
+<script src="js/cof-data.js"></script>
+<script src="js/cof-cards.js"></script>
+<script src="js/main.js"></script>
+<!-- 三版面：页标签切换（#hash 直达 + aria-current + 动态 title） -->
+<script>
+(function () {
+  var PANELS = ['info', 'guide', 'cards'];
+  var TITLES = { info: '商品情报', guide: '玩法指南', cards: '卡牌图鉴' };
+  var BASE = document.title;
+  var tabs = document.getElementById('cofTabs');
+  function apply(id, updateHash) {
+    if (PANELS.indexOf(id) < 0) id = 'info';
+    PANELS.forEach(function (p) {
+      var s = document.getElementById(p);
+      if (s) s.hidden = (p !== id);
+    });
+    if (tabs) {
+      Array.prototype.forEach.call(tabs.querySelectorAll('[data-panel]'), function (a) {
+        if (a.dataset.panel === id) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      });
+    }
+    document.title = (id === 'info' ? '' : TITLES[id] + ' · ') + BASE;
+    if (updateHash) {
+      var h = '#' + id;
+      if (location.hash !== h) {
+        try { history.replaceState(null, '', h); } catch (err) { location.hash = id; }
+      }
+    }
+  }
+  function fromHash() {
+    var h = (location.hash || '').replace(/^#/, '');
+    return PANELS.indexOf(h) >= 0 ? h : 'info';
+  }
+  if (tabs) {
+    tabs.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-panel]');
+      if (!a) return;
+      e.preventDefault();
+      apply(a.dataset.panel, true);
+      var top = tabs.getBoundingClientRect().top + window.pageYOffset -
+        (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 72);
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+    window.addEventListener('hashchange', function () { apply(fromHash(), false); });
+    apply(fromHash(), false);
+  }
+})();
+</script>
+</body>
+</html>

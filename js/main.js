@@ -17,6 +17,34 @@
     });
   }
 
+  // 网页端导航「当前专页」高亮同步
+  // 以当前页面文件名比对下拉菜单各专页链接，命中项加 .active（蓝色字体，见 style.css），
+  // 并确保父项「游戏作品」同为选中态；切换页面后随当前页自动更新，未命中时不改动任何项。
+  (function () {
+    const menu = document.querySelector('.header .nav .nav-drop-menu');
+    if (!menu) return;
+    const norm = function (s) {
+      const tail = s.split('/').pop().split(/[?#]/)[0];
+      try { return decodeURIComponent(tail); } catch (e) { return tail; }
+    };
+    const file = norm(window.location.pathname);
+    const links = menu.querySelectorAll('a[href]');
+    let hit = null;
+    links.forEach(function (a) {
+      a.classList.remove('active');
+      a.removeAttribute('aria-current');
+      if (norm(a.getAttribute('href')) === file) hit = a;
+    });
+    if (!hit) return;
+    hit.classList.add('active');
+    hit.setAttribute('aria-current', 'page');
+    const parent = document.querySelector('.header .nav .nav-drop > a');
+    if (parent) {
+      parent.classList.add('active');
+      parent.setAttribute('aria-current', 'true');
+    }
+  })();
+
   // 滚动时给 header 增加投影
   const header = document.querySelector('.header');
   if (header) {

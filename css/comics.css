@@ -264,8 +264,14 @@
 
 /* ============================ 响应式 ============================ */
 @media (max-width: 820px) {
-  .comic { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
-  .comic .comic-bg { width: 100%; height: 18%; top: auto; bottom: 0; }
+  .comic { --band-h: 88px; grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  /* 底部装饰色块：固定高度 + 满宽，不随卡片总高浮动（与 anime / games 页统一 88px）。
+     14 张卡全有封面、无按钮，实测 bodyGap 最小 163px 已满足留白要求，
+     故不加 padding-bottom —— 封面压在色块内是既有设计，加 padding 会让封面脱离色块。 */
+  .comic .comic-bg {
+    top: auto; bottom: 0; left: 0; right: auto;
+    width: 100%; height: var(--band-h);
+  }
   .comic-thumb { max-width: 200px; }
 }
 

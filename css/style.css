@@ -156,17 +156,45 @@ ul { list-style: none; }
     transition: transform .3s ease;
   }
   .header .nav.open { transform: translateY(0); }
-  /* 移动端菜单：所有文字统一为白色，且不随 hover / 当前页状态改变颜色。
-     当前页仅以品牌蓝底纹标识，避免出现「蓝底蓝字」导致文字不可读。 */
+  /* 移动端导航 R1–R4（2026-11-07 应用）：
+     R1 几何统一 / R2 交互态同权 / R3 选中与悬停分离 / R4 父子联动。
+     桌面端规则保持原状（R5），本块只作用于 <=860px。 */
   .header .nav a,
   .header .nav a:hover,
   .header .nav a:focus,
+  .header .nav a:focus-visible,
+  .header .nav a:active,
   .header .nav a:visited,
-  .header .nav a.active { color: #fff; }
+  .header .nav a.active,
+  .header .nav a[aria-current] { color: #fff; }
+  /* R1：一级项 / 父项 / 子项一律撑满整行，层级只用 padding-left 区分 */
+  .header .nav a,
+  .header .nav .nav-drop > a,
+  .header .nav .nav-drop-menu a { display: block; width: 100%; box-sizing: border-box; }
   .header .nav a { padding: 14px 28px; }
-  .header .nav a:hover { background: var(--brand); }
-  .header .nav a.active::after { display: none; }
-  .header .nav a.active { background: var(--brand); }
+  .header .nav .nav-drop { width: 100%; }
+  /* R2：hover / focus-visible / active 共用浅底；聚焦另加可见轮廓 */
+  .header .nav a:hover,
+  .header .nav a:focus-visible,
+  .header .nav a:active { background: rgba(255,255,255,.10); }
+  .header .nav a:focus-visible { outline: 2px solid #ffcb1e; outline-offset: -2px; }
+  /* R3 + R4：选中态 = 品牌蓝底 + 左侧 3px 竖条；.active 与 [aria-current] 双驱动，
+     兼容 31 页既有的静态 .active 写法，同时支持 JS 自动写入的 aria-current。 */
+  .header .nav a.active,
+  .header .nav a[aria-current] { background: var(--brand); }
+  .header .nav a.active::before,
+  .header .nav a[aria-current]::before {
+    content: ""; position: absolute;
+    left: 0; top: 0; bottom: 0; width: 3px; background: #ffcb1e;
+  }
+  .header .nav a.active:hover,
+  .header .nav a.active:focus-visible,
+  .header .nav a.active:active,
+  .header .nav a[aria-current]:hover,
+  .header .nav a[aria-current]:focus-visible,
+  .header .nav a[aria-current]:active { background: var(--brand); }
+  .header .nav a.active::after,
+  .header .nav a[aria-current]::after { display: none; }
 }
 
 /* 小屏（手机端）：紧凑顶部栏，隐藏副标题 */
@@ -414,6 +442,11 @@ ul { list-style: none; }
   font-size: 13px; font-weight: 700; letter-spacing: .5px;
   color: var(--ink); white-space: nowrap; text-align: left;
 }
+/* 网页端「当前专页」高亮：与一级 .active 一致的蓝色字体。
+   置于 hover 规则之前，确保悬停时后置规则仍胜出（蓝底白字），不破坏原有交互。 */
+@media (min-width: 861px) {
+  .header .nav .nav-drop-menu a.active { color: var(--brand); }
+}
 .header .nav .nav-drop-menu a:hover,
 .header .nav .nav-drop-menu a:focus,
 .header .nav .nav-drop-menu a:active,
@@ -431,10 +464,17 @@ ul { list-style: none; }
     color: #fff; padding: 12px 28px 12px 46px;
     border-top: 1px solid rgba(255,255,255,.08);
   }
+  /* R2：子项交互态同样用浅底（与一级项一致） */
   .header .nav .nav-drop-menu a:hover,
-  .header .nav .nav-drop-menu a:focus,
-  .header .nav .nav-drop-menu a:active,
-  .header .nav .nav-drop-menu a:visited:hover { background: var(--brand); color: #fff; }
+  .header .nav .nav-drop-menu a:focus-visible,
+  .header .nav .nav-drop-menu a:active { background: rgba(255,255,255,.10); color: #fff; }
+  /* R3：选中子项被悬停/聚焦/按压时仍保持蓝底，不被浅底覆盖 */
+  .header .nav .nav-drop-menu a.active:hover,
+  .header .nav .nav-drop-menu a.active:focus-visible,
+  .header .nav .nav-drop-menu a.active:active,
+  .header .nav .nav-drop-menu a[aria-current]:hover,
+  .header .nav .nav-drop-menu a[aria-current]:focus-visible,
+  .header .nav .nav-drop-menu a[aria-current]:active { background: var(--brand); color: #fff; }
   .header .nav .nav-drop-menu a:hover::after,
   .header .nav .nav-drop-menu a:focus::after { display: none; }
 }
