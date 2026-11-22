@@ -154,6 +154,13 @@ ul { list-style: none; }
     padding: 12px 0;
     transform: translateY(-120%);
     transition: transform .3s ease;
+    /* 菜单条目（17 项 ≈ 800px+）可能高于手机视口：
+       限高在顶栏以下、内部可滚动，否则超出部分被裁掉且无法滑动 */
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
   .header .nav.open { transform: translateY(0); }
   /* 移动端导航 R1–R4（2026-11-07 应用）：
@@ -429,6 +436,8 @@ ul { list-style: none; }
    统一放到这里后，所有页面（含新并入的游戏角色页 / 前日谭小说页）自动生效。
    ========================================================== */
 .nav-drop { position: relative; }
+/* 「+/-」切换按钮仅移动端显示（≤860px 内改为 flex），桌面端注入了也不渲染 */
+.nav-drop-toggle { display: none; }
 .nav-drop-menu {
   /* 左边缘与「游戏作品」对齐：菜单内首字的左内边距与导航项一致（14px） */
   position: absolute; top: 100%; left: 0;
@@ -463,11 +472,32 @@ ul { list-style: none; }
 .header .nav .nav-drop-menu a:focus::after { display: none; }
 @media (max-width: 860px) {
   .nav-drop { width: 100%; }
+  /* 移动端下拉默认收拢，由 JS 给 .nav-drop 加 .open 展开（见 js/main.js） */
   .nav-drop-menu {
     position: static; transform: none;
     min-width: 0; padding: 0; background: transparent; border: none; box-shadow: none;
-    display: block; opacity: 1; visibility: visible;
+    display: none; opacity: 1; visibility: visible;
   }
+  .nav-drop.open .nav-drop-menu { display: block; }
+  /* 父项右侧「+/-」切换按钮（js/main.js 注入的真实 <button>）：
+     独立于父项链接与蓝色选中态——点按钮只展开/收起，点文字才跳转列表页 */
+  .header .nav .nav-drop > a { padding-right: 64px; }
+  .header .nav .nav-drop-toggle {
+    position: absolute;
+    top: 0; right: 0;
+    width: 56px; height: 48px;   /* 默认行高；js/main.js 会按父项实际行高覆写 top/height */
+    display: flex; align-items: center; justify-content: center;
+    padding: 0;
+    background: transparent; border: 0;
+    color: #ffcb1e;
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 700; line-height: 1;
+    cursor: pointer;
+    transition: color .2s;
+  }
+  .header .nav .nav-drop-toggle:hover,
+  .header .nav .nav-drop-toggle:focus-visible { color: #fff; }
+  .header .nav .nav-drop-toggle:focus-visible { outline: 2px solid #ffcb1e; outline-offset: -2px; }
   .header .nav .nav-drop-menu a {
     color: #fff; padding: 12px 28px 12px 46px;
     border-top: 1px solid rgba(255,255,255,.08);

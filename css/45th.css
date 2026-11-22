@@ -289,7 +289,7 @@
   .dc-celeb__name { font-size: 14px; }
   .dc-celeb__role { font-size: 12px; height: 21px; margin-top: 8px; }
   .dc-celeb__text { font-size: 14px; -webkit-line-clamp: 2; margin-top: 6px; }
-  .dc-project-figure { width: 150px; opacity: .55; top: -64px; }
+  .dc-project-figure { width: 170px; opacity: 1; top: 10px; z-index: 1; }
   .dc-project-title { margin-left: 60px; }
   .dc-project-title-ja { margin-left: 60px; }
   /* INTERVIEW / CONGRATULATIONS 两个 label 在移动端统一为 12px 同内距 */
