@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2018 电视动画《队长小翼》· 队长小翼 WORLD</title>
+<meta name="description" content="2018 年东京电视台播出的电视动画《队长小翼》（全 52 话）专页：作品情报、角色介绍、各话列表、主题歌与制作花絮。">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/common/apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== 2018 第一季专页（页内样式，不改动共享 CSS） ===== */
+.ct2018-tabs{
+  position:sticky; top:var(--header-h); z-index:900;
+  display:flex; flex-wrap:wrap; gap:4px 6px;
+  padding:10px max(24px, calc((100% - 1200px) / 2));
+  background:#fff; border-bottom:1px solid rgba(0,0,0,.12);
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.ct2018-tabs a{
+  padding:8px 16px; font-size:14px; color:var(--color-text-secondary,#555);
+  text-decoration:none; border-radius:999px; border:1px solid transparent;
+  transition:background .15s,color .15s;
+}
+.ct2018-tabs a:hover{ background:rgba(0,0,0,.05); }
+.ct2018-tabs a[aria-current="page"]{
+  color:#fff; background:var(--brand,#185FA5); font-weight:500;
+}
+/* 正文宽对齐全站 .container 的 1200px：
+   面板自带 .section 左右 28px 内边距，故盒宽上限取 1200 + 28×2 = 1256px，
+   内容区恒为 1200px，与 anime.html 等列表页的左右留白完全一致。 */
+.ct2018-panel{
+  display:block; padding-top:28px;
+  max-width:calc(1200px + 56px);
+  margin-left:auto; margin-right:auto;
+}
+.ct2018-panel[hidden]{ display:none; }
+.ct2018-section-title{
+  font-size:20px; font-weight:500; margin:0 0 16px;
+  padding-left:12px; border-left:4px solid var(--brand,#185FA5);
+}
+.ct2018-back{ font-size:13px; color:var(--brand,#185FA5); text-decoration:none; }
+.ct2018-back:hover{ text-decoration:underline; }
+
+/* 作品情报 */
+.ct-info-wrap{ display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:28px; align-items:start; }
+.ct-info-kv{ border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+.ct-info-kv img{ display:block; width:100%; height:auto; }
+.ct-info-syn{ line-height:1.8; margin:0 0 22px; }
+.ct-info-syn p{ margin:0 0 12px; }
+.ct-info-syn p:last-child{ margin-bottom:0; }
+.ct-sub{ font-size:15px; font-weight:500; margin:22px 0 10px; color:var(--brand,#185FA5); }
+.ct-staff{ width:100%; border-collapse:collapse; font-size:14px; }
+.ct-staff th,.ct-staff td{ text-align:left; padding:8px 10px; border-bottom:1px solid rgba(0,0,0,.08); vertical-align:top; }
+.ct-staff th{ width:140px; color:var(--color-text-secondary,#555); font-weight:500; white-space:nowrap; }
+.ct-bc-list{ list-style:none; margin:0; padding:0; columns:2; column-gap:24px; }
+.ct-bc-list li{ font-size:13px; padding:5px 0; break-inside:avoid; border-bottom:1px dotted rgba(0,0,0,.1); }
+
+/* 角色 */
+.ct-char-group{ margin-bottom:30px; }
+.ct-char-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:16px; }
+.ct-char-card{ background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:12px; overflow:hidden; }
+.ct-char-card img{ display:block; width:100%; height:200px; object-fit:contain; background:#f3f4f6; }
+.ct-char-card .body{ padding:10px 12px 14px; }
+.ct-char-card .nm{ font-size:15px; font-weight:500; }
+.ct-char-card .cv{ font-size:12px; color:var(--color-text-secondary,#777); margin:2px 0 6px; }
+.ct-char-card .pf{ font-size:12px; line-height:1.6; color:var(--color-text-secondary,#555); }
+
+/* 各话 */
+.ct-ep-toolbar{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:16px; }
+.ct-ep-toolbar input{ flex:1; min-width:200px; padding:9px 12px; border:1px solid rgba(0,0,0,.2); border-radius:8px; font-size:14px; }
+.ct-ep-list{ list-style:none; margin:0; padding:0; }
+.ct-ep-item{ display:grid; grid-template-columns:54px minmax(0,1fr); gap:14px; padding:16px 4px; border-bottom:1px solid rgba(0,0,0,.08); }
+.ct-ep-no{ font-size:22px; font-weight:500; color:var(--brand,#185FA5); text-align:center; line-height:1.2; }
+.ct-ep-no small{ display:block; font-size:11px; color:var(--color-text-secondary,#999); font-weight:400; }
+.ct-ep-jp{ font-size:15px; font-weight:500; }
+.ct-ep-cn{ font-size:14px; color:var(--color-text-secondary,#555); margin:2px 0 4px; }
+.ct-ep-meta{ font-size:12px; color:var(--color-text-tertiary,#999); margin-bottom:6px; }
+.ct-ep-syn{ font-size:13px; line-height:1.7; color:var(--color-text-secondary,#444); }
+.ct-ep-list mark{ background:#fff3a0; color:inherit; }
+.ct-pager{ display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin:22px 0 8px; }
+.ct-pager button{ min-width:36px; padding:7px 10px; border:1px solid rgba(0,0,0,.18); background:#fff; border-radius:8px; cursor:pointer; font-size:13px; }
+.ct-pager button[aria-current="true"],.ct-pager button.cur{ background:var(--brand,#185FA5); color:#fff; border-color:var(--brand,#185FA5); }
+.ct-pager button:disabled{ opacity:.4; cursor:default; }
+
+/* 音乐 */
+.ct-music-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+.ct-music-card{ background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:12px; padding:16px; }
+.ct-music-card .kind{ font-size:12px; color:#fff; background:var(--brand,#185FA5); display:inline-block; padding:2px 10px; border-radius:999px; margin-bottom:10px; }
+.ct-music-card .arc{ font-size:12px; color:var(--color-text-secondary,#777); }
+.ct-music-card .ttl{ font-size:17px; font-weight:500; margin:4px 0 6px; }
+.ct-music-card .ar{ font-size:14px; color:var(--color-text-secondary,#555); }
+
+/* 新闻 */
+.ct-news-list{ list-style:none; margin:0; padding:0; }
+.ct-news-list li{ display:flex; gap:14px; padding:12px 4px; border-bottom:1px solid rgba(0,0,0,.08); font-size:14px; }
+.ct-news-list .d{ color:var(--brand,#185FA5); font-weight:500; white-space:nowrap; }
+
+@media (max-width:820px){
+  .ct-info-wrap{ grid-template-columns:1fr; }
+  .ct-info-kv{ max-width:340px; margin:0 auto; }
+  .ct-bc-list{ columns:1; }
+  .ct-ep-item{ grid-template-columns:44px 1fr; }
+  .ct-ep-no{ font-size:18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img class="mark logo-portrait" src="assets/img/common/tsubasa_ball.png" alt="队长小翼" width="182" height="182">
+      <span class="logo-text">
+        <span>队长小翼 WORLD</span>
+        <span class="sub">CAPTAIN TSUBASA</span>
+      </span>
+    </a>
+  </div>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="character.html">登场角色</a>
+    <a href="comics.html">漫画作品</a>
+    <div class="nav-drop">
+      <a href="anime.html" class="active">动画作品</a>
+      <div class="nav-drop-menu">
+        <a href="captain-tsubasa-2018.html">队长小翼 第一季（2018）</a>
+        <a href="captain-tsubasa-2023.html">队长小翼 第二季（2023）</a>
+      </div>
+    </div>
+    <div class="nav-drop">
+      <a href="games.html">游戏作品</a>
+      <div class="nav-drop-menu">
+        <a href="rise-of-new-champions-characters.html">队长小翼：新秀崛起</a>
+        <a href="world-fighters-characters.html">队长小翼2：世界群星</a>
+        <a href="my-golden-xi-characters.html">队长小翼：我的黄金十一人</a>
+        <a href="dream-team-characters.html">队长小翼：梦幻队伍</a>
+        <a href="weiss-schwarz-ctb.html">武士道TCG卡牌</a>
+        <a href="takara-tomy-fcg.html">多美TCG卡牌</a>
+        <a href="konami-champion-of-field.html">科乐美TCG卡牌</a>
+      </div>
+    </div>
+    <a href="news.html">新闻动态</a>
+    <a href="special-column.html">特别专栏</a>
+    <a href="45th.html">45周年祭</a>
+  </nav>
+  <div class="burger"><span></span><span></span><span></span></div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <span class="kicker">ANIME · 2018</span>
+    <h1>电视动画《队长小翼》<span class="en">CAPTAIN TSUBASA (2018)</span></h1>
+    <p class="lead">
+      2018 年 4 月 2 日起于东京电视台开播的全新电视动画，全 52 话。
+      以天才足球少年大空翼的成长为主线，重述从南葛小到全国中学生大赛的热血物语。
+      本专页整理作品情报、角色、各话、主题歌与制作花絮。
+    </p>
+  </section>
+
+  <nav class="ct2018-tabs" id="ct2018Tabs" aria-label="版面切换">
+    <a href="#info" data-panel="info" aria-current="page">作品情报</a>
+    <a href="#characters" data-panel="characters">角色介绍</a>
+    <a href="#episodes" data-panel="episodes">各话列表</a>
+    <a href="#music" data-panel="music">音乐·主题歌</a>
+    <a href="#news" data-panel="news">制作花絮</a>
+  </nav>
+
+  <section class="section ct2018-panel" id="info"></section>
+  <section class="section ct2018-panel" id="characters" hidden></section>
+  <section class="section ct2018-panel" id="episodes" hidden></section>
+  <section class="section ct2018-panel" id="music" hidden></section>
+  <section class="section ct2018-panel" id="news" hidden></section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      队长小翼 WORLD
+      <div class="sub">CAPTAIN TSUBASA · 汉化版知识库</div>
+    </div>
+    <div>
+      <h4>内容分类</h4>
+      <ul>
+        <li><a href="character.html">登场角色</a></li>
+        <li><a href="comics.html">漫画作品</a></li>
+        <li><a href="anime.html">动画作品</a></li>
+        <li><a href="games.html">游戏作品</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>更多资讯</h4>
+      <ul>
+        <li><a href="news.html">新闻动态</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
+        <li><a href="45th.html">45周年祭</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    本页面为粉丝自制的汉化版知识库，由深爵（EdShen）设计制作，非官方站点，仅供学习与资料整理使用。<br>
+    © 高桥阳一 / 集英社 · キャプテン翼 製作委員会　原作《キャプテン翼》高桥阳一（集英社）
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/ct2018-data.js"></script>
+<script src="js/ct2018-page.js"></script>
+</body>
+</html>

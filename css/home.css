@@ -294,3 +294,26 @@
   .chara-main .btn { margin: 0 auto; }
   .news-item { grid-template-columns: 1fr; gap: 8px; }
 }
+
+/* ==========================================================================
+   2026-11-11 首页微调
+   深色板块与页脚沿用共享 css/style.css 的纯黑底（#000），
+   本文件不再覆盖配色（蓝色方案已按反馈撤回）。
+   页脚栏目标题加粗已于 2026-11-11 12:48 上移至共享 style.css，
+   全站统一，本文件不再重复定义。
+   ========================================================================== */
+
+/* 头部快捷按钮跳转首页区块时，避开 72px 固定顶栏（与 anime.css / game.css 同参数） */
+.section[id] { scroll-margin-top: calc(var(--header-h) + 20px); }
+
+/* ---------- 移动端：四个快捷按钮排成 2×2，避免「3+1」落单 ---------- */
+@media (max-width: 480px) {
+  .hero-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .hero-cta .btn { justify-content: center; padding: 10px 12px; }
+}

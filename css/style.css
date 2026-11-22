@@ -349,6 +349,9 @@ ul { list-style: none; }
 .footer h4 {
   font-family: var(--font-display);
   font-size: 13px;
+  font-weight: 900;
+  /* 部分环境（无头浏览器 / 缺 CJK 粗体面的系统）取不到汉字粗体，用同色描边补足笔画 */
+  -webkit-text-stroke: .3px currentColor;
   letter-spacing: 2px;
   color: #888;
   margin-bottom: 16px;
@@ -356,7 +359,12 @@ ul { list-style: none; }
 
 .footer ul li { margin-bottom: 10px; }
 .footer ul li a { color: #ccc; font-size: 14px; }
-.footer ul li a:hover { color: #fff; }
+.footer ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
 
 .footer .copyright {
   max-width: 1200px;

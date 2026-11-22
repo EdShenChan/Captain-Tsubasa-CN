@@ -18,31 +18,42 @@
   }
 
   // 网页端导航「当前专页」高亮同步
-  // 以当前页面文件名比对下拉菜单各专页链接，命中项加 .active（蓝色字体，见 style.css），
-  // 并确保父项「游戏作品」同为选中态；切换页面后随当前页自动更新，未命中时不改动任何项。
+  // 以当前页面文件名比对各下拉菜单的专页链接，命中项加 .active（蓝色字体，见 style.css），
+  // 并确保其父项（游戏作品 / 动画作品）同为选中态；未命中时不改动任何项。
+  // 导航可含多个 .nav-drop，故逐个遍历；带 # 锚点的子项（如「第二季」暂指列表页锚点）
+  // 不参与自动高亮，避免列表页误点亮该子项。
   (function () {
-    const menu = document.querySelector('.header .nav .nav-drop-menu');
-    if (!menu) return;
+    const drops = document.querySelectorAll('.header .nav .nav-drop');
+    if (!drops.length) return;
     const norm = function (s) {
       const tail = s.split('/').pop().split(/[?#]/)[0];
       try { return decodeURIComponent(tail); } catch (e) { return tail; }
     };
     const file = norm(window.location.pathname);
-    const links = menu.querySelectorAll('a[href]');
-    let hit = null;
-    links.forEach(function (a) {
-      a.classList.remove('active');
-      a.removeAttribute('aria-current');
-      if (norm(a.getAttribute('href')) === file) hit = a;
+    drops.forEach(function (drop) {
+      const menu = drop.querySelector('.nav-drop-menu');
+      if (!menu) return;
+      let hit = null;
+      menu.querySelectorAll('a[href]').forEach(function (a) {
+        const href = a.getAttribute('href') || '';
+        if (href.indexOf('#') !== -1) return;
+        a.classList.remove('active');
+        a.removeAttribute('aria-current');
+        if (norm(href) === file) hit = a;
+      });
+      if (!hit) return;
+      hit.classList.add('active');
+      hit.setAttribute('aria-current', 'page');
+      // 父项 = .nav-drop 的直接子元素 <a>
+      let parent = null;
+      for (let i = 0; i < drop.children.length; i++) {
+        if (drop.children[i].tagName === 'A') { parent = drop.children[i]; break; }
+      }
+      if (parent) {
+        parent.classList.add('active');
+        parent.setAttribute('aria-current', 'true');
+      }
     });
-    if (!hit) return;
-    hit.classList.add('active');
-    hit.setAttribute('aria-current', 'page');
-    const parent = document.querySelector('.header .nav .nav-drop > a');
-    if (parent) {
-      parent.classList.add('active');
-      parent.setAttribute('aria-current', 'true');
-    }
   })();
 
   // 滚动时给 header 增加投影

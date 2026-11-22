@@ -28,7 +28,13 @@
     <a href="index.html">首页</a>
     <a href="character.html">登场角色</a>
     <a href="comics.html">漫画作品</a>
-    <a href="anime.html">动画作品</a>
+    <div class="nav-drop">
+      <a href="anime.html">动画作品</a>
+      <div class="nav-drop-menu">
+        <a href="captain-tsubasa-2018.html">队长小翼 第一季（2018）</a>
+        <a href="captain-tsubasa-2023.html">队长小翼 第二季（2023）</a>
+      </div>
+    </div>
     <div class="nav-drop">
       <a href="games.html">游戏作品</a>
       <div class="nav-drop-menu">
@@ -55,20 +61,26 @@
     <div class="hero-45th-overlay"></div>
     <div class="hero-45th-inner">
       <p class="kicker">45TH ANNIVERSARY</p>
-      <img class="hero-45th-logo" src="assets/img/common/mv-logo.avif" alt="队长小翼 连载45周年" width="960" height="460">
-      <h1 class="hero-45th-title">45 年，迈向更远的未来</h1>
-      <p class="hero-45th-sub">45 years, and beyond.</p>
+      <img class="hero-45th-logo" src="assets/img/common/mv-logo.png" alt="队长小翼 连载45周年" width="960" height="460">
+      <div class="hero-45th-copy">
+        <h1 class="hero-45th-title">45年，迈向更远的未来</h1>
+        <p class="hero-45th-sub">45 years, and beyond.</p>
+      </div>
       <div class="hero-45th-scroll"><span></span></div>
     </div>
   </section>
 
+  <!-- HERO 与 INTRODUCTION 交界金线 -->
+  <div class="dc-gold-line" aria-hidden="true"></div>
+
   <!-- INTRODUCTION -->
-  <section class="section intro-45th" id="introduction" data-reveal>
+  <section class="intro-45th" id="introduction">
+    <div class="intro-marquee" aria-hidden="true">
+      <div class="intro-marquee__row">45TH ANNIVERSARY&nbsp; 45TH ANNIVERSARY&nbsp; 45TH ANNIVERSARY&nbsp;</div>
+      <div class="intro-marquee__row intro-marquee__row--rev">CAPTAIN TSUBASA&nbsp; CAPTAIN TSUBASA&nbsp; CAPTAIN TSUBASA&nbsp;</div>
+    </div>
     <div class="container">
-      <div class="section-head">
-        <p class="kicker">INTRODUCTION</p>
-        <h2>45 年，迈向更远的未来</h2>
-      </div>
+      <p class="intro-45th-kicker">INTRODUCTION</p>
       <div class="intro-45th-grid">
         <div class="intro-45th-text">
           <p>1981 年 3 月，《队长小翼》开始连载。</p>
@@ -78,24 +90,109 @@
           <p class="intro-45th-lead">为纪念连载 45 周年，一系列特别企划陆续启动。</p>
         </div>
         <div class="intro-45th-visual">
-          <img src="assets/img/45th/img_1981.png" alt="1981" width="348" height="446">
-          <span class="intro-45th-arrow">→</span>
-          <img src="assets/img/45th/img_2026.png" alt="2026" width="456" height="586">
+          <div class="intro-45th-figure"><img src="assets/img/45th/img_1981.png" alt="1981 年的大空翼" width="348" height="446"><span class="intro-45th-year">1981</span></div>
+          <span class="intro-45th-arrow" aria-hidden="true">➜</span>
+          <div class="intro-45th-figure"><img src="assets/img/45th/img_2026.png" alt="2026 年的大空翼" width="456" height="586"><span class="intro-45th-year">2026</span></div>
+        </div>
+      </div>
+      <!-- 三个板块按钮（属于 INTRODUCTION） -->
+      <div class="intro-goto">
+        <a class="intro-goto__card" href="#project">
+          <span class="intro-goto__deco" aria-hidden="true"></span>
+          <span class="intro-goto__text"><b>連載45周年記念特別企画</b><em>PROJECT</em></span>
+          <span class="intro-goto__arrow" aria-hidden="true">↓</span>
+        </a>
+        <a class="intro-goto__card" href="#interview">
+          <span class="intro-goto__deco" aria-hidden="true"></span>
+          <span class="intro-goto__text"><b>インタビュー記事</b><em>INTERVIEW</em></span>
+          <span class="intro-goto__arrow" aria-hidden="true">↓</span>
+        </a>
+        <a class="intro-goto__card" href="#congratulations">
+          <span class="intro-goto__deco" aria-hidden="true"></span>
+          <span class="intro-goto__text"><b>お祝いコメント</b><em>CONGRATULATIONS</em></span>
+          <span class="intro-goto__arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 板块 1：PROJECT（企划卡 + NEWS）· 白底 + 金色分界 + 左侧立绘 -->
+  <section class="dc-section dc-section--project" id="project">
+    <div class="dc-gold-line" aria-hidden="true"></div>
+    <img class="dc-project-figure" src="assets/img/45th/tsubasa_blue.png" alt="" width="696" height="1402" aria-hidden="true">
+    <div class="container">
+      <div class="dc-section__head">
+        <h2 class="dc-project-title">45TH ANNIVERSARY<br>PROJECT CONTENTS</h2>
+        <span class="dc-project-title-ja">連載45周年記念特別企画</span>
+      </div>
+      <div class="dc-card-grid" id="featuredGrid"></div>
+      <div class="dc-news-subhead"><h3>NEWS 情报列表</h3><span>按时间逆序（最新在最左）· 共 24 条 · 点击卡片查看详情</span></div>
+      <div class="dc-news-carousel">
+        <button type="button" class="dc-news-nav dc-news-nav--prev" data-news-prev aria-label="上一条新闻">‹</button>
+        <div class="dc-news-list" id="newsList" data-carousel></div>
+        <button type="button" class="dc-news-nav dc-news-nav--next" data-news-next aria-label="下一条新闻">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 板块 2：INTERVIEW（官方仅 1 篇）· 深绿草坪背景 -->
+  <section class="dc-section dc-section--interview" id="interview">
+    <div class="dc-gold-line" aria-hidden="true"></div>
+    <div class="container">
+      <div id="interviewWrap"></div>
+    </div>
+  </section>
+
+  <!-- 板块 3：CONGRATULATIONS · 金屑白底 -->
+  <section class="dc-section dc-section--congrats" id="congratulations">
+    <div class="dc-gold-line" aria-hidden="true"></div>
+    <div class="container">
+      <div class="dc-section__head">
+        <span class="dc-label">CONGRATULATIONS</span>
+        <h2 class="dc-section__title">お祝いコメント</h2>
+        <p class="dc-section__sub">共 32 条 · 20 位名人 + 12 位业界相关者（点击卡片查看全文）</p>
+      </div>
+      <div class="dc-celeb-head">
+        <h3>祝贺组 1 · 名人寄语（20 位）</h3>
+      </div>
+      <div class="dc-celeb-carousel">
+        <button type="button" class="dc-celeb-nav dc-celeb-nav--prev" data-prev aria-label="上一批">‹</button>
+        <div class="dc-celeb-track" data-carousel id="celebrationList"></div>
+        <button type="button" class="dc-celeb-nav dc-celeb-nav--next" data-next aria-label="下一批">›</button>
+      </div>
+      <div class="dc-celeb-group2">
+        <div class="dc-celeb-head dc-celeb-head--group2">
+          <h3>祝贺组 2 · 业界相关者（12 位）</h3>
+        </div>
+        <div class="dc-celeb-carousel">
+          <button type="button" class="dc-celeb-nav dc-celeb-nav--prev" data-prev aria-label="上一批">‹</button>
+          <div class="dc-celeb-track" data-carousel id="friendsList"></div>
+          <button type="button" class="dc-celeb-nav dc-celeb-nav--next" data-next aria-label="下一批">›</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECT CONTENTS -->
-  <section class="section project-45th" id="project" data-reveal>
+  <!-- 官网尾部：今後も続々、特別企画を発表！（位于祝贺区块之后、页脚上方） -->
+  <section class="dc-end-banner" aria-label="特别企划持续发表">
+    <div class="dc-gold-line" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-head">
-        <p class="kicker">45TH ANNIVERSARY PROJECT CONTENTS</p>
-        <h2>连载 45 周年纪念特别企划</h2>
+      <p class="dc-end-banner__en">45TH ANNIVERSARY</p>
+      <div class="dc-end-banner__row">
+        <p class="dc-end-banner__ja">更多特别企划，即将陆续发表！</p>
+        <div class="dc-end-banner__facts">
+          <span>漫画全球累计发行量突破<strong>9,000万册</strong>!!</span>
+          <span>手游《队长小翼：梦幻队伍》全球下载量突破<strong>6,000万次</strong>!!</span>
+          <span>端游《队长小翼2：世界群星》<strong>持续好评热卖中</strong>!!</span>
+        </div>
       </div>
-      <div class="featured-grid" id="featuredGrid"></div>
     </div>
+    <img class="dc-end-banner__figure" src="assets/img/45th/tsubasa_white.png" alt="" width="696" height="1402" aria-hidden="true">
+    <div class="dc-gold-line" aria-hidden="true"></div>
   </section>
+
+  <!-- 弹窗容器（JS 注入） -->
+  <div id="modals"></div>
 
 </main>
 
@@ -113,15 +210,13 @@
         <li><a href="comics.html">漫画作品</a></li>
         <li><a href="anime.html">动画作品</a></li>
         <li><a href="games.html">游戏作品</a></li>
-        <li><a href="news.html">新闻动态</a></li>
-        <li><a href="special-column.html">特别专栏</a></li>
       </ul>
     </div>
     <div>
-      <h4>关于</h4>
+      <h4>更多资讯</h4>
       <ul>
-        <li><a href="index.html#about">作品简介</a></li>
-        <li><a href="index.html#news">最新动态</a></li>
+        <li><a href="news.html">新闻动态</a></li>
+        <li><a href="special-column.html">特别专栏</a></li>
         <li><a href="45th.html">45周年祭</a></li>
       </ul>
     </div>

@@ -1,0 +1,21 @@
+/* 45周年独立采访页 · 补充样式（在 interview-shared.css 之后加载） */
+.iv-head--45th { background: #0c2a1e url('../assets/img/45th/interview-bg-pc.jpg') center center / cover no-repeat; color: #f2ecd8; padding-top: 64px; }
+.iv-head--45th .container { max-width: 1000px; }
+.iv-head-category { background: #cea33b; color: #fff; }
+.iv-head-title { color: #f2ecd8; }
+.iv-head-title .en { color: rgba(242,236,216,.6); }
+.iv-hero img { width: 100%; height: auto; border: 3px solid #cea33b; }
+.iv-head-lead { color: rgba(242,236,216,.85); }
+.iv-profile { background: rgba(255,255,255,.9); color: #011530; padding: 20px 24px; margin: 24px 0; border-left: 6px solid #cea33b; }
+.iv-profile b { font-size: 18px; }
+.iv-profile span { display: block; color: #185fa5; font-size: 13px; margin-top: 4px; }
+.iv-profile p { margin-top: 10px; font-size: 13px; line-height: 1.8; color: #444; }
+.iv-head-note { font-size: 13px; color: rgba(242,236,216,.65); }
+.iv-body { background: #f7f7f4; }
+.iv-qa { border-left: 4px solid #cea33b; background: #fff; padding: 22px 26px; margin-bottom: 22px; }
+.iv-q { font-size: 16px; font-weight: 900; color: #011530; }
+.iv-a-text p { color: #333; line-height: 1.9; }
+@media (max-width: 760px) {
+  .iv-head--45th { background-image: url('../assets/img/45th/interview-bg-sp.jpg'); }
+  .iv-qa { padding: 16px; }
+}
